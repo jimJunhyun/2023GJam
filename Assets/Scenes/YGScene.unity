@@ -280,10 +280,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fdea05030bd0e04ba69835969d0a26e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beatLineLineImg: {fileID: -6883094723168989170, guid: 65f004b198338c94fb05b1a53dea9394,
+  _beatLineImg: {fileID: -6883094723168989170, guid: 65f004b198338c94fb05b1a53dea9394,
     type: 3}
   _beatImg: {fileID: -3883001659652003717, guid: 3de307be212ae3c4e9cfc3e86c047c2a,
     type: 3}
+  _hit: []
+  _record: []
   BeatPos: {fileID: 227085127}
   _startHitBeat: {fileID: 1545385793}
   _endHitBeat: {fileID: 880194064}

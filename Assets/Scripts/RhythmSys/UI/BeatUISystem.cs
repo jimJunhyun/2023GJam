@@ -10,8 +10,8 @@ public class BeatUISystem : Singleton<BeatUISystem>
      public BeatLineUI _beatLineImg;
     public HitUI _beatImg;
 
-    [SerializeField]private List<HitUI> _hit = new();
-    [SerializeField]private List<HitUI> _record = new();
+    private List<HitUI> _hit = new();
+    private List<HitUI> _record = new();
 
     [Header("UI")] public Transform BeatPos;
     
@@ -142,7 +142,7 @@ public class BeatUISystem : Singleton<BeatUISystem>
 
                 if (_hit.Count > 0)
                 {
-                     HitUI _node = _hit[0];
+                    HitUI _node = _hit[0];
                     
                     bool _isDelete = false;
                     
@@ -150,7 +150,7 @@ public class BeatUISystem : Singleton<BeatUISystem>
                     {
                         float a = Mathf.Abs(_hit[j].Position - _re.Position);
                         float b = Mathf.Abs(_node.Position - _re.Position);
-                        if (a < b)
+                        if (a < b || _hit[j] == _node)
                         {
                             if (a < 0.06f)
                             {
@@ -164,7 +164,7 @@ public class BeatUISystem : Singleton<BeatUISystem>
                     {
                         _hit.Remove(_node);
                         
-                        Destroy(_node.gameObject);
+                        DestroyImmediate(_node.gameObject);
                     }
                     else
                     {
@@ -183,7 +183,7 @@ public class BeatUISystem : Singleton<BeatUISystem>
             if (_record.Contains(_remove[i]))
             {
                 _record.Remove(_remove[i]);
-                Destroy(_remove[i].gameObject);
+                DestroyImmediate(_remove[i].gameObject);
                 Debug.LogWarning("destory");
             }
         }
