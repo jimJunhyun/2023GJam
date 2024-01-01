@@ -12,7 +12,7 @@ public class BeatSystem : Singleton<BeatSystem>
 
     [SerializeField] private float Delay = 0f;
     
-   // private bool isFirst = true;
+    private bool isRecord = true;
 
     private int _matCount = 1;
     private float _currentTime = 0f;
@@ -39,10 +39,21 @@ public class BeatSystem : Singleton<BeatSystem>
     
     private void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.K))
         {
-            BeatUISystem.Instance.InstanciateHitNode();
+            BeatUISystem.Instance.HitNode();
+            //GetComponent<AudioSource>().Play();
+        }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            BeatUISystem.Instance.InstanciateRecordNode();
+            //GetComponent<AudioSource>().Play();
+        }
+
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            BeatUISystem.Instance.RemoveNode();
         }
         
         //Debug.Log(beat);
@@ -60,7 +71,7 @@ public class BeatSystem : Singleton<BeatSystem>
     IEnumerator Beating()
     {
         yield return new WaitForSeconds(Delay);
-        BeatUISystem.Instance.Invoke();
+        //BeatUISystem.Instance.Invoke();
         RhythmUpdating();
     }
 
@@ -70,7 +81,7 @@ public class BeatSystem : Singleton<BeatSystem>
         if (_matCount >= Matronyum)
         {
             
-            BeatUISystem.Instance.ResetHitBoard();
+            //BeatUISystem.Instance.ResetHitBoard();
             BeatUISystem.Instance.InstanciateNode();
             
             _matCount = 1;
