@@ -1,54 +1,234 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class BeatUISystem : Singleton<BeatUISystem>
 {
     
-    public BeatUI _beatLineImg;
-    public RectTransform _beatImg;
+     public BeatLineUI _beatLineImg;
+    public HitUI _beatImg;
 
-    private List<RectTransform> _hit = new();
+    [SerializeField]private List<HitUI> _hit = new();
+    [SerializeField]private List<HitUI> _record = new();
 
     [Header("UI")] public Transform BeatPos;
-    public RectTransform _startBeat;
-    public RectTransform _endBeat;
+    
+    [Header("Hit")]
+    public RectTransform _startHitBeat;
+    public RectTransform _endHitBeat;
+    private BeatLineUI _hitBeatLine;
 
-    private BeatUI _beat;
+    [Header("Record")] public RectTransform _startRecordBeat;
+    public RectTransform _endRecordBeat;
+    private BeatLineUI _recordBeatLine;
+
+    [Header("CurrentNode")] [SerializeField]private HitUI _nowNode;
 
     public void InstanciateNode()
     {
-        _beat = Instantiate(_beatLineImg,BeatPos);
+        _hitBeatLine = Instantiate(_beatLineImg,BeatPos);
         
-        _beat.Init(_startBeat, _endBeat);
+        _hitBeatLine.Init(_startHitBeat, _endHitBeat);
+        
+        _recordBeatLine = Instantiate(_beatLineImg,BeatPos);
+        
+        _recordBeatLine.Init(_startRecordBeat, _endRecordBeat);
+        
+        InvaligateNode();
     }
 
     public void Invoke()
     {
-        if(_beat != null)
-        _beat.Invoke();
+        //if(_hitBeat != null)
+        //    _hitBeat.Invoke();
     }
 
-    public void InstanciateHitNode()
+    public void InstanciateRecordNode()
     {
-        if (_beat == null)
+        if (_recordBeatLine == null)
             return;
-        RectTransform img = Instantiate(_beatImg, BeatPos);
-        img.localPosition = _beat.GetComponent<RectTransform>().localPosition;
-        _hit.Add(img);
+        HitUI img = Instantiate(_beatImg, BeatPos);
+        img.RectPS.localPosition = _recordBeatLine.RectPS.localPosition;
+        _record.Add(img);
+        img.Init(_recordBeatLine.Position, false);
+        //Debug.Log(_recordBeatLine.Position);
+        img.ImageUI.color = new Color(0, 1, 0, 0.3f);
     }
 
+    public void RemoveNode()
+    {
+        if (_recordBeatLine == null)
+            return;
+        HitUI img = Instantiate(_beatImg, BeatPos);
+        _record.Add(img);
+        img.RectPS.localPosition = _recordBeatLine.RectPS.localPosition;
+        img.Init(_recordBeatLine._position, true);
+        img.ImageUI.color = new Color(0, 0, 1, 0.3f);
+    }
+
+    public void HitNode()
+    {
+        if (_hitBeatLine == null)
+            return;
+
+        if (_nowNode == null)
+        {
+            Debug.Log("노드 없음");
+            return;
+        }
+
+        float a = _hitBeatLine.Position;
+        float b = _nowNode.Position;
+        
+        // 비팅 시스템 만들기
+        if (Mathf.Abs(a - b) < 0.02f)
+        {
+            Debug.Log($"쵝오, {a} | {b} | {Mathf.Abs(a - b)}");
+        }
+        else if (Mathf.Abs(a - b) < 0.04f)
+        {
+            Debug.Log($"굳, {a} | {b} | {Mathf.Abs(a - b)}");
+        }
+        else if (Mathf.Abs(a-b) < 0.06f)
+        {
+            Debug.Log($"밷, {a} | {b} | {Mathf.Abs(a - b)}");
+        }
+        else
+        {
+            Debug.Log("노드 멀음");
+            return;
+        }
+        
+        _nowNode.isHit = true;
+        _nowNode.ImageUI.color = new Color(1, 0, 0, 0.3f);
+        _nowNode = null;
+    }
+    
+    public void Update()
+    {
+        if (_hitBeatLine == null)
+            return;
+        
+        int idx = 0;
+        
+        for (int i= 0; i < _hit.Count;i++)
+        {
+            if (idx > i && _hit[i].isHit)
+            {
+                _hit[i].ImageUI.color = new Color(1, 0, 0, 0.3f);
+            }
+
+            if (_nowNode == null)
+                _nowNode = _hit[i];
+            
+            if (_nowNode != _hit[i] && Mathf.Abs(_hit[i].Position - _hitBeatLine.Position) < Mathf.Abs(_nowNode.Position - _hitBeatLine.Position))
+            {
+                _nowNode = _hit[i];
+                idx = i;
+            }
+        }
+    }
+
+    public void InvaligateNode() // 이게 소환 하는거
+    {
+        List<HitUI> _remove = new();
+
+        foreach (HitUI _re in _record)
+        {
+            if (_re.isRemove)
+            {
+
+                if (_hit.Count > 0)
+                {
+                     HitUI _node = _hit[0];
+                    
+                    bool _isDelete = false;
+                    
+                    for (int j = 0; j < _hit.Count; j++)
+                    {
+                        float a = Mathf.Abs(_hit[j].Position - _re.Position);
+                        float b = Mathf.Abs(_node.Position - _re.Position);
+                        if (a < b)
+                        {
+                            if (a < 0.06f)
+                            {
+                                _isDelete = true;
+                                _node = _hit[j];
+                            }
+                        }
+                    }
+    
+                    if (_isDelete)
+                    {
+                        _hit.Remove(_node);
+                        
+                        Destroy(_node.gameObject);
+                    }
+                    else
+                    {
+                        Debug.Log("인접노드 없음");
+    
+                    }
+                }
+               
+                Debug.LogWarning(_re);
+                _remove.Add(_re);
+            }
+        }
+
+        for (int i = 0; i < _remove.Count; i++)
+        {
+            if (_record.Contains(_remove[i]))
+            {
+                _record.Remove(_remove[i]);
+                Destroy(_remove[i].gameObject);
+                Debug.LogWarning("destory");
+            }
+        }
+        
+        if (_record.Count > 0)
+        {
+            foreach (var hiting in _record)
+            {
+                _hit.Add(hiting);
+            }
+            _record.Clear();
+        }
+        
+        _hit.Sort((a, b) =>
+        {
+            if (a.Position > b.Position)
+            {
+                return 1;
+            }
+            else
+            {
+                return -1;
+            }
+        });
+        foreach (var VARIABLE in _hit)
+        {
+            VARIABLE.RectPS.localPosition =
+                Vector3.Lerp(_startHitBeat.localPosition, _endHitBeat.localPosition, VARIABLE.Position);
+            VARIABLE.ImageUI.color = Color.red;
+            VARIABLE.isHit = false;
+        }
+    }
+
+    // 안씀
     public void ResetHitBoard()
     {
         foreach (var VARIABLE in _hit)
         {
             DestroyImmediate(VARIABLE.gameObject);
         }
-        _hit.Clear();
+        foreach (var VARIABLE in _record)
+        {
+            DestroyImmediate(VARIABLE.gameObject);
+        }
+        //_hit.Clear();
     }
 
 }
