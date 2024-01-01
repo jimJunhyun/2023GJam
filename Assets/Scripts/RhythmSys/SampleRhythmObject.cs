@@ -9,4 +9,9 @@ public class SampleRhythmObject : MonoBehaviour,IRhythm
     {
         Debug.Log(t++);
     }
+
+    public void BeatUpdateDivideFour()
+    {
+        
+    }
 }
