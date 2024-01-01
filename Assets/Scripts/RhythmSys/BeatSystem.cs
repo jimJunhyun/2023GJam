@@ -37,7 +37,6 @@ public class BeatSystem : MonoBehaviour
     {
         //Debug.Log(_currentTime);
         _currentTime = 0;
-        _matCount++;
         if (_matCount >= Matronyum)
         {
             _matCount = 1;
@@ -46,6 +45,16 @@ public class BeatSystem : MonoBehaviour
             foreach (var Rhythm in objects)
             {
                 Rhythm.BeatUpdate();
+            }
+        }
+        else
+        {
+            _matCount++;
+            var objects = FindRhythms();
+
+            foreach (var Rhythm in objects)
+            {
+                Rhythm.BeatUpdateDivideFour();
             }
         }
     }
