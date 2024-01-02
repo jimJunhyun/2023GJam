@@ -40,6 +40,7 @@ public class MapGenerator : MonoBehaviour
 				if (!createds.Contains(first.Key.right))
 					createCalls.Enqueue(new KeyValuePair<MapAtom, Vector3>(first.Key.right, first.Value + Vector3.right * MAPX));
 			}
+			first.Key.SetStructureRandom();
 			first.Key.InstantiateSelf(first.Value);
 			first.Key.SetEnemyRandom();
 			first.Key.SetPoints();

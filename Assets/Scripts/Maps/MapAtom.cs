@@ -25,7 +25,17 @@ public class MapAtom : ScriptableObject
 	public Vector3 leftPt;
 	public Vector3 rightPt;
 
+	public bool isRandomizable;
+
 	GameObject self;
+
+	public void SetStructureRandom()
+	{
+		if (isRandomizable)
+		{
+
+		}
+	}
 	
 	public void InstantiateSelf(Vector3 pos, Transform parent = null)
 	{

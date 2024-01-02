@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,11 +16,14 @@ public class GameManager : MonoBehaviour
 
 	public List<MapGenerator> maps;
 
+	NavMeshSurface surface;
+
 	private void Awake()
 	{
 		instance = this;
 
 		player = GameObject.Find("Player");
+		surface = GetComponent<NavMeshSurface>();
 	}
 
 	private void Start()
@@ -28,6 +33,7 @@ public class GameManager : MonoBehaviour
 			maps[i].Create();
 		}
 		curRoom = maps[0].startRoom;
+		surface.BuildNavMesh();
 	}
 
 
