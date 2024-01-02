@@ -27,7 +27,7 @@ public class PlayerCtrl : MonoBehaviour
 	{
 		h = Input.GetAxis("Horizontal");
 		v = Input.GetAxis("Vertical");
-		moveVec = new Vector3(h, 0, v) * speed;
+		moveVec = new Vector3(h, 0, v).normalized * speed;
 		
 		if(Mathf.Abs(h) >= 0.2 || Mathf.Abs(v) >= 0.2)
 			transform.rotation = Quaternion.LookRotation(moveVec);

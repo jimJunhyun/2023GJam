@@ -10,10 +10,15 @@ public class Sequencer : INode
 	{
 		for (int i = 0; i < childs.Count; i++)
 		{
-			if(childs[i].Examine() == NodeStat.Fail)
-				return NodeStat.Fail;
-			if(childs[i].Examine() == NodeStat.Run)
-				return NodeStat.Run;
+			switch (childs[i].Examine())
+			{
+				case NodeStat.Sucs:
+					break;
+				case NodeStat.Fail:
+					return NodeStat.Fail;
+				case NodeStat.Run:
+					return NodeStat.Run;
+			}
 		}
 		return NodeStat.Sucs;
 	}

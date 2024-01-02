@@ -10,10 +10,15 @@ public class Selecter : INode
 	{
 		for (int i = 0; i < childs.Count; i++)
 		{
-			if (childs[i].Examine() == NodeStat.Sucs)
-				return NodeStat.Sucs;
-			if (childs[i].Examine() == NodeStat.Run)
-				return NodeStat.Run;
+			switch (childs[i].Examine())
+			{
+				case NodeStat.Fail:
+					break;
+				case NodeStat.Sucs:
+					return NodeStat.Sucs;
+				case NodeStat.Run:
+					return NodeStat.Run;
+			}
 		}
 		return NodeStat.Fail;
 	}

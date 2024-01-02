@@ -27,7 +27,7 @@ public class LifeObject : MonoBehaviour
 	{
 		dead = true;
 		gameObject.SetActive(false);
-		onDead.Invoke();
+		onDead?.Invoke();
 	}
 
 	public void ResetCompletely()
