@@ -14,12 +14,14 @@ public class Bullet : MonoBehaviour
 		if (lf = collision.gameObject.GetComponent<LifeObject>())
 		{
 			lf.Damage(dam);
+			Destroy(gameObject);
 		}
 	}
 
 	public void Shoot(float pow)
 	{
 		rig = GetComponent<Rigidbody>();
-		rig.AddForce(transform.forward * pow);
+		rig.AddForce(transform.forward * pow, ForceMode.Impulse);
+		Destroy(gameObject, 3f);
 	}
 }

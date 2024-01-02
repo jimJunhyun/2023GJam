@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
 
 	public List<MapGenerator> maps;
 
+	public MapList mapList;
+
 	NavMeshSurface surface;
 
 	private void Awake()
@@ -42,6 +44,7 @@ public class GameManager : MonoBehaviour
 			maps[i].Create();
 		}
 		curRoom = maps[0].startRoom;
+		MovePlayerTo(curRoom.rootOffSet);
 		surface.BuildNavMesh();
 	}
 
