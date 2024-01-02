@@ -12,14 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd616900df637c646a06e03b5a1f6785, type: 3}
   m_Name: TmpMap 2
   m_EditorClassIdentifier: 
-  obj: {fileID: 5072469868825558220, guid: 8b6be5f02c7095947ac8039ff3844c8a, type: 3}
+  obj: {fileID: -7935989439776852606, guid: 8b6be5f02c7095947ac8039ff3844c8a, type: 3}
+  isQuestion: 0
+  type: 1
   up: {fileID: 11400000, guid: 054175f559aa64f4592defff1d8e52f3, type: 2}
   down: {fileID: 0}
   left: {fileID: 0}
-  right: {fileID: 0}
-  upPt: {x: 0, y: 0, z: 0}
-  downPt: {x: 0, y: 0, z: 0}
-  leftPt: {x: 0, y: 0, z: 0}
-  rightPt: {x: 0, y: 0, z: 0}
+  right: {fileID: 11400000, guid: 7e90d9752ca37674992f36f5b90721d7, type: 2}
+  upPt: {x: 0, y: 0, z: -15}
+  downPt: {x: 0, y: 0, z: -35}
+  leftPt: {x: -10, y: 0, z: -25}
+  rightPt: {x: 10, y: 0, z: -25}
   rootOffSet: {x: 0, y: 0, z: 0}
   isRandomizable: 1
+  cleared: 0

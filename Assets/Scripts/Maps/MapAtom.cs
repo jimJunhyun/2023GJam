@@ -15,11 +15,12 @@ public enum RoomType
 {
 	Start,
 	Normal,
-	Question,
 	Shop,
 	Heal,
 	Curse,
 	Boss,
+
+	Question,
 }
 
 [CreateAssetMenu()]
@@ -27,6 +28,7 @@ public class MapAtom : ScriptableObject
 {
     public MapObjs obj;
 
+	public bool isQuestion = false;
 	public RoomType type;
 
     public MapAtom up;
@@ -180,9 +182,11 @@ public class MapAtom : ScriptableObject
 	public void OnTransition()
 	{
 		GameManager.instance.curRoom = this;
+		isQuestion = false;
 		if (!cleared)
 		{
 			TriggerEnemy();
 		}
+		GameManager.instance.RefreshMap();
 	}
 }
