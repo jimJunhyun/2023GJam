@@ -111,17 +111,20 @@ public class BeatUISystem : Singleton<BeatUISystem>
         {
             _perfectCount++;
             Debug.Log($"쵝오, {a} | {b} | {Mathf.Abs(a - b)}");
+            GameManager.instance.player.Inven.NodeInvoking();
             hitCount++;
         }
         else if (Mathf.Abs(a - b) < 0.05f)
         {
             _goodCount++;
             Debug.Log($"굳, {a} | {b} | {Mathf.Abs(a - b)}");
+            GameManager.instance.player.Inven.NodeInvoking();
             hitCount++;
         }
         else if (Mathf.Abs(a-b) < 0.07f)
         {
             Debug.Log($"밷, {a} | {b} | {Mathf.Abs(a - b)}");
+            GameManager.instance.player.Inven.NodeInvoking();
             hitCount++;
         }
         else

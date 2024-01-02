@@ -70,6 +70,7 @@ public class Stat
 	public int ATK = 1;
 	public float SPEED = 5f;
 	public int Size =1;
+	public int AddBeat = 0;
 	
 	public static Stat operator +(Stat a, Stat b)
 	{

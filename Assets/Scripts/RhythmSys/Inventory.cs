@@ -1,63 +1,135 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public class Inventory : MonoBehaviour
 {
-    [FormerlySerializedAs("_items")] [SerializeField] private ItemSO _itemRule;
+    [Header("장착 아이템")]
+    [SerializeField] private ItemSO _equipItem;
 
-    public List<ItemSO> _items = new();
-    
-    public void SetRuleItem(ItemSO _so)
-    {
-        _itemRule = _so;
-        //objStat.BPM += _so.AddBPM;
-    }
+    private Dictionary<Action, int> HitInvoke = new();
+    private Dictionary<Action, int> NodeInvoke = new();
 
     public ItemSO ReturnItemRule()
     {
-        return _itemRule;
+        return _equipItem;
     }
 
-    public void ReturnValue(ref Stat objStat)
+    //public void ReturnValue(ref Stat objStat)
+    //{
+    //    objStat.Size = 0;
+    //    objStat.MaxHP = 0;
+    //    objStat.HP = 0;
+    //    objStat.ATK = 0;
+    //    objStat.SPEED = 0;
+    //    
+    //    for (int i = 0; i < _items.Count; i++)
+    //    {
+    //        AddStat add = _items[i].AddStat;
+    //        //objStat.HP += add.AddHP;
+    //        //objStat.HP += add.RegenHP;
+    //        objStat.MaxHP += add.AddHP;
+    //        objStat.Size += add.AddplayerSize;
+    //        objStat.ATK += add.AddATK;
+    //        objStat.SPEED += add.AddSpeed;
+    //    }
+    //}
+
+    public void UseItem(ref Stat PlayerStat, ref Stat objStat,  ItemSO _so)
     {
-        objStat.Size = 0;
-        objStat.MaxHP = 0;
-        objStat.HP = 0;
-        objStat.ATK = 0;
-        objStat.SPEED = 0;
+        if (_so._itemtype == ItemType.Equipment)
+        {
+            if (_equipItem != null)
+            {
+                objStat.MaxHP -= _equipItem.AddStat.AddHP;
+                //objStat.HP -= _equipItem.AddStat.RegenHP;
+                objStat.Size -= _equipItem.AddStat.AddplayerSize;
+                objStat.ATK -= _equipItem.AddStat.AddATK;
+                objStat.SPEED -= _equipItem.AddStat.AddSpeed;
+            }
+            
+            _equipItem = _so;
+            
+            objStat.MaxHP += _equipItem.AddStat.AddHP;
+            PlayerStat.HP += _equipItem.AddStat.AddHP;
+            objStat.Size += _equipItem.AddStat.AddplayerSize;
+            objStat.ATK += _equipItem.AddStat.AddATK;
+            objStat.SPEED += _equipItem.AddStat.AddSpeed;
+        }
+        else if(_so._itemtype == ItemType.Infinity)
+        {
+            PlayerStat.MaxHP += _so.AddStat.AddHP;
+            PlayerStat.HP += _so.AddStat.AddHP;
+            PlayerStat.Size += _so.AddStat.AddplayerSize;
+            PlayerStat.ATK += _so.AddStat.AddATK;
+            PlayerStat.SPEED += _so.AddStat.AddSpeed;
+        }
+        else
+        {
+            switch (_so._type)
+            {
+                case ACTIONType.Node:
+                    NodeInvoke.Add(_so.ItemInvoke, _so.RhythmPassive);
+                    break;
+                case ACTIONType.Hit:
+                    HitInvoke.Add(_so.ItemInvoke, _so.RhythmPassive);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+    }
+
+    public void HitInvoking()
+    {
+        List<Action> a = new();
         
-        for (int i = 0; i < _items.Count; i++)
+        foreach (var VARIABLE in HitInvoke)
         {
-            AddStat add = _items[i].AddStat;
-            //objStat.HP += add.AddHP;
-            //objStat.HP += add.RegenHP;
-            objStat.MaxHP += add.AddHP;
-            objStat.Size += add.AddplayerSize;
-            objStat.ATK += add.AddATK;
-            objStat.SPEED += add.AddSpeed;
+            VARIABLE.Key.Invoke();
+            HitInvoke[VARIABLE.Key]--;
+            a.Add(VARIABLE.Key);
+        }
+
+        for (int i = 0; i < a.Count; i++)
+        {
+            if (HitInvoke[a[i]] <= 0)
+            {
+                HitInvoke.Remove(a[i]);
+            }
         }
     }
 
-    public void UseItem(ref Stat objStat, ItemSO _so)
+    public void NodeInvoking()
     {
-        objStat.MaxHP += _so.AddStat.AddHP;
-        objStat.HP += _so.AddStat.RegenHP;
-        objStat.Size += _so.AddStat.AddplayerSize;
-        objStat.ATK += _so.AddStat.AddATK;
-        objStat.SPEED += _so.AddStat.AddSpeed;
-    }
-
-    public void RemoveItem(ref Stat objStat, ItemSO _so)
-    {
-        if (_items.Contains(_so))
+        List<Action> a = new();
+        
+        foreach (var VARIABLE in NodeInvoke)
         {
-            objStat.MaxHP -= _so.AddStat.AddHP; // 어차피 HP 제거
-            objStat.Size -= _so.AddStat.AddplayerSize;
-            objStat.ATK -= _so.AddStat.AddATK;
-            objStat.SPEED -= _so.AddStat.AddSpeed; 
+            VARIABLE.Key.Invoke();
+            NodeInvoke[VARIABLE.Key]--;
+            a.Add(VARIABLE.Key);
+        }
+
+        for (int i = 0; i < a.Count; i++)
+        {
+            if (NodeInvoke[a[i]] <= 0)
+            {
+                NodeInvoke.Remove(a[i]);
+            }
         }
     }
+
+    //public void RemoveItem(ref Stat objStat, ItemSO _so)
+    //{
+    //    if (_items.Contains(_so))
+    //    {
+    //        objStat.MaxHP -= _so.AddStat.AddHP; // 어차피 HP 제거
+    //        objStat.Size -= _so.AddStat.AddplayerSize;
+    //        objStat.ATK -= _so.AddStat.AddATK;
+    //        objStat.SPEED -= _so.AddStat.AddSpeed; 
+    //    }
+    //}
 }

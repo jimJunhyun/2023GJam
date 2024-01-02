@@ -9,6 +9,9 @@ public class Player : MonoBehaviour
     [SerializeField] private Stat NormalStat;
     [SerializeField] private Stat AddStat;
 
+    [Header("Rhythm")] 
+    [SerializeField] private int RhythmCount = 0;
+
     private Inventory _inven;
 
     public Inventory Inven
@@ -35,19 +38,14 @@ public class Player : MonoBehaviour
     
     private void InitSetting()
     {
-        Inven.ReturnValue(ref AddStat);
+        //Inven.ReturnValue(ref AddStat);
     }
 
     public void GetItem(ItemSO _so)
     {
-        Inven.UseItem(ref AddStat, _so);
+        Inven.UseItem(ref NormalStat, ref AddStat,  _so);
     }
-
-    public void GetRuleItem(ItemSO _so)
-    {
-        Inven.SetRuleItem(_so);
-    }
-
+    
     public void RefreshStat()
 	{
         playerCtrl.SetStat(PlayerStat);

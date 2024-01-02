@@ -18,10 +18,14 @@ public class BeatSystem : Singleton<BeatSystem>
     private float _currentTime = 0f;
     private float _currentBeatValue = 0f;
 
+    private int _addBeatCount = 0;
+
+    private Inventory _inven;
     
     private void Awake()
     {
         _currentBeatValue = BeatValue();
+        _inven = GameManager.instance.player.Inven;
     }
 
     public float ReturnBPM
@@ -61,18 +65,24 @@ public class BeatSystem : Singleton<BeatSystem>
     {
         if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.K))
         {
+            GameManager.instance.player.Inven.HitInvoking();
+            
             BeatUISystem.Instance.HitNode();
             //GetComponent<AudioSource>().Play();
         }
 
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I) && _addBeatCount < 1 + _inven.ReturnItemRule().AddBeat
+            + GameManager.instance.player.PlayerStat.AddBeat) // 1 + 아이템 + 플레이어
         {
+            _addBeatCount++;
             BeatUISystem.Instance.InstanciateRecordNode();
             //GetComponent<AudioSource>().Play();
         }
 
         if (Input.GetKeyDown(KeyCode.O))
         {
+            GameManager.instance.player.Inven.HitInvoking();
+            
             BeatUISystem.Instance.RemoveNode();
             BeatUISystem.Instance.HitNode();
         }
@@ -101,6 +111,7 @@ public class BeatSystem : Singleton<BeatSystem>
         //Debug.Log(_currentTime);
         if (_matCount >= Matronyum)
         {
+            _addBeatCount = 0;
             _currentBeatValue = BeatValue();
             //BeatUISystem.Instance.ResetHitBoard();
             BeatUISystem.Instance.InstanciateNode();

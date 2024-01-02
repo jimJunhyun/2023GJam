@@ -2,6 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
+
+public enum ACTIONType
+{
+    Node,
+    Hit
+}
+
+public enum ItemType
+{
+    none,
+    Infinity,
+    Equipment,
+}
 
 public class ItemSO : ScriptableObject
 {
@@ -9,11 +23,23 @@ public class ItemSO : ScriptableObject
     //public int SetBPM = 0;
     //public int AddBPM = 0;
 
-    [Header("AddRule = 1 ( default )")] 
-    public int AddRule = 1;
+    [Header("ItemInfo")] 
+    public ACTIONType _type;
+    public ItemType _itemtype;
+    public int ExpensiveMoney = 0;
+
+    [FormerlySerializedAs("AddRule")] [Header("AddRule = 1 ( default )")] 
+    public int AddBeat = 1;
 
     [Header("Stat")] 
     public AddStat AddStat;
+    
+    public int RhythmPassive = 0;
+
+    public virtual void ItemInvoke()
+    {
+        
+    }
 }
 
 [System.Serializable]
