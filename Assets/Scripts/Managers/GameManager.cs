@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
 	{
 		instance = this;
 		surface = GetComponent<NavMeshSurface>();
+		player.RefreshStat();
 	}
 
 	private void Start()

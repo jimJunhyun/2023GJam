@@ -9,12 +9,6 @@ public class LifeObject : MonoBehaviour
 
 	public bool dead = false;
 
-	private void Awake()
-	{
-		ResetCompletely();
-
-	}
-
 
 	public void Damage(float amt)
 	{
