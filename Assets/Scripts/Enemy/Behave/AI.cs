@@ -8,7 +8,8 @@ public enum AttackType
 	Shoot,
 	Sweep, 
 	Body,
-
+	Charge,
+	Spin,
 }
 
 [RequireComponent(typeof(LifeObject))]
@@ -33,14 +34,29 @@ public class AI : MonoBehaviour, IRhythm
 
 	SetFlag metronome;
 
+	ChargeAttack charge;
+	SpinAttack spin;
+
+	float initSpeed;
+	float initAcc;
 	int beatCnt = 0;
 
 	public bool examining;
+
+	public bool spinning;
+	public bool charging;
+	public float chargeDamage;
+	public float spinDamage;
+	public int spinDur;
+	public float spinSpd;
 
 	public virtual void Awake()
 	{
 		agent = GetComponent<NavMeshAgent>();
 		agent.speed = stat.SPEED;
+		initSpeed = stat.SPEED;
+		initAcc = agent.acceleration;
+
 		life = GetComponent<LifeObject>();
 		life.maxHp = stat.MaxHP;
 		life.ResetCompletely();
@@ -57,6 +73,16 @@ public class AI : MonoBehaviour, IRhythm
 		{
 			ShootAttack shoot = new ShootAttack(agent, myBullet, GameManager.Instance.player.transform, shootPos, stat.ATK, shootPow);
 			doAttack.childs.Add(shoot);
+		}
+		else if(type == AttackType.Charge)
+		{
+			 charge = new ChargeAttack(agent, this, GameManager.Instance.player.transform, 75, 25, 1f);
+			doAttack.childs.Add(charge);
+		}
+		else if(type == AttackType.Spin)
+		{
+			spin = new SpinAttack(agent, this, spinDur, spinSpd);
+			doAttack.childs.Add(spin);
 		}
 		else
 		{
@@ -80,6 +106,33 @@ public class AI : MonoBehaviour, IRhythm
 		{
 			head.Examine();
 		}
+
+		if (charging)
+		{
+			Collider[] cols = Physics.OverlapSphere(transform.position, atkRange, 1 << 8);
+			for(int i = 0; i < cols.Length; i++)
+			{
+				LifeObject p = cols[0].GetComponent<LifeObject>();
+				p.Damage(chargeDamage);
+			}
+			charge.StopCharge();
+		}
+
+		if (spinning)
+		{
+			Collider[] cols = Physics.OverlapSphere(transform.position, atkRange, 1 << 8);
+			for (int i = 0; i < cols.Length; i++)
+			{
+				LifeObject p = cols[i].GetComponent<LifeObject>();
+				p.Damage(spinDamage);
+			}
+		}
+	}
+
+	public void ResetSpeed()
+	{
+		agent.speed = initSpeed;
+		agent.acceleration =initAcc;
 	}
 
 	public void StopAI()
@@ -102,6 +155,11 @@ public class AI : MonoBehaviour, IRhythm
 		{
 			metronome.Set();
 			beatCnt= 0;
+			
+		}
+		if (spinning)
+		{
+			spin.OnNextBeat();
 		}
 	}
 
@@ -112,6 +170,10 @@ public class AI : MonoBehaviour, IRhythm
 		{
 			metronome.Set();
 			beatCnt = 0;
+		}
+		if (spinning)
+		{
+			spin.OnNextBeat();
 		}
 	}
 }

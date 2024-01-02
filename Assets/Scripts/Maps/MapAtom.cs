@@ -53,11 +53,8 @@ public class MapAtom : ScriptableObject
 	GameObject self;
 	List<EnemySlot> slots;
 
-	bool inited = false;
-
 	public void Init(Vector3 pos)
 	{
-		inited = true;
 		SetStructureRandom();
 		InstantiateSelf(pos);
 		SetEnemyRandom();
