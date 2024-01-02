@@ -46,19 +46,25 @@ public class ItemSO : ScriptableObject
         
     }
 
+    public virtual void InitEquiped()
+    {
+        
+    }
+    
+
     public virtual void AttackInvoke(LifeObject _obj, Detection dec)
     {
         Stat _player = GameManager.Instance.player.PlayerStat;
         switch (dec)   
         {
             case Detection.Perfect:
-                _obj.Damage(_player.ATK *1.5f);
+                _obj.Damage(_player.ATK *1.5f, dec);
                 break;
             case Detection.Good:
-                _obj.Damage(_player.ATK);
+                _obj.Damage(_player.ATK, dec);
                 break;
             case Detection.Bad:
-                _obj.Damage(_player.ATK * 0.5f);
+                _obj.Damage(_player.ATK * 0.5f, dec);
                 break;
                                                                     
         }

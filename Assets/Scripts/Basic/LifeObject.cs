@@ -13,7 +13,7 @@ public class LifeObject : MonoBehaviour
 	public UnityAction onDead;
 
 
-	public void Damage(float amt)
+	public void Damage(float amt, Detection _dec = Detection.none)
 	{
 		hp -= amt;
 		if(hp <= 0)

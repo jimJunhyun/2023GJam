@@ -23,6 +23,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void GetGold(int value)
+    {
+        _gold += value;
+    }
+
     public bool isUseGold(int value)
     {
         if (_gold - value >= 0)

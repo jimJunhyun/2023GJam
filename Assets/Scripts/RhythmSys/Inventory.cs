@@ -53,6 +53,9 @@ public class Inventory : MonoBehaviour
             
             _equipItem = _so;
             
+            
+            _equipItem.InitEquiped();
+            
             objStat.MaxHP += _equipItem.AddStat.AddHP;
             PlayerStat.HP += _equipItem.AddStat.AddHP;
             objStat.Size += _equipItem.AddStat.AddplayerSize;

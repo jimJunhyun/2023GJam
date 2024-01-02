@@ -21,7 +21,7 @@ public class PlayerAttack : MonoBehaviour
 			LifeObject obj = cols[i].GetComponent<LifeObject>();
 			if (obj)
 			{
-				GameManager.Instance.player.Inven.ReturnItemRule().AttackInvoke(obj, _dec);
+				GameManager.Instance.player.Inven.ReturnItemRule()?.AttackInvoke(obj, _dec);
 			}
 		}
 	}
@@ -34,7 +34,7 @@ public class PlayerAttack : MonoBehaviour
 			LifeObject obj = cols[i].GetComponent<LifeObject>();
 			if (obj)
 			{
-				obj.Damage(dmg);
+				obj.Damage(dmg, Detection.none);
 			}
 		}
 	}

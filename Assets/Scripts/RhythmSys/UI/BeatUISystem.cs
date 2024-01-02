@@ -8,7 +8,8 @@ public enum Detection
 {
     Perfect,
     Good,
-    Bad
+    Bad,
+    none
 }
 
 public class BeatUISystem : Singleton<BeatUISystem>

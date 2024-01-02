@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcc1c11bde17f03489844741bfd18358, type: 3}
-  m_Name: 4_PerfectCritical
+  m_Script: {fileID: 11500000, guid: 885211da9e0994d458fb9aae2f08ba7c, type: 3}
+  m_Name: 9_GangSamTa
   m_EditorClassIdentifier: 
   _type: 0
-  _itemtype: 2
+  _itemtype: 0
   ExpensiveMoney: 0
   AddBeat: 0
   RemoveBeat: 0
