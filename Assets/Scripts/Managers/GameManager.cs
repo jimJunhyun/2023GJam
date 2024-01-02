@@ -4,9 +4,8 @@ using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-	public static GameManager instance;
 
 	public const float GRAVITY = 9.8f;
 
@@ -16,7 +15,10 @@ public class GameManager : MonoBehaviour
 		get
 		{
 			if (_player == null)
+			{
 				_player = GameObject.Find("Player").GetComponent<Player>();
+ 				Debug.LogWarning(_player);
+			}
 			return _player;
 
 		}
@@ -33,7 +35,6 @@ public class GameManager : MonoBehaviour
 
 	private void Awake()
 	{
-		instance = this;
 		surface = GetComponent<NavMeshSurface>();
 		player.RefreshStat();
 	}
@@ -70,7 +71,7 @@ public class Stat
 	public int ATK = 1;
 	public float SPEED = 5f;
 	public int Size =1;
-	public int AddBeat = 0;
+	public float AttackRange = 5f;
 	
 	public static Stat operator +(Stat a, Stat b)
 	{
@@ -80,6 +81,7 @@ public class Stat
 		c.ATK = a.ATK + b.ATK;
 		c.SPEED = a.SPEED + b.SPEED;
 		c.Size = a.Size + b.Size;
+		c.AttackRange = a.AttackRange + b.AttackRange;
 		return c;
 	}
 }

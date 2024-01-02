@@ -12,6 +12,32 @@ public class Player : MonoBehaviour
     [Header("Rhythm")] 
     [SerializeField] private int RhythmCount = 0;
 
+    
+    private int _gold = 0;
+
+    public int Gold
+    {
+        get
+        {
+            return _gold;
+        }
+    }
+
+    public bool isUseGold(int value)
+    {
+        if (_gold - value >= 0)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public void UseingGold(int value)
+    {
+        _gold -= value;
+    }
+    
     private Inventory _inven;
 
     public Inventory Inven
@@ -20,6 +46,8 @@ public class Player : MonoBehaviour
         {
             if (_inven == null)
                 _inven = GetComponent<Inventory>();
+            
+            Debug.LogWarning(_inven);
             return _inven;
         }
     }
@@ -33,6 +61,18 @@ public class Player : MonoBehaviour
             if (_plCtr == null)
                 _plCtr = GetComponent<PlayerCtrl>();
             return _plCtr;
+        }
+    }
+    
+    private PlayerAttack _plATK;
+
+    public PlayerAttack PlayerAttack
+    {
+        get
+        {
+            if (_plATK == null)
+                _plATK = GetComponent<PlayerAttack>();
+            return _plATK;
         }
     }
     

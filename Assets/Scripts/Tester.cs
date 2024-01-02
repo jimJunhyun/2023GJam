@@ -9,20 +9,20 @@ public class Tester : MonoBehaviour
     {
 		if (Input.GetKeyDown(KeyCode.W))
 		{
-			GameManager.instance.ChangeRoom(Direction.Up);
+			GameManager.Instance.ChangeRoom(Direction.Up);
 		}
 		if (Input.GetKeyDown(KeyCode.S))
 		{
-			GameManager.instance.ChangeRoom(Direction.Down);
+			GameManager.Instance.ChangeRoom(Direction.Down);
 
 		}
 		if (Input.GetKeyDown(KeyCode.A))
 		{
-			GameManager.instance.ChangeRoom(Direction.Left);
+			GameManager.Instance.ChangeRoom(Direction.Left);
 		}
 		if (Input.GetKeyDown(KeyCode.D))
 		{
-			GameManager.instance.ChangeRoom(Direction.Right);
+			GameManager.Instance.ChangeRoom(Direction.Right);
 		}
 	}
 }

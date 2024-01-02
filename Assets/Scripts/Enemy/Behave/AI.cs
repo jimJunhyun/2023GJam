@@ -50,21 +50,21 @@ public class AI : MonoBehaviour, IRhythm
 		metronome = new SetFlag();
 		doAttack.childs.Add(metronome);
 
-		IsInRange inRange = new IsInRange(atkRange, GameManager.instance.player.transform, transform);
+		IsInRange inRange = new IsInRange(atkRange, GameManager.Instance.player.transform, transform);
 		doAttack.childs.Add(inRange);
 
 		if( type == AttackType.Shoot)
 		{
-			ShootAttack shoot = new ShootAttack(agent, myBullet, GameManager.instance.player.transform, shootPos, stat.ATK, shootPow);
+			ShootAttack shoot = new ShootAttack(agent, myBullet, GameManager.Instance.player.transform, shootPos, stat.ATK, shootPow);
 			doAttack.childs.Add(shoot);
 		}
 		else
 		{
-			SweepAttack sweep = new SweepAttack(agent, atkRange, angle, GameManager.instance.player.transform, stat.ATK);
+			SweepAttack sweep = new SweepAttack(agent, atkRange, angle, GameManager.Instance.player.transform, stat.ATK);
 			doAttack.childs.Add(sweep);
 		}
 
-		Move doMove = new Move(GameManager.instance.player.transform, agent);
+		Move doMove = new Move(GameManager.Instance.player.transform, agent);
 
 
 

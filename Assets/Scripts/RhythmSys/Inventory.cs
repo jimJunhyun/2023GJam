@@ -48,6 +48,7 @@ public class Inventory : MonoBehaviour
                 objStat.Size -= _equipItem.AddStat.AddplayerSize;
                 objStat.ATK -= _equipItem.AddStat.AddATK;
                 objStat.SPEED -= _equipItem.AddStat.AddSpeed;
+                objStat.AttackRange -= _equipItem.AddStat.AddRange;
             }
             
             _equipItem = _so;
@@ -57,6 +58,7 @@ public class Inventory : MonoBehaviour
             objStat.Size += _equipItem.AddStat.AddplayerSize;
             objStat.ATK += _equipItem.AddStat.AddATK;
             objStat.SPEED += _equipItem.AddStat.AddSpeed;
+            objStat.AttackRange += _equipItem.AddStat.AddRange;
         }
         else if(_so._itemtype == ItemType.Infinity)
         {
@@ -65,6 +67,7 @@ public class Inventory : MonoBehaviour
             PlayerStat.Size += _so.AddStat.AddplayerSize;
             PlayerStat.ATK += _so.AddStat.AddATK;
             PlayerStat.SPEED += _so.AddStat.AddSpeed;
+            PlayerStat.AttackRange += _so.AddStat.AddRange;
         }
         else
         {
@@ -76,8 +79,6 @@ public class Inventory : MonoBehaviour
                 case ACTIONType.Hit:
                     HitInvoke.Add(_so.ItemInvoke, _so.RhythmPassive);
                     break;
-                default:
-                    throw new ArgumentOutOfRangeException();
             }
         }
     }
