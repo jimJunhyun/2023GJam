@@ -40,10 +40,10 @@ public class BeatSystem : Singleton<BeatSystem>
     public float BeatValue()
     {
         float BPS;
-        ItemSO SO = GameManager.instance.player.Inven.ReturnItemRule();
+//        ItemSO SO = GameManager.instance.player.Inven.ReturnItemRule();
 
 
-        BPS = SO == null ? BPM / 60f : SO.SetBPM == 0 ? (BPM + SO.AddBPM) / 60f  : (SO.SetBPM + SO.AddBPM) / 60f;
+        BPS = BPM / 60f;  //SO == null ? BPM / 60f : SO.SetBPM == 0 ? (BPM + SO.AddBPM) / 60f  : (SO.SetBPM + SO.AddBPM) / 60f;
             
         
         
