@@ -13,15 +13,12 @@ public class MapList : ScriptableObject
 		for (int i = 0; i < maps.Count; i++)
 		{
 			bool isValid = true;
-			string s = "";
 			for (int j = 0; j < p.Count; j++)
 			{
 				isValid &= maps[i].ConnectStatus.Contains(p[j]);
-				s += p[j];
 			}
 			if (isValid)
 			{
-				Debug.Log(s + " : " + maps[i].name);
 				res.Add(maps[i]);
 			}
 		}

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LifeObject : MonoBehaviour
 {
@@ -9,15 +10,24 @@ public class LifeObject : MonoBehaviour
 
 	public bool dead = false;
 
+	public UnityAction onDead;
+
 
 	public void Damage(float amt)
 	{
 		hp -= amt;
 		if(hp <= 0)
 		{
-			dead = true;
-			gameObject.SetActive(false);
+			
+			OnDead();
 		}
+	}
+
+	public void OnDead()
+	{
+		dead = true;
+		gameObject.SetActive(false);
+		onDead.Invoke();
 	}
 
 	public void ResetCompletely()
