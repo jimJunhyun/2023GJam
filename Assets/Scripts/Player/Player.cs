@@ -48,6 +48,11 @@ public class Player : MonoBehaviour
         Inven.SetRuleItem(_so);
     }
 
+    public void RefreshStat()
+	{
+        playerCtrl.SetStat(PlayerStat);
+	}
+
     public Stat PlayerStat
     {
         get

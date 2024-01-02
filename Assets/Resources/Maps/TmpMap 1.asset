@@ -21,3 +21,5 @@ MonoBehaviour:
   downPt: {x: 0, y: 0, z: 0}
   leftPt: {x: 0, y: 0, z: 0}
   rightPt: {x: 0, y: 0, z: 0}
+  rootOffSet: {x: 0, y: 0, z: 0}
+  isRandomizable: 1

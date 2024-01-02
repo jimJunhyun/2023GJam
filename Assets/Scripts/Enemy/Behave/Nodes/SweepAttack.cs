@@ -34,7 +34,7 @@ public class SweepAttack : INode
 			agent.isStopped = true;
 			agent.SetDestination(agent.transform.position);
 
-			agent.transform.LookAt(target);
+			agent.transform.rotation = Quaternion.LookRotation((target.transform.position - agent.transform.position).normalized);
 			Vector3 v = (target.transform.position - agent.transform.position);
 			if (v.sqrMagnitude < radius * radius)
 			{

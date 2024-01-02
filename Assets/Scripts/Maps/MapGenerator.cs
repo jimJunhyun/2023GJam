@@ -15,7 +15,7 @@ public class MapGenerator : MonoBehaviour
 	public void Create()
 	{
 
-		createCalls.Enqueue(new KeyValuePair<MapAtom, Vector3>(startRoom, Vector3.zero));
+		createCalls.Enqueue(new KeyValuePair<MapAtom, Vector3>(startRoom, startRoom.rootOffSet));
 
 		while(createCalls.Count > 0)
 		{
@@ -40,10 +40,7 @@ public class MapGenerator : MonoBehaviour
 				if (!createds.Contains(first.Key.right))
 					createCalls.Enqueue(new KeyValuePair<MapAtom, Vector3>(first.Key.right, first.Value + Vector3.right * MAPX));
 			}
-			first.Key.SetStructureRandom();
-			first.Key.InstantiateSelf(first.Value);
-			first.Key.SetEnemyRandom();
-			first.Key.SetPoints();
+			first.Key.Init(first.Value);
 			createds.Add(first.Key);
 		}
 	}

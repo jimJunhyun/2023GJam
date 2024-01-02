@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemySlot : MonoBehaviour
 {
@@ -11,7 +12,10 @@ public class EnemySlot : MonoBehaviour
 	{
 		myEnemy = enemy.GetComponent<AI>();
 		enemyLife = GetComponent<LifeObject>();
-
+		if(NavMesh.SamplePosition(transform.position, out NavMeshHit hit, 20f, -1))
+		{
+			enemy.transform.position = hit.position;
+		}
 	}
 
 	public void StartEnemy()
