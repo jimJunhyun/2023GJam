@@ -54,6 +54,7 @@ public class BeatSystem : Singleton<BeatSystem>
         if (Input.GetKeyDown(KeyCode.O))
         {
             BeatUISystem.Instance.RemoveNode();
+            BeatUISystem.Instance.HitNode();
         }
         
         //Debug.Log(beat);

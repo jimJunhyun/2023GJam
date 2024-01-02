@@ -26,8 +26,12 @@ public class BeatUISystem : Singleton<BeatUISystem>
 
     [Header("CurrentNode")] [SerializeField]private HitUI _nowNode;
 
+    private int hitCount = 0;
+
     public void InstanciateNode()
     {
+        hitCount = 0;
+        
         _hitBeatLine = Instantiate(_beatLineImg,BeatPos);
         
         _hitBeatLine.Init(_startHitBeat, _endHitBeat);
@@ -86,14 +90,17 @@ public class BeatUISystem : Singleton<BeatUISystem>
         if (Mathf.Abs(a - b) < 0.02f)
         {
             Debug.Log($"쵝오, {a} | {b} | {Mathf.Abs(a - b)}");
+            hitCount++;
         }
         else if (Mathf.Abs(a - b) < 0.04f)
         {
             Debug.Log($"굳, {a} | {b} | {Mathf.Abs(a - b)}");
+            hitCount++;
         }
         else if (Mathf.Abs(a-b) < 0.06f)
         {
             Debug.Log($"밷, {a} | {b} | {Mathf.Abs(a - b)}");
+            hitCount++;
         }
         else
         {
@@ -140,7 +147,7 @@ public class BeatUISystem : Singleton<BeatUISystem>
             if (_re.isRemove)
             {
 
-                if (_hit.Count > 0)
+                if (_hit.Count > 4)
                 {
                     HitUI _node = _hit[0];
                     
@@ -229,6 +236,12 @@ public class BeatUISystem : Singleton<BeatUISystem>
             DestroyImmediate(VARIABLE.gameObject);
         }
         //_hit.Clear();
+    }
+
+
+    public bool IsRuleCollect()
+    {
+        return hitCount == _hit.Count;
     }
 
 }

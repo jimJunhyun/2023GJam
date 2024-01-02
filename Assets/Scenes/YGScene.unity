@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8192ff374487bfc4ebfc9d687618a028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BPM: 100
+  BPM: 60
   Matronyum: 4
   Delay: 0.2
 --- !u!4 &38570930
@@ -284,8 +284,6 @@ MonoBehaviour:
     type: 3}
   _beatImg: {fileID: -3883001659652003717, guid: 3de307be212ae3c4e9cfc3e86c047c2a,
     type: 3}
-  _hit: []
-  _record: []
   BeatPos: {fileID: 227085127}
   _startHitBeat: {fileID: 1545385793}
   _endHitBeat: {fileID: 880194064}
@@ -464,7 +462,7 @@ GameObject:
   - component: {fileID: 245073411}
   - component: {fileID: 245073410}
   m_Layer: 5
-  m_Name: StatRhythm
+  m_Name: RhythmUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
