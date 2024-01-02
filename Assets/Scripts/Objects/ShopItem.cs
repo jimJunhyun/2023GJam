@@ -11,7 +11,11 @@ public class ShopItem : MonoBehaviour
 
     public void Purchase()
 	{
-		
+		if(GameManager.Instance.player.isUseGold(price))
+		{
+			GameManager.Instance.player.UseingGold(price);
+			GameManager.Instance.player.GetItem(data);
+		}
 
 	}
 }

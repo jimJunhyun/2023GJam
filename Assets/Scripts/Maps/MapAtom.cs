@@ -53,11 +53,8 @@ public class MapAtom : ScriptableObject
 	GameObject self;
 	List<EnemySlot> slots;
 
-	bool inited = false;
-
 	public void Init(Vector3 pos)
 	{
-		inited = true;
 		SetStructureRandom();
 		InstantiateSelf(pos);
 		SetEnemyRandom();
@@ -86,7 +83,7 @@ public class MapAtom : ScriptableObject
 				conStat.Add(ConnectStat.Right);
 			}
 			
-			List<MapObjs> objs = GameManager.instance.mapList.GetMapOfCondition(conStat);
+			List<MapObjs> objs = GameManager.Instance.mapList.GetMapOfCondition(conStat);
 			obj = objs[Random.Range(0, objs.Count)];
 		}
 	}
@@ -156,37 +153,37 @@ public class MapAtom : ScriptableObject
 				if(up == null)
 					break;
 				up.OnTransition();
-				GameManager.instance.MovePlayerTo(up.downPt);
+				GameManager.Instance.MovePlayerTo(up.downPt);
 				break;
 			case Direction.Down:
 				if (down == null)
 					break;
 				down.OnTransition();
-				GameManager.instance.MovePlayerTo(down.upPt);
+				GameManager.Instance.MovePlayerTo(down.upPt);
 				break;
 			case Direction.Left:
 				if (left == null)
 					break;
 				left.OnTransition();
-				GameManager.instance.MovePlayerTo(left.rightPt);
+				GameManager.Instance.MovePlayerTo(left.rightPt);
 				break;
 			case Direction.Right:
 				if (right == null)
 					break;
 				right.OnTransition();
-				GameManager.instance.MovePlayerTo(right.leftPt);
+				GameManager.Instance.MovePlayerTo(right.leftPt);
 				break;
 		}
 	}
 
 	public void OnTransition()
 	{
-		GameManager.instance.curRoom = this;
+		GameManager.Instance.curRoom = this;
 		isQuestion = false;
 		if (!cleared)
 		{
 			TriggerEnemy();
 		}
-		GameManager.instance.RefreshMap();
+		GameManager.Instance.RefreshMap();
 	}
 }

@@ -142,20 +142,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 478c3cfea5109e0428c6d222a1fa9b55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atkRange: 2
-  atkGap: 0
+  atkRange: 3
+  atkGap: 4
   stat:
     MaxHP: 3
     HP: 3
     ATK: 1
     SPEED: 5
     Size: 1
-  type: 2
+    AttackRange: 5
+  type: 3
   myBullet: {fileID: 0}
   shootPos: {fileID: 0}
   shootPow: 0
   angle: 360
   examining: 0
+  spinning: 0
+  charging: 0
+  chargeDamage: 2
+  spinDamage: 0
+  spinDur: 0
+  spinSpd: 0
 --- !u!114 &973678989486213438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,3 +178,4 @@ MonoBehaviour:
   hp: 0
   maxHp: 0
   dead: 0
+  isImmune: 0

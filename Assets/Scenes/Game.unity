@@ -1023,6 +1023,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curRoom: {fileID: 0}
+  curStage: 0
   maps:
   - {fileID: 171343762}
   mapList: {fileID: 11400000, guid: eef0f7b2e7c9356459e1b5974010d77f, type: 2}
@@ -1178,6 +1179,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7232582062356001663, guid: 94e6fa54b7320dd4096186a0bdc865a5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7331543373774828821, guid: 94e6fa54b7320dd4096186a0bdc865a5,
         type: 3}

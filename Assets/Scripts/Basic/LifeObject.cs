@@ -10,17 +10,38 @@ public class LifeObject : MonoBehaviour
 
 	public bool dead = false;
 
+	public bool isImmune = false;
+
 	public UnityAction onDead;
 
 
 	public void Damage(float amt, Detection _dec = Detection.none)
 	{
-		hp -= amt;
-		if(hp <= 0)
+		if (!isImmune)
 		{
-			
-			OnDead();
+
+			hp -= amt;
+			SetImmuneFor(0.3f);
+			if(hp <= 0)
+			{
+				
+				OnDead();
+			}
 		}
+	}
+
+	public void SetImmuneFor(float sec)
+	{
+		StartCoroutine(DelImmuner(sec));
+
+	}
+
+
+	IEnumerator DelImmuner(float sec)
+	{
+		isImmune  = true;
+		yield return new WaitForSeconds(sec);
+		isImmune = false;
 	}
 
 	public void OnDead()

@@ -15,7 +15,8 @@ public class MapGenerator : MonoBehaviour
 
 	public void Create()
 	{
-
+		createds.Clear();
+		Debug.Log("CREATESTART");
 		createCalls.Enqueue(new KeyValuePair<MapAtom, Vector3>(startRoom, startRoom.rootOffSet));
 		createds.Add(startRoom);
 		while(createCalls.Count > 0)
@@ -27,6 +28,7 @@ public class MapGenerator : MonoBehaviour
 				{
 					createCalls.Enqueue(new KeyValuePair<MapAtom, Vector3>(first.Key.up, first.Value + Vector3.forward * MAPY));
 					createds.Add(first.Key.up);
+					
 				}
 			}
 			if (first.Key.down)
@@ -101,7 +103,7 @@ public class MapGenerator : MonoBehaviour
 				}
 			}
 			RoomType t = first.Key.isQuestion ? RoomType.Question : first.Key.type;
-			MapDrawer.instance.GenerateSprite(t, first.Value, first.Key == GameManager.instance.curRoom);
+			MapDrawer.instance.GenerateSprite(t, first.Value, first.Key == GameManager.Instance.curRoom);
 		}
 	}
 }
