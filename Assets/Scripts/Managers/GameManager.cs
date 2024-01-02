@@ -26,6 +26,7 @@ public class GameManager : Singleton<GameManager>
 	
 	
 	public MapAtom curRoom;
+	public int curStage = 0;
 
 	public List<MapGenerator> maps;
 
@@ -45,9 +46,15 @@ public class GameManager : Singleton<GameManager>
 		{
 			maps[i].Create();
 		}
-		curRoom = maps[0].startRoom;
+		curRoom = maps[curStage].startRoom;
 		MovePlayerTo(curRoom.rootOffSet);
 		surface.BuildNavMesh();
+		maps[curStage].CreateMap();
+	}
+
+	public void RefreshMap()
+	{
+		maps[curStage].CreateMap();
 	}
 
 
