@@ -10,13 +10,13 @@ public class GameManager : MonoBehaviour
 
 	public const float GRAVITY = 9.8f;
 
-	private GameObject _player;
-	public GameObject player
+	private Player _player;
+	public Player player
 	{
 		get
 		{
 			if (_player == null)
-				_player = GameObject.Find("Player");
+				_player = GameObject.Find("Player").GetComponent<Player>();
 			return _player;
 
 		}
@@ -64,7 +64,12 @@ public class Stat
 	public int MaxHP = 3;
 	public int HP =3;
 	public int ATK = 1;
-	public int BPM = 100;
 	public float SPEED = 5f;
 	public int Size =1;
+	
+	public static Stat operator +(Stat a, Stat b)
+	{
+		a += b;
+		return a;
+	}
 }

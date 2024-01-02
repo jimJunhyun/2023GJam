@@ -18,11 +18,10 @@ public class BeatSystem : Singleton<BeatSystem>
     private float _currentTime = 0f;
     private float _currentBeatValue = 0f;
 
-    private Inventory _inven;
+    
     private void Awake()
     {
         _currentBeatValue = BeatValue();
-        _inven = GameManager.instance.player.GetComponent<Inventory>();
     }
 
     public float ReturnBPM
@@ -40,16 +39,22 @@ public class BeatSystem : Singleton<BeatSystem>
 
     public float BeatValue()
     {
-        float BPS = (BPM / 60f); // 1.6666 한 마디
+        float BPS;
+        ItemSO _inven = GameManager.instance.player.Inven.ReturnItemRule();
+
+
+        BPS = _inven == null ? BPM / 60f : _inven.SetBPM == 0 ? (BPM + _inven.AddBPM) / 60f  : (_inven.SetBPM + _inven.AddBPM) / 60f;
+            
+        
+        
+        //= (BPM ) / 60f; // 1.6666 한 마디
         float beat = 1.0f / (BPS); // 한 박자
         return beat;
     }
     
     public float BeatSecond()
     {
-        float BPS = (BPM / 60f); // 1.6666 한 마디
-        float beat = 1.0f / (BPS); // 한 박자
-        return beat * Matronyum;
+        return BeatValue() * Matronyum;
     }
     
     private void Update()
