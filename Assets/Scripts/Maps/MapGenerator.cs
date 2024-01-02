@@ -101,7 +101,7 @@ public class MapGenerator : MonoBehaviour
 				}
 			}
 			RoomType t = first.Key.isQuestion ? RoomType.Question : first.Key.type;
-			MapDrawer.instance.GenerateSprite(t, first.Value, first.Key == GameManager.instance.curRoom);
+			MapDrawer.instance.GenerateSprite(t, first.Value, first.Key == GameManager.Instance.curRoom);
 		}
 	}
 }
