@@ -82,6 +82,19 @@ public class AI : MonoBehaviour, IRhythm
 		}
 	}
 
+	public void StopAI()
+	{
+		examining = false;
+		agent.isStopped = true;
+		agent.SetDestination(transform.position);
+	}
+
+	public void StartAI()
+	{
+		examining = true;
+		agent.isStopped = false;
+	}
+
 	public void BeatUpdate()
 	{
 		++beatCnt;

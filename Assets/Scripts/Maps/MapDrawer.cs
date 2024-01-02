@@ -4,51 +4,95 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
+
+
 public class MapDrawer : MonoBehaviour
 {
     public static MapDrawer instance;
 
-    public const float MAPUIX = 25;
-    public const float MAPUIY = 25;
+    public const float MAPUIXCNT = 15;
+    public const float MAPUIYCNT = 15;
 
-    public Image normalRoom;
-    public Image qRoom;
-    public Image shopRoom;
-    public Image curseRoom;
-    public Image healRoom;
-    public Image startRoom;
-    public Image bossRoom;
+    public Sprite normalRoom;
+    public Sprite qRoom;
+    public Sprite shopRoom;
+    public Sprite curseRoom;
+    public Sprite healRoom;
+    public Sprite startRoom;
+    public Sprite bossRoom;
 
-    public Image mapPanel;
+    Image mapPanel;
 
-    public void GenerateSprite(RoomType type, Vector3 formPos)
+	Canvas mapCanvas;
+
+	Transform contents;
+
+
+	Vector3 initContentPos;
+
+	
+
+	private void Awake()
 	{
-        Image inst;
+		instance = this;
+
+		mapCanvas = GameObject.Find("MinimapUI").GetComponent<Canvas>();
+		mapPanel = GameObject.Find("MapPanel").GetComponent<Image>();
+		contents = mapPanel.transform.Find("Contents");
+		initContentPos = contents.transform.position;
+	}
+
+	public void ClearSprite()
+	{
+		foreach (Transform item in contents.transform)
+		{
+			Destroy(item.gameObject);
+			//Debug.Log(item.name);
+		}
+	}
+
+	public void GenerateSprite(RoomType type, Vector3 formPos, bool isCur)
+	{
+        GameObject mapAtomUI = new GameObject("ROOM");
+		mapAtomUI.transform.SetParent(contents);
+		mapAtomUI.transform.localPosition = formPos;
+		mapAtomUI.transform.localScale = Vector3.right * 2 / MAPUIXCNT + Vector3.up * 2/ MAPUIYCNT;
+		Image img = mapAtomUI.AddComponent<Image>();
 		switch (type)
 		{
 			case RoomType.Start:
-				inst = startRoom;
+				img.sprite = startRoom;
 				break;
 			case RoomType.Normal:
-				inst = normalRoom;
+				img.sprite = normalRoom;
 				break;
 			case RoomType.Question:
-				inst = qRoom;
+				img.sprite = qRoom;
 				break;
 			case RoomType.Shop:
-				inst = shopRoom;
+				img.sprite = shopRoom;
 				break;
 			case RoomType.Heal:
-				inst = healRoom;
+				img.sprite = healRoom;
 				break;
 			case RoomType.Curse:
-				inst = curseRoom;
+				img.sprite = curseRoom;
 				break;
 			case RoomType.Boss:
-				inst = bossRoom;
+				img.sprite = bossRoom;
 				break;
 			default:
 				break;
+		}
+		if (isCur)
+		{
+			img.color = Color.white;
+			
+			contents.transform.localPosition= mapPanel.transform.position - (initContentPos + formPos);
+		}
+		else
+		{
+			img.color = Color.gray * 1.3f;
 		}
 	}
 }

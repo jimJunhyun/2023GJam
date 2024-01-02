@@ -15,11 +15,12 @@ public enum RoomType
 {
 	Start,
 	Normal,
-	Question,
 	Shop,
 	Heal,
 	Curse,
 	Boss,
+
+	Question,
 }
 
 [CreateAssetMenu()]
@@ -27,6 +28,7 @@ public class MapAtom : ScriptableObject
 {
     public MapObjs obj;
 
+	public bool isQuestion = false;
 	public RoomType type;
 
     public MapAtom up;
@@ -84,7 +86,7 @@ public class MapAtom : ScriptableObject
 				conStat.Add(ConnectStat.Right);
 			}
 			
-			List<MapObjs> objs = GameManager.Instance.mapList.GetMapOfCondition(conStat);
+			List<MapObjs> objs = GameManager.instance.mapList.GetMapOfCondition(conStat);
 			obj = objs[Random.Range(0, objs.Count)];
 		}
 	}
@@ -154,35 +156,37 @@ public class MapAtom : ScriptableObject
 				if(up == null)
 					break;
 				up.OnTransition();
-				GameManager.Instance.MovePlayerTo(up.downPt);
+				GameManager.instance.MovePlayerTo(up.downPt);
 				break;
 			case Direction.Down:
 				if (down == null)
 					break;
 				down.OnTransition();
-				GameManager.Instance.MovePlayerTo(down.upPt);
+				GameManager.instance.MovePlayerTo(down.upPt);
 				break;
 			case Direction.Left:
 				if (left == null)
 					break;
 				left.OnTransition();
-				GameManager.Instance.MovePlayerTo(left.rightPt);
+				GameManager.instance.MovePlayerTo(left.rightPt);
 				break;
 			case Direction.Right:
 				if (right == null)
 					break;
 				right.OnTransition();
-				GameManager.Instance.MovePlayerTo(right.leftPt);
+				GameManager.instance.MovePlayerTo(right.leftPt);
 				break;
 		}
 	}
 
 	public void OnTransition()
 	{
-		GameManager.Instance.curRoom = this;
+		GameManager.instance.curRoom = this;
+		isQuestion = false;
 		if (!cleared)
 		{
 			TriggerEnemy();
 		}
+		GameManager.instance.RefreshMap();
 	}
 }
