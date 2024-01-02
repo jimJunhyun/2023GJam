@@ -14,7 +14,13 @@ public class Bullet : MonoBehaviour
 		if (lf = other.gameObject.GetComponent<LifeObject>())
 		{
 			lf.Damage(dam);
+			if (other.GetComponent<Bullet>())
+			{
+				lf.OnDead();
+				life.OnDead();
+			}
 			life.OnDead();
+			
 		}
 	}
 

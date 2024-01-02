@@ -8,6 +8,8 @@ public class MapGenerator : MonoBehaviour
 
 	public const float MAPX = 25;
 	public const float MAPY = 25;
+	public const float MAPXGAP = 10;
+	public const float MAPYGAP = 10;
 
 	Queue<KeyValuePair<MapAtom, Vector3>> createCalls = new Queue<KeyValuePair<MapAtom, Vector3>>();
 	HashSet<MapAtom> createds = new HashSet<MapAtom>();
@@ -26,7 +28,7 @@ public class MapGenerator : MonoBehaviour
 			{
 				if (!createds.Contains(first.Key.up))
 				{
-					createCalls.Enqueue(new KeyValuePair<MapAtom, Vector3>(first.Key.up, first.Value + Vector3.forward * MAPY));
+					createCalls.Enqueue(new KeyValuePair<MapAtom, Vector3>(first.Key.up, first.Value + Vector3.forward * (MAPY + MAPYGAP)));
 					createds.Add(first.Key.up);
 					
 				}
@@ -35,7 +37,7 @@ public class MapGenerator : MonoBehaviour
 			{
 				if (!createds.Contains(first.Key.down))
 				{
-					createCalls.Enqueue(new KeyValuePair<MapAtom, Vector3>(first.Key.down, first.Value + Vector3.back * MAPY));
+					createCalls.Enqueue(new KeyValuePair<MapAtom, Vector3>(first.Key.down, first.Value + Vector3.back * (MAPY + MAPYGAP)));
 					createds.Add(first.Key.down);
 				}
 			}
@@ -43,7 +45,7 @@ public class MapGenerator : MonoBehaviour
 			{
 				if (!createds.Contains(first.Key.left))
 				{
-					createCalls.Enqueue(new KeyValuePair<MapAtom, Vector3>(first.Key.left, first.Value + Vector3.left * MAPX));
+					createCalls.Enqueue(new KeyValuePair<MapAtom, Vector3>(first.Key.left, first.Value + Vector3.left * (MAPX + MAPXGAP)));
 					createds.Add(first.Key.left);
 				}
 			}
@@ -51,7 +53,7 @@ public class MapGenerator : MonoBehaviour
 			{
 				if (!createds.Contains(first.Key.right))
 				{
-					createCalls.Enqueue(new KeyValuePair<MapAtom, Vector3>(first.Key.right, first.Value + Vector3.right * MAPX));
+					createCalls.Enqueue(new KeyValuePair<MapAtom, Vector3>(first.Key.right, first.Value + Vector3.right * (MAPX + MAPXGAP)));
 					createds.Add(first.Key.right);
 				}
 			}
@@ -105,5 +107,14 @@ public class MapGenerator : MonoBehaviour
 			RoomType t = first.Key.isQuestion ? RoomType.Question : first.Key.type;
 			MapDrawer.instance.GenerateSprite(t, first.Value, first.Key == GameManager.Instance.curRoom);
 		}
+	}
+
+	public void ClearSight()
+	{
+		foreach (var item in createds)
+		{
+			item.isQuestion= false;
+		}
+		GameManager.Instance.RefreshMap();
 	}
 }

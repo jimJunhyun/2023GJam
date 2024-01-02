@@ -12,7 +12,7 @@ public class ChargeAttack : INode
 	public NavMeshAgent agent;
 	public AI self;
 	public Transform target;
-
+	Coroutine c;
 
 	bool charging = false;
 	
@@ -35,6 +35,8 @@ public class ChargeAttack : INode
 			self.examining = true;
 			self.charging = false;
 			self.ResetSpeed();
+			self.chargeDir = Vector3.zero;
+			GameManager.Instance.StopCoroutine(c);
 		}
 	}
 
@@ -46,22 +48,29 @@ public class ChargeAttack : INode
 			charging = false;
 			self.examining = true;
 			self.charging = false;
+			self.chargeDir = Vector3.zero;
 		}
 	}
 
 	public NodeStat Examine()
 	{
-		charging = true;
-		agent.speed = chargeSpeed;
-		agent.acceleration = chargeSpeed;
-		self.examining = false;
-		Vector3 dest = (target.transform.position - agent.transform.position).normalized * maxChargeDist;
-		if(NavMesh.SamplePosition(dest, out NavMeshHit hit, 20, -1))
+		if (!charging)
 		{
-			agent.SetDestination(hit.position);
+			charging = true;
+			agent.speed = chargeSpeed;
+			agent.acceleration = chargeSpeed;
+			self.examining = false;
+			Vector3 dest = (target.transform.position - agent.transform.position).normalized * maxChargeDist;
+			dest += agent.transform.position;
+			self.chargeDir = (target.transform.position - agent.transform.position).normalized;
+			if (NavMesh.SamplePosition(dest, out NavMeshHit hit, 15, -1))
+			{
+				agent.SetDestination(hit.position);
+			}
+			self.charging = true;
+			c = GameManager.Instance.StartCoroutine(DelStopCharge());
 		}
-		self.charging = true;
-		GameManager.Instance.StartCoroutine(DelStopCharge());
+		
 		return NodeStat.Run;
 	}
 }

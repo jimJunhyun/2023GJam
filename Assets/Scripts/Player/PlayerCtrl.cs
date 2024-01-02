@@ -16,6 +16,8 @@ public class PlayerCtrl : MonoBehaviour
 	Vector3 moveVec = Vector3.zero;
 	Vector3 forceVec = Vector3.zero;
 
+	Vector3? predictPos = null;
+
 	private void Awake()
 	{
 		ctrl = GetComponent<CharacterController>();
@@ -41,6 +43,21 @@ public class PlayerCtrl : MonoBehaviour
 			forceVec.y = 0;
 		}
 		ctrl.Move((moveVec + forceVec) * Time.deltaTime);
+	}
+
+	private void LateUpdate()
+	{
+		if(predictPos != null)
+		{
+			transform.position = (Vector3)predictPos;
+			predictPos = null;
+		}
+	}
+
+	public void SetPosition(Vector3 pos)
+	{
+		pos.y = transform.position.y;
+		predictPos = pos;
 	}
 
 	public void SetStat(Stat s)

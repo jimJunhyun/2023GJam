@@ -137,10 +137,10 @@ public class MapAtom : ScriptableObject
 
 	public void SetPoints()
 	{
-		upPt = self.transform.position + Vector3.forward * MapGenerator.MAPY * 0.4f;
-		downPt = self.transform.position + Vector3.back * MapGenerator.MAPY * 0.4f;
-		leftPt = self.transform.position + Vector3.left * MapGenerator.MAPX * 0.4f;
-		rightPt = self.transform.position + Vector3.right * MapGenerator.MAPX * 0.4f;
+		upPt = self.transform.position + Vector3.forward * (MapGenerator.MAPY ) * 0.4f ;
+		downPt = self.transform.position + Vector3.back * (MapGenerator.MAPY) * 0.4f ;
+		leftPt = self.transform.position + Vector3.left * (MapGenerator.MAPX ) * 0.4f;
+		rightPt = self.transform.position + Vector3.right * (MapGenerator.MAPX ) * 0.4f;
 	}
 
 	public void MoveTo(Direction dir)

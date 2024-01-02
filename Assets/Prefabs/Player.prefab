@@ -14,10 +14,9 @@ GameObject:
   - component: {fileID: 4294774181250357310}
   - component: {fileID: 8850791054639850646}
   - component: {fileID: 8259835983843184850}
-  - component: {fileID: 5721481916625138643}
   - component: {fileID: 4161158099331891227}
   - component: {fileID: 7331543373774828821}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,28 +142,7 @@ MonoBehaviour:
   hp: 0
   maxHp: 15
   dead: 0
---- !u!195 &5721481916625138643
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7232582062356001663}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  isImmune: 0
 --- !u!114 &4161158099331891227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,8 +155,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2feb4e40a9092404795e3c79cf7bb005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack: 1
-  attackRange: 5
 --- !u!114 &7331543373774828821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,14 +168,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NormalStat:
-    MaxHP: 3
+    MaxHP: 30
     HP: 3
     ATK: 1
     SPEED: 5
     Size: 1
+    AttackRange: 5
   AddStat:
     MaxHP: 0
     HP: 0
     ATK: 0
     SPEED: 0
     Size: 0
+    AttackRange: 5
+  RhythmCount: 0
