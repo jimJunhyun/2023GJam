@@ -11,7 +11,7 @@ public enum AttackType
 
 }
 
-public class AI : MonoBehaviour
+public class AI : MonoBehaviour, IRhythm
 {
 	public float atkRange;
 	public float atkGap;
@@ -28,6 +28,8 @@ public class AI : MonoBehaviour
     Selecter head;
 	NavMeshAgent agent;
 
+	SetFlag metronome;
+
 	public bool examining;
 
 	public virtual void Awake()
@@ -36,8 +38,12 @@ public class AI : MonoBehaviour
 
 		Sequencer doAttack = new Sequencer();
 
+		metronome = new SetFlag();
+		doAttack.childs.Add(metronome);
+
 		IsInRange inRange = new IsInRange(atkRange, GameManager.instance.player.transform, transform);
 		doAttack.childs.Add(inRange);
+
 		if(type == AttackType.Sweep)
 		{
 			SweepAttack sweep = new SweepAttack(agent, atkRange, angle, GameManager.instance.player.transform, atkDam, atkGap);
@@ -68,5 +74,15 @@ public class AI : MonoBehaviour
 		{
 			head.Examine();
 		}
+	}
+
+	public void BeatUpdate()
+	{
+		metronome.Set();
+	}
+
+	public void BeatUpdateDivideFour()
+	{
+		metronome.Set();
 	}
 }

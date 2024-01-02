@@ -27,9 +27,29 @@ public class BeatUISystem : Singleton<BeatUISystem>
     [Header("CurrentNode")] [SerializeField]private HitUI _nowNode;
 
     private int hitCount = 0;
+    private int _perfectCount = 0;
+    private bool PerfectMD = false;
+    private int _goodCount = 0;
+    private bool GoodMD = false;
 
     public void InstanciateNode()
     {
+        PerfectMD = false;
+        GoodMD = false;
+        
+        if (_perfectCount == _hit.Count)
+        {
+            Debug.Log("Perfect!!!!");
+            PerfectMD = true;
+        }
+
+        if (_goodCount == _hit.Count)
+        {
+            GoodMD = true;
+        }
+
+        _perfectCount = 0;
+        _goodCount = 0;
         hitCount = 0;
         
         _hitBeatLine = Instantiate(_beatLineImg,BeatPos);
@@ -87,17 +107,19 @@ public class BeatUISystem : Singleton<BeatUISystem>
         float b = _nowNode.Position;
         
         // 비팅 시스템 만들기
-        if (Mathf.Abs(a - b) < 0.02f)
+        if (Mathf.Abs(a - b) < 0.03f)
         {
+            _perfectCount++;
             Debug.Log($"쵝오, {a} | {b} | {Mathf.Abs(a - b)}");
             hitCount++;
         }
-        else if (Mathf.Abs(a - b) < 0.04f)
+        else if (Mathf.Abs(a - b) < 0.05f)
         {
+            _goodCount++;
             Debug.Log($"굳, {a} | {b} | {Mathf.Abs(a - b)}");
             hitCount++;
         }
-        else if (Mathf.Abs(a-b) < 0.06f)
+        else if (Mathf.Abs(a-b) < 0.07f)
         {
             Debug.Log($"밷, {a} | {b} | {Mathf.Abs(a - b)}");
             hitCount++;

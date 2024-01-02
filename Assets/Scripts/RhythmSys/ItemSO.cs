@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class ItemSO : ScriptableObject
 {
-    [Header("BPM = 0 ( default )")] 
-    public int SetBPM = 0;
-    public int AddBPM = 0;
+    //[Header("BPM = 0 ( default )")] 
+    //public int SetBPM = 0;
+    //public int AddBPM = 0;
 
     [Header("AddRule = 1 ( default )")] 
     public int AddRule = 1;
