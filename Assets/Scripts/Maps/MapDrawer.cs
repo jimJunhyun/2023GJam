@@ -20,6 +20,7 @@ public class MapDrawer : MonoBehaviour
     public Sprite healRoom;
     public Sprite startRoom;
     public Sprite bossRoom;
+    public Sprite blessRoom;
 
     Image mapPanel;
 
@@ -80,6 +81,9 @@ public class MapDrawer : MonoBehaviour
 				break;
 			case RoomType.Boss:
 				img.sprite = bossRoom;
+				break;
+			case RoomType.Blessing:
+				img.sprite = blessRoom;
 				break;
 			default:
 				break;

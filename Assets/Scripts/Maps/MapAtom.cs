@@ -18,6 +18,7 @@ public enum RoomType
 	Shop,
 	Heal,
 	Curse,
+	Blessing,
 	Boss,
 
 	Question,
@@ -52,6 +53,8 @@ public class MapAtom : ScriptableObject
 
 	GameObject self;
 	List<EnemySlot> slots;
+
+	[Header("MapGimik")] public MapGimikSO _mapGimik;
 
 	public void Init(Vector3 pos)
 	{
@@ -183,6 +186,7 @@ public class MapAtom : ScriptableObject
 		if (!cleared)
 		{
 			TriggerEnemy();
+			_mapGimik.RoomInit();
 		}
 		GameManager.Instance.RefreshMap();
 	}

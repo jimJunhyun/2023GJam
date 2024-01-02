@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7866206080854631132}
   - component: {fileID: 7676818948046460100}
   - component: {fileID: -3883001659652003717}
+  - component: {fileID: 618758407852163904}
   m_Layer: 5
   m_Name: Beat
   m_TagString: Untagged
@@ -90,3 +91,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _constNode: 0
   _position: 0
+  _isHit: 0
+  _isRemove: 0
+--- !u!210 &618758407852163904
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5742862112732164225}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 15
+  m_SortAtRoot: 0
