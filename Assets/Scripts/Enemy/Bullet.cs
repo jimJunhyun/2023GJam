@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(LifeObject))]
 public class Bullet : MonoBehaviour
 {
 	Rigidbody rig;
-
+	LifeObject life;
 	public float dam;
 
 	private void OnCollisionEnter(Collision collision)
@@ -14,7 +15,7 @@ public class Bullet : MonoBehaviour
 		if (lf = collision.gameObject.GetComponent<LifeObject>())
 		{
 			lf.Damage(dam);
-			Destroy(gameObject);
+			life.OnDead();
 		}
 	}
 
@@ -22,6 +23,7 @@ public class Bullet : MonoBehaviour
 	{
 		rig = GetComponent<Rigidbody>();
 		rig.AddForce(transform.forward * pow, ForceMode.Impulse);
-		Destroy(gameObject, 3f);
+		life = GetComponent<LifeObject>();
+		life.onDead += ()=>Destroy(gameObject, 3f);
 	}
 }
