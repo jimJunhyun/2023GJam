@@ -11,7 +11,7 @@ public class LifeObject : MonoBehaviour
 
 	private void Awake()
 	{
-		maxHp = hp;
+		ResetCompletely();
 
 	}
 
@@ -19,10 +19,16 @@ public class LifeObject : MonoBehaviour
 	public void Damage(float amt)
 	{
 		hp -= amt;
-		if(hp < 0)
+		if(hp <= 0)
 		{
 			dead = true;
-			Destroy(gameObject);
+			gameObject.SetActive(false);
 		}
+	}
+
+	public void ResetCompletely()
+	{
+		hp = maxHp;
+		dead = false;
 	}
 }

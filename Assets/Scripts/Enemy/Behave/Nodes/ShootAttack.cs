@@ -35,7 +35,7 @@ public class ShootAttack : INode
 			agent.isStopped = true;
 			agent.SetDestination(agent.transform.position);
 
-			agent.transform.LookAt(target);
+			agent.transform.rotation = Quaternion.LookRotation((target.position - agent.transform.position).normalized);
 
 			Bullet blt = GameObject.Instantiate(bullet, shootPos.position, bullet.transform.rotation);
 			blt.dam = damage;
