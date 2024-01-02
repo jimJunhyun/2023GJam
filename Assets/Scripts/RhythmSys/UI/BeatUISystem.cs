@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public enum Detection
 {
@@ -34,11 +35,16 @@ public class BeatUISystem : Singleton<BeatUISystem>
 
     [Header("CurrentNode")] [SerializeField]private HitUI _nowNode;
 
+    [Header("Curse")] [SerializeField] private CurseUI _curse;
+
     private int hitCount = 0;
     private int _perfectCount = 0;
     private bool PerfectMD = false;
     private int _goodCount = 0;
     private bool GoodMD = false;
+
+    public int HitCount => _hit.Count;
+    public int RecordCount => _record.Count;
 
 
     public bool IsPerfect
@@ -51,6 +57,8 @@ public class BeatUISystem : Singleton<BeatUISystem>
 
     public void InstanciateNode()
     {
+        
+        //GameManager.Instance.player.Inven.AddCurse(CurseList.MadiSeal);
         PerfectMD = false;
         GoodMD = false;
         
@@ -76,6 +84,15 @@ public class BeatUISystem : Singleton<BeatUISystem>
         _recordBeatLine = Instantiate(_beatLineImg,BeatPos);
         
         _recordBeatLine.Init(_startRecordBeat, _endRecordBeat);
+
+        if (GameManager.Instance.player.Inven.FindCurse(CurseList.MadiSeal))
+        {
+            _curse.SetCurse(Random.Range(0,4));
+        }
+        else
+        {
+            _curse.SetCurse();
+        }
         
         InvaligateNode();
     }
@@ -129,7 +146,15 @@ public class BeatUISystem : Singleton<BeatUISystem>
             _perfectCount++;
             Debug.Log($"쵝오, {a} | {b} | {Mathf.Abs(a - b)}");
             GameManager.Instance.player.Inven.NodeInvoking();
-            GameManager.Instance.player.PlayerAttack.DoAttack(Detection.Perfect);
+
+            if (GameManager.Instance.player.Inven.FindCurse(CurseList.PerfectSeal))
+            {
+                GameManager.Instance.player.PlayerAttack.DoAttack(Detection.Good);
+            }
+            else
+            {
+                GameManager.Instance.player.PlayerAttack.DoAttack(Detection.Perfect);
+            }
             hitCount++;
         }
         else if (Mathf.Abs(a - b) < 0.05f)

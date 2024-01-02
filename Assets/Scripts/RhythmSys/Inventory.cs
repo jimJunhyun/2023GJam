@@ -4,17 +4,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
+public enum CurseList
+{
+    MadiSeal,
+    PerfectSeal,
+}
+
+
 public class Inventory : MonoBehaviour
 {
     [Header("장착 아이템")]
     [SerializeField] private ItemSO _equipItem;
 
+    [Header("저주")] private List<CurseList> _curse = new();
+    
     private Dictionary<Action, int> HitInvoke = new();
     private Dictionary<Action, int> NodeInvoke = new();
 
     public ItemSO ReturnItemRule()
     {
         return _equipItem;
+    }
+
+    public void AddCurse(CurseList en)
+    {
+        _curse.Add(en);
+    }
+
+    public void ResetCurse()
+    {
+        _curse.Clear();
+    }
+
+    public bool FindCurse(CurseList en)
+    {
+        return _curse.Contains(en);
     }
 
     //public void ReturnValue(ref Stat objStat)
@@ -39,7 +63,7 @@ public class Inventory : MonoBehaviour
 
     public void UseItem(ref Stat PlayerStat, ref Stat objStat,  ItemSO _so)
     {
-        if (_so._itemtype == ItemType.Equipment)
+        if (_so._itemtype == ItemType.Equipment || _so==null)
         {
             if (_equipItem != null)
             {
@@ -52,16 +76,18 @@ public class Inventory : MonoBehaviour
             }
             
             _equipItem = _so;
+
+            if (_equipItem != null)
+            {
+                _equipItem.InitEquiped();
             
-            
-            _equipItem.InitEquiped();
-            
-            objStat.MaxHP += _equipItem.AddStat.AddHP;
-            PlayerStat.HP += _equipItem.AddStat.AddHP;
-            objStat.Size += _equipItem.AddStat.AddplayerSize;
-            objStat.ATK += _equipItem.AddStat.AddATK;
-            objStat.SPEED += _equipItem.AddStat.AddSpeed;
-            objStat.AttackRange += _equipItem.AddStat.AddRange;
+                objStat.MaxHP += _equipItem.AddStat.AddHP;
+                PlayerStat.HP += _equipItem.AddStat.AddHP;
+                objStat.Size += _equipItem.AddStat.AddplayerSize;
+                objStat.ATK += _equipItem.AddStat.AddATK;
+                objStat.SPEED += _equipItem.AddStat.AddSpeed;
+                objStat.AttackRange += _equipItem.AddStat.AddRange;
+            }
         }
         else if(_so._itemtype == ItemType.Infinity)
         {

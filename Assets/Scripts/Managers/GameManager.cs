@@ -79,6 +79,16 @@ public class Stat
 	public float SPEED = 5f;
 	public int Size =1;
 	public float AttackRange = 5f;
+
+	public void Reset()
+	{
+		MaxHP = 0;
+		HP = 0;
+		ATK = 0;
+		SPEED = 0;
+		Size = 0;
+		AttackRange = 0;
+	}
 	
 	public static Stat operator +(Stat a, Stat b)
 	{

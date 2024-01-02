@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private Stat NormalStat;
     [SerializeField] private Stat AddStat;
+    [SerializeField] private Stat CurseStat;
 
     [Header("Rhythm")] 
     [SerializeField] private int RhythmCount = 0;
@@ -20,6 +21,10 @@ public class Player : MonoBehaviour
         get
         {
             return _gold;
+        }
+        set
+        {
+            _gold = value;
         }
     }
 
@@ -100,9 +105,37 @@ public class Player : MonoBehaviour
     {
         get
         {
-            return NormalStat + AddStat;
+            return NormalStat + AddStat + CurseStat;
+        }
+    }
+
+    public void CurseStatAdd(Stat cs)
+    {
+        CurseStat += cs;
+    }
+
+    public void ModifyHPPlus(int value)
+    {
+        NormalStat.HP += value;
+    }
+
+    public void ModifyMaxHPPlus(int value)
+    {
+        NormalStat.MaxHP += value;
+        if (value > 0)
+        {
+            NormalStat.HP += value;
         }
     }
     
+    public void ModifyATKPlus(int value)
+    {
+        NormalStat.ATK += value;
+    }
+
+    public void ModifySpeedPlus(int value)
+    {
+        NormalStat.SPEED += value;
+    }
     
 }

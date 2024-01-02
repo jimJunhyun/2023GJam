@@ -27,8 +27,8 @@ public class ItemSO : ScriptableObject
     //public int AddBPM = 0;
 
     [Header("ItemInfo")] 
-    public ACTIONType _type;
-    public ItemType _itemtype;
+    public ACTIONType _type = ACTIONType.none;
+    public ItemType _itemtype = ItemType.none;
     public int ExpensiveMoney = 0;
 
     [FormerlySerializedAs("AddRule")] [Header("AddRule = 0 ( default )")] 
@@ -37,7 +37,7 @@ public class ItemSO : ScriptableObject
     public int RemoveBeat = 0;
 
     [Header("Stat")] 
-    public AddStat AddStat;
+    public AddStat AddStat = new();
     
     public int RhythmPassive = 0;
 
