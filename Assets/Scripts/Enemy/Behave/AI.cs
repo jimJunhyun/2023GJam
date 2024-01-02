@@ -11,13 +11,16 @@ public enum AttackType
 
 }
 
-public class AI : MonoBehaviour
+[RequireComponent(typeof(LifeObject))]
+public class AI : MonoBehaviour, IRhythm
 {
 	public float atkRange;
-	public float atkGap;
-	public float atkDam;
+	public int atkGap;
+	public Stat stat;
 
 	public AttackType type;
+
+	LifeObject life;
 	
 	public Bullet myBullet;
 	public Transform shootPos;
@@ -28,25 +31,37 @@ public class AI : MonoBehaviour
     Selecter head;
 	NavMeshAgent agent;
 
+	SetFlag metronome;
+
+	int beatCnt = 0;
+
 	public bool examining;
 
 	public virtual void Awake()
 	{
 		agent = GetComponent<NavMeshAgent>();
+		agent.speed = stat.SPEED;
+		life = GetComponent<LifeObject>();
+		life.maxHp = stat.MaxHP;
+		life.ResetCompletely();
 
 		Sequencer doAttack = new Sequencer();
 
+		metronome = new SetFlag();
+		doAttack.childs.Add(metronome);
+
 		IsInRange inRange = new IsInRange(atkRange, GameManager.instance.player.transform, transform);
 		doAttack.childs.Add(inRange);
-		if(type == AttackType.Sweep)
+
+		if( type == AttackType.Shoot)
 		{
-			SweepAttack sweep = new SweepAttack(agent, atkRange, angle, GameManager.instance.player.transform, atkDam, atkGap);
-			doAttack.childs.Add(sweep);
-		}
-		else if( type == AttackType.Shoot)
-		{
-			ShootAttack shoot = new ShootAttack(agent, myBullet, GameManager.instance.player.transform, shootPos, atkGap, atkDam, shootPow);
+			ShootAttack shoot = new ShootAttack(agent, myBullet, GameManager.instance.player.transform, shootPos, stat.ATK, shootPow);
 			doAttack.childs.Add(shoot);
+		}
+		else
+		{
+			SweepAttack sweep = new SweepAttack(agent, atkRange, angle, GameManager.instance.player.transform, stat.ATK);
+			doAttack.childs.Add(sweep);
 		}
 
 		Move doMove = new Move(GameManager.instance.player.transform, agent);
@@ -55,10 +70,7 @@ public class AI : MonoBehaviour
 
 		head = new Selecter();
 
-		if(type != AttackType.Body)
-		{
-			head.childs.Add(doAttack);
-		}
+		head.childs.Add(doAttack);
 		head.childs.Add(doMove);
 	}
 
@@ -67,6 +79,26 @@ public class AI : MonoBehaviour
 		if (examining)
 		{
 			head.Examine();
+		}
+	}
+
+	public void BeatUpdate()
+	{
+		++beatCnt;
+		if(beatCnt >= atkGap)
+		{
+			metronome.Set();
+			beatCnt= 0;
+		}
+	}
+
+	public void BeatUpdateDivideFour()
+	{
+		++beatCnt;
+		if (beatCnt >= atkGap)
+		{
+			metronome.Set();
+			beatCnt = 0;
 		}
 	}
 }

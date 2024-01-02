@@ -11,10 +11,23 @@ public enum Direction
 	Right,
 }
 
+public enum RoomType
+{
+	Start,
+	Normal,
+	Question,
+	Shop,
+	Heal,
+	Curse,
+	Boss,
+}
+
 [CreateAssetMenu()]
 public class MapAtom : ScriptableObject
 {
     public MapObjs obj;
+
+	public RoomType type;
 
     public MapAtom up;
     public MapAtom down;

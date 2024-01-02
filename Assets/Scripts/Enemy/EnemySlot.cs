@@ -11,7 +11,7 @@ public class EnemySlot : MonoBehaviour
 	public void SetEnemy(GameObject enemy)
 	{
 		myEnemy = enemy.GetComponent<AI>();
-		enemyLife = GetComponent<LifeObject>();
+		enemyLife = enemy. GetComponent<LifeObject>();
 		if(NavMesh.SamplePosition(transform.position, out NavMeshHit hit, 20f, -1))
 		{
 			enemy.transform.position = hit.position;

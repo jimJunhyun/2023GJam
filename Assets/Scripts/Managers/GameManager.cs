@@ -74,7 +74,12 @@ public class Stat
 	
 	public static Stat operator +(Stat a, Stat b)
 	{
-		a += b;
-		return a;
+		Stat c = new Stat();
+		c.MaxHP = a.MaxHP + b.MaxHP;
+		c.HP = a.HP + b.HP;
+		c.ATK = a.ATK + b.ATK;
+		c.SPEED = a.SPEED + b.SPEED;
+		c.Size = a.Size + b.Size;
+		return c;
 	}
 }
