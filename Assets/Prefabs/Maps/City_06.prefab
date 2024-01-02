@@ -4756,6 +4756,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 198137211002769400, guid: bbd1860d44f6c7546aad605f3666475f,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.m_ColorSpace
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 199439982024837534, guid: bbd1860d44f6c7546aad605f3666475f,
         type: 3}
       propertyPath: m_Materials.Array.size
