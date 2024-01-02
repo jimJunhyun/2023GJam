@@ -7,22 +7,22 @@ public class Tester : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (Input.GetKeyDown(KeyCode.W))
+		if (Input.GetKeyDown(KeyCode.UpArrow))
 		{
-			GameManager.instance.ChangeRoom(Direction.Up);
+			GameManager.Instance.ChangeRoom(Direction.Up);
 		}
-		if (Input.GetKeyDown(KeyCode.S))
+		if (Input.GetKeyDown(KeyCode.DownArrow))
 		{
-			GameManager.instance.ChangeRoom(Direction.Down);
+			GameManager.Instance.ChangeRoom(Direction.Down);
 
 		}
-		if (Input.GetKeyDown(KeyCode.A))
+		if (Input.GetKeyDown(KeyCode.LeftArrow))
 		{
-			GameManager.instance.ChangeRoom(Direction.Left);
+			GameManager.Instance.ChangeRoom(Direction.Left);
 		}
-		if (Input.GetKeyDown(KeyCode.D))
+		if (Input.GetKeyDown(KeyCode.RightArrow))
 		{
-			GameManager.instance.ChangeRoom(Direction.Right);
+			GameManager.Instance.ChangeRoom(Direction.Right);
 		}
 	}
 }

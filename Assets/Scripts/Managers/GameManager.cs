@@ -4,9 +4,8 @@ using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-	public static GameManager instance;
 
 	public const float GRAVITY = 9.8f;
 
@@ -16,7 +15,10 @@ public class GameManager : MonoBehaviour
 		get
 		{
 			if (_player == null)
+			{
 				_player = GameObject.Find("Player").GetComponent<Player>();
+ 				Debug.LogWarning(_player);
+			}
 			return _player;
 
 		}
@@ -24,6 +26,7 @@ public class GameManager : MonoBehaviour
 	
 	
 	public MapAtom curRoom;
+	public int curStage = 0;
 
 	public List<MapGenerator> maps;
 
@@ -33,20 +36,25 @@ public class GameManager : MonoBehaviour
 
 	private void Awake()
 	{
-		instance = this;
 		surface = GetComponent<NavMeshSurface>();
-		player.RefreshStat();
 	}
 
 	private void Start()
 	{
+		player.RefreshStat();
 		for (int i = 0; i < maps.Count; i++)
 		{
 			maps[i].Create();
 		}
-		curRoom = maps[0].startRoom;
+		curRoom = maps[curStage].startRoom;
 		MovePlayerTo(curRoom.rootOffSet);
 		surface.BuildNavMesh();
+		maps[curStage].CreateMap();
+	}
+
+	public void RefreshMap()
+	{
+		maps[curStage].CreateMap();
 	}
 
 
@@ -70,6 +78,7 @@ public class Stat
 	public int ATK = 1;
 	public float SPEED = 5f;
 	public int Size =1;
+	public float AttackRange = 5f;
 	
 	public static Stat operator +(Stat a, Stat b)
 	{
@@ -79,6 +88,7 @@ public class Stat
 		c.ATK = a.ATK + b.ATK;
 		c.SPEED = a.SPEED + b.SPEED;
 		c.Size = a.Size + b.Size;
+		c.AttackRange = a.AttackRange + b.AttackRange;
 		return c;
 	}
 }

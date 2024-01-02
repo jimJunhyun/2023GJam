@@ -9,6 +9,40 @@ public class Player : MonoBehaviour
     [SerializeField] private Stat NormalStat;
     [SerializeField] private Stat AddStat;
 
+    [Header("Rhythm")] 
+    [SerializeField] private int RhythmCount = 0;
+
+    
+    private int _gold = 0;
+
+    public int Gold
+    {
+        get
+        {
+            return _gold;
+        }
+    }
+
+    public void GetGold(int value)
+    {
+        _gold += value;
+    }
+
+    public bool isUseGold(int value)
+    {
+        if (_gold - value >= 0)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public void UseingGold(int value)
+    {
+        _gold -= value;
+    }
+    
     private Inventory _inven;
 
     public Inventory Inven
@@ -17,6 +51,8 @@ public class Player : MonoBehaviour
         {
             if (_inven == null)
                 _inven = GetComponent<Inventory>();
+            
+            Debug.LogWarning(_inven);
             return _inven;
         }
     }
@@ -33,21 +69,28 @@ public class Player : MonoBehaviour
         }
     }
     
+    private PlayerAttack _plATK;
+
+    public PlayerAttack PlayerAttack
+    {
+        get
+        {
+            if (_plATK == null)
+                _plATK = GetComponent<PlayerAttack>();
+            return _plATK;
+        }
+    }
+    
     private void InitSetting()
     {
-        Inven.ReturnValue(ref AddStat);
+        //Inven.ReturnValue(ref AddStat);
     }
 
     public void GetItem(ItemSO _so)
     {
-        Inven.UseItem(ref AddStat, _so);
+        Inven.UseItem(ref NormalStat, ref AddStat,  _so);
     }
-
-    public void GetRuleItem(ItemSO _so)
-    {
-        Inven.SetRuleItem(_so);
-    }
-
+    
     public void RefreshStat()
 	{
         playerCtrl.SetStat(PlayerStat);

@@ -7,6 +7,9 @@ using UnityEngine;
 
 public class BeatSystem : Singleton<BeatSystem>
 {
+    [Header("Audio")] 
+    public AudioClip _matronyum;
+    public AudioClip _Hit;
     [SerializeField] float BPM = 100f;
     [SerializeField] int Matronyum = 4;
 
@@ -18,10 +21,16 @@ public class BeatSystem : Singleton<BeatSystem>
     private float _currentTime = 0f;
     private float _currentBeatValue = 0f;
 
+    private int _addBeatCount = 0;
+    private int _removeBeatCount = 0;
+    
+    private Inventory _inven;
     
     private void Awake()
     {
         _currentBeatValue = BeatValue();
+        ;
+        _inven = GameManager.Instance.player.Inven;
     }
 
     public float ReturnBPM
@@ -61,18 +70,44 @@ public class BeatSystem : Singleton<BeatSystem>
     {
         if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.K))
         {
+            GameManager.Instance.player.Inven.HitInvoking();
             BeatUISystem.Instance.HitNode();
-            //GetComponent<AudioSource>().Play();
+            GetComponent<AudioSource>().PlayOneShot(_Hit);
         }
 
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I)) // 1 + 아이템 + 플레이어
         {
-            BeatUISystem.Instance.InstanciateRecordNode();
-            //GetComponent<AudioSource>().Play();
+            int a = 1;
+            if (_inven.ReturnItemRule() != null)
+            {
+                a += _inven.ReturnItemRule().AddBeat;
+            }
+
+            if (a > _addBeatCount)
+            {
+                _addBeatCount++;
+                BeatUISystem.Instance.InstanciateRecordNode();
+            }
+
+            //GetComponent<AudioSource>().PlayOneShot(_Hit);
         }
 
         if (Input.GetKeyDown(KeyCode.O))
         {
+            int a = 1;
+            if (_inven.ReturnItemRule() != null)
+            {
+                a += _inven.ReturnItemRule().RemoveBeat;
+            }
+
+            if (a > _removeBeatCount)
+            {
+                _removeBeatCount++;
+                GameManager.Instance.player.Inven.HitInvoking();
+            }
+            
+            GameManager.Instance.player.Inven.HitInvoking();
+            GetComponent<AudioSource>().PlayOneShot(_Hit);
             BeatUISystem.Instance.RemoveNode();
             BeatUISystem.Instance.HitNode();
         }
@@ -82,7 +117,8 @@ public class BeatSystem : Singleton<BeatSystem>
         
         if (_currentTime >= _currentBeatValue)
         {
-            GetComponent<AudioSource>().Play();
+
+            GetComponent<AudioSource>().PlayOneShot(_matronyum);
             _currentTime = 0;
             StartCoroutine(Beating());
 
@@ -101,6 +137,8 @@ public class BeatSystem : Singleton<BeatSystem>
         //Debug.Log(_currentTime);
         if (_matCount >= Matronyum)
         {
+            _addBeatCount = 0;
+            _removeBeatCount = 0;
             _currentBeatValue = BeatValue();
             //BeatUISystem.Instance.ResetHitBoard();
             BeatUISystem.Instance.InstanciateNode();

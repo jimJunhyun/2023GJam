@@ -20,12 +20,21 @@ public class EnemySlot : MonoBehaviour
 
 	public void StartEnemy()
 	{
-		myEnemy.examining = true;
+		if (!enemyLife.dead)
+		{
+
+		myEnemy.StartAI();
+		}
 	}
 
 	public void StopEnemy()
 	{
-		myEnemy.examining = false;
+		if (!enemyLife.dead)
+		{
+			myEnemy.StopAI();
+			myEnemy.transform.position = transform.position;
+		}
+		
 	}
 
 	public void ResetEnemy()

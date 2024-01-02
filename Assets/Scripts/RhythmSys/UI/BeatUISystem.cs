@@ -4,6 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum Detection
+{
+    Perfect,
+    Good,
+    Bad,
+    none
+}
+
 public class BeatUISystem : Singleton<BeatUISystem>
 {
     
@@ -31,6 +39,15 @@ public class BeatUISystem : Singleton<BeatUISystem>
     private bool PerfectMD = false;
     private int _goodCount = 0;
     private bool GoodMD = false;
+
+
+    public bool IsPerfect
+    {
+        get
+        {
+            return PerfectMD;
+        }
+    }
 
     public void InstanciateNode()
     {
@@ -111,19 +128,25 @@ public class BeatUISystem : Singleton<BeatUISystem>
         {
             _perfectCount++;
             Debug.Log($"쵝오, {a} | {b} | {Mathf.Abs(a - b)}");
+            GameManager.Instance.player.Inven.NodeInvoking();
+            GameManager.Instance.player.PlayerAttack.DoAttack(Detection.Perfect);
             hitCount++;
         }
         else if (Mathf.Abs(a - b) < 0.05f)
         {
             _goodCount++;
             Debug.Log($"굳, {a} | {b} | {Mathf.Abs(a - b)}");
+            GameManager.Instance.player.Inven.NodeInvoking();
+            GameManager.Instance.player.PlayerAttack.DoAttack(Detection.Good);
             hitCount++;
         }
         else if (Mathf.Abs(a-b) < 0.07f)
         {
             Debug.Log($"밷, {a} | {b} | {Mathf.Abs(a - b)}");
+            GameManager.Instance.player.Inven.NodeInvoking();
+            GameManager.Instance.player.PlayerAttack.DoAttack(Detection.Bad);
             hitCount++;
-        }
+        }   
         else
         {
             Debug.Log("노드 멀음");
@@ -169,6 +192,7 @@ public class BeatUISystem : Singleton<BeatUISystem>
             if (_re.isRemove)
             {
 
+                
                 if (_hit.Count > 4)
                 {
                     HitUI _node = _hit[0];
