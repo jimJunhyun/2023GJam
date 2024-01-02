@@ -16,7 +16,21 @@ public class BeatSystem : Singleton<BeatSystem>
 
     private int _matCount = 1;
     private float _currentTime = 0f;
+    private float _currentBeatValue = 0f;
 
+    
+    private void Awake()
+    {
+        _currentBeatValue = BeatValue();
+    }
+
+    public float ReturnBPM
+    {
+        get
+        {
+            return BPM;
+        }
+    }
 
     private List<IRhythm> FindRhythms()
     {
@@ -25,16 +39,22 @@ public class BeatSystem : Singleton<BeatSystem>
 
     public float BeatValue()
     {
-        float BPS = (BPM / 60f); // 1.6666 한 마디
+        float BPS;
+        ItemSO SO = GameManager.instance.player.Inven.ReturnItemRule();
+
+
+        BPS = SO == null ? BPM / 60f : SO.SetBPM == 0 ? (BPM + SO.AddBPM) / 60f  : (SO.SetBPM + SO.AddBPM) / 60f;
+            
+        
+        
+        //= (BPM ) / 60f; // 1.6666 한 마디
         float beat = 1.0f / (BPS); // 한 박자
         return beat;
     }
     
     public float BeatSecond()
     {
-        float BPS = (BPM / 60f); // 1.6666 한 마디
-        float beat = 1.0f / (BPS); // 한 박자
-        return beat * Matronyum;
+        return BeatValue() * Matronyum;
     }
     
     private void Update()
@@ -60,7 +80,7 @@ public class BeatSystem : Singleton<BeatSystem>
         //Debug.Log(beat);
         _currentTime += Time.deltaTime;
         
-        if (_currentTime >= BeatValue())
+        if (_currentTime >= _currentBeatValue)
         {
             GetComponent<AudioSource>().Play();
             _currentTime = 0;
@@ -81,7 +101,7 @@ public class BeatSystem : Singleton<BeatSystem>
         //Debug.Log(_currentTime);
         if (_matCount >= Matronyum)
         {
-            
+            _currentBeatValue = BeatValue();
             //BeatUISystem.Instance.ResetHitBoard();
             BeatUISystem.Instance.InstanciateNode();
             

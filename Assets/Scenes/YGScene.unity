@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8192ff374487bfc4ebfc9d687618a028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BPM: 60
+  BPM: 100
   Matronyum: 4
   Delay: 0.2
 --- !u!4 &38570930
