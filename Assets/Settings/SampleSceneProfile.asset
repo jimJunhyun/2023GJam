@@ -133,16 +133,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   mode:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   quality:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   intensity:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   clamp:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0.05
 --- !u!114 &-1984920610330831174
 MonoBehaviour:
@@ -312,7 +312,7 @@ MonoBehaviour:
     m_Value: {x: 0.9279642, y: 1, z: 0.98289794, w: 0.0024711075}
   gamma:
     m_OverrideState: 1
-    m_Value: {x: 0.99058753, y: 0.90043384, z: 1, w: 0.007412768}
+    m_Value: {x: 0.99058753, y: 0.90043384, z: 1, w: -0.11279784}
   gain:
     m_OverrideState: 1
     m_Value: {x: 1, y: 0.9833592, z: 0.925539, w: 0.07001079}
@@ -396,7 +396,7 @@ MonoBehaviour:
     m_Value: 1.25
   contrast:
     m_OverrideState: 1
-    m_Value: -10
+    m_Value: -21.8
   colorFilter:
     m_OverrideState: 1
     m_Value: {r: 0.9402515, g: 0.9724238, b: 1, a: 1}
@@ -405,4 +405,4 @@ MonoBehaviour:
     m_Value: 0
   saturation:
     m_OverrideState: 1
-    m_Value: -47.6
+    m_Value: -56.2
