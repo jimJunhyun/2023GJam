@@ -879,6 +879,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7331543373774828821, guid: 94e6fa54b7320dd4096186a0bdc865a5,
+        type: 3}
+      propertyPath: NormalStat.AttackRange
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8850791054639850646, guid: 94e6fa54b7320dd4096186a0bdc865a5,
         type: 3}
       propertyPath: _walkTwo

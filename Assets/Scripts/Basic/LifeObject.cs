@@ -20,6 +20,7 @@ public class LifeObject : MonoBehaviour
 
 	public virtual void Damage(float amt, Detection _dec = Detection.none)
 	{
+		Debug.Log($"{gameObject.name} 데미지!!!");
 		if (!isImmune)
 		{
 
@@ -50,6 +51,9 @@ public class LifeObject : MonoBehaviour
 				OnDead();
 			}
 			
+		}
+		else
+		{
 		}
 	}
 
