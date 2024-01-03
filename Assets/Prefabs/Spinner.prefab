@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8772026881583871227}
   - component: {fileID: 5681423876044968140}
   - component: {fileID: 5791461547153973213}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spinner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
