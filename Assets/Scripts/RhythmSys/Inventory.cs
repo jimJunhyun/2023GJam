@@ -10,6 +10,14 @@ public enum CurseList
     PerfectSeal,
 }
 
+public enum Blessing
+{
+    none,
+    unblindness,
+}
+
+// player.inven --> ReturnItemRule() == ItemSO 물음표 보이는 아이템
+
 
 public class Inventory : MonoBehaviour
 {
@@ -76,6 +84,16 @@ public class Inventory : MonoBehaviour
                 objStat.ATK -= _equipItem.AddStat.AddATK;
                 objStat.SPEED -= _equipItem.AddStat.AddSpeed;
                 objStat.AttackRange -= _equipItem.AddStat.AddRange;
+
+                switch (_equipItem._passive)
+                {
+                    case Blessing.none:
+                        break;
+                    case Blessing.unblindness:
+                        // 물음표 표시
+                        break;
+                }
+                
             }
             
             _equipItem = _so;
@@ -90,6 +108,16 @@ public class Inventory : MonoBehaviour
                 objStat.ATK += _equipItem.AddStat.AddATK;
                 objStat.SPEED += _equipItem.AddStat.AddSpeed;
                 objStat.AttackRange += _equipItem.AddStat.AddRange;
+                
+                switch (_equipItem._passive)
+                {
+                    case Blessing.none:
+                        break;
+                    case Blessing.unblindness:
+                        // 물음표 제거
+                        break;
+                }
+                
             }
         }
         else if(_so._itemtype == ItemType.Infinity)
@@ -113,6 +141,7 @@ public class Inventory : MonoBehaviour
                     break;
             }
         }
+        
     }
 
     public void HitInvoking()

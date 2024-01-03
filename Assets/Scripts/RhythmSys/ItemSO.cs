@@ -41,6 +41,8 @@ public class ItemSO : ScriptableObject
     
     public int RhythmPassive = 0;
 
+    [Header("Blessing")] public Blessing _passive = Blessing.none;
+
     public virtual void ItemInvoke()
     {
         
