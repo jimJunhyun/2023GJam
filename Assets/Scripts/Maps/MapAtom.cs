@@ -64,6 +64,7 @@ public class MapAtom : ScriptableObject
 
 	[Header("MapGimik")] public MapGimikSO _mapGimik;
 
+	private MapPP mPP;
 	public virtual void Init(Vector3 pos, MapGenerator info)
 	{
 		SetStructureRandom(info);
@@ -303,6 +304,7 @@ public class MapAtom : ScriptableObject
 	public void SetClearState()
 	{
 		cleared = true;
+		mPP.AdjustSaturation(true);
 		if (up)
 		{
 			upPtExit.SetValid();
@@ -324,7 +326,8 @@ public class MapAtom : ScriptableObject
 	public void ResetClearState()
 	{
 		cleared = false;
-		if (up && upPtExit)
+        mPP.AdjustSaturation(false);
+        if (up && upPtExit)
 		{
 			upPtExit.ResetValid();
 		}
@@ -344,6 +347,9 @@ public class MapAtom : ScriptableObject
 
 	public void SetPoints()
 	{
+		mPP = self.transform.Find("PP").GetComponent<MapPP>();
+		mPP.AdjustSaturation(false);
+
 		upPt = self.transform.Find("EnterPoint0").position;
 		downPt = self.transform.Find("EnterPoint1").position;
 		leftPt = self.transform.Find("EnterPoint2").position;
