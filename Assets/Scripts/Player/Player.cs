@@ -13,7 +13,28 @@ public class Player : MonoBehaviour
     [Header("Rhythm")] 
     [SerializeField] private int RhythmCount = 0;
 
-    
+    [Header("LifeModule")] [SerializeField]
+    private Player_LifeObject _life;
+
+    public Player_LifeObject LifeModule
+    {
+        get
+        {
+            if (_life == null)
+                _life = GetComponent<Player_LifeObject>();
+            
+            return _life;
+            
+        }
+    }
+
+    private void Awake()
+    {
+        GetItem(null);
+        AddStat.Reset();
+        CurseStat.Reset();
+    }
+
     private int _gold = 0;
 
     public int Gold
@@ -85,6 +106,21 @@ public class Player : MonoBehaviour
             return _plATK;
         }
     }
+
+    private PlayerStatUI _playerStatUI;
+
+    public PlayerStatUI PlayerUI
+    {
+        get
+        {
+            if (_playerStatUI == null)
+            {
+                _playerStatUI = FindObjectOfType<PlayerStatUI>();
+            }
+
+            return _playerStatUI;
+        }
+    }
     
     private void InitSetting()
     {
@@ -99,6 +135,11 @@ public class Player : MonoBehaviour
     public void RefreshStat()
 	{
         playerCtrl.SetStat(PlayerStat);
+        
+        PlayerUI.InvaligateHP(NormalStat.HP, PlayerStat.HP);
+        PlayerUI.InvaligateAttack(PlayerStat.ATK);
+        PlayerUI.InvaligateSpeed(PlayerStat.SPEED);
+        PlayerUI.InvaligateRange(PlayerStat.AttackRange);
 	}
 
     public Stat PlayerStat
@@ -114,28 +155,85 @@ public class Player : MonoBehaviour
         CurseStat += cs;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            ModifyHPPlus(1);
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            ModifyHPPlus(-1);
+        }
+        
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            ModifyMaxHPPlus(1);
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            ModifyMaxHPPlus(-1);
+        }
+    }
+
     public void ModifyHPPlus(int value)
     {
         NormalStat.HP += value;
+        
+        
+        if (NormalStat.HP > PlayerStat.MaxHP)
+        {
+            NormalStat.HP = PlayerStat.MaxHP;
+        }
+        
+        LifeModule.hp = PlayerStat.HP;
+        
+        PlayerUI.InvaligateHP(PlayerStat.HP, PlayerStat.MaxHP);
     }
 
-    public void ModifyMaxHPPlus(int value)
+    public void ModifyMaxHPPlus(int value, bool _isHealthRegen = false)
     {
         NormalStat.MaxHP += value;
-        if (value > 0)
+        if (NormalStat.MaxHP > 16)
+        {
+            NormalStat.MaxHP = 16;
+        }
+        LifeModule.maxHp = PlayerStat.MaxHP;
+
+        if (NormalStat.HP > NormalStat.MaxHP)
+        {
+            NormalStat.HP = NormalStat.MaxHP;
+            LifeModule.hp = NormalStat.MaxHP;
+        }
+        
+        if (value > 0 && _isHealthRegen)
         {
             NormalStat.HP += value;
         }
+
+        LifeModule.hp = PlayerStat.HP;
+        LifeModule.DieCheck();
+        
+        PlayerUI.InvaligateHP(PlayerStat.HP, PlayerStat.MaxHP);
     }
     
     public void ModifyATKPlus(int value)
     {
         NormalStat.ATK += value;
+        PlayerUI.InvaligateAttack(PlayerStat.ATK);
+        
     }
 
-    public void ModifySpeedPlus(int value)
+    public void ModifySpeedPlus(float value)
     {
         NormalStat.SPEED += value;
+        PlayerUI.InvaligateSpeed(PlayerStat.SPEED);
+    }
+
+    public void ModifyRangePlus(float value)
+    {
+        NormalStat.AttackRange += value;
+        PlayerUI.InvaligateRange(PlayerStat.AttackRange);
     }
     
 }

@@ -10,7 +10,7 @@ public class PlayerCtrl : MonoBehaviour
 	float v;
 
 	CharacterController ctrl;
-	LifeObject life;
+
 	//PlayerAttack atk;
 
 	Vector3 moveVec = Vector3.zero;
@@ -19,7 +19,6 @@ public class PlayerCtrl : MonoBehaviour
 	private void Awake()
 	{
 		ctrl = GetComponent<CharacterController>();
-		life = GetComponent<LifeObject>();
 		//atk = GetComponent<PlayerAttack>();
 	}
 
@@ -45,8 +44,8 @@ public class PlayerCtrl : MonoBehaviour
 
 	public void SetStat(Stat s)
 	{
-		life.maxHp = s.MaxHP;
-		life.ResetCompletely();
+		//life.maxHp = s.MaxHP;
+		//life.ResetCompletely();
 		//atk.attack = s.ATK;
 		speed = s.SPEED;
 	}

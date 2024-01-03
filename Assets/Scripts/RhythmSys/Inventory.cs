@@ -63,7 +63,7 @@ public class Inventory : MonoBehaviour
 
     public void UseItem(ref Stat PlayerStat, ref Stat objStat,  ItemSO _so)
     {
-        if (_so._itemtype == ItemType.Equipment || _so==null)
+        if (_so==null || _so._itemtype == ItemType.Equipment)
         {
             if (_equipItem != null)
             {

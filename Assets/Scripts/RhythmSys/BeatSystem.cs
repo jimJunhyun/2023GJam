@@ -137,6 +137,9 @@ public class BeatSystem : Singleton<BeatSystem>
         //Debug.Log(_currentTime);
         if (_matCount >= Matronyum)
         {
+            
+            GameManager.Instance.player.PlayerUI.InvaligateBPM((int)ReturnBPM);
+            
             _addBeatCount = 0;
             _removeBeatCount = 0;
             _currentBeatValue = BeatValue();
