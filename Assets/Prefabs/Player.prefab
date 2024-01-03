@@ -954,7 +954,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35d6bf8338ba06c408d8b9154669a90d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  _walkEffect: {fileID: 6446721904435934277, guid: 00e2a2b70d052a44abd82db3f72346b1,
+    type: 3}
+  _walkTwo: {fileID: -1451469241671732739, guid: 1f28858d54e0c924387c68895bc30209,
+    type: 3}
 --- !u!195 &5721481916625138643
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -989,7 +992,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2feb4e40a9092404795e3c79cf7bb005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hitEffect: {fileID: 0}
 --- !u!114 &7331543373774828821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1008,7 +1010,7 @@ MonoBehaviour:
     ATK: 100
     SPEED: 10
     Size: 1
-    AttackRange: 5
+    AttackRange: 30
   AddStat:
     MaxHP: 0
     HP: 0
@@ -1052,6 +1054,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b40157f7e0de0a34d82363bdd0d02e80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _effect: {fileID: 4025734095117056686, guid: 5b50ae224719ef14e9d89a6a6a81a3ec, type: 3}
+  _correctionVector: {x: 0, y: 0.5, z: 0}
   hp: 0
   maxHp: 0
   dead: 0

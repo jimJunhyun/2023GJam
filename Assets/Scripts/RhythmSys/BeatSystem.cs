@@ -9,7 +9,10 @@ public class BeatSystem : Singleton<BeatSystem>
 {
     [Header("Audio")] 
     public AudioClip _matronyum;
-    public AudioClip _Hit;
+    public AudioClip _j;
+    public AudioClip _k;
+    public AudioClip _i;
+    public AudioClip _o;
     [SerializeField] float BPM = 100f;
     [SerializeField] int Matronyum = 4;
 
@@ -29,8 +32,11 @@ public class BeatSystem : Singleton<BeatSystem>
     private void Awake()
     {
         _currentBeatValue = BeatValue();
-        ;
-        _inven = GameManager.Instance.player.Inven;
+        if (GameManager.Instance.player)
+        {
+            _inven = GameManager.Instance.player.Inven;
+        }
+
     }
 
     public float ReturnBPM
@@ -86,49 +92,80 @@ public class BeatSystem : Singleton<BeatSystem>
 
         #region 인풋
 
-        if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.K))
+        if (GameManager.Instance.player)
         {
+            if (Input.GetKeyDown(KeyCode.J))
+            {
             
-            GameManager.Instance.player.Inven.HitInvoking();
-            BeatUISystem.Instance.HitNode(_Hit);
-        }
-
-        if (Input.GetKeyDown(KeyCode.I)) // 1 + 아이템 + 플레이어
-        {
-            int a = 1;
-            if (_inven.ReturnItemRule() != null)
-            {
-                a += _inven.ReturnItemRule().AddBeat;
-            }
-
-            if (a > _addBeatCount || (BeatUISystem.Instance.HitCount <4 && BeatUISystem.Instance.RecordCount < 4))
-            {
-                _addBeatCount++;
-                BeatUISystem.Instance.InstanciateRecordNode();
-            }
-
-            //GetComponent<AudioSource>().PlayOneShot(_Hit);
-        }
-
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            int a = 1;
-            if (_inven.ReturnItemRule() != null)
-            {
-                a += _inven.ReturnItemRule().RemoveBeat;
-            }
-
-            if (a > _removeBeatCount)
-            {
-                _removeBeatCount++;
                 GameManager.Instance.player.Inven.HitInvoking();
+                BeatUISystem.Instance.HitNode(_j);
+            
             }
+            if(Input.GetKeyDown(KeyCode.K))
+            {
+                GameManager.Instance.player.Inven.HitInvoking();
+                BeatUISystem.Instance.HitNode(_k);
+            }
+
+            if (Input.GetKeyDown(KeyCode.I)) // 1 + 아이템 + 플레이어
+            {
+                int a = 1;
+                if (_inven.ReturnItemRule() != null)
+                {
+                    a += _inven.ReturnItemRule().AddBeat;
+                }
+
+                if (a > _addBeatCount || (BeatUISystem.Instance.HitCount <4 && BeatUISystem.Instance.RecordCount < 4))
+                {
+                    _addBeatCount++;
+                    BeatUISystem.Instance.InstanciateRecordNode();
+                    SoundManager.Instance.PlaySFX(_i);
+                }
+
+                //GetComponent<AudioSource>().PlayOneShot(_Hit);
+            }
+
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                int a = 1;
+                if (_inven.ReturnItemRule() != null)
+                {
+                    a += _inven.ReturnItemRule().RemoveBeat;
+                }
+
+                if (a > _removeBeatCount)
+                {
+                    _removeBeatCount++;
+                    GameManager.Instance.player.Inven.HitInvoking();
             
-            GameManager.Instance.player.Inven.HitInvoking();
+                    BeatUISystem.Instance.RemoveNode();
+                    BeatUISystem.Instance.HitNode(_o);
+                }
             
-            BeatUISystem.Instance.RemoveNode();
-            BeatUISystem.Instance.HitNode(_Hit);
+
+            }
         }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                SoundManager.Instance.PlaySFX(_j);
+            }
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                SoundManager.Instance.PlaySFX(_k);
+            }
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                SoundManager.Instance.PlaySFX(_i);
+            }
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                SoundManager.Instance.PlaySFX(_o);
+            }
+        }
+        
+       
 
         #endregion
         

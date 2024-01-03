@@ -1802,7 +1802,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _matronyum: {fileID: 8300000, guid: 40204258f1990cd41aeac546941fe192, type: 3}
-  _Hit: {fileID: 8300000, guid: d4f628b19a34a4e44a63208f51e9f10a, type: 3}
+  _j: {fileID: 8300000, guid: da1e32504f16ded449078c550dbd89b9, type: 3}
+  _k: {fileID: 8300000, guid: 14ced64dc6a801249b759bde6147faf4, type: 3}
+  _i: {fileID: 8300000, guid: e6ee9f624ff38cb409f5f003221eb9e1, type: 3}
+  _o: {fileID: 8300000, guid: f4314bfad8a5485449d808bafba64baa, type: 3}
   BPM: 100
   Matronyum: 4
   Delay: 0.2
