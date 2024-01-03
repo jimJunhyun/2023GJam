@@ -80,6 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   list: {fileID: 11400000, guid: f12bad96876463f458ef475b241279ec, type: 2}
+  spawnMax: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &8078331775434059664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,7 +99,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -123,13 +124,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c77f57804f36b374790de8ed98b27b9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalRoom: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  qRoom: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  shopRoom: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  curseRoom: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  healRoom: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  startRoom: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  bossRoom: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  normalRoom: {fileID: 21300000, guid: ea51016beea210a4ea9bdc4c6f95934f, type: 3}
+  qRoom: {fileID: 21300000, guid: 9005f5a92449ffd4c970cb60acfdfc2a, type: 3}
+  shopRoom: {fileID: 21300000, guid: 6a8317babd13ca44baa763d75266a24c, type: 3}
+  curseRoom: {fileID: 21300000, guid: 591b7ef492295cc429bb7edf83b3b681, type: 3}
+  healRoom: {fileID: 21300000, guid: c7ab952bd2cdf9f4c81dffd184aff99d, type: 3}
+  startRoom: {fileID: 21300000, guid: c7ab952bd2cdf9f4c81dffd184aff99d, type: 3}
+  bossRoom: {fileID: 21300000, guid: a43935b3d77b4bb45b2fbe4c74d37102, type: 3}
+  blessRoom: {fileID: 0}
 --- !u!114 &4275285138809562683
 MonoBehaviour:
   m_ObjectHideFlags: 0

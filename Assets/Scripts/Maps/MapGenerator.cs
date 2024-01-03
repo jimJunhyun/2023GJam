@@ -17,10 +17,10 @@ public class MapGenerator : MonoBehaviour
 	internal int curseCnt = 0;
 	internal int blessCnt = 0;
 
-	public const float MAPX = 25;
-	public const float MAPY = 25;
-	public const float MAPXGAP = 10;
-	public const float MAPYGAP = 10;
+	public const float MAPX = 60;
+	public const float MAPY = 60;
+	public const float MAPXGAP = 20;
+	public const float MAPYGAP = 20;
 
 	Queue<KeyValuePair<MapAtom, Vector3>> createCalls = new Queue<KeyValuePair<MapAtom, Vector3>>();
 	HashSet<MapAtom> createds = new HashSet<MapAtom>();

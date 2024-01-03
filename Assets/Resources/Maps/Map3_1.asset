@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd616900df637c646a06e03b5a1f6785, type: 3}
   m_Name: Map3_1
   m_EditorClassIdentifier: 
-  obj: {fileID: -7935989439776852606, guid: 65decd916ea1cd24e963104b44d8577f, type: 3}
-  isQuestion: 0
+  obj: {fileID: -5828666241738628533, guid: fcf2af21c0a7e4e419b04e89851e1ce2, type: 3}
+  isQuestion: 1
   type: 7
   up: {fileID: 11400000, guid: 467eba4f3e44d164db07374456c91354, type: 2}
   down: {fileID: 11400000, guid: d786e4f4f62eb604d95650962941ede3, type: 2}

@@ -73,7 +73,11 @@ public class MapAtom : ScriptableObject
 
 	public void SetStructureRandom(MapGenerator info)
 	{
-		if (type == RoomType.Question)
+		if(type == RoomType.Boss)
+		{
+			obj = GameManager.Instance.mapList.bossMap;
+		}
+		else if (type == RoomType.Question)
 		{
 			bool invalid = true;
 			
@@ -158,6 +162,7 @@ public class MapAtom : ScriptableObject
 		{
 			obj = GameManager.Instance.mapList.randomMaps[Random.Range(0, GameManager.Instance.mapList.randomMaps.Count)];
 		}
+		obj.type = type;
 	}
 	
 	public void InstantiateSelf(Vector3 pos, Transform parent = null)
@@ -269,19 +274,19 @@ public class MapAtom : ScriptableObject
 	public void ResetClearState()
 	{
 		cleared = false;
-		if (up)
+		if (up && upPtExit)
 		{
 			upPtExit.ResetValid();
 		}
-		if (down)
+		if (down && downPtExit)
 		{
 			downPtExit.ResetValid();
 		}
-		if (left)
+		if (left && leftPtExit)
 		{
 			leftPtExit.ResetValid();
 		}
-		if (right)
+		if (right && rightPtExit)
 		{
 			rightPtExit.ResetValid();
 		}

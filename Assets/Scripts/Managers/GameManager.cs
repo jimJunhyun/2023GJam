@@ -48,8 +48,8 @@ public class GameManager : Singleton<GameManager>
 			maps[i].Create();
 		}
 		curRoom = maps[curStage].startRoom;
-		MovePlayerTo(curRoom.rootOffSet);
-		surface.BuildNavMesh();
+		MovePlayerTo(curRoom.downPt);
+		//surface.BuildNavMesh();
 		maps[curStage].CreateMap();
 	}
 
