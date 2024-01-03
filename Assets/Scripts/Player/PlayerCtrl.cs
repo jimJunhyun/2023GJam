@@ -16,6 +16,8 @@ public class PlayerCtrl : MonoBehaviour
 	Vector3 moveVec = Vector3.zero;
 	Vector3 forceVec = Vector3.zero;
 
+	Vector3? predictPos = null;
+
 	private void Awake()
 	{
 		ctrl = GetComponent<CharacterController>();
@@ -27,6 +29,8 @@ public class PlayerCtrl : MonoBehaviour
 		h = Input.GetAxis("Horizontal");
 		v = Input.GetAxis("Vertical");
 		moveVec = new Vector3(h, 0, v).normalized * speed;
+
+		moveVec = Quaternion.Euler(0, 45, 0) * moveVec;
 		
 		if(Mathf.Abs(h) >= 0.2 || Mathf.Abs(v) >= 0.2)
 			transform.rotation = Quaternion.LookRotation(moveVec);
@@ -40,6 +44,23 @@ public class PlayerCtrl : MonoBehaviour
 			forceVec.y = 0;
 		}
 		ctrl.Move((moveVec + forceVec) * Time.deltaTime);
+	}
+
+	private void LateUpdate()
+	{
+		if(predictPos != null)
+		{
+			ctrl.enabled = false;
+			transform.position = (Vector3)predictPos;
+			predictPos = null;
+			ctrl.enabled = true;
+		}
+	}
+
+	public void SetPosition(Vector3 pos)
+	{
+		pos.y = transform.position.y;
+		predictPos = pos;
 	}
 
 	public void SetStat(Stat s)

@@ -6,18 +6,19 @@ using UnityEngine.AI;
 public class Move : INode
 {
 	public Transform target;
-	public NavMeshAgent agent;
+	public Rigidbody agent;
+	AI self;
 
-	public Move(Transform targ, NavMeshAgent agt)
+	public Move(Transform targ, Rigidbody agt, AI s)
 	{
 		target = targ;
 		agent = agt;
+		self = s;
 	}
 
 	public NodeStat Examine()
 	{
-		agent.isStopped = false;
-		agent.SetDestination(target.position);
+		agent.velocity = ((target.position - agent.position).normalized * self.stat.SPEED);
 		return NodeStat.Run;
 	}
 }

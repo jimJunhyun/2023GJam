@@ -10,8 +10,8 @@ public class MapDrawer : MonoBehaviour
 {
     public static MapDrawer instance;
 
-    public const float MAPUIXCNT = 15;
-    public const float MAPUIYCNT = 15;
+    public const float MAPUIXCNT = 5;
+    public const float MAPUIYCNT = 5;
 
     public Sprite normalRoom;
     public Sprite qRoom;
@@ -96,7 +96,7 @@ public class MapDrawer : MonoBehaviour
 		}
 		else
 		{
-			img.color = Color.gray * 1.3f;
+			img.color = new Color(1,1, 1, 0.5f);
 		}
 	}
 }

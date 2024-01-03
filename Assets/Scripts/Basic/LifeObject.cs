@@ -32,7 +32,7 @@ public class LifeObject : MonoBehaviour
 
 	public void SetImmuneFor(float sec)
 	{
-		StartCoroutine(DelImmuner(sec));
+		GameManager.Instance.StartCoroutine(DelImmuner(sec));
 
 	}
 
@@ -46,9 +46,13 @@ public class LifeObject : MonoBehaviour
 
 	public void OnDead()
 	{
+		if (!dead)
+		{
+
 		dead = true;
 		gameObject.SetActive(false);
 		onDead?.Invoke();
+		}
 	}
 
 	public void ResetCompletely()
