@@ -9,7 +9,7 @@ public class ChargeAttack : INode
 	public float maxChargeDist;
 	public float maxChargeSec;
 
-	public NavMeshAgent agent;
+	public Rigidbody rig;
 	public AI self;
 	public Transform target;
 	Coroutine c;
@@ -17,9 +17,9 @@ public class ChargeAttack : INode
 	bool charging = false;
 	
 
-	public ChargeAttack(NavMeshAgent agt, AI ai, Transform targ, float chrSpd, float maxChrDist, float maxChrSec)
+	public ChargeAttack(Rigidbody rb, AI ai, Transform targ, float chrSpd, float maxChrDist, float maxChrSec)
 	{
-		agent = agt;
+		rig = rb;
 		self = ai;
 		target = targ;
 		chargeSpeed = chrSpd;
@@ -31,12 +31,14 @@ public class ChargeAttack : INode
 	{
 		if (charging)
 		{
+			//Debug.Log("CHARGE CANCELEDD : "  + self.chargeDest);
 			charging = false;
 			self.examining = true;
 			self.charging = false;
 			self.ResetSpeed();
-			self.chargeDir = Vector3.zero;
+			self.chargeDest = Vector3.zero;
 			GameManager.Instance.StopCoroutine(c);
+			rig.velocity = Vector3.zero;
 		}
 	}
 
@@ -45,10 +47,12 @@ public class ChargeAttack : INode
 		yield return new WaitForSeconds(maxChargeSec);
 		if (charging)
 		{
+			//Debug.Log("CHARGE STOPPED : " + self.chargeDest);
 			charging = false;
 			self.examining = true;
 			self.charging = false;
-			self.chargeDir = Vector3.zero;
+			self.chargeDest = Vector3.zero;
+			rig.velocity = Vector3.zero;
 		}
 	}
 
@@ -57,16 +61,13 @@ public class ChargeAttack : INode
 		if (!charging)
 		{
 			charging = true;
-			agent.speed = chargeSpeed;
-			agent.acceleration = chargeSpeed;
+			rig.velocity = Vector3.zero;
 			self.examining = false;
-			Vector3 dest = (target.transform.position - agent.transform.position).normalized * maxChargeDist;
-			dest += agent.transform.position;
-			self.chargeDir = (target.transform.position - agent.transform.position).normalized;
-			if (NavMesh.SamplePosition(dest, out NavMeshHit hit, 15, -1))
-			{
-				agent.SetDestination(hit.position);
-			}
+			Vector3 dest = (target.transform.position - rig.transform.position).normalized * maxChargeDist;
+			//dest += rig.transform.position;
+			self.chargeDest = dest + rig.transform.position;
+			rig.AddForce(dest, ForceMode.Impulse);
+			//Debug.Log("CHARGE STARTED TO : " + dest);
 			self.charging = true;
 			c = GameManager.Instance.StartCoroutine(DelStopCharge());
 		}

@@ -13,10 +13,8 @@ public class SpinAttack : INode
 	bool spinning = false;
 
 	AI self;
-	NavMeshAgent agent;
-	public SpinAttack(NavMeshAgent agt, AI s, int dur, float spinSpd)
+	public SpinAttack( AI s, int dur, float spinSpd)
 	{
-		agent =agt;
 		self = s;
 		spinDur = dur;
 
@@ -42,10 +40,8 @@ public class SpinAttack : INode
 		{
 			spinning =true;
 			Debug.Log("SPINGO");
-			agent.speed = spinSpeed;
+			self.stat.SPEED = spinSpeed;
 			self.spinning = true;
-		
-			
 		}
 
 		return NodeStat.Run;

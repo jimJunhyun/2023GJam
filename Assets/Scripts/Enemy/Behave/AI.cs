@@ -30,7 +30,8 @@ public class AI : MonoBehaviour, IRhythm
 	public float angle;
 
     Selecter head;
-	NavMeshAgent agent;
+
+	Rigidbody rig;
 
 	SetFlag metronome;
 
@@ -43,7 +44,7 @@ public class AI : MonoBehaviour, IRhythm
 	float initAcc;
 	int beatCnt = 0;
 
-	internal Vector3 chargeDir;
+	internal Vector3 chargeDest;
 
 	public bool examining;
 
@@ -61,12 +62,9 @@ public class AI : MonoBehaviour, IRhythm
 
 	public virtual void Awake()
 	{
-		
+		rig = GetComponent<Rigidbody>();
 
-		agent = GetComponent<NavMeshAgent>();
-		agent.speed = stat.SPEED;
 		initSpeed = stat.SPEED;
-		initAcc = agent.acceleration;
 
 		life = GetComponent<LifeObject>();
 		life.maxHp = stat.MaxHP;
@@ -80,6 +78,8 @@ public class AI : MonoBehaviour, IRhythm
 			{
 				anims[i].gameObject.SetActive(true);
 				anim = anims[i];
+				if(type == AttackType.Shoot)
+					shootPos = transform.Find("ShootPos");
 			}
 			else
 			{
@@ -100,26 +100,26 @@ public class AI : MonoBehaviour, IRhythm
 
 		if( type == AttackType.Shoot)
 		{
-			ShootAttack shoot = new ShootAttack(agent, myBullet, GameManager.Instance.player.transform, shootPos, stat.ATK, shootPow);
+			ShootAttack shoot = new ShootAttack(rig, myBullet, GameManager.Instance.player.transform, shootPos, stat.ATK, shootPow);
 			doAttack.childs.Add(shoot);
 		}
 		else if(type == AttackType.Charge)
 		{
-			 charge = new ChargeAttack(agent, this, GameManager.Instance.player.transform, 45, 15, 1f);
+			 charge = new ChargeAttack(rig, this, GameManager.Instance.player.transform, 25, 15, 1f);
 			doAttack.childs.Add(charge);
 		}
 		else if(type == AttackType.Spin)
 		{
-			spin = new SpinAttack(agent, this, spinDur, spinSpd);
+			spin = new SpinAttack(this, spinDur, spinSpd);
 			doAttack.childs.Add(spin);
 		}
 		else
 		{
-			SweepAttack sweep = new SweepAttack(agent, atkRange, angle, GameManager.Instance.player.transform, stat.ATK);
+			SweepAttack sweep = new SweepAttack(rig, atkRange, angle, GameManager.Instance.player.transform, stat.ATK);
 			doAttack.childs.Add(sweep);
 		}
 
-		Move doMove = new Move(GameManager.Instance.player.transform, agent);
+		Move doMove = new Move(GameManager.Instance.player.transform, rig, this);
 
 
 
@@ -131,12 +131,17 @@ public class AI : MonoBehaviour, IRhythm
 
 	public virtual void Update()
 	{
+		
+
 		if (examining)
 		{
 			head.Examine();
+			Vector3 v = GameManager.Instance.player.transform.position - transform.position;
+			v.y = 0;
+			transform.rotation = Quaternion.LookRotation(v);
 		}
 
-		if(agent.velocity.sqrMagnitude > 0.1f)
+		if(rig.velocity.sqrMagnitude > 0.1f)
 		{
 			anim.SetBool(IdleHash, false);
 		}
@@ -148,12 +153,11 @@ public class AI : MonoBehaviour, IRhythm
 		if (charging)
 		{
 			anim.SetTrigger(AttackHash);
-			bool invalidDest = (agent.velocity.sqrMagnitude > 0.1f && (chargeDir.x > 0 ? transform.position.x - agent.destination.x  >= 0.1f: transform.position.x - agent.destination.x <= -0.1f)
-				&& (chargeDir.z > 0 ? transform.position.z - agent.destination.z >= 0.1f : transform.position.z - agent.destination.z <= -0.1f));
+			bool invalidDest = (rig.velocity.sqrMagnitude > 0.1f && (transform.position - chargeDest).magnitude < 0.5);
 			if (invalidDest)
 			{
 				charge.StopCharge();
-				agent.velocity = Vector3.zero;
+				rig.velocity = Vector3.zero;
 			}
 
 			Collider[] cols = Physics.OverlapSphere(transform.position, chargeThreshold, (1 << 8) | (1 << 9));
@@ -178,7 +182,7 @@ public class AI : MonoBehaviour, IRhythm
 					}
 					Debug.Log(p.name);
 					charge.StopCharge();
-					agent.velocity = Vector3.zero;
+					rig.velocity = Vector3.zero;
 				}
 
 			}
@@ -198,21 +202,18 @@ public class AI : MonoBehaviour, IRhythm
 
 	public void ResetSpeed()
 	{
-		agent.speed = initSpeed;
-		agent.acceleration =initAcc;
+		rig.velocity = Vector3.zero;
 	}
 
 	public void StopAI()
 	{
 		examining = false;
-		agent.isStopped = true;
-		agent.SetDestination(transform.position);
+		rig.velocity = Vector3.zero;
 	}
 
 	public void StartAI()
 	{
 		examining = true;
-		agent.isStopped = false;
 	}
 
 	public void BeatUpdate()

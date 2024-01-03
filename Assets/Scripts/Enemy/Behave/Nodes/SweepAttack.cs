@@ -5,13 +5,13 @@ using UnityEngine.AI;
 
 public class SweepAttack : INode
 {
-	public NavMeshAgent agent;
+	public Rigidbody agent;
 	public float radius;
 	public float angle;
 	public Transform target;
 	public float damage;
 
-	public SweepAttack(NavMeshAgent agt, float rad, float agl, Transform targ, float dam)
+	public SweepAttack(Rigidbody agt, float rad, float agl, Transform targ, float dam)
 	{
 		agent = agt;
 		radius = rad;
@@ -23,8 +23,7 @@ public class SweepAttack : INode
 
 	public NodeStat Examine()
 	{
-		agent.isStopped = true;
-		agent.SetDestination(agent.transform.position);
+		agent.velocity = Vector3.zero;
 
 		Vector3 v = (target.transform.position - agent.transform.position);
 		v.y = 0;

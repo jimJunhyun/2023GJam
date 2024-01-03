@@ -30,6 +30,8 @@ public class PlayerCtrl : MonoBehaviour
 		h = Input.GetAxis("Horizontal");
 		v = Input.GetAxis("Vertical");
 		moveVec = new Vector3(h, 0, v).normalized * speed;
+
+		moveVec = Quaternion.Euler(0, 45, 0) * moveVec;
 		
 		if(Mathf.Abs(h) >= 0.2 || Mathf.Abs(v) >= 0.2)
 			transform.rotation = Quaternion.LookRotation(moveVec);
@@ -49,8 +51,10 @@ public class PlayerCtrl : MonoBehaviour
 	{
 		if(predictPos != null)
 		{
+			ctrl.enabled = false;
 			transform.position = (Vector3)predictPos;
 			predictPos = null;
+			ctrl.enabled = true;
 		}
 	}
 
