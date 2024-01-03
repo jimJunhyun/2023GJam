@@ -70,7 +70,7 @@ public class Inventory : MonoBehaviour
         {
             if (_equipItem != null)
             {
-                objStat.MaxHP -= _equipItem.AddStat.AddHP;
+                PlayerStat.MaxHP -= _equipItem.AddStat.AddHP;
                 //objStat.HP -= _equipItem.AddStat.RegenHP;
                 objStat.Size -= _equipItem.AddStat.AddplayerSize;
                 objStat.ATK -= _equipItem.AddStat.AddATK;
@@ -84,7 +84,7 @@ public class Inventory : MonoBehaviour
             {
                 _equipItem.InitEquiped();
             
-                objStat.MaxHP += _equipItem.AddStat.AddHP;
+                PlayerStat.MaxHP += _equipItem.AddStat.AddHP;
                 PlayerStat.HP += _equipItem.AddStat.AddHP;
                 objStat.Size += _equipItem.AddStat.AddplayerSize;
                 objStat.ATK += _equipItem.AddStat.AddATK;

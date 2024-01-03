@@ -126,7 +126,7 @@ public class BeatUISystem : Singleton<BeatUISystem>
         img.ImageUI.color = new Color(0, 0, 1, 0.3f);
     }
 
-    public void HitNode()
+    public void HitNode(AudioClip _audio)
     {
         if (_hitBeatLine == null)
             return;
@@ -155,6 +155,9 @@ public class BeatUISystem : Singleton<BeatUISystem>
             {
                 GameManager.Instance.player.PlayerAttack.DoAttack(Detection.Perfect);
             }
+            
+            SoundManager.Instance.PlaySFX(_audio);
+            
             hitCount++;
         }
         else if (Mathf.Abs(a - b) < 0.05f)
@@ -163,6 +166,9 @@ public class BeatUISystem : Singleton<BeatUISystem>
             Debug.Log($"굳, {a} | {b} | {Mathf.Abs(a - b)}");
             GameManager.Instance.player.Inven.NodeInvoking();
             GameManager.Instance.player.PlayerAttack.DoAttack(Detection.Good);
+            
+            SoundManager.Instance.PlaySFX(_audio);
+            
             hitCount++;
         }
         else if (Mathf.Abs(a-b) < 0.07f)

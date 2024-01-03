@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: 3_HPUPTWO
   m_EditorClassIdentifier: 
   _type: 0
-  _itemtype: 2
+  _itemtype: 1
   ExpensiveMoney: 0
   AddBeat: 0
+  RemoveBeat: 0
   AddStat:
-    RegenHP: 0
     AddHP: 2
     AddATK: 0
     AddSpeed: 0
     AddplayerSize: 0
+    AddRange: 0
   RhythmPassive: 0

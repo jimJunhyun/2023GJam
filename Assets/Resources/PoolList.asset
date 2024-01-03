@@ -9,18 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7018fbb392ab59d48bfa2468961ce858, type: 3}
-  m_Name: 2_HPUPONE
+  m_Script: {fileID: 11500000, guid: b4c1ffafca3391546bdace4e1fb373c4, type: 3}
+  m_Name: PoolList
   m_EditorClassIdentifier: 
-  _type: 0
-  _itemtype: 1
-  ExpensiveMoney: 0
-  AddBeat: 0
-  RemoveBeat: 0
-  AddStat:
-    AddHP: 1
-    AddATK: 0
-    AddSpeed: 0
-    AddplayerSize: 0
-    AddRange: 0
-  RhythmPassive: 0
+  poolList: []
