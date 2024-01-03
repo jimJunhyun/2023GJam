@@ -12,6 +12,10 @@ public class MapList : ScriptableObject
 	public MapObjs healMap;
 	public MapObjs bossMap;
 
+	public MapGimikSO blessGimmick;
+	public MapGimikSO curseGimmick;
+	public MapGimikSO healGimmick;
+
     public List<MapObjs> randomMaps;
 
     public List<MapObjs> GetMapOfCondition(List<ConnectStat> p)

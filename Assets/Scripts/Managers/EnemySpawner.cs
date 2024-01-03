@@ -93,7 +93,14 @@ public class EnemySpawner : MonoBehaviour
 			if(repCount > GameManager.MAXREPCOUNT)
 				break;
 		}
-		spawnInfo[idx] += 1;
+		if(idx == 4)
+		{
+			spawnInfo[2] += 1;
+		}
+		else
+		{
+			spawnInfo[idx] += 1;
+		}
 		GameObject obj = Instantiate(list.enemies[idx], trm.position, list.enemies[idx].transform.rotation, trm);
 		obj.transform.localScale = new Vector3(obj.transform.localScale.x / obj.transform.lossyScale.x, obj.transform.localScale.y / obj.transform.lossyScale.y, obj.transform.localScale.z / obj.transform.lossyScale.z);
 		return obj;

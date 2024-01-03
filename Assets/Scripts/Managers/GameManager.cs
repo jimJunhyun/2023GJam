@@ -38,6 +38,7 @@ public class GameManager : Singleton<GameManager>
 	private void Awake()
 	{
 		surface = GetComponent<NavMeshSurface>();
+		
 	}
 
 	private void Start()
@@ -47,9 +48,10 @@ public class GameManager : Singleton<GameManager>
 		{
 			maps[i].Create();
 		}
+		surface.BuildNavMesh();
+
 		curRoom = maps[curStage].startRoom;
 		MovePlayerTo(curRoom.downPt);
-		//surface.BuildNavMesh();
 		maps[curStage].CreateMap();
 	}
 
