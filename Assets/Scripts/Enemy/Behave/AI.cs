@@ -68,6 +68,8 @@ public class AI : MonoBehaviour, IRhythm
 	public EffectObject _chargerEffectAttack;
 
 	public EffectObject _longRangeEffectAttack;
+	public EffectObject _sweepEffect;
+	public EffectObject _bulletShootEffect;
 
 	public virtual void Awake()
 	{
@@ -110,22 +112,69 @@ public class AI : MonoBehaviour, IRhythm
 
 		if( type == AttackType.Shoot)
 		{
-			ShootAttack shoot = new ShootAttack(rig, myBullet, GameManager.Instance.player.transform, shootPos, stat.ATK, shootPow);
+			ShootAttack shoot = new ShootAttack(rig, myBullet, GameManager.Instance.player.transform, shootPos, stat.ATK, shootPow,
+				() =>
+				{
+					if (_bulletShootEffect)
+					{
+						EffectObject _obj = PoolManager.Instance.Pop(_bulletShootEffect.name) as EffectObject;
+						_obj.Init(transform, Vector3.zero);
+					}
+					else
+					{
+						Debug.LogError($"Effect : {gameObject} 없음");
+					}
+					
+				});
 			doAttack.childs.Add(shoot);
 		}
 		else if(type == AttackType.Charge)
 		{
-			 charge = new ChargeAttack(rig, this, GameManager.Instance.player.transform, 25, 15, 1f);
+			 charge = new ChargeAttack(rig, this, GameManager.Instance.player.transform, 25, 15, 1f, () =>
+			 {
+				 if (_chargerEffectAttack)
+				 {
+					 EffectObject _obj = PoolManager.Instance.Pop(_chargerEffectAttack.name) as EffectObject;
+					 _obj.Init(transform, Vector3.zero);
+				 }
+				 else
+				 {
+					 Debug.LogError($"Effect : {gameObject} 없음");
+				 }
+			 });
 			doAttack.childs.Add(charge);
 		}
 		else if(type == AttackType.Spin)
 		{
-			spin = new SpinAttack(this, spinDur, spinSpd);
+			spin = new SpinAttack(this, spinDur, spinSpd, () =>
+			{
+				if (_longRangeEffectAttack)
+				{
+					EffectObject _obj = PoolManager.Instance.Pop(_longRangeEffectAttack.name) as EffectObject;
+					_obj.Init(transform,Vector3.zero);
+				}
+				else
+				{
+					Debug.LogError($"Effect : {gameObject} 없음");
+				}
+			});
 			doAttack.childs.Add(spin);
 		}
 		else
 		{
-			SweepAttack sweep = new SweepAttack(rig, atkRange, angle, GameManager.Instance.player.transform, stat.ATK);
+			SweepAttack sweep = new SweepAttack(rig, atkRange, angle, GameManager.Instance.player.transform, stat.ATK,
+				() =>
+				{
+					if (_sweepEffect)
+					{
+						EffectObject ef = PoolManager.Instance.Pop(_sweepEffect.name) as EffectObject;
+						ef.Init(transform, Vector3.zero);
+					}					
+					else
+					{
+						Debug.LogError($"Effect : {gameObject} 없음");
+					}
+				});
 			doAttack.childs.Add(sweep);
 		}
 
@@ -175,11 +224,6 @@ public class AI : MonoBehaviour, IRhythm
 			if(cols.Length > 0)
 			{
 				// 차지 이팩트
-				if (_chargerEffectAttack)
-				{
-					EffectObject _obj = PoolManager.Instance.Pop(_chargerEffectAttack.name) as EffectObject;
-					_obj.Init(transform.position);
-				}
 				
 				for(int i = 0; i < cols.Length; i++)
 				{
@@ -208,12 +252,6 @@ public class AI : MonoBehaviour, IRhythm
 
 		if (spinning)
 		{
-			if (_longRangeEffectAttack)
-			{
-				EffectObject _obj = PoolManager.Instance.Pop(_longRangeEffectAttack.name) as EffectObject;
-				_obj.Init(transform.position);
-			}
-			
 			anim.SetTrigger(AttackHash);
 			Collider[] cols = Physics.OverlapSphere(transform.position, spinThreshold, (1 << 8) | (1 << 9));
 			for (int i = 0; i < cols.Length; i++)

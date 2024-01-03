@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,9 +16,10 @@ public class ChargeAttack : INode
 	Coroutine c;
 
 	bool charging = false;
-	
 
-	public ChargeAttack(Rigidbody rb, AI ai, Transform targ, float chrSpd, float maxChrDist, float maxChrSec)
+	public Action _act;
+
+	public ChargeAttack(Rigidbody rb, AI ai, Transform targ, float chrSpd, float maxChrDist, float maxChrSec, Action act = null)
 	{
 		rig = rb;
 		self = ai;
@@ -25,6 +27,8 @@ public class ChargeAttack : INode
 		chargeSpeed = chrSpd;
 		maxChargeDist = maxChrDist;
 		maxChargeSec = maxChrSec;
+
+		_act = act;
 	}
 
 	public void StopCharge()
@@ -61,6 +65,8 @@ public class ChargeAttack : INode
 	{
 		if (!charging)
 		{
+			_act.Invoke();	
+			
 			charging = true;
 			rig.velocity = Vector3.zero;
 			self.examining = false;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,9 @@ public class ShootAttack : INode
 	public float damage;
 	public float power;
 
-	public ShootAttack(Rigidbody agt, Bullet blt, Transform targ, Transform shPos, float dam, float pow)
+	public Action _act;
+
+	public ShootAttack(Rigidbody agt, Bullet blt, Transform targ, Transform shPos, float dam, float pow, Action act)
 	{
 		agent = agt;
 		bullet = blt;
@@ -20,6 +23,8 @@ public class ShootAttack : INode
 		shootPos = shPos;
 		damage = dam;
 		power = pow;
+
+		_act = act;
 	}
 
 	public NodeStat Examine()
@@ -34,6 +39,8 @@ public class ShootAttack : INode
 			Bullet blt = GameObject.Instantiate(bullet, shootPos.position, agent.transform.rotation);
 			blt.dam = damage;
 			blt.Shoot(power);
+			
+			_act.Invoke();
 		}
 		
 		

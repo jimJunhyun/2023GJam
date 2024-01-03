@@ -114,7 +114,8 @@ MonoBehaviour:
   spinDur: 2
   spinSpd: 2
   _chargerEffectAttack: {fileID: 0}
-  _longRangeEffectAttack: {fileID: 0}
+  _longRangeEffectAttack: {fileID: -7560878670983109809, guid: 7a172c8a0ca9b7141a63864dd939ac50,
+    type: 3}
 --- !u!195 &5681423876044968140
 NavMeshAgent:
   m_ObjectHideFlags: 0
