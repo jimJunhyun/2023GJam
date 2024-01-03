@@ -25,14 +25,17 @@ public class ShootAttack : INode
 	public NodeStat Examine()
 	{
 		agent.velocity = Vector3.zero;
-
-		Vector3 dir = (target.position - agent.transform.position);
-		dir.y = 0;
-		agent.transform.rotation = Quaternion.LookRotation(dir.normalized);
-
-		Bullet blt = GameObject.Instantiate(bullet, shootPos.position, agent.transform.rotation);
-		blt.dam = damage;
-		blt.Shoot(power);
+		if (target)
+		{
+			Vector3 dir = (target.position - agent.transform.position);
+			dir.y = 0;
+			agent.transform.rotation = Quaternion.LookRotation(dir.normalized);
+			Debug.Log(agent.transform.name + " SHOOTING");
+			Bullet blt = GameObject.Instantiate(bullet, shootPos.position, agent.transform.rotation);
+			blt.dam = damage;
+			blt.Shoot(power);
+		}
+		
 		
 
 		return NodeStat.Run;

@@ -10,7 +10,7 @@ public class PlayerCtrl : MonoBehaviour
 	float v;
 
 	CharacterController ctrl;
-
+	internal Animator anim;
 	//PlayerAttack atk;
 
 	Vector3 moveVec = Vector3.zero;
@@ -18,9 +18,16 @@ public class PlayerCtrl : MonoBehaviour
 
 	Vector3? predictPos = null;
 
+	bool stopState = false;
+
+	
+
+	internal readonly int IdleHash = Animator.StringToHash("Idle");
+
 	private void Awake()
 	{
 		ctrl = GetComponent<CharacterController>();
+		anim = GetComponentInChildren<Animator>();
 		//atk = GetComponent<PlayerAttack>();
 	}
 
@@ -32,8 +39,15 @@ public class PlayerCtrl : MonoBehaviour
 
 		moveVec = Quaternion.Euler(0, 45, 0) * moveVec;
 		
-		if(Mathf.Abs(h) >= 0.2 || Mathf.Abs(v) >= 0.2)
+		if(Mathf.Abs(h) >= 0.1 || Mathf.Abs(v) >= 0.1)
+		{
+			anim.SetBool(IdleHash, false);
 			transform.rotation = Quaternion.LookRotation(moveVec);
+		}
+		else
+		{
+			anim.SetBool(IdleHash, true);
+		}
 
 		if (!ctrl.isGrounded)
 		{
@@ -43,7 +57,12 @@ public class PlayerCtrl : MonoBehaviour
 		{
 			forceVec.y = 0;
 		}
-		ctrl.Move((moveVec + forceVec) * Time.deltaTime);
+		Vector3 mv = forceVec;
+		if (!stopState)
+		{
+			mv += moveVec;
+		}
+		ctrl.Move(mv * Time.deltaTime);
 	}
 
 	private void LateUpdate()
@@ -55,6 +74,18 @@ public class PlayerCtrl : MonoBehaviour
 			predictPos = null;
 			ctrl.enabled = true;
 		}
+	}
+
+	public void StopFor(float sec)
+	{
+		GameManager.Instance.StartCoroutine(DelStopper(sec));
+	}
+
+	IEnumerator DelStopper(float s	)
+	{
+		stopState = true;
+		yield return new WaitForSeconds(s);
+		stopState = false;
 	}
 
 	public void SetPosition(Vector3 pos)
