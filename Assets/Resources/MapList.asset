@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b5a2793ac7ec274abba34e08a0bf9c4, type: 3}
   m_Name: MapList
   m_EditorClassIdentifier: 
-  maps:
-  - {fileID: -7935989439776852606, guid: 65decd916ea1cd24e963104b44d8577f, type: 3}
-  - {fileID: -7935989439776852606, guid: 10efda48b2487084a894769249cdf3a7, type: 3}
-  - {fileID: -7935989439776852606, guid: 85f62ad41d5b13843865315f6ee501fe, type: 3}
-  - {fileID: -7935989439776852606, guid: d663bd31619d5ae448fa7a2f5b0a7119, type: 3}
-  - {fileID: -7935989439776852606, guid: 8b6be5f02c7095947ac8039ff3844c8a, type: 3}
+  startMap: {fileID: -2422838944278973583, guid: 9bf925bb7283bdc49ae66ee10b038154,
+    type: 3}
+  shopMap: {fileID: 1601154212452131797, guid: 2a930b2985d3c1d48b6da28e524d6973, type: 3}
+  curseMap: {fileID: 0}
+  blessMap: {fileID: 359410278692488110, guid: 51c4794c232137c4d958665775e1d02c, type: 3}
+  healMap: {fileID: -9190893244222941455, guid: cb76420e0c2e8fa4e8df285477cd12f3,
+    type: 3}
+  bossMap: {fileID: -8032388715477420488, guid: ed0a928fa6a8f98478cc357d6249f415,
+    type: 3}
+  randomMaps: []

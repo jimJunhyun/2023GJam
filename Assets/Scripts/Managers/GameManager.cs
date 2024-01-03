@@ -8,7 +8,8 @@ public class GameManager : Singleton<GameManager>
 {
 
 	public const float GRAVITY = 9.8f;
-
+	public const int MAXREPCOUNT = 3000;
+	public const int MAXMOBPERPOINT = 5;
 	private Player _player;
 	public Player player
 	{
@@ -67,6 +68,16 @@ public class GameManager : Singleton<GameManager>
 	public void ChangeRoom(Direction dir)
 	{
 		curRoom.MoveTo(dir);
+	}
+
+	public static int ArraySum(List<int> lst)
+	{
+		int sum = 0;
+		for (int i = 0; i < lst.Count; i++)
+		{
+			sum += lst[i];
+		}
+		return sum;
 	}
 }
 

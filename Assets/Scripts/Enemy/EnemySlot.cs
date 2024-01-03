@@ -5,44 +5,58 @@ using UnityEngine.AI;
 
 public class EnemySlot : MonoBehaviour
 {
-    AI myEnemy;
-    LifeObject enemyLife;
+	public int spawnRange = 4;
+	public List<AI> myEnemies = new List<AI>();
+	public List<LifeObject> myEnemyLifes = new List<LifeObject>();
 
 	public void SetEnemy(GameObject enemy)
 	{
-		myEnemy = enemy.GetComponent<AI>();
-		enemyLife = enemy. GetComponent<LifeObject>();
-		if(NavMesh.SamplePosition(transform.position, out NavMeshHit hit, 20f, -1))
+		if(NavMesh.SamplePosition(transform.position, out NavMeshHit hit, spawnRange, -1))
 		{
 			enemy.transform.position = hit.position;
+			myEnemyLifes.Add(enemy.GetComponent<LifeObject>());
+			myEnemies.Add(enemy.GetComponent<AI>());
 		}
 	}
 
 	public void StartEnemy()
 	{
-		if (!enemyLife.dead)
+		
+		for (int i = 0; i < myEnemies.Count; i++)
 		{
+			if (!myEnemyLifes[i].dead)
+			{
+				myEnemies[i].StartAI();
 
-		myEnemy.StartAI();
+			}
 		}
 	}
 
 	public void StopEnemy()
 	{
-		if (!enemyLife.dead)
+		
+		for (int i = 0; i < myEnemies.Count; i++)
 		{
-			myEnemy.StopAI();
-			myEnemy.transform.position = transform.position;
+			if (!myEnemyLifes[i].dead)
+			{
+				myEnemies[i].StopAI();
+				myEnemies[i].transform.position = transform.position;
+			}
+			
 		}
 		
 	}
 
 	public void ResetEnemy()
 	{
-		myEnemy.transform.position=  transform.position;
-		if (!enemyLife.dead)
+		for (int i = 0; i < myEnemies.Count; i++)
 		{
-			enemyLife.hp = enemyLife.maxHp;
+			myEnemies[i].transform.position = transform.position;
+			if (!myEnemyLifes[i].dead)
+			{
+				myEnemyLifes[i].ResetCompletely();
+			}
 		}
+		
 	}
 }
