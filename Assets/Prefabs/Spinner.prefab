@@ -101,14 +101,14 @@ MonoBehaviour:
   myBullet: {fileID: 0}
   shootPos: {fileID: 0}
   shootPow: 0
-  angle: 0
+  angle: 360
   examining: 0
   spinning: 0
   charging: 0
   chargeDamage: 0
   chargeThreshold: 0
   spinDamage: 1
-  spinThreshold: 0.3
+  spinThreshold: 1
   spinDur: 2
   spinSpd: 2
 --- !u!195 &5681423876044968140

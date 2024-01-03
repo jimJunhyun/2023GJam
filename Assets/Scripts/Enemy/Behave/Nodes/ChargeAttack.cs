@@ -39,6 +39,7 @@ public class ChargeAttack : INode
 			self.chargeDest = Vector3.zero;
 			GameManager.Instance.StopCoroutine(c);
 			rig.velocity = Vector3.zero;
+			self.anim.ResetTrigger(self.AttackHash);
 		}
 	}
 

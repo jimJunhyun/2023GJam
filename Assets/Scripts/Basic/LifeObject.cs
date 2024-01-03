@@ -21,12 +21,20 @@ public class LifeObject : MonoBehaviour
 		{
 
 			hp -= amt;
-			SetImmuneFor(0.3f);
+			SetImmuneFor(0.6f);
+			AI ai = GetComponent<AI>();
+			if (ai)
+			{
+				ai.StopFor(0.4f);
+				ai.anim.SetTrigger(ai.HitHash);
+			}
+		
 			if(hp <= 0)
 			{
 				
 				OnDead();
 			}
+			
 		}
 	}
 
