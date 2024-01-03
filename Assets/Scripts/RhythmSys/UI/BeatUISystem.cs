@@ -105,7 +105,7 @@ public class BeatUISystem : Singleton<BeatUISystem>
     {
         EffectObject ef = PoolManager.Instance.Pop(_mono.name) as EffectObject;
         Debug.LogWarning($"Effect : {GameManager.Instance.player.GetInstanceID()}");
-        ef.Init(GameManager.Instance.player.transform.position + new Vector3(0,-1,0));
+        ef.Init(GameManager.Instance.player.transform,new Vector3(0,-1,0));
     }
 
     public void Invoke()

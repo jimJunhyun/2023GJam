@@ -41,11 +41,10 @@ public class EffectObject : PoolAble
         _init = true;
     }
     
-    public void Init(Transform parent)
+    public void Init(Transform parent, Vector3 _vec)
     {
-        transform.position = parent.position;
-        transform.rotation = parent.rotation;
-        
+        transform.parent = parent;
+        transform.position = parent.position + _vec;    
         Particle.Play();
         _init = true;
     }

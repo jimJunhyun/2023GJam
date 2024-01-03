@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(LifeObject))]
-public class PlayerCtrl : MonoBehaviour
+public class PlayerCtrl : MonoBehaviour, IRhythm
 {
-	public float speed = 5f;
+	[Header("Effect")] public EffectObject _walkEffect;
+	public EffectObject _walkTwo;
+	
 	float h;
 	float v;
 
@@ -39,7 +41,7 @@ public class PlayerCtrl : MonoBehaviour
 		
 		h = Input.GetAxis("Horizontal");
 		v = Input.GetAxis("Vertical");
-		moveVec = new Vector3(h, 0, v).normalized * speed;
+		moveVec = new Vector3(h, 0, v).normalized * GameManager.Instance.player.PlayerStat.SPEED;
 
 		moveVec = Quaternion.Euler(0, 45, 0) * moveVec;
 		
@@ -109,6 +111,30 @@ public class PlayerCtrl : MonoBehaviour
 		//life.maxHp = s.MaxHP;
 		//life.ResetCompletely();
 		//atk.attack = s.ATK;
-		speed = s.SPEED;
+		//speed = s.SPEED;
+	}
+
+	public void BeatUpdate()
+	{
+		if (moveVec != Vector3.zero)
+		{
+			EffectObject ef = PoolManager.Instance.Pop(_walkEffect.name) as EffectObject;
+			ef.Init(transform.position + new Vector3(0,-1,0));
+			
+			ef = PoolManager.Instance.Pop(_walkTwo.name) as EffectObject;
+			ef.Init(transform.position + new Vector3(0,-1,0));
+		}
+	}
+
+	public void BeatUpdateDivideFour()
+	{
+		if (moveVec != Vector3.zero)
+		{
+			EffectObject ef = PoolManager.Instance.Pop(_walkEffect.name) as EffectObject;
+			ef.Init(transform.position + new Vector3(0,-1,0));
+			
+			ef = PoolManager.Instance.Pop(_walkTwo.name) as EffectObject;
+			ef.Init(transform.position + new Vector3(0,-1,0));
+		}
 	}
 }

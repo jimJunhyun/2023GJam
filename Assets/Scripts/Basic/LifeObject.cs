@@ -5,6 +5,9 @@ using UnityEngine.Events;
 
 public class LifeObject : MonoBehaviour
 {
+	[Header("HitEffect")] public EffectObject _effect;
+	
+	
     public float hp;
 	public float maxHp;
 
@@ -28,6 +31,10 @@ public class LifeObject : MonoBehaviour
 				ai.StopFor(0.4f);
 				ai.anim.SetTrigger(ai.HitHash);
 			}
+			
+			EffectObject ef = PoolManager.Instance.Pop(_effect.name) as EffectObject;
+			ef.Init(transform.position + new Vector3(0,-1,0));
+			
 		
 			if(hp <= 0)
 			{

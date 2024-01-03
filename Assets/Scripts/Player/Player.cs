@@ -137,7 +137,7 @@ public class Player : MonoBehaviour
     
     public void RefreshStat()
 	{
-        playerCtrl.SetStat(PlayerStat);
+        //playerCtrl.SetStat(PlayerStat);
         
         PlayerUI.InvaligateHP(NormalStat.HP, PlayerStat.HP);
         PlayerUI.InvaligateAttack(PlayerStat.ATK);

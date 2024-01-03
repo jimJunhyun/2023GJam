@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3368975993009975599}
   - component: {fileID: -1451469241671732739}
   m_Layer: 0
-  m_Name: PlayerHit
+  m_Name: PlayerSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -30,13 +30,12 @@ public class PoolManager : Singleton<PoolManager>
         if(list == null)
             list = Resources.Load<PoolList>("PoolList");
 
-        for (int i = 0; i < list.poolList.Count; i++)
+
+        foreach (PoolData p in list.poolList)
         {
-            foreach (PoolData p in list.poolList)
-            {
-                CreatePool(p.obj);
-            }
+            CreatePool(p.obj);
         }
+        
 
     }
 

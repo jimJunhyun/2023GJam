@@ -12,6 +12,9 @@ public class Player_LifeObject : LifeObject
         {
             GameManager.Instance.player.ModifyHPPlus((int)(-amt));
             
+            EffectObject ef = PoolManager.Instance.Pop(_effect.name) as EffectObject;
+            ef.Init(transform.position);
+            
             
             SetImmuneFor(0.6f);
             GameManager.Instance.player.playerCtrl.anim.SetTrigger(HitHash);
