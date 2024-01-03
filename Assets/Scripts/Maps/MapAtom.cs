@@ -247,7 +247,7 @@ public class MapAtom : ScriptableObject
 			
 		}
 		
-		while (GameManager.ArraySum(spawnInfo) > mobCnt)
+		while (GameManager.ArraySum(spawnInfo) < mobCnt)
 		{
 			int r = Random.Range(0, slots.Count);
 			bool invalid = true;
@@ -258,6 +258,7 @@ public class MapAtom : ScriptableObject
 				r = Random.Range(0, slots.Count);
 				if (slots[r].myEnemies.Count < GameManager.MAXMOBPERPOINT)
 				{
+					slots[r].SetEnemy(EnemySpawner.instance.SpawnRand(slots[r].transform, ref spawnInfo));
 					invalid = false;
 				}
 				if(repCount > GameManager.MAXREPCOUNT)
@@ -265,7 +266,6 @@ public class MapAtom : ScriptableObject
 					break;
 				}
 			}
-			slots[r].SetEnemy(EnemySpawner.instance.SpawnRand(slots[r].transform, ref spawnInfo));
 		}
 		//for (int i = 0; i < self.transform.childCount; i++)
 		//{
