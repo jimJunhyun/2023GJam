@@ -11,10 +11,11 @@ public class SweepAttack : INode
 	public float angle;
 	public Transform target;
 	public float damage;
+	public AI ai;
 
 	private Action _objs;
 
-	public SweepAttack(Rigidbody agt, float rad, float agl, Transform targ, float dam, Action obj = null)
+	public SweepAttack(Rigidbody agt, float rad, float agl, Transform targ, float dam, AI ai, Action obj = null)
 	{
 		agent = agt;
 		radius = rad;
@@ -22,12 +23,13 @@ public class SweepAttack : INode
 		target = targ;
 		damage = dam;
 		_objs = obj;
+		this.ai = ai;
 	}
 
 
 	public NodeStat Examine()
 	{
-		agent.velocity = Vector3.zero;
+		ai.StopFor(1f);
 
 		Vector3 v = (target.transform.position - agent.transform.position);
 		v.y = 0;
@@ -42,7 +44,9 @@ public class SweepAttack : INode
 				target.GetComponent<LifeObject>().Damage(damage);
 			}
 		}
-		
+
+
+
 
 		return NodeStat.Run;
 	}

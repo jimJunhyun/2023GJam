@@ -44,6 +44,12 @@ public class LifeObject : MonoBehaviour
 			}
 
 			
+			BossAI boss = GetComponent<BossAI>();
+			if (boss)
+			{
+				boss.StopFor(0.2f);
+				boss.anim.SetTrigger(boss.HitHash);
+			}
 		
 			if(hp <= 0)
 			{

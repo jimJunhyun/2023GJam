@@ -33,6 +33,8 @@ public class GameManager : Singleton<GameManager>
 
 	public MapList mapList;
 
+	public DecalBase decal;
+
 	NavMeshSurface surface;
 
 	private void Awake()
