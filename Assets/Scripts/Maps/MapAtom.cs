@@ -262,7 +262,7 @@ public class MapAtom : ScriptableObject
 			{
 				++repCount;
 				r = Random.Range(0, slots.Count);
-				Debug.Log(r);
+				//Debug.Log(r);
 				if (slots[r].myEnemies.Count < GameManager.MAXMOBPERPOINT)
 				{
 					slots[r].SetEnemy(EnemySpawner.instance.SpawnRand(slots[r].transform, ref spawnInfo));

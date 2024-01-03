@@ -1103,12 +1103,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 993353431652922670, guid: 644d4eca1c9f4e64d9a802be20cbfdf7,
         type: 3}
-      propertyPath: decal
-      value: 
-      objectReference: {fileID: 4670049241752904956, guid: 0bb4fb5673ee81c4f8dd2e81dc305bfa,
-        type: 3}
-    - target: {fileID: 993353431652922670, guid: 644d4eca1c9f4e64d9a802be20cbfdf7,
-        type: 3}
       propertyPath: maps.Array.data[0]
       value: 
       objectReference: {fileID: 171343762}

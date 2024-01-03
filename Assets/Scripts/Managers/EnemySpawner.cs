@@ -51,11 +51,20 @@ public class EnemySpawner : MonoBehaviour
 				{
 					if(i == 2)
 					{
-						if(Random.Range(0, 2) > 0)
-						{
-							i = 4;
-						}
+						int p = Random.Range(0, 3);
+						if(p == 0)
+							i = 2;
+						else if(p == 1)
+							i = 6;
+						else
+							i = 8;
 					}
+					else
+					{
+						i += Random.Range(0, 2) * 4;
+
+					}
+					Debug.Log("MINSPAWNING : " + list.enemies[idx].name);
 					idx = i;
 					invalid = false;
 				}
@@ -63,43 +72,57 @@ public class EnemySpawner : MonoBehaviour
 			switch (idx)
 			{
 				case 0:
-					if(spawnInfo[idx] < spawnMax.x)
+				case 4:
+					if (spawnInfo[0] < spawnMax.x)
 					{
 						invalid = false;
 					}
 					break;
 				case 1:
-					if (spawnInfo[idx] < spawnMax.y)
+				case 5:
+					if (spawnInfo[1] < spawnMax.y)
 					{
 						invalid = false;
 					}
 					break;
 				case 2:
-				case 4:
+				case 6:
+				case 8:
 					if (spawnInfo[2] < spawnMax.z)
 					{
 						invalid = false;
 					}
 					break;
 				case 3:
-					if (spawnInfo[idx] < spawnMax.w)
+				case 7:
+					if (spawnInfo[3] < spawnMax.w)
 					{
 						invalid = false;
 					}
-					break;
-				default:
 					break;
 			}
 			if(repCount > GameManager.MAXREPCOUNT)
 				break;
 		}
-		if(idx == 4)
+		switch (idx)
 		{
-			spawnInfo[2] += 1;
-		}
-		else
-		{
-			spawnInfo[idx] += 1;
+			case 0:
+			case 4:
+				spawnInfo[0] += 1;
+				break;
+			case 1:
+			case 5:
+				spawnInfo[1] += 1;
+				break;
+			case 2:
+			case 6:
+			case 8:
+				spawnInfo[2] += 1;
+				break;
+			case 3:
+			case 7:
+				spawnInfo[3] += 1;
+				break;
 		}
 		GameObject obj = Instantiate(list.enemies[idx], trm.position, list.enemies[idx].transform.rotation, trm);
 		obj.transform.localScale = new Vector3(obj.transform.localScale.x / obj.transform.lossyScale.x, obj.transform.localScale.y / obj.transform.lossyScale.y, obj.transform.localScale.z / obj.transform.lossyScale.z);

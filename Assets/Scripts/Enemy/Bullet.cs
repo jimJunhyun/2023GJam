@@ -14,7 +14,7 @@ public class Bullet : PoolAble
 
 	private void Awake()
 	{
-		_particle.Stop();
+		//_particle.Stop();
 	}
 
 	private void OnTriggerEnter(Collider other)
