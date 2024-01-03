@@ -30,36 +30,62 @@ public class AI : MonoBehaviour, IRhythm
 	public float angle;
 
     Selecter head;
-	NavMeshAgent agent;
+
+	Rigidbody rig;
 
 	SetFlag metronome;
 
 	ChargeAttack charge;
 	SpinAttack spin;
 
+	Animator anim;
+
 	float initSpeed;
 	float initAcc;
 	int beatCnt = 0;
+
+	internal Vector3 chargeDest;
 
 	public bool examining;
 
 	public bool spinning;
 	public bool charging;
 	public float chargeDamage;
+	public float chargeThreshold;
 	public float spinDamage;
+	public float spinThreshold;
 	public int spinDur;
 	public float spinSpd;
 
+	readonly int AttackHash = Animator.StringToHash("Attack");
+	readonly int IdleHash = Animator.StringToHash("Idle");
+
 	public virtual void Awake()
 	{
-		agent = GetComponent<NavMeshAgent>();
-		agent.speed = stat.SPEED;
+		rig = GetComponent<Rigidbody>();
+
 		initSpeed = stat.SPEED;
-		initAcc = agent.acceleration;
 
 		life = GetComponent<LifeObject>();
 		life.maxHp = stat.MaxHP;
 		life.ResetCompletely();
+
+		Animator[] anims = GetComponentsInChildren<Animator>();
+		int idx = Random.Range(0, anims.Length);
+		for (int i = 0; i < anims.Length; i++)
+		{
+			if(i == idx)
+			{
+				anims[i].gameObject.SetActive(true);
+				anim = anims[i];
+				if(type == AttackType.Shoot)
+					shootPos = transform.Find("ShootPos");
+			}
+			else
+			{
+				anims[i].gameObject.SetActive(false);
+			}
+		}
 
 		Sequencer doAttack = new Sequencer();
 
@@ -69,28 +95,31 @@ public class AI : MonoBehaviour, IRhythm
 		IsInRange inRange = new IsInRange(atkRange, GameManager.Instance.player.transform, transform);
 		doAttack.childs.Add(inRange);
 
+		AnimSetter setter = new AnimSetter(anim, AttackHash);
+		doAttack.childs.Add(setter);
+
 		if( type == AttackType.Shoot)
 		{
-			ShootAttack shoot = new ShootAttack(agent, myBullet, GameManager.Instance.player.transform, shootPos, stat.ATK, shootPow);
+			ShootAttack shoot = new ShootAttack(rig, myBullet, GameManager.Instance.player.transform, shootPos, stat.ATK, shootPow);
 			doAttack.childs.Add(shoot);
 		}
 		else if(type == AttackType.Charge)
 		{
-			 charge = new ChargeAttack(agent, this, GameManager.Instance.player.transform, 75, 25, 1f);
+			 charge = new ChargeAttack(rig, this, GameManager.Instance.player.transform, 25, 15, 1f);
 			doAttack.childs.Add(charge);
 		}
 		else if(type == AttackType.Spin)
 		{
-			spin = new SpinAttack(agent, this, spinDur, spinSpd);
+			spin = new SpinAttack(this, spinDur, spinSpd);
 			doAttack.childs.Add(spin);
 		}
 		else
 		{
-			SweepAttack sweep = new SweepAttack(agent, atkRange, angle, GameManager.Instance.player.transform, stat.ATK);
+			SweepAttack sweep = new SweepAttack(rig, atkRange, angle, GameManager.Instance.player.transform, stat.ATK);
 			doAttack.childs.Add(sweep);
 		}
 
-		Move doMove = new Move(GameManager.Instance.player.transform, agent);
+		Move doMove = new Move(GameManager.Instance.player.transform, rig, this);
 
 
 
@@ -102,25 +131,67 @@ public class AI : MonoBehaviour, IRhythm
 
 	public virtual void Update()
 	{
+		
+
 		if (examining)
 		{
 			head.Examine();
+			Vector3 v = GameManager.Instance.player.transform.position - transform.position;
+			v.y = 0;
+			transform.rotation = Quaternion.LookRotation(v);
+		}
+
+		if(rig.velocity.sqrMagnitude > 0.1f)
+		{
+			anim.SetBool(IdleHash, false);
+		}
+		else
+		{
+			anim.SetBool(IdleHash, true);
 		}
 
 		if (charging)
 		{
-			Collider[] cols = Physics.OverlapSphere(transform.position, atkRange, 1 << 8);
-			for(int i = 0; i < cols.Length; i++)
+			anim.SetTrigger(AttackHash);
+			bool invalidDest = (rig.velocity.sqrMagnitude > 0.1f && (transform.position - chargeDest).magnitude < 0.5);
+			if (invalidDest)
 			{
-				LifeObject p = cols[0].GetComponent<LifeObject>();
-				p.Damage(chargeDamage);
+				charge.StopCharge();
+				rig.velocity = Vector3.zero;
 			}
-			charge.StopCharge();
+
+			Collider[] cols = Physics.OverlapSphere(transform.position, chargeThreshold, (1 << 8) | (1 << 9));
+			if(cols.Length > 0)
+			{
+				for(int i = 0; i < cols.Length; i++)
+				{
+					if(cols[i].gameObject == gameObject)
+					{
+						continue;
+					}
+					LifeObject p = cols[i].GetComponent<LifeObject>();
+					p.Damage(chargeDamage);
+					AI other;
+					if (other = cols[i].GetComponent<AI>())
+					{
+						if (other.charging)
+						{
+							p.OnDead();
+							life.OnDead();
+						}
+					}
+					Debug.Log(p.name);
+					charge.StopCharge();
+					rig.velocity = Vector3.zero;
+				}
+
+			}
 		}
 
 		if (spinning)
 		{
-			Collider[] cols = Physics.OverlapSphere(transform.position, atkRange, 1 << 8);
+			anim.SetTrigger(AttackHash);
+			Collider[] cols = Physics.OverlapSphere(transform.position, spinThreshold, (1 << 8) | (1 << 9) | (1 << 10));
 			for (int i = 0; i < cols.Length; i++)
 			{
 				LifeObject p = cols[i].GetComponent<LifeObject>();
@@ -131,21 +202,18 @@ public class AI : MonoBehaviour, IRhythm
 
 	public void ResetSpeed()
 	{
-		agent.speed = initSpeed;
-		agent.acceleration =initAcc;
+		rig.velocity = Vector3.zero;
 	}
 
 	public void StopAI()
 	{
 		examining = false;
-		agent.isStopped = true;
-		agent.SetDestination(transform.position);
+		rig.velocity = Vector3.zero;
 	}
 
 	public void StartAI()
 	{
 		examining = true;
-		agent.isStopped = false;
 	}
 
 	public void BeatUpdate()

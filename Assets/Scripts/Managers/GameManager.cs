@@ -60,7 +60,8 @@ public class GameManager : Singleton<GameManager>
 
 	public void MovePlayerTo(Vector3 point)
 	{
-		player.transform.position = point;
+		//player.transform.position = point;
+		player.playerCtrl.SetPosition(point);
 	}
 
 	public void ChangeRoom(Direction dir)

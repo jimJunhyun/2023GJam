@@ -5,14 +5,14 @@ using UnityEngine.AI;
 
 public class ShootAttack : INode
 {
-	public NavMeshAgent agent;
+	public Rigidbody agent;
 	public Bullet bullet;
 	public Transform target;
 	public Transform shootPos;
 	public float damage;
 	public float power;
 
-	public ShootAttack(NavMeshAgent agt, Bullet blt, Transform targ, Transform shPos, float dam, float pow)
+	public ShootAttack(Rigidbody agt, Bullet blt, Transform targ, Transform shPos, float dam, float pow)
 	{
 		agent = agt;
 		bullet = blt;
@@ -24,8 +24,7 @@ public class ShootAttack : INode
 
 	public NodeStat Examine()
 	{
-		agent.isStopped = true;
-		agent.SetDestination(agent.transform.position);
+		agent.velocity = Vector3.zero;
 
 		Vector3 dir = (target.position - agent.transform.position);
 		dir.y = 0;

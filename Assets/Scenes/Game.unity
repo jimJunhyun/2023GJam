@@ -929,15 +929,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 7232582062356001663, guid: 94e6fa54b7320dd4096186a0bdc865a5,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 7331543373774828821, guid: 94e6fa54b7320dd4096186a0bdc865a5,
         type: 3}
-      propertyPath: NormalStat.MaxHP
-      value: 30
+      propertyPath: NormalStat.SPEED
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850791054639850646, guid: 94e6fa54b7320dd4096186a0bdc865a5,
+        type: 3}
+      propertyPath: speed
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -957,6 +957,48 @@ PrefabInstance:
       propertyPath: maps.Array.data[0]
       value: 
       objectReference: {fileID: 171343762}
+    - target: {fileID: 4513833048715777072, guid: 644d4eca1c9f4e64d9a802be20cbfdf7,
+        type: 3}
+      propertyPath: qRoom
+      value: 
+      objectReference: {fileID: 21300000, guid: 9005f5a92449ffd4c970cb60acfdfc2a,
+        type: 3}
+    - target: {fileID: 4513833048715777072, guid: 644d4eca1c9f4e64d9a802be20cbfdf7,
+        type: 3}
+      propertyPath: bossRoom
+      value: 
+      objectReference: {fileID: 21300000, guid: a43935b3d77b4bb45b2fbe4c74d37102,
+        type: 3}
+    - target: {fileID: 4513833048715777072, guid: 644d4eca1c9f4e64d9a802be20cbfdf7,
+        type: 3}
+      propertyPath: healRoom
+      value: 
+      objectReference: {fileID: 21300000, guid: c7ab952bd2cdf9f4c81dffd184aff99d,
+        type: 3}
+    - target: {fileID: 4513833048715777072, guid: 644d4eca1c9f4e64d9a802be20cbfdf7,
+        type: 3}
+      propertyPath: shopRoom
+      value: 
+      objectReference: {fileID: 21300000, guid: 6a8317babd13ca44baa763d75266a24c,
+        type: 3}
+    - target: {fileID: 4513833048715777072, guid: 644d4eca1c9f4e64d9a802be20cbfdf7,
+        type: 3}
+      propertyPath: curseRoom
+      value: 
+      objectReference: {fileID: 21300000, guid: 591b7ef492295cc429bb7edf83b3b681,
+        type: 3}
+    - target: {fileID: 4513833048715777072, guid: 644d4eca1c9f4e64d9a802be20cbfdf7,
+        type: 3}
+      propertyPath: startRoom
+      value: 
+      objectReference: {fileID: 21300000, guid: c7ab952bd2cdf9f4c81dffd184aff99d,
+        type: 3}
+    - target: {fileID: 4513833048715777072, guid: 644d4eca1c9f4e64d9a802be20cbfdf7,
+        type: 3}
+      propertyPath: normalRoom
+      value: 
+      objectReference: {fileID: 21300000, guid: ea51016beea210a4ea9bdc4c6f95934f,
+        type: 3}
     - target: {fileID: 4565156932058788431, guid: 644d4eca1c9f4e64d9a802be20cbfdf7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1011,6 +1053,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8078331775434059664, guid: 644d4eca1c9f4e64d9a802be20cbfdf7,
+        type: 3}
+      propertyPath: m_LayerMask.m_Bits
+      value: 55
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
