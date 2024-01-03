@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2100ddaed87791046809f85073788258, type: 3}
   m_Name: 6_Greedy
   m_EditorClassIdentifier: 
+  ItemName: "\uD6C4\uC6D0"
+  _sprite: {fileID: 21300000, guid: 5e3048ac2f69549f4a807dbcc04ade83, type: 3}
+  ItemDescription: "\uBC15\uC790 \uC5F0\uC8FC\uAC00 Perfect\uC77C \uB54C\uB9C8\uB2E4
+    1\uC6D0 \uD68D\uB4DD\uD569\uB2C8\uB2E4."
+  ExpensiveMoney: 99
   _type: 0
-  _itemtype: 0
-  ExpensiveMoney: 0
+  _itemtype: 2
   AddBeat: 0
   RemoveBeat: 0
   AddStat:
@@ -24,3 +28,4 @@ MonoBehaviour:
     AddplayerSize: 0
     AddRange: 0
   RhythmPassive: 0
+  _passive: 0

@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7018fbb392ab59d48bfa2468961ce858, type: 3}
   m_Name: 3_HPUPTWO
   m_EditorClassIdentifier: 
+  ItemName: "\uC131\uC7A5\uCD09\uC9C4\uC81C"
+  _sprite: {fileID: 21300000, guid: bdf61281d398c41d994dd17f775cfe8c, type: 3}
+  ItemDescription: "\uCD5C\uB300 \uCCB4\uB825\uC774 \uC601\uAD6C\uC801\uC73C\uB85C
+    2 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  ExpensiveMoney: 75
   _type: 0
   _itemtype: 1
-  ExpensiveMoney: 0
   AddBeat: 0
   RemoveBeat: 0
   AddStat:
@@ -24,3 +28,4 @@ MonoBehaviour:
     AddplayerSize: 0
     AddRange: 0
   RhythmPassive: 0
+  _passive: 0

@@ -56,7 +56,7 @@ public class MapAtom : ScriptableObject
 
 	[Header("MapGimik")] public MapGimikSO _mapGimik;
 
-	public void Init(Vector3 pos)
+	public virtual void Init(Vector3 pos)
 	{
 		SetStructureRandom();
 		InstantiateSelf(pos);
@@ -64,7 +64,7 @@ public class MapAtom : ScriptableObject
 		SetPoints();
 	}
 
-	public void SetStructureRandom()
+	public virtual void SetStructureRandom()
 	{
 		if (isRandomizable)
 		{
@@ -146,7 +146,7 @@ public class MapAtom : ScriptableObject
 		rightPt = self.transform.position + Vector3.right * (MapGenerator.MAPX ) * 0.4f;
 	}
 
-	public void MoveTo(Direction dir)
+	public virtual void MoveTo(Direction dir)
 	{
 		if (!cleared)
 			ResetEnemy();
@@ -179,7 +179,7 @@ public class MapAtom : ScriptableObject
 		}
 	}
 
-	public void OnTransition()
+	public virtual void OnTransition()
 	{
 		GameManager.Instance.curRoom = this;
 		isQuestion = false;

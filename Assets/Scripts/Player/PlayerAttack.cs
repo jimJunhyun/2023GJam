@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
 
-	public PoolAble _hitEffect;
+
 	
 	//public float attack = 1;
 	//
@@ -25,19 +25,6 @@ public class PlayerAttack : MonoBehaviour
 			if (obj)
 			{
 				GameManager.Instance.player.Inven.ReturnItemRule().AttackInvoke(obj, _dec);
-				switch (_dec)
-				{
-					case Detection.Perfect:
-						
-						break;
-					case Detection.Good:
-						break;
-					case Detection.Bad:
-						break;
-					case Detection.none:
-						break;
-				}
-				
 			}
 		}
 

@@ -9,11 +9,24 @@ public class Five_TenTimesDamage : ItemSO
     [Header("JustDamage")] [SerializeField] private int dmg = 3;
     public override void ItemInvoke()
     {
-        GameManager.Instance.player.PlayerAttack.JustDamage(dmg);       
+        
     }
 
     public override void AttackInvoke(LifeObject _obj, Detection dec)
     {
-        base.AttackInvoke(_obj,dec);
+        Stat _player = GameManager.Instance.player.PlayerStat;
+        switch (dec)   
+        {
+            case Detection.Perfect:
+                _obj.Damage(_player.ATK *1.5f * dmg, dec);
+                break;
+            case Detection.Good:
+                _obj.Damage(_player.ATK* dmg, dec);
+                break;
+            case Detection.Bad:
+                _obj.Damage(_player.ATK * 0.5f*dmg, dec);
+                break;
+                                                                    
+        }
     }
 }
