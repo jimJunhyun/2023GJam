@@ -116,6 +116,8 @@ MonoBehaviour:
   spinThreshold: 0
   spinDur: 0
   spinSpd: 0
+  _chargerEffectAttack: {fileID: -3231311271868122705, guid: 5d3e5e6a3699258459f98358f5e36388,
+    type: 3}
 --- !u!114 &973678989486213438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,6 +130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e8e3c29c248e01499a74aac95b628c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _effect: {fileID: 5290923695422101866, guid: e1724ba034166c2419baa73ef2ce2674, type: 3}
+  _correctionVector: {x: 0, y: 0.5, z: 0}
   hp: 0
   maxHp: 0
   dead: 0

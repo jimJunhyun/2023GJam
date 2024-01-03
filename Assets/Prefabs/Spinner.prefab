@@ -72,6 +72,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e8e3c29c248e01499a74aac95b628c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _effect: {fileID: 5290923695422101866, guid: e1724ba034166c2419baa73ef2ce2674, type: 3}
+  _correctionVector: {x: 0, y: 0.5, z: 0}
   hp: 0
   maxHp: 0
   dead: 0
@@ -111,6 +113,8 @@ MonoBehaviour:
   spinThreshold: 1
   spinDur: 2
   spinSpd: 2
+  _chargerEffectAttack: {fileID: 0}
+  _longRangeEffectAttack: {fileID: 0}
 --- !u!195 &5681423876044968140
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -63,6 +63,11 @@ public class AI : MonoBehaviour, IRhythm
 	internal readonly int IdleHash = Animator.StringToHash("Idle");
 	internal readonly int HitHash = Animator.StringToHash("Hit");
 
+	[Header("Effect")] 
+	public EffectObject _chargerEffectAttack;
+
+	public EffectObject _longRangeEffectAttack;
+
 	public virtual void Awake()
 	{
 		rig = GetComponent<Rigidbody>();
@@ -167,6 +172,13 @@ public class AI : MonoBehaviour, IRhythm
 			Collider[] cols = Physics.OverlapSphere(transform.position, chargeThreshold, (1 << 8) | (1 << 9));
 			if(cols.Length > 0)
 			{
+				// 차지 이팩트
+				if (_chargerEffectAttack)
+				{
+					EffectObject _obj = PoolManager.Instance.Pop(_chargerEffectAttack.name) as EffectObject;
+					_obj.Init(transform.position);
+				}
+				
 				for(int i = 0; i < cols.Length; i++)
 				{
 					if(cols[i].gameObject == gameObject)
@@ -189,12 +201,17 @@ public class AI : MonoBehaviour, IRhythm
 					rig.velocity = Vector3.zero;
 					anim.ResetTrigger(AttackHash);
 				}
-
 			}
 		}
 
 		if (spinning)
 		{
+			if (_longRangeEffectAttack)
+			{
+				EffectObject _obj = PoolManager.Instance.Pop(_longRangeEffectAttack.name) as EffectObject;
+				_obj.Init(transform.position);
+			}
+			
 			anim.SetTrigger(AttackHash);
 			Collider[] cols = Physics.OverlapSphere(transform.position, spinThreshold, (1 << 8) | (1 << 9));
 			for (int i = 0; i < cols.Length; i++)
