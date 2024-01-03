@@ -186,7 +186,7 @@ public class MapAtom : ScriptableObject
 		if (!cleared)
 		{
 			TriggerEnemy();
-			_mapGimik.RoomInit();
+			_mapGimik?.RoomInit();
 		}
 		GameManager.Instance.RefreshMap();
 	}

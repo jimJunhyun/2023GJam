@@ -30,9 +30,9 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        GetItem(null);
         AddStat.Reset();
         CurseStat.Reset();
+        RefreshStat();
     }
 
     private int _gold = 0;
@@ -130,6 +130,7 @@ public class Player : MonoBehaviour
     public void GetItem(ItemSO _so)
     {
         Inven.UseItem(ref NormalStat, ref AddStat,  _so);
+        RefreshStat();
     }
     
     public void RefreshStat()
@@ -157,23 +158,23 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            ModifyHPPlus(1);
-        }
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            ModifyHPPlus(-1);
-        }
-        
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            ModifyMaxHPPlus(1);
-        }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            ModifyMaxHPPlus(-1);
-        }
+        //if (Input.GetKeyDown(KeyCode.N))
+        //{
+        //    ModifyHPPlus(1);
+        //}
+        //if (Input.GetKeyDown(KeyCode.M))
+        //{
+        //    ModifyHPPlus(-1);
+        //}
+        //
+        //if (Input.GetKeyDown(KeyCode.V))
+        //{
+        //    ModifyMaxHPPlus(1);
+        //}
+        //if (Input.GetKeyDown(KeyCode.B))
+        //{
+        //    ModifyMaxHPPlus(-1);
+        //}
     }
 
     public void ModifyHPPlus(int value)

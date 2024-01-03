@@ -71,8 +71,7 @@ public class BeatSystem : Singleton<BeatSystem>
         if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.K))
         {
             GameManager.Instance.player.Inven.HitInvoking();
-            BeatUISystem.Instance.HitNode();
-            GetComponent<AudioSource>().PlayOneShot(_Hit);
+            BeatUISystem.Instance.HitNode(_Hit);
         }
 
         if (Input.GetKeyDown(KeyCode.I)) // 1 + 아이템 + 플레이어
@@ -107,9 +106,9 @@ public class BeatSystem : Singleton<BeatSystem>
             }
             
             GameManager.Instance.player.Inven.HitInvoking();
-            GetComponent<AudioSource>().PlayOneShot(_Hit);
+            
             BeatUISystem.Instance.RemoveNode();
-            BeatUISystem.Instance.HitNode();
+            BeatUISystem.Instance.HitNode(_Hit);
         }
         
         //Debug.Log(beat);
@@ -118,7 +117,7 @@ public class BeatSystem : Singleton<BeatSystem>
         if (_currentTime >= _currentBeatValue)
         {
 
-            GetComponent<AudioSource>().PlayOneShot(_matronyum);
+            SoundManager.Instance.PlaySFX(_matronyum);
             _currentTime = 0;
             StartCoroutine(Beating());
 
