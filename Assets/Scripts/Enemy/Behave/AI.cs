@@ -38,7 +38,9 @@ public class AI : MonoBehaviour, IRhythm
 	ChargeAttack charge;
 	SpinAttack spin;
 
-	Animator anim;
+	internal Animator anim;
+
+	Vector3 prevPos;
 
 	float initSpeed;
 	float initAcc;
@@ -57,8 +59,9 @@ public class AI : MonoBehaviour, IRhythm
 	public int spinDur;
 	public float spinSpd;
 
-	readonly int AttackHash = Animator.StringToHash("Attack");
-	readonly int IdleHash = Animator.StringToHash("Idle");
+	internal readonly int AttackHash = Animator.StringToHash("Attack");
+	internal readonly int IdleHash = Animator.StringToHash("Idle");
+	internal readonly int HitHash = Animator.StringToHash("Hit");
 
 	public virtual void Awake()
 	{
@@ -141,7 +144,7 @@ public class AI : MonoBehaviour, IRhythm
 			transform.rotation = Quaternion.LookRotation(v);
 		}
 
-		if(rig.velocity.sqrMagnitude > 0.1f)
+		if((transform.position - prevPos).magnitude > 0.1f)
 		{
 			anim.SetBool(IdleHash, false);
 		}
@@ -158,6 +161,7 @@ public class AI : MonoBehaviour, IRhythm
 			{
 				charge.StopCharge();
 				rig.velocity = Vector3.zero;
+				anim.ResetTrigger(AttackHash);
 			}
 
 			Collider[] cols = Physics.OverlapSphere(transform.position, chargeThreshold, (1 << 8) | (1 << 9));
@@ -183,6 +187,7 @@ public class AI : MonoBehaviour, IRhythm
 					Debug.Log(p.name);
 					charge.StopCharge();
 					rig.velocity = Vector3.zero;
+					anim.ResetTrigger(AttackHash);
 				}
 
 			}
@@ -191,18 +196,44 @@ public class AI : MonoBehaviour, IRhythm
 		if (spinning)
 		{
 			anim.SetTrigger(AttackHash);
-			Collider[] cols = Physics.OverlapSphere(transform.position, spinThreshold, (1 << 8) | (1 << 9) | (1 << 10));
+			Collider[] cols = Physics.OverlapSphere(transform.position, spinThreshold, (1 << 8) | (1 << 9));
 			for (int i = 0; i < cols.Length; i++)
 			{
 				LifeObject p = cols[i].GetComponent<LifeObject>();
+				Debug.Log(p.transform.name);
 				p.Damage(spinDamage);
 			}
+		}
+	}
+
+	private void LateUpdate()
+	{
+		prevPos = transform.position;
+	}
+
+	private void OnDrawGizmos()
+	{
+		for (int i = 0; i < angle; i++)
+		{
+			Gizmos.DrawLine(transform.position, transform.position + (Vector3.right * Mathf.Cos(i * Mathf.Deg2Rad) * atkRange ) + Vector3.forward * Mathf.Sin(i * Mathf.Deg2Rad) * atkRange);
 		}
 	}
 
 	public void ResetSpeed()
 	{
 		rig.velocity = Vector3.zero;
+	}
+
+	public void StopFor(float sec)
+	{
+		GameManager.Instance. StartCoroutine(DelStopper(sec));
+	}
+
+	IEnumerator DelStopper(float s)
+	{
+		StopAI();
+		yield return new WaitForSeconds(s);
+		StartAI();
 	}
 
 	public void StopAI()

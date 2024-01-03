@@ -9,12 +9,12 @@ public class PlayerAttack : MonoBehaviour
 	//public float attack = 1;
 	//
 	//public float attackRange = 5;
-	
-	
-	
+
+	internal readonly int AttackHash = Animator.StringToHash("Attack");
+
 	public void DoAttack(Detection _dec)
 	{
-		
+		GameManager.Instance.player.playerCtrl.anim.SetTrigger(AttackHash);
 		Collider[] cols = Physics.OverlapSphere(transform.position, GameManager.Instance.player.PlayerStat.AttackRange, (1 << 9) | (1 << 10));
 		for (int i = 0; i < cols.Length; i++)
 		{
@@ -24,6 +24,7 @@ public class PlayerAttack : MonoBehaviour
 				GameManager.Instance.player.Inven.ReturnItemRule().AttackInvoke(obj, _dec);
 			}
 		}
+
 	}
 
 	public void JustDamage(int dmg)

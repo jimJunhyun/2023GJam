@@ -31,6 +31,7 @@ public class SpinAttack : INode
 			spinning = false;
 			self.ResetSpeed();
 			self.spinning = false;
+			self.anim.ResetTrigger(self.AttackHash);
 		}
 	}
 
