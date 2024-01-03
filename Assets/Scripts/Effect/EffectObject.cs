@@ -25,6 +25,13 @@ public class EffectObject : PoolAble
         _init = false;
     }
 
+    public void Init(Vector3 pos)
+    {
+        transform.position = pos;
+        Particle.Play();
+        _init = true;
+    }
+
     public void Init(Vector3 pos, Quaternion qut)
     {
         transform.position = pos;
