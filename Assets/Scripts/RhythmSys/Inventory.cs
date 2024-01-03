@@ -23,7 +23,10 @@ public class Inventory : MonoBehaviour
 
     public ItemSO ReturnItemRule()
     {
-        return _equipItem;
+        if(_equipItem)
+            return _equipItem;
+
+        return new ItemSO();
     }
 
     public void AddCurse(CurseList en)
