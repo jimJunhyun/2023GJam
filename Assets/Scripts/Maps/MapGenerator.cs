@@ -6,14 +6,27 @@ public class MapGenerator : MonoBehaviour
 {
     public MapAtom startRoom;
 
-	public const float MAPX = 25;
-	public const float MAPY = 25;
-	public const float MAPXGAP = 10;
-	public const float MAPYGAP = 10;
+	public Vector2 shopMinMax;
+	public Vector2 healMinMax;
+	public Vector2 curseMinMax;
+	public Vector2 blessMinMax;
+
+
+	internal int shopCnt=0;
+	internal int healCnt	=0;
+	internal int curseCnt = 0;
+	internal int blessCnt = 0;
+
+	public const float MAPX = 60;
+	public const float MAPY = 60;
+	public const float MAPXGAP = 20;
+	public const float MAPYGAP = 20;
 
 	Queue<KeyValuePair<MapAtom, Vector3>> createCalls = new Queue<KeyValuePair<MapAtom, Vector3>>();
 	HashSet<MapAtom> createds = new HashSet<MapAtom>();
 	HashSet<MapAtom> mapCreateds = new HashSet<MapAtom>();
+
+	public bool isClearSight = false;
 
 	public void Create()
 	{
@@ -57,7 +70,7 @@ public class MapGenerator : MonoBehaviour
 					createds.Add(first.Key.right);
 				}
 			}
-			first.Key.Init(first.Value);
+			first.Key.Init(first.Value, this);
 		}
 	}
 
@@ -104,17 +117,20 @@ public class MapGenerator : MonoBehaviour
 					mapCreateds.Add(first.Key.right);
 				}
 			}
-			RoomType t = first.Key.isQuestion ? RoomType.Question : first.Key.type;
+			RoomType t = (first.Key.isQuestion && !isClearSight) ? RoomType.Question : first.Key.type;
 			MapDrawer.instance.GenerateSprite(t, first.Value, first.Key == GameManager.Instance.curRoom);
 		}
 	}
 
 	public void ClearSight()
 	{
-		foreach (var item in createds)
-		{
-			item.isQuestion= false;
-		}
+		isClearSight = true;
+		GameManager.Instance.RefreshMap();
+	}
+
+	public void HindSight()
+	{
+		isClearSight = false;
 		GameManager.Instance.RefreshMap();
 	}
 }

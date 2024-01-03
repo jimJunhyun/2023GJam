@@ -15,10 +15,12 @@ public enum RoomType
 {
 	Start,
 	Normal,
+
 	Shop,
 	Heal,
 	Curse,
 	Blessing,
+
 	Boss,
 
 	Question,
@@ -44,6 +46,11 @@ public class MapAtom : ScriptableObject
 	public Vector3 leftPt;
 	public Vector3 rightPt;
 
+	public MoveStation upPtExit;
+	public MoveStation downPtExit;
+	public MoveStation leftPtExit;
+	public MoveStation rightPtExit;
+
 
 	public Vector3 rootOffSet;
 
@@ -56,39 +63,106 @@ public class MapAtom : ScriptableObject
 
 	[Header("MapGimik")] public MapGimikSO _mapGimik;
 
-	public virtual void Init(Vector3 pos)
+	public virtual void Init(Vector3 pos, MapGenerator info)
 	{
-		SetStructureRandom();
+		SetStructureRandom(info);
 		InstantiateSelf(pos);
 		SetEnemyRandom();
 		SetPoints();
 	}
 
-	public virtual void SetStructureRandom()
+	public virtual void SetStructureRandom(MapGenerator info)
 	{
-		if (isRandomizable)
+		if(type == RoomType.Boss)
 		{
-			conStat = new List<ConnectStat>();
-			if(up != null)
-			{
-				conStat.Add(ConnectStat.Up);
-			}
-			if (down != null)
-			{
-				conStat.Add(ConnectStat.Down);
-			}
-			if (left != null)
-			{
-				conStat.Add(ConnectStat.Left);
-			}
-			if (right != null)
-			{
-				conStat.Add(ConnectStat.Right);
-			}
-			
-			List<MapObjs> objs = GameManager.Instance.mapList.GetMapOfCondition(conStat);
-			obj = objs[Random.Range(0, objs.Count)];
+			obj = GameManager.Instance.mapList.bossMap;
 		}
+		else if (type == RoomType.Question)
+		{
+			bool invalid = true;
+			
+			int repCount = 0;
+			while (invalid)
+			{
+				++repCount;
+
+				RoomType t = (RoomType)Random.Range(((int)RoomType.Shop), ((int)RoomType.Blessing) + 1);
+				if (info.shopCnt < info.shopMinMax.x)
+				{
+					t = RoomType.Shop;
+					invalid = false;
+				}
+				else if(info.healCnt < info.healMinMax.x)
+				{
+					t = RoomType.Heal;
+					invalid = false;
+				}
+				else if (info.curseCnt < info.curseMinMax.x)
+				{
+					t = RoomType.Curse;
+					invalid = false;
+				}
+				else if (info.blessCnt < info.blessMinMax.x)
+				{
+					t = RoomType.Blessing;
+					invalid = false;
+				}
+				type = t;
+				switch (t)
+				{
+					case RoomType.Shop:
+						if (info.shopCnt + 1 > info.shopMinMax.y)
+						{
+							obj = GameManager.Instance.mapList.shopMap;
+							info.shopCnt += 1;
+							invalid = false;
+						}
+						break;
+					case RoomType.Heal:
+						obj = GameManager.Instance.mapList.healMap;
+						if (info.healCnt + 1 > info.healMinMax.y)
+						{
+							obj = GameManager.Instance.mapList.healMap;
+							info.healCnt += 1;
+							invalid = false;
+						}
+						break;
+					case RoomType.Curse:
+						obj = GameManager.Instance.mapList.curseMap;
+						if (info.curseCnt + 1 > info.curseMinMax.y)
+						{
+							obj = GameManager.Instance.mapList.curseMap;
+							info.curseCnt += 1;
+							invalid = false;
+						}
+						break;
+					case RoomType.Blessing:
+						obj = GameManager.Instance.mapList.blessMap;
+						if (info.blessCnt + 1 > info.blessMinMax.y)
+						{
+							obj = GameManager.Instance.mapList.blessMap;
+							info.blessCnt += 1;
+							invalid = false;
+						}
+						break;
+				}
+				if(repCount > GameManager.MAXREPCOUNT)
+				{
+					type = RoomType.Normal;
+					break;
+				}
+			}
+		}
+		else if(type == RoomType.Start)
+		{
+			obj = GameManager.Instance.mapList.startMap;
+		}
+
+		if(type == RoomType.Normal)
+		{
+			obj = GameManager.Instance.mapList.randomMaps[Random.Range(0, GameManager.Instance.mapList.randomMaps.Count)];
+		}
+		obj.type = type;
 	}
 	
 	public void InstantiateSelf(Vector3 pos, Transform parent = null)
@@ -101,19 +175,62 @@ public class MapAtom : ScriptableObject
     public void SetEnemyRandom()
 	{
 		slots = new List<EnemySlot>();
-		for (int i = 0; i < self.transform.childCount; i++)
+		int mobCnt = Random.Range(4, 21);
+		int spPointAmt = Random.Range(4, 6);
+		HashSet<int> selecteds = new HashSet<int>();
+		List<int> spawnInfo = new List<int>(4);
+		while(selecteds.Count >= spPointAmt)
 		{
-			Transform trm = self.transform.GetChild(i);
+			int idx = Random.Range(0, self.transform.childCount);
+			selecteds.Add(idx);
+		}
+		foreach (int item in selecteds)
+		{
+			Transform trm = self.transform.GetChild(item);
 			if (trm.name.Contains("MobPoint"))
 			{
 				EnemySlot slot = trm.GetComponent<EnemySlot>();
 				if (slot)
 				{
-					slot.SetEnemy(EnemySpawner.instance.SpawnRand(trm));
+					slot.SetEnemy(EnemySpawner.instance.SpawnRand(trm, ref spawnInfo));
 					slots.Add(slot);
 				}
 			}
 		}
+		
+		while (GameManager.ArraySum(spawnInfo) > mobCnt)
+		{
+			int r = Random.Range(0, slots.Count);
+			bool invalid = true;
+			int repCount = 0;
+			while (invalid)
+			{
+				++repCount;
+				r = Random.Range(0, slots.Count);
+				if (slots[r].myEnemies.Count < GameManager.MAXMOBPERPOINT)
+				{
+					invalid = false;
+				}
+				if(repCount > GameManager.MAXREPCOUNT)
+				{
+					break;
+				}
+			}
+			slots[r].SetEnemy(EnemySpawner.instance.SpawnRand(slots[r].transform, ref spawnInfo));
+		}
+		//for (int i = 0; i < self.transform.childCount; i++)
+		//{
+		//	Transform trm = self.transform.GetChild(i);
+		//	if (trm.name.Contains("MobPoint"))
+		//	{
+		//		EnemySlot slot = trm.GetComponent<EnemySlot>();
+		//		if (slot)
+		//		{
+		//			slot.SetEnemy(EnemySpawner.instance.SpawnRand(trm));
+		//			slots.Add(slot);
+		//		}
+		//	}
+		//}
 	}
 
 	public void TriggerEnemy()
@@ -136,20 +253,67 @@ public class MapAtom : ScriptableObject
 	public void SetClearState()
 	{
 		cleared = true;
+		if (up)
+		{
+			upPtExit.SetValid();
+		}
+		if (down)
+		{
+			downPtExit.SetValid();
+		}
+		if (left)
+		{
+			leftPtExit.SetValid();
+		}
+		if (right)
+		{
+			rightPtExit.SetValid();
+		}
+	}
+
+	public void ResetClearState()
+	{
+		cleared = false;
+		if (up && upPtExit)
+		{
+			upPtExit.ResetValid();
+		}
+		if (down && downPtExit)
+		{
+			downPtExit.ResetValid();
+		}
+		if (left && leftPtExit)
+		{
+			leftPtExit.ResetValid();
+		}
+		if (right && rightPtExit)
+		{
+			rightPtExit.ResetValid();
+		}
 	}
 
 	public void SetPoints()
 	{
-		upPt = self.transform.position + Vector3.forward * (MapGenerator.MAPY ) * 0.4f ;
-		downPt = self.transform.position + Vector3.back * (MapGenerator.MAPY) * 0.4f ;
-		leftPt = self.transform.position + Vector3.left * (MapGenerator.MAPX ) * 0.4f;
-		rightPt = self.transform.position + Vector3.right * (MapGenerator.MAPX ) * 0.4f;
+		upPt = self.transform.Find("EnterPoint0").position;
+		downPt = self.transform.Find("EnterPoint1").position;
+		leftPt = self.transform.Find("EnterPoint2").position;
+		rightPt = self.transform.Find("EnterPoint3").position;
+
+		upPtExit = self.transform.Find("ExitPoint0").GetComponent<MoveStation>();	
+		downPtExit = self.transform.Find("ExitPoint1").GetComponent<MoveStation>();	
+		leftPtExit = self.transform.Find("ExitPoint2").GetComponent<MoveStation>();	
+		rightPtExit = self.transform.Find("ExitPoint3").GetComponent<MoveStation>();
+		
+		upPtExit.onEnterPoint.AddListener(()=>MoveTo(Direction.Up));
+		downPtExit.onEnterPoint.AddListener(()=>MoveTo(Direction.Down));
+		leftPtExit.onEnterPoint.AddListener(()=>MoveTo(Direction.Left));
+		rightPtExit.onEnterPoint.AddListener(()=>MoveTo(Direction.Right));
 	}
 
 	public virtual void MoveTo(Direction dir)
 	{
 		if (!cleared)
-			ResetEnemy();
+			ResetClearState();
 		switch (dir)
 		{
 			case Direction.Up:

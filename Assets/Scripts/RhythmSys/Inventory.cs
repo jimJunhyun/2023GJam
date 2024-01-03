@@ -91,7 +91,7 @@ public class Inventory : MonoBehaviour
                     case Blessing.none:
                         break;
                     case Blessing.unblindness:
-                        // 물음표 표시
+                        GameManager.Instance.maps[GameManager.Instance.curStage].HindSight();
                         break;
                 }
                 
@@ -117,7 +117,7 @@ public class Inventory : MonoBehaviour
                     case Blessing.none:
                         break;
                     case Blessing.unblindness:
-                        // 물음표 제거
+                        GameManager.Instance.maps[GameManager.Instance.curStage].ClearSight();
                         break;
                 }
                 
