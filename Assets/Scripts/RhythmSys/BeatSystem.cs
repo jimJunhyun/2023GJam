@@ -68,8 +68,27 @@ public class BeatSystem : Singleton<BeatSystem>
     
     private void Update()
     {
+
+        //Debug.Log(beat);
+        _currentTime += Time.deltaTime;
+        
+        if (_currentTime >= _currentBeatValue)
+        {
+
+            SoundManager.Instance.PlaySFX(_matronyum);
+            _currentTime = 0;
+            StartCoroutine(Beating());
+
+        }
+        
+        if (GameManager.Instance.player.IsInteractive)
+            return;
+
+        #region 인풋
+
         if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.K))
         {
+            
             GameManager.Instance.player.Inven.HitInvoking();
             BeatUISystem.Instance.HitNode(_Hit);
         }
@@ -110,18 +129,11 @@ public class BeatSystem : Singleton<BeatSystem>
             BeatUISystem.Instance.RemoveNode();
             BeatUISystem.Instance.HitNode(_Hit);
         }
-        
-        //Debug.Log(beat);
-        _currentTime += Time.deltaTime;
-        
-        if (_currentTime >= _currentBeatValue)
-        {
 
-            SoundManager.Instance.PlaySFX(_matronyum);
-            _currentTime = 0;
-            StartCoroutine(Beating());
+        #endregion
+        
 
-        }
+        
     }
 
     IEnumerator Beating()

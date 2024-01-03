@@ -33,6 +33,10 @@ public class PlayerCtrl : MonoBehaviour
 
 	public void Update()
 	{
+		
+		if (GameManager.Instance.player.IsInteractive)
+			return;
+		
 		h = Input.GetAxis("Horizontal");
 		v = Input.GetAxis("Vertical");
 		moveVec = new Vector3(h, 0, v).normalized * speed;
@@ -67,6 +71,9 @@ public class PlayerCtrl : MonoBehaviour
 
 	private void LateUpdate()
 	{
+		if (GameManager.Instance.player.IsInteractive)
+			return;
+		
 		if(predictPos != null)
 		{
 			ctrl.enabled = false;
@@ -90,6 +97,9 @@ public class PlayerCtrl : MonoBehaviour
 
 	public void SetPosition(Vector3 pos)
 	{
+		if (GameManager.Instance.player.IsInteractive)
+			return;
+			
 		pos.y = transform.position.y;
 		predictPos = pos;
 	}

@@ -1025,6 +1025,8 @@ MonoBehaviour:
     AttackRange: 0
   RhythmCount: 0
   _life: {fileID: 0}
+  IsInteractive: 0
+  _gold: 99999
 --- !u!114 &7765099661123504536
 MonoBehaviour:
   m_ObjectHideFlags: 0

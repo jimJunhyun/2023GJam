@@ -12,7 +12,7 @@ public class EffectObject : PoolAble
     {
         get
         {
-            if (_particle)
+            if (_particle == null)
                 _particle = GetComponent<ParticleSystem>();
             
             return _particle;

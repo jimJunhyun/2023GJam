@@ -26,10 +26,15 @@ public class ItemSO : ScriptableObject
     //public int SetBPM = 0;
     //public int AddBPM = 0;
 
-    [Header("ItemInfo")] 
+    [Header("Info")] 
+    public string ItemName;
+    public Sprite _sprite;
+    [TextArea] public string ItemDescription;
+    public int ExpensiveMoney = 0;
+
+    [Header("ItemType")] 
     public ACTIONType _type = ACTIONType.none;
     public ItemType _itemtype = ItemType.none;
-    public int ExpensiveMoney = 0;
 
     [FormerlySerializedAs("AddRule")] [Header("AddRule = 0 ( default )")] 
     public int AddBeat = 0;

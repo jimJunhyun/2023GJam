@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
     [Header("LifeModule")] [SerializeField]
     private Player_LifeObject _life;
 
+    public bool IsInteractive = false;
+    
     public Player_LifeObject LifeModule
     {
         get
@@ -35,9 +37,9 @@ public class Player : MonoBehaviour
         RefreshStat();
     }
 
-    private int _gold = 0;
+    [SerializeField] private int _gold = 0;
 
-    public int Gold
+    public int Gold 
     {
         get
         {
@@ -127,10 +129,10 @@ public class Player : MonoBehaviour
         //Inven.ReturnValue(ref AddStat);
     }
 
-    public void GetItem(ItemSO _so)
+    public void GetItem(ItemSO _so, int gold = 0)
     {
+        Gold -= gold;
         Inven.UseItem(ref NormalStat, ref AddStat,  _so);
-        RefreshStat();
     }
     
     public void RefreshStat()

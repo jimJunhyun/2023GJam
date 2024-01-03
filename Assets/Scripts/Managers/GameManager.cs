@@ -16,7 +16,7 @@ public class GameManager : Singleton<GameManager>
 		{
 			if (_player == null)
 			{
-				_player = GameObject.Find("Player").GetComponent<Player>();
+				_player = FindObjectOfType<Player>();
 // 				Debug.LogWarning(_player);
 			}
 			return _player;

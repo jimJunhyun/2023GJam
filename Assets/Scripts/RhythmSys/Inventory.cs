@@ -26,8 +26,8 @@ public class Inventory : MonoBehaviour
 
     [Header("저주")] private List<CurseList> _curse = new();
     
-    private Dictionary<Action, int> HitInvoke = new();
-    private Dictionary<Action, int> NodeInvoke = new();
+    private Dictionary<ItemSO, int> HitInvoke = new();
+    private Dictionary<ItemSO, int> NodeInvoke = new();
 
     public ItemSO ReturnItemRule()
     {
@@ -74,6 +74,7 @@ public class Inventory : MonoBehaviour
 
     public void UseItem(ref Stat PlayerStat, ref Stat objStat,  ItemSO _so)
     {
+        Debug.Log($"들어옴 {_so}");
         if (_so==null || _so._itemtype == ItemType.Equipment)
         {
             if (_equipItem != null)
@@ -95,6 +96,8 @@ public class Inventory : MonoBehaviour
                 }
                 
             }
+            
+            Debug.Log(_so);
             
             _equipItem = _so;
 
@@ -129,59 +132,80 @@ public class Inventory : MonoBehaviour
             PlayerStat.SPEED += _so.AddStat.AddSpeed;
             PlayerStat.AttackRange += _so.AddStat.AddRange;
         }
-        else
+        
+        if(_so != null && _so._type != ACTIONType.none)
         {
             switch (_so._type)
             {
                 case ACTIONType.Node:
-                    NodeInvoke.Add(_so.ItemInvoke, _so.RhythmPassive);
+                    NodeInvoke.Add(_so, _so.RhythmPassive);
                     break;
                 case ACTIONType.Hit:
-                    HitInvoke.Add(_so.ItemInvoke, _so.RhythmPassive);
+                    HitInvoke.Add(_so, _so.RhythmPassive);
                     break;
             }
         }
         
+        GameManager.Instance.player.RefreshStat();
     }
 
     public void HitInvoking()
     {
-        List<Action> a = new();
+        List<ItemSO> a = new();
         
         foreach (var VARIABLE in HitInvoke)
         {
-            VARIABLE.Key.Invoke();
-            HitInvoke[VARIABLE.Key]--;
             a.Add(VARIABLE.Key);
         }
 
-        for (int i = 0; i < a.Count; i++)
+        if (a.Count > 0)
         {
-            if (HitInvoke[a[i]] <= 0)
+            for (int i = 0; i < a.Count; i++)
             {
-                HitInvoke.Remove(a[i]);
+                a[i].ItemInvoke();
+                NodeInvoke[a[i]]--;
+                if (HitInvoke[a[i]] <= 0)
+                {
+                    if (a[i] == _equipItem)
+                    {
+                        GameManager.Instance.player.GetItem(null);
+                    }
+                
+                    HitInvoke.Remove(a[i]);
+                }
             }
         }
+        
+
     }
 
     public void NodeInvoking()
     {
-        List<Action> a = new();
+        List<ItemSO> a = new();
         
         foreach (var VARIABLE in NodeInvoke)
         {
-            VARIABLE.Key.Invoke();
-            NodeInvoke[VARIABLE.Key]--;
             a.Add(VARIABLE.Key);
         }
 
-        for (int i = 0; i < a.Count; i++)
+        if (a.Count > 0)
         {
-            if (NodeInvoke[a[i]] <= 0)
+            for (int i = 0; i < a.Count; i++)  
             {
-                NodeInvoke.Remove(a[i]);
+                a[i].ItemInvoke();
+                NodeInvoke[a[i]]--;
+                if (NodeInvoke[a[i]] <= 0)
+                {
+                    if (a[i] == _equipItem)
+                    {
+                        GameManager.Instance.player.GetItem(null);
+                    }
+                
+                    NodeInvoke.Remove(a[i]);
+                }
             }
         }
+
     }
 
     //public void RemoveItem(ref Stat objStat, ItemSO _so)

@@ -12,14 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7018fbb392ab59d48bfa2468961ce858, type: 3}
   m_Name: 13_SPEEDUPONE
   m_EditorClassIdentifier: 
+  ItemName: "\uC2E0\uC18D"
+  _sprite: {fileID: 21300000, guid: af64414b5881d4bd9a7fe66363674f2c, type: 3}
+  ItemDescription: "\uC774\uB3D9\uC18D\uB3C4\uB97C 2\uBC30  \uC99D\uAC00\uC2DC\uD0B5\uB2C8\uB2E4."
+  ExpensiveMoney: 25
   _type: 0
   _itemtype: 2
-  ExpensiveMoney: 0
   AddBeat: 0
   RemoveBeat: 0
   AddStat:
     AddHP: 0
     AddATK: 0
-    AddSpeed: 1
+    AddSpeed: 5
     AddplayerSize: 0
+    AddRange: 0
   RhythmPassive: 0
+  _passive: 0
