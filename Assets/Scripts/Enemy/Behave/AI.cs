@@ -32,6 +32,7 @@ public class AI : MonoBehaviour, IRhythm
     Selecter head;
 
 	Rigidbody rig;
+	NavMeshAgent agent;
 
 	SetFlag metronome;
 
@@ -71,6 +72,7 @@ public class AI : MonoBehaviour, IRhythm
 	public virtual void Awake()
 	{
 		rig = GetComponent<Rigidbody>();
+		agent = GetComponent<NavMeshAgent>();
 
 		initSpeed = stat.SPEED;
 
@@ -127,7 +129,7 @@ public class AI : MonoBehaviour, IRhythm
 			doAttack.childs.Add(sweep);
 		}
 
-		Move doMove = new Move(GameManager.Instance.player.transform, rig, this);
+		Move doMove = new Move(GameManager.Instance.player.transform, rig, this, agent);
 
 
 
@@ -228,13 +230,13 @@ public class AI : MonoBehaviour, IRhythm
 		prevPos = transform.position;
 	}
 
-	private void OnDrawGizmos()
-	{
-		for (int i = 0; i < angle; i++)
-		{
-			Gizmos.DrawLine(transform.position, transform.position + (Vector3.right * Mathf.Cos(i * Mathf.Deg2Rad) * atkRange ) + Vector3.forward * Mathf.Sin(i * Mathf.Deg2Rad) * atkRange);
-		}
-	}
+	//private void OnDrawGizmos()
+	//{
+	//	for (int i = 0; i < angle; i++)
+	//	{
+	//		Gizmos.DrawLine(transform.position, transform.position + (Vector3.right * Mathf.Cos(i * Mathf.Deg2Rad) * atkRange ) + Vector3.forward * Mathf.Sin(i * Mathf.Deg2Rad) * atkRange);
+	//	}
+	//}
 
 	public void ResetSpeed()
 	{

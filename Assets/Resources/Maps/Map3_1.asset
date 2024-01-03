@@ -19,10 +19,10 @@ MonoBehaviour:
   down: {fileID: 11400000, guid: d786e4f4f62eb604d95650962941ede3, type: 2}
   left: {fileID: 11400000, guid: a327974177e4df042867d66c2ed2e31f, type: 2}
   right: {fileID: 11400000, guid: 010c5ccc57ddbc241816e9475506e01c, type: 2}
-  upPt: {x: 10, y: 10, z: 20}
-  downPt: {x: 10, y: 10, z: 0}
-  leftPt: {x: 0, y: 10, z: 10}
-  rightPt: {x: 20, y: 10, z: 10}
+  upPt: {x: 80.5, y: 0, z: 100.4}
+  downPt: {x: 79.8, y: 0, z: 62.1}
+  leftPt: {x: 61.3, y: 0, z: 64.2}
+  rightPt: {x: 100, y: 0, z: 64.8}
   upPtExit: {fileID: 0}
   downPtExit: {fileID: 0}
   leftPtExit: {fileID: 0}

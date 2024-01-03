@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obj: {fileID: -7935989439776852606, guid: 65decd916ea1cd24e963104b44d8577f, type: 3}
   isQuestion: 0
-  type: 1
+  type: 0
   up: {fileID: 11400000, guid: 4cddef4a9b0472445a158f729ec01c00, type: 2}
   down: {fileID: 11400000, guid: 7d6eb724ee2c10b46bcfd1d173b9c2c0, type: 2}
   left: {fileID: 11400000, guid: 35ab1a77430f38f41a50cce920da5998, type: 2}

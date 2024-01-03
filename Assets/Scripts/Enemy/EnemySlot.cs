@@ -13,6 +13,7 @@ public class EnemySlot : MonoBehaviour
 	{
 		if(NavMesh.SamplePosition(transform.position, out NavMeshHit hit, spawnRange, -1))
 		{
+			Debug.Log("ENEMY POS FOUND");
 			enemy.transform.position = hit.position;
 			myEnemyLifes.Add(enemy.GetComponent<LifeObject>());
 			myEnemies.Add(enemy.GetComponent<AI>());
@@ -22,12 +23,13 @@ public class EnemySlot : MonoBehaviour
 	public void StartEnemy()
 	{
 		
+		Debug.Log("enemyCount : " + myEnemies.Count);
 		for (int i = 0; i < myEnemies.Count; i++)
 		{
 			if (!myEnemyLifes[i].dead)
 			{
 				myEnemies[i].StartAI();
-
+				Debug.Log(myEnemies[i].name);
 			}
 		}
 	}
