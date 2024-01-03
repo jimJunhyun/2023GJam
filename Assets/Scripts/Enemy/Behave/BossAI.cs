@@ -3,21 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-//1.박자따라치기 - 6개박자(따라치기박자포함)
 //2.블랙박스 - 5개박자
-//3.(긴)거리에 맞으면 검기발사 - 7마디
-//4.거리에 맞으면 콩알탄발사 - 3마디
+//3.검기발사 - 7마디
+//4.콩알탄발사 - 3마디
 //5.플레이어 주변을 둥글게 이동
 [RequireComponent(typeof(LifeObject))]
 public class BossAI : MonoBehaviour, IRhythm
 {
     public float wanderRadius;
-    public float bulletRadius;
-    public float slashRadius;
     public int bulletGap = 3;
     public int slashGap = 7;
     public int bBoxGapSp = 5;
-    public int followGapSp = 6;
+    public int bBoxDurationSp = 2;
 
     public Bullet bullet;
     public Bullet slash;
@@ -31,15 +28,23 @@ public class BossAI : MonoBehaviour, IRhythm
 
     Rigidbody rig;
     LifeObject life;
+    internal Animator anim;
     Vector3 dest;
     float curAngle = 90;
     float curAngleRad => curAngle * Mathf.Deg2Rad;
+    bool blocking = false;
 
     int beatCnt = 0;
     int tempoCnt = 0;
 
     bool beating = true;
     bool updating = true;
+
+    readonly int Attack1Hash = Animator.StringToHash("Attack1");
+    readonly int Attack2Hash = Animator.StringToHash("Attack2");
+    readonly int Attack3Hash = Animator.StringToHash("Attack3");
+    internal readonly int HitHash = Animator.StringToHash("Hit");
+    readonly int IdleHash = Animator.StringToHash("Idle");
 
 
 	public void BeatUpdate()
@@ -49,29 +54,38 @@ public class BossAI : MonoBehaviour, IRhythm
             float dist = (GameManager.Instance.player.transform.position - transform.position).magnitude;
             tempoCnt += 1;
             beatCnt += 1;
-            if (tempoCnt % followGapSp == 0)
-            {
-                //??
+            if(blocking && tempoCnt % bBoxDurationSp == 0)
+			{
+                BeatUISystem.Instance.Curse.SetCurse();
+                blocking = false;
             }
-            else if (tempoCnt % bBoxGapSp == 0)
+            if (tempoCnt % bBoxGapSp == 0)
             {
-                //??
+                anim.SetTrigger(Attack3Hash);
+                StopFor(0.8f);
+                
+                blocking = true;
+                BeatUISystem.Instance.Curse.SetCurse(Random.Range(0, 4));
             }
             else if (beatCnt % slashGap == 0)
             {
-                if (dist <= slashRadius)
-                {
-                    Bullet ssh = GameObject.Instantiate(bullet, shootPos.position, transform.rotation);
-                    ssh.Shoot(slashPow);
-                }
+                anim.SetTrigger(Attack2Hash);
+                StopFor(0.8f);
+                Vector3 v = GameManager.Instance.player.transform.position - transform.position;
+                v.y = 0;
+                transform.rotation = Quaternion.LookRotation(v);
+                Bullet ssh = GameObject.Instantiate(slash, shootPos.position, transform.rotation);
+                ssh.Shoot(slashPow);
             }
             else if (beatCnt % bulletGap == 0)
             {
-                if (dist <= bulletRadius)
-                {
-                    Bullet blt = GameObject.Instantiate(bullet, shootPos.position, transform.rotation);
-                    blt.Shoot(bulletPow);
-                }
+                anim.SetTrigger(Attack1Hash);
+                StopFor(0.8f);
+                Vector3 v = GameManager.Instance.player.transform.position - transform.position;
+                v.y = 0;
+                transform.rotation = Quaternion.LookRotation(v);
+                Bullet blt = GameObject.Instantiate(bullet, shootPos.position, transform.rotation);
+                blt.Shoot(bulletPow);
             }
         }
 		
@@ -85,20 +99,25 @@ public class BossAI : MonoBehaviour, IRhythm
             beatCnt += 1;
             if (beatCnt % slashGap == 0)
             {
-                if(dist <= slashRadius)
-				{
-                    Bullet ssh = GameObject.Instantiate(slash, shootPos.position, transform.rotation);
-                    ssh.Shoot(slashPow);
-                }
+                anim.SetTrigger(Attack2Hash);
+                StopFor(0.8f);
+                Vector3 v = GameManager.Instance.player.transform.position - transform.position;
+                v.y = 0;
+                transform.rotation = Quaternion.LookRotation(v);
+                Bullet ssh = GameObject.Instantiate(slash, shootPos.position, transform.rotation);
+                ssh.Shoot(slashPow);
                
             }
             else if (beatCnt % bulletGap == 0)
             {
-                if (dist <= bulletRadius)
-				{
-                    Bullet blt = GameObject.Instantiate(bullet, shootPos.position, transform.rotation);
-                    blt.Shoot(bulletPow);
-                }
+                anim.SetTrigger(Attack1Hash);
+                StopFor(0.8f);
+                Vector3 v = GameManager.Instance.player.transform.position - transform.position;
+                v.y = 0;
+                transform.rotation = Quaternion.LookRotation(v);
+                Bullet blt = GameObject.Instantiate(bullet, shootPos.position, transform.rotation);
+                blt.Shoot(bulletPow);
+                
                     
             }
         }
@@ -117,6 +136,8 @@ public class BossAI : MonoBehaviour, IRhythm
         life.hp = stat.HP;
 
         life.onDead += () => { Debug.Log("zmfflrj"); };
+
+        anim = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -139,6 +160,7 @@ public class BossAI : MonoBehaviour, IRhythm
 			{
                 //Vector3 v = (GameManager.Instance.player.transform.position - transform.position);
                 //v.y = 0;
+                anim.SetBool(IdleHash, rig.velocity.magnitude < 0.1f);
                 transform.rotation = Quaternion.LookRotation(dir);
                 rig.velocity = dir.normalized * stat.SPEED;
             }
@@ -157,6 +179,18 @@ public class BossAI : MonoBehaviour, IRhythm
             curAngle %= 360;
         }
     }
+
+    public void StopFor(float sec)
+	{
+        StartCoroutine(DelStopper(sec));
+	}
+
+    IEnumerator DelStopper(float s)
+	{
+        StopMove();
+        yield return new WaitForSeconds(s);
+        Activate();
+	}
 
     public void Activate()
 	{

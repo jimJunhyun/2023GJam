@@ -11,8 +11,9 @@ public class ShootAttack : INode
 	public Transform shootPos;
 	public float damage;
 	public float power;
+	public AI ai;
 
-	public ShootAttack(Rigidbody agt, Bullet blt, Transform targ, Transform shPos, float dam, float pow)
+	public ShootAttack(Rigidbody agt, Bullet blt, Transform targ, Transform shPos, float dam, float pow, AI ai)
 	{
 		agent = agt;
 		bullet = blt;
@@ -20,11 +21,12 @@ public class ShootAttack : INode
 		shootPos = shPos;
 		damage = dam;
 		power = pow;
+		this.ai = ai;
 	}
 
 	public NodeStat Examine()
 	{
-		agent.velocity = Vector3.zero;
+		ai.StopFor(1f);
 		if (target)
 		{
 			Vector3 dir = (target.position - agent.transform.position);

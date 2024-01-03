@@ -86,7 +86,10 @@ public class MapAtom : ScriptableObject
 			if (hit.hit)
 			{
 				Debug.Log("GONE WELL WITH : " + self.name + " in " + name);
-				SetEnemyRandom();
+				if (self.transform.Find("MobPoint_01"))
+				{
+					SetEnemyRandom();
+				}
 				yield break;
 			}
 			if(rep > GameManager.MAXREPCOUNT)
@@ -222,13 +225,15 @@ public class MapAtom : ScriptableObject
 		int spPointAmt = Random.Range(4, 6);
 		HashSet<int> selecteds = new HashSet<int>();
 		List<int> spawnInfo = new List<int>(4) { 0, 0, 0, 0 };
-		//Debug.Log("cnt : " + spPointAmt + " , Mobs : " + mobCnt);
+		Debug.Log("cnt : " + spPointAmt + " , Mobs : " + mobCnt);
 		while(selecteds.Count < spPointAmt)
 		{
 			int idx = Random.Range(0, 5);
 			selecteds.Add(idx);
 			//Debug.Log("SLOTNO : " + idx);
 		}
+		
+
 		foreach (int item in selecteds)
 		{
 			//Debug.Log($"FINDING :MobPoint_0{item + 1} under {self.transform.name}");
@@ -256,6 +261,7 @@ public class MapAtom : ScriptableObject
 			{
 				++repCount;
 				r = Random.Range(0, slots.Count);
+				Debug.Log(r);
 				if (slots[r].myEnemies.Count < GameManager.MAXMOBPERPOINT)
 				{
 					slots[r].SetEnemy(EnemySpawner.instance.SpawnRand(slots[r].transform, ref spawnInfo));
