@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.AI;
 
 public enum Direction
 {
@@ -67,8 +68,33 @@ public class MapAtom : ScriptableObject
 	{
 		SetStructureRandom(info);
 		InstantiateSelf(pos);
-		SetEnemyRandom();
 		SetPoints();
+		cleared = false;
+		GameManager.Instance.StartCoroutine(DelSetEnemy());
+	}
+
+	IEnumerator DelSetEnemy()
+	{
+		NavMeshHit hit;
+		int rep = 0;
+		yield return null;
+		while (true)
+		{
+			yield return null;
+			NavMesh.SamplePosition(self.transform.position, out hit, 1000f, -1);
+			++rep;
+			if (hit.hit)
+			{
+				Debug.Log("GONE WELL WITH : " + self.name + " in " + name);
+				SetEnemyRandom();
+				yield break;
+			}
+			if(rep > GameManager.MAXREPCOUNT)
+			{
+				Debug.Log("SOMETHING WRONG WITH : " + self.name + " in " + name);
+				yield break;
+			}
+		}
 	}
 
 	public virtual void SetStructureRandom(MapGenerator info)
@@ -90,28 +116,32 @@ public class MapAtom : ScriptableObject
 				if (info.shopCnt < info.shopMinMax.x)
 				{
 					t = RoomType.Shop;
+					info.shopCnt += 1;
 					invalid = false;
 				}
 				else if(info.healCnt < info.healMinMax.x)
 				{
 					t = RoomType.Heal;
+					info.healCnt += 1;
 					invalid = false;
 				}
 				else if (info.curseCnt < info.curseMinMax.x)
 				{
 					t = RoomType.Curse;
+					info.curseCnt += 1;
 					invalid = false;
 				}
 				else if (info.blessCnt < info.blessMinMax.x)
 				{
 					t = RoomType.Blessing;
+					info.blessCnt += 1;
 					invalid = false;
 				}
 				type = t;
 				switch (t)
 				{
 					case RoomType.Shop:
-						if (info.shopCnt + 1 > info.shopMinMax.y)
+						if (info.shopCnt + 1 < info.shopMinMax.y)
 						{
 							obj = GameManager.Instance.mapList.shopMap;
 							info.shopCnt += 1;
@@ -119,8 +149,7 @@ public class MapAtom : ScriptableObject
 						}
 						break;
 					case RoomType.Heal:
-						obj = GameManager.Instance.mapList.healMap;
-						if (info.healCnt + 1 > info.healMinMax.y)
+						if (info.healCnt + 1 < info.healMinMax.y)
 						{
 							obj = GameManager.Instance.mapList.healMap;
 							info.healCnt += 1;
@@ -128,8 +157,7 @@ public class MapAtom : ScriptableObject
 						}
 						break;
 					case RoomType.Curse:
-						obj = GameManager.Instance.mapList.curseMap;
-						if (info.curseCnt + 1 > info.curseMinMax.y)
+						if (info.curseCnt + 1 < info.curseMinMax.y)
 						{
 							obj = GameManager.Instance.mapList.curseMap;
 							info.curseCnt += 1;
@@ -137,8 +165,7 @@ public class MapAtom : ScriptableObject
 						}
 						break;
 					case RoomType.Blessing:
-						obj = GameManager.Instance.mapList.blessMap;
-						if (info.blessCnt + 1 > info.blessMinMax.y)
+						if (info.blessCnt + 1 < info.blessMinMax.y)
 						{
 							obj = GameManager.Instance.mapList.blessMap;
 							info.blessCnt += 1;
@@ -149,7 +176,7 @@ public class MapAtom : ScriptableObject
 				if(repCount > GameManager.MAXREPCOUNT)
 				{
 					type = RoomType.Normal;
-					break;
+					invalid = false;
 				}
 			}
 		}
@@ -163,6 +190,22 @@ public class MapAtom : ScriptableObject
 			obj = GameManager.Instance.mapList.randomMaps[Random.Range(0, GameManager.Instance.mapList.randomMaps.Count)];
 		}
 		obj.type = type;
+
+		switch (type)
+		{
+			case RoomType.Heal:
+				_mapGimik = GameManager.Instance.mapList.healGimmick;
+				break;
+			case RoomType.Curse:
+				_mapGimik = GameManager.Instance.mapList.curseGimmick;
+				break;
+			case RoomType.Blessing:
+				_mapGimik = GameManager.Instance.mapList.blessGimmick;
+				break;
+			default:
+				_mapGimik = null;
+				break;
+		}
 	}
 	
 	public void InstantiateSelf(Vector3 pos, Transform parent = null)
@@ -178,24 +221,30 @@ public class MapAtom : ScriptableObject
 		int mobCnt = Random.Range(4, 21);
 		int spPointAmt = Random.Range(4, 6);
 		HashSet<int> selecteds = new HashSet<int>();
-		List<int> spawnInfo = new List<int>(4);
-		while(selecteds.Count >= spPointAmt)
+		List<int> spawnInfo = new List<int>(4) { 0, 0, 0, 0 };
+		//Debug.Log("cnt : " + spPointAmt + " , Mobs : " + mobCnt);
+		while(selecteds.Count < spPointAmt)
 		{
-			int idx = Random.Range(0, self.transform.childCount);
+			int idx = Random.Range(0, 5);
 			selecteds.Add(idx);
+			//Debug.Log("SLOTNO : " + idx);
 		}
 		foreach (int item in selecteds)
 		{
-			Transform trm = self.transform.GetChild(item);
-			if (trm.name.Contains("MobPoint"))
+			//Debug.Log($"FINDING :MobPoint_0{item + 1} under {self.transform.name}");
+			Transform trm = self.transform.Find($"MobPoint_0{item+ 1}");
+			if (trm)
 			{
+				//Debug.Log("FOUND?");
 				EnemySlot slot = trm.GetComponent<EnemySlot>();
 				if (slot)
 				{
+					//Debug.Log("FOUND!");
 					slot.SetEnemy(EnemySpawner.instance.SpawnRand(trm, ref spawnInfo));
 					slots.Add(slot);
 				}
 			}
+			
 		}
 		
 		while (GameManager.ArraySum(spawnInfo) > mobCnt)
@@ -237,6 +286,7 @@ public class MapAtom : ScriptableObject
 	{
 		for (int i = 0; i < slots.Count; i++)
 		{
+			
 			slots[i].StartEnemy();
 		}
 	}
@@ -349,6 +399,7 @@ public class MapAtom : ScriptableObject
 		isQuestion = false;
 		if (!cleared)
 		{
+			
 			TriggerEnemy();
 			_mapGimik?.RoomInit();
 		}

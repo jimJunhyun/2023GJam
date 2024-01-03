@@ -66,7 +66,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26c3d143b9ec9e749ac761a429ae7fa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pCam: {fileID: 0}
 --- !u!114 &1966146701221396803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,7 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   list: {fileID: 11400000, guid: f12bad96876463f458ef475b241279ec, type: 2}
-  spawnMax: {x: 0, y: 0, z: 0, w: 0}
+  spawnMax: {x: 3, y: 5, z: 5, w: 7}
 --- !u!114 &8078331775434059664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +130,7 @@ MonoBehaviour:
   healRoom: {fileID: 21300000, guid: c7ab952bd2cdf9f4c81dffd184aff99d, type: 3}
   startRoom: {fileID: 21300000, guid: c7ab952bd2cdf9f4c81dffd184aff99d, type: 3}
   bossRoom: {fileID: 21300000, guid: a43935b3d77b4bb45b2fbe4c74d37102, type: 3}
-  blessRoom: {fileID: 0}
+  blessRoom: {fileID: 21300000, guid: 7df15dd9291d2cd4281218a14a230c40, type: 3}
 --- !u!114 &4275285138809562683
 MonoBehaviour:
   m_ObjectHideFlags: 0
