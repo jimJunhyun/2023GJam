@@ -9,7 +9,7 @@ public class BlessingRoomSO : MapGimikSO
     {
         _room = RoomType.Blessing;
 
-        int Randoms = UnityEngine.Random.Range(0, 4);
+        int Randoms = UnityEngine.Random.Range(0, 5);
 
         if (Randoms == 0)
         {
@@ -61,6 +61,10 @@ public class BlessingRoomSO : MapGimikSO
                 _items.AddStat.AddSpeed = 1;
             
             GameManager.Instance.player.GetItem(_items);
+        }
+        else if (Randoms == 4)
+        {
+            GameManager.Instance.player.ModifyMaxHPPlus(2);
         }
         
        

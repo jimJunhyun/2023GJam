@@ -15,7 +15,7 @@ public class LifeObject : MonoBehaviour
 	public UnityAction onDead;
 
 
-	public void Damage(float amt, Detection _dec = Detection.none)
+	public virtual void Damage(float amt, Detection _dec = Detection.none)
 	{
 		if (!isImmune)
 		{
