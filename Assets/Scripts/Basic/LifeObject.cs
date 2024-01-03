@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class LifeObject : MonoBehaviour
 {
 	[Header("HitEffect")] public EffectObject _effect;
-	
+	public Vector3 _correctionVector = new Vector3(0, 0.5f, 0);
 	
     public float hp;
 	public float maxHp;
@@ -20,6 +20,7 @@ public class LifeObject : MonoBehaviour
 
 	public virtual void Damage(float amt, Detection _dec = Detection.none)
 	{
+		Debug.Log($"{gameObject.name} 데미지!!!");
 		if (!isImmune)
 		{
 
@@ -31,9 +32,17 @@ public class LifeObject : MonoBehaviour
 				ai.StopFor(0.4f);
 				ai.anim.SetTrigger(ai.HitHash);
 			}
-			
-			EffectObject ef = PoolManager.Instance.Pop(_effect.name) as EffectObject;
-			ef.Init(transform.position + new Vector3(0,-1,0));
+
+			if (_effect)
+			{
+				EffectObject ef = PoolManager.Instance.Pop(_effect.name) as EffectObject;
+				ef.Init(transform.position + _correctionVector);
+			}
+			else
+			{
+				Debug.LogError($"{gameObject} 히트 이팩트 없음");
+			}
+
 			
 		
 			if(hp <= 0)
@@ -42,6 +51,9 @@ public class LifeObject : MonoBehaviour
 				OnDead();
 			}
 			
+		}
+		else
+		{
 		}
 	}
 

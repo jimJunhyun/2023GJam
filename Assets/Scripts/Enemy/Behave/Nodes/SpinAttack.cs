@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,12 +14,17 @@ public class SpinAttack : INode
 	bool spinning = false;
 
 	AI self;
-	public SpinAttack( AI s, int dur, float spinSpd)
+
+	private Action _act = null;
+	
+	public SpinAttack( AI s, int dur, float spinSpd, Action act)
 	{
 		self = s;
 		spinDur = dur;
 
 		spinSpeed = spinSpd;
+
+		_act = act;
 	}
 
 	public void OnNextBeat()
@@ -43,6 +49,9 @@ public class SpinAttack : INode
 			Debug.Log("SPINGO");
 			self.stat.SPEED = spinSpeed;
 			self.spinning = true;
+			
+			_act.Invoke();
+			
 		}
 
 		return NodeStat.Run;

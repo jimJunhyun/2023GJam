@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,13 +12,16 @@ public class SweepAttack : INode
 	public Transform target;
 	public float damage;
 
-	public SweepAttack(Rigidbody agt, float rad, float agl, Transform targ, float dam)
+	private Action _objs;
+
+	public SweepAttack(Rigidbody agt, float rad, float agl, Transform targ, float dam, Action obj = null)
 	{
 		agent = agt;
 		radius = rad;
 		angle = agl;
 		target = targ;
 		damage = dam;
+		_objs = obj;
 	}
 
 
@@ -28,6 +32,8 @@ public class SweepAttack : INode
 		Vector3 v = (target.transform.position - agent.transform.position);
 		v.y = 0;
 		agent.transform.rotation = Quaternion.LookRotation(v.normalized);
+		
+		_objs?.Invoke();		
 		if (v.sqrMagnitude < radius * radius)
 		{
 			if (Mathf.Acos(Vector3.Dot(Vector3.forward, v) / v.magnitude) < angle)

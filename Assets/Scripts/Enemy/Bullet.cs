@@ -1,13 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(LifeObject))]
-public class Bullet : MonoBehaviour
+public class Bullet : PoolAble
 {
 	Rigidbody rig;
 	LifeObject life;
 	public float dam;
+
+	[Header("Particle")] public ParticleSystem _particle;
+
+	private void Awake()
+	{
+		_particle.Stop();
+	}
+
 	private void OnTriggerEnter(Collider other)
 	{
 		LifeObject lf;
@@ -37,5 +46,10 @@ public class Bullet : MonoBehaviour
 	{
 		yield return new WaitForSeconds(3);
 		Destroy(gameObject);
+	}
+
+	public override void Reset()
+	{
+		_particle.Play();
 	}
 }
