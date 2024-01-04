@@ -1870,6 +1870,9 @@ MonoBehaviour:
   BeatPos: {fileID: 3207112560250123378}
   _startHitBeat: {fileID: 3288186107839446535}
   _endHitBeat: {fileID: 5826713041706060803}
+  normalHit: {fileID: 21300000, guid: 3c3d5901ba0db9f45a520a14d66878f0, type: 3}
+  addHit: {fileID: 21300000, guid: e8c050d147f31894a9e0f1e3288ea3bf, type: 3}
+  minusHit: {fileID: 21300000, guid: de6ca249a429e764a805b05e42f0b280, type: 3}
   _startRecordBeat: {fileID: 6369223337452207617}
   _endRecordBeat: {fileID: 2347381653668955817}
   _nowNode: {fileID: 0}
