@@ -18,8 +18,15 @@ public class LifeObject : MonoBehaviour
 	public UnityAction onDead;
 
 
+	public AudioClip hitSound;
+	public AudioClip critSound;
+
+	public EffectObject dieEff;
+
+
 	public virtual void Damage(float amt, Detection _dec = Detection.none)
 	{
+		Debug.Log("판정 : " + _dec);
 		Debug.Log($"{gameObject.name} 데미지!!!");
 		if (!isImmune)
 		{
@@ -31,6 +38,16 @@ public class LifeObject : MonoBehaviour
 			{
 				ai.StopFor(0.4f);
 				ai.anim.SetTrigger(ai.HitHash);
+				if(_dec == Detection.Perfect)
+				{
+					SoundManager.Instance.PlaySFX(critSound, SoundSetting.SFX);
+				}
+				else
+				{
+
+					SoundManager.Instance.PlaySFX(hitSound, SoundSetting.SFX);
+				}
+
 			}
 
 			if (_effect)
@@ -49,6 +66,15 @@ public class LifeObject : MonoBehaviour
 			{
 				boss.StopFor(0.2f);
 				boss.anim.SetTrigger(boss.HitHash);
+				if (_dec == Detection.Perfect)
+				{
+					SoundManager.Instance.PlaySFX(critSound, SoundSetting.SFX);
+				}
+				else
+				{
+
+					SoundManager.Instance.PlaySFX(hitSound, SoundSetting.SFX);
+				}
 			}
 		
 			if(hp <= 0)
@@ -81,7 +107,7 @@ public class LifeObject : MonoBehaviour
 	{
 		if (!dead)
 		{
-
+			ShootEffect(dieEff, gameObject);
 			dead = true;
 			gameObject.SetActive(false);
 			AI ai;
@@ -113,5 +139,12 @@ public class LifeObject : MonoBehaviour
 	{
 		hp = maxHp;
 		dead = false;
+	}
+
+	public void ShootEffect(PoolAble _mono, GameObject obj)
+	{
+		EffectObject ef = PoolManager.Instance.Pop(_mono.name) as EffectObject;
+		Debug.LogWarning($"Effect : {GameManager.Instance.player.GetInstanceID()}");
+		ef.Init(obj.transform.position);
 	}
 }

@@ -426,6 +426,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4560955800602207820, guid: 6bca65cdd641fcf4e88e572d29425881,
+        type: 3}
+      propertyPath: _i
+      value: 
+      objectReference: {fileID: 8300000, guid: becaa015e84d1af4fb1cf56f1135bd92, type: 3}
+    - target: {fileID: 4560955800602207820, guid: 6bca65cdd641fcf4e88e572d29425881,
+        type: 3}
+      propertyPath: _j
+      value: 
+      objectReference: {fileID: 8300000, guid: becaa015e84d1af4fb1cf56f1135bd92, type: 3}
+    - target: {fileID: 4560955800602207820, guid: 6bca65cdd641fcf4e88e572d29425881,
+        type: 3}
+      propertyPath: _k
+      value: 
+      objectReference: {fileID: 8300000, guid: f1bb94a09928b9343aed51d072b35024, type: 3}
+    - target: {fileID: 4560955800602207820, guid: 6bca65cdd641fcf4e88e572d29425881,
+        type: 3}
+      propertyPath: _o
+      value: 
+      objectReference: {fileID: 8300000, guid: f1bb94a09928b9343aed51d072b35024, type: 3}
     - target: {fileID: 4785956043059366430, guid: 6bca65cdd641fcf4e88e572d29425881,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -764,6 +784,29 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 922298339307033857}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1464248813 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7056407446786999310, guid: d95983b8bf2147f499a9cd51711fcac4,
+    type: 3}
+  m_PrefabInstance: {fileID: 6030087923720485669}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1464248818
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464248813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 0
+  mNoiseOffsets: {x: -206.87256, y: 313.44223, z: -618.5856}
 --- !u!1001 &869241082423503277
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1026,7 +1069,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7056407446786999310, guid: d95983b8bf2147f499a9cd51711fcac4,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1464248818}
   m_SourcePrefab: {fileID: 100100000, guid: d95983b8bf2147f499a9cd51711fcac4, type: 3}
 --- !u!1001 &8346658954870674261
 PrefabInstance:
