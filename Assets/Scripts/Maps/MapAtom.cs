@@ -64,6 +64,19 @@ public class MapAtom : ScriptableObject
 
 	[Header("MapGimik")] public MapGimikSO _mapGimik;
 
+	public bool IsCleared
+	{
+		get
+		{
+			bool res = true;
+			for (int i = 0; i < slots.Count; i++)
+			{
+				res &= slots[i].deadMobCnt == slots[i].myEnemies.Count;
+			}
+			return res;
+		}
+	}
+
 	private MapPP mPP;
 	public virtual void Init(Vector3 pos, MapGenerator info)
 	{
@@ -309,24 +322,29 @@ public class MapAtom : ScriptableObject
 
 	public void SetClearState()
 	{
-		cleared = true;
-		mPP.AdjustSaturation(true);
-		if (up)
+		if (!cleared)
 		{
-			upPtExit.SetValid();
+			Debug.Log("CLEARED");
+			cleared = true;
+			mPP.AdjustSaturation(true);
+			if (up)
+			{
+				upPtExit.SetValid();
+			}
+			if (down)
+			{
+				downPtExit.SetValid();
+			}
+			if (left)
+			{
+				leftPtExit.SetValid();
+			}
+			if (right)
+			{
+				rightPtExit.SetValid();
+			}
 		}
-		if (down)
-		{
-			downPtExit.SetValid();
-		}
-		if (left)
-		{
-			leftPtExit.SetValid();
-		}
-		if (right)
-		{
-			rightPtExit.SetValid();
-		}
+		
 	}
 
 	public void ResetClearState()
