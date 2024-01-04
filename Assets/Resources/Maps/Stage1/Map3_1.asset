@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd616900df637c646a06e03b5a1f6785, type: 3}
   m_Name: Map3_1
   m_EditorClassIdentifier: 
-  obj: {fileID: 1601154212452131797, guid: 2a930b2985d3c1d48b6da28e524d6973, type: 3}
+  obj: {fileID: 7021074989804766103, guid: 99540aa823412c64796c52a5bf81d1ad, type: 3}
   isQuestion: 1
   type: 7
   up: {fileID: 0}
