@@ -6,6 +6,7 @@ public class Player_LifeObject : LifeObject
 {
 
     internal readonly int HitHash = Animator.StringToHash("Hit");
+    internal readonly int DeathHash = Animator.StringToHash("Death");
 
 
 	private void Start()
@@ -13,6 +14,8 @@ public class Player_LifeObject : LifeObject
 		onDead += () => 
         {
             //change scene to game over
+            GameManager.Instance.player.playerCtrl.anim.SetTrigger(DeathHash);
+
         };
 	}
 
