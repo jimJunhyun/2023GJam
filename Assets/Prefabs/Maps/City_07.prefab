@@ -47,6 +47,7 @@ MonoBehaviour:
   spawnRange: 10
   myEnemies: []
   myEnemyLifes: []
+  deadMobCnt: 0
 --- !u!1 &482928897005872452
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,6 +248,7 @@ MonoBehaviour:
   spawnRange: 10
   myEnemies: []
   myEnemyLifes: []
+  deadMobCnt: 0
 --- !u!1 &1112016113078141948
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,6 +483,7 @@ MonoBehaviour:
   spawnRange: 10
   myEnemies: []
   myEnemyLifes: []
+  deadMobCnt: 0
 --- !u!1 &1400390506501756995
 GameObject:
   m_ObjectHideFlags: 0
@@ -1099,6 +1102,7 @@ MonoBehaviour:
   spawnRange: 10
   myEnemies: []
   myEnemyLifes: []
+  deadMobCnt: 0
 --- !u!1 &6316120589408935821
 GameObject:
   m_ObjectHideFlags: 0
@@ -1588,6 +1592,7 @@ MonoBehaviour:
   spawnRange: 10
   myEnemies: []
   myEnemyLifes: []
+  deadMobCnt: 0
 --- !u!1 &8624155716919572826
 GameObject:
   m_ObjectHideFlags: 0
@@ -2487,6 +2492,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: chimney-big
       objectReference: {fileID: 0}
+    - target: {fileID: 6637464888515320142, guid: 9fecc4f21a8b4494a84476c4db7113d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6637464888517576590, guid: 9fecc4f21a8b4494a84476c4db7113d5,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 02568ad2e6595bf478202f194c077387, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -2499,6 +2514,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6168259311011765169}
+    - targetCorrespondingSourceObject: {fileID: 6637464888515320142, guid: 9fecc4f21a8b4494a84476c4db7113d5,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 313357481717091854}
   m_SourcePrefab: {fileID: 100100000, guid: 9fecc4f21a8b4494a84476c4db7113d5, type: 3}
 --- !u!4 &6313044067269305476 stripped
 Transform:
@@ -2528,6 +2547,18 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 9.194, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &313357481717091854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6313044067269671076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dca7963daacc1f14c9e1124f55991fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1025286731587026704
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3489,6 +3520,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7452207813131357588}
     m_Modifications:
+    - target: {fileID: 8388509802339390, guid: 906ac1504e08abb488ef2fcf0c391d7d, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242080209152408738, guid: 906ac1504e08abb488ef2fcf0c391d7d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2690859893311618622, guid: 906ac1504e08abb488ef2fcf0c391d7d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 02568ad2e6595bf478202f194c077387, type: 2}
+    - target: {fileID: 5081800125688904264, guid: 906ac1504e08abb488ef2fcf0c391d7d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 02568ad2e6595bf478202f194c077387, type: 2}
     - target: {fileID: 6305011594295878082, guid: 906ac1504e08abb488ef2fcf0c391d7d,
         type: 3}
       propertyPath: m_Name
@@ -3571,7 +3621,51 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5402046075038572673}
+    - targetCorrespondingSourceObject: {fileID: 2242080209152408738, guid: 906ac1504e08abb488ef2fcf0c391d7d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6047266692268650662}
+    - targetCorrespondingSourceObject: {fileID: 8388509802339390, guid: 906ac1504e08abb488ef2fcf0c391d7d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4105585148436218022}
   m_SourcePrefab: {fileID: 100100000, guid: 906ac1504e08abb488ef2fcf0c391d7d, type: 3}
+--- !u!1 &393264460815289315 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2242080209152408738, guid: 906ac1504e08abb488ef2fcf0c391d7d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1902876274109986625}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6047266692268650662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393264460815289315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dca7963daacc1f14c9e1124f55991fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1906591291457579903 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8388509802339390, guid: 906ac1504e08abb488ef2fcf0c391d7d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1902876274109986625}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4105585148436218022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906591291457579903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dca7963daacc1f14c9e1124f55991fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5070043745359088697 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6643994788935367544, guid: 906ac1504e08abb488ef2fcf0c391d7d,
@@ -4116,10 +4210,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7753333065977971603}
     m_Modifications:
+    - target: {fileID: 3188902437867901471, guid: b70de1002ec650944a5855eeb48cea0b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 02568ad2e6595bf478202f194c077387, type: 2}
     - target: {fileID: 3981672105406231498, guid: b70de1002ec650944a5855eeb48cea0b,
         type: 3}
       propertyPath: m_Name
       value: cargo-apocalypse-a
+      objectReference: {fileID: 0}
+    - target: {fileID: 3981672105406231498, guid: b70de1002ec650944a5855eeb48cea0b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4326390253916105072, guid: b70de1002ec650944a5855eeb48cea0b,
         type: 3}
@@ -4194,6 +4298,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 232186921925637644}
+    - targetCorrespondingSourceObject: {fileID: 3981672105406231498, guid: b70de1002ec650944a5855eeb48cea0b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6742338083928202980}
   m_SourcePrefab: {fileID: 100100000, guid: b70de1002ec650944a5855eeb48cea0b, type: 3}
 --- !u!1 &1450424368155434831 stripped
 GameObject:
@@ -4217,6 +4325,18 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0.043, y: 3.0870001, z: -0.105000004}
   m_TimeToStationary: 0.5
+--- !u!114 &6742338083928202980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450424368155434831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dca7963daacc1f14c9e1124f55991fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2263940533834073589 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4326390253916105072, guid: b70de1002ec650944a5855eeb48cea0b,
@@ -4668,6 +4788,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7452207813131357588}
     m_Modifications:
+    - target: {fileID: 2597933644356114197, guid: 7cc8dcc4cca050d4c990319156796f52,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 02568ad2e6595bf478202f194c077387, type: 2}
     - target: {fileID: 3766867730393607290, guid: 7cc8dcc4cca050d4c990319156796f52,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -4738,6 +4863,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: building-policestation-apocalypse
       objectReference: {fileID: 0}
+    - target: {fileID: 4543369592752207552, guid: 7cc8dcc4cca050d4c990319156796f52,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -4758,6 +4888,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5941166166499085642}
+    - targetCorrespondingSourceObject: {fileID: 4543369592752207552, guid: 7cc8dcc4cca050d4c990319156796f52,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4376131705874172811}
   m_SourcePrefab: {fileID: 100100000, guid: 7cc8dcc4cca050d4c990319156796f52, type: 3}
 --- !u!4 &45410817053463043 stripped
 Transform:
@@ -4787,6 +4921,18 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: -0.128, y: 8.2890005, z: 1.427}
   m_TimeToStationary: 0.5
+--- !u!114 &4376131705874172811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858644129542752441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dca7963daacc1f14c9e1124f55991fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4168669123754698698
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6405,6 +6551,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: industry-storage
       objectReference: {fileID: 0}
+    - target: {fileID: 3319918821040778129, guid: a520474f707db444aae91b030252930d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3319918821042976081, guid: a520474f707db444aae91b030252930d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 02568ad2e6595bf478202f194c077387, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6413,6 +6569,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 4091217151477597865}
+    - targetCorrespondingSourceObject: {fileID: 3319918821040778129, guid: a520474f707db444aae91b030252930d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2921674889428978527}
   m_SourcePrefab: {fileID: 100100000, guid: a520474f707db444aae91b030252930d, type: 3}
 --- !u!1 &8100566459376764959 stripped
 GameObject:
@@ -6436,6 +6596,18 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 2.8500001, z: 0.17400001}
   m_TimeToStationary: 0.5
+--- !u!114 &2921674889428978527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8100566459376764959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dca7963daacc1f14c9e1124f55991fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8100566459377194047 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3319918821040682929, guid: a520474f707db444aae91b030252930d,

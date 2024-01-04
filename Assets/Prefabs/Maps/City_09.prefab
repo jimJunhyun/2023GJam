@@ -3090,6 +3090,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: power_line_pole
       objectReference: {fileID: 0}
+    - target: {fileID: 7522740390152317553, guid: 6e317a5b37391084cb7b98cc1556e704,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 7522740390152418897, guid: 6e317a5b37391084cb7b98cc1556e704,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -3155,6 +3160,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7522740390154319025, guid: 6e317a5b37391084cb7b98cc1556e704,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 02568ad2e6595bf478202f194c077387, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3163,6 +3173,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3480973613452727079}
+    - targetCorrespondingSourceObject: {fileID: 7522740390152317553, guid: 6e317a5b37391084cb7b98cc1556e704,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6341543136490749754}
   m_SourcePrefab: {fileID: 100100000, guid: 6e317a5b37391084cb7b98cc1556e704, type: 3}
 --- !u!4 &5195513931053128495 stripped
 Transform:
@@ -3192,6 +3206,18 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 6.964, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &6341543136490749754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5195513931053156111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dca7963daacc1f14c9e1124f55991fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2465295759710775509
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3723,6 +3749,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1378636594493874286}
     m_Modifications:
+    - target: {fileID: 5590961993106770104, guid: b24626a0d6b4f1040a7a5294ddc1fd4b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 02568ad2e6595bf478202f194c077387, type: 2}
     - target: {fileID: 5590961993108671064, guid: b24626a0d6b4f1040a7a5294ddc1fd4b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -3793,6 +3824,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: building-hospital
       objectReference: {fileID: 0}
+    - target: {fileID: 5590961993108706936, guid: b24626a0d6b4f1040a7a5294ddc1fd4b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3801,6 +3837,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2396453330459194714}
+    - targetCorrespondingSourceObject: {fileID: 5590961993108706936, guid: b24626a0d6b4f1040a7a5294ddc1fd4b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4031794451021081777}
   m_SourcePrefab: {fileID: 100100000, guid: b24626a0d6b4f1040a7a5294ddc1fd4b, type: 3}
 --- !u!1 &8689729808290671099 stripped
 GameObject:
@@ -3824,6 +3864,18 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 10.150001, z: 0.05}
   m_TimeToStationary: 0.5
+--- !u!114 &4031794451021081777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8689729808290671099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dca7963daacc1f14c9e1124f55991fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8689729808290969051 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5590961993108671064, guid: b24626a0d6b4f1040a7a5294ddc1fd4b,
