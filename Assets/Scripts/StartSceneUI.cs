@@ -6,13 +6,25 @@ using UnityEngine.UI;
 using DG.Tweening;
 
 
+public enum SceneEnum
+{
+    tutorial,
+    start,
+    setting,
+    exit
+}
+
 public class StartSceneUI : MonoBehaviour
 {
     [SerializeField] private Image _tutorial;
-    
     [SerializeField] private Image _start;
     [SerializeField] private Image _setting;
     [SerializeField] private Image _exit;
+
+    private SceneEnum _scene;
+
+    private int cnt = 0;
+    
 
     public void Tweening(Image img)
     {
@@ -31,18 +43,27 @@ public class StartSceneUI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.J))
         {
             Tweening(_tutorial);
+            if (_scene != SceneEnum.tutorial)
+            {
+                _scene = SceneEnum.tutorial;
+                
+            }
+            
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
             Tweening(_start);
+            _scene = SceneEnum.tutorial;
         }
         if (Input.GetKeyDown(KeyCode.I))
         {
             Tweening(_setting);
+            _scene = SceneEnum.tutorial;
         }
         if (Input.GetKeyDown(KeyCode.O))
         {
             Tweening(_exit);
+            _scene = SceneEnum.tutorial;
         }
     }
 }
