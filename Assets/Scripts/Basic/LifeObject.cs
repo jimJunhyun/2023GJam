@@ -52,7 +52,7 @@ public class LifeObject : MonoBehaviour
 				{
 					SoundManager.Instance.PlaySFX(hitSound, SoundSetting.SFX);
 					DamageFont damageObj = PoolManager.Instance.Pop("DamageFont") as DamageFont;
-					damageObj.Init(transform, (int)amt, Color.white);
+					damageObj.Init(transform, (int)amt, Color.red);
 				}
 
 			}

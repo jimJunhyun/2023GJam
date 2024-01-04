@@ -26,10 +26,12 @@ public class StartSceneUI : MonoBehaviour
     [SerializeField] private Image _exit;
 
     [SerializeField] private Slider _slider;
+    [SerializeField] private UIUpFont _up;
 
     private SceneEnum _scene;
 
     private int cnt = 0;
+    private bool Go = false;
     
 
     public void Tweening(Image img)
@@ -62,9 +64,9 @@ public class StartSceneUI : MonoBehaviour
 
     private void Update()
     {
-        if (cnt > 8)
+        if (cnt > 8 && Go ==false)
         {
-            cnt = 0;
+            Go = true;
             LoadScene();
         }
         
@@ -79,6 +81,8 @@ public class StartSceneUI : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.J))
         {
+
+            
             Tweening(_tutorial);
             if (_scene != SceneEnum.tutorial)
             {
@@ -86,10 +90,23 @@ public class StartSceneUI : MonoBehaviour
                 cnt = 0;
             }
             cnt++;
+            
+            UIUpFont ui = PoolManager.Instance.Pop(_up.name) as UIUpFont;
+            if (9 - cnt >= 1)
+            {
+                ui.Init(_tutorial.rectTransform,$"{9-cnt}");
+                
+            }
+            else
+            {
+                ui.Init(_tutorial.rectTransform,$"GO!");
+            }
 
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
+
+            
             Tweening(_start);
             if (_scene != SceneEnum.start)
             {
@@ -97,23 +114,60 @@ public class StartSceneUI : MonoBehaviour
                 cnt = 0;
             }
             cnt++;
+            UIUpFont ui = PoolManager.Instance.Pop(_up.name) as UIUpFont;
+            if (9 - cnt >= 1)
+            {
+                ui.Init(_start.rectTransform,$"{9-cnt}");
+                
+            }
+            else
+            {
+                ui.Init(_start.rectTransform,$"GO!");
+            }
         }
         if (Input.GetKeyDown(KeyCode.I))
         {
+
+            
             Tweening(_setting);
             if (_scene != SceneEnum.setting)
             {
                 _scene = SceneEnum.setting;
                 cnt = 0;
             }
+            
+            UIUpFont ui = PoolManager.Instance.Pop(_up.name) as UIUpFont;
+            if (9 - cnt >= 1)
+            {
+                ui.Init(_setting.rectTransform,$"{9-cnt}");
+                
+            }
+            else
+            {
+                ui.Init(_setting.rectTransform,$"GO!");
+            }
         }
         if (Input.GetKeyDown(KeyCode.O))
         {
+
+            
             Tweening(_exit);
             if (_scene != SceneEnum.exit)
             {
                 _scene = SceneEnum.exit;
                 cnt = 0;
+            }
+            
+            
+            UIUpFont ui = PoolManager.Instance.Pop(_up.name) as UIUpFont;
+            if (9 - cnt >= 1)
+            {
+                ui.Init(_exit.rectTransform,$"{9-cnt}");
+                
+            }
+            else
+            {
+                ui.Init(_exit.rectTransform,$"GO!");
             }
         }
     }
