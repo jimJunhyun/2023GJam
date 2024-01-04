@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -44,11 +45,14 @@ public class LifeObject : MonoBehaviour
 				if(_dec == Detection.Perfect)
 				{
 					SoundManager.Instance.PlaySFX(critSound, SoundSetting.SFX);
+					DamageFont damageObj = PoolManager.Instance.Pop("DamageFont") as DamageFont;
+					damageObj.Init(transform, (int)amt, Color.blue);
 				}
 				else
 				{
-
 					SoundManager.Instance.PlaySFX(hitSound, SoundSetting.SFX);
+					DamageFont damageObj = PoolManager.Instance.Pop("DamageFont") as DamageFont;
+					damageObj.Init(transform, (int)amt, Color.white);
 				}
 
 			}
@@ -72,13 +76,19 @@ public class LifeObject : MonoBehaviour
 				if (_dec == Detection.Perfect)
 				{
 					SoundManager.Instance.PlaySFX(critSound, SoundSetting.SFX);
+					DamageFont damageObj = PoolManager.Instance.Pop("DamageFont") as DamageFont;
+					damageObj.Init(transform, (int)amt, Color.blue);
 				}
 				else
 				{
-
+					DamageFont damageObj = PoolManager.Instance.Pop("DamageFont") as DamageFont;
+					damageObj.Init(transform, (int)amt, Color.white);
 					SoundManager.Instance.PlaySFX(hitSound, SoundSetting.SFX);
 				}
 			}
+			
+
+			
 		
 			if(hp <= 0)
 			{

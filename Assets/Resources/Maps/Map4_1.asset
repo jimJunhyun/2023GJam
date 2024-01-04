@@ -19,10 +19,10 @@ MonoBehaviour:
   down: {fileID: 0}
   left: {fileID: 0}
   right: {fileID: 11400000, guid: 7d6eb724ee2c10b46bcfd1d173b9c2c0, type: 2}
-  upPt: {x: -159.5, y: 0, z: 100.4}
-  downPt: {x: -160.2, y: 0, z: 62.1}
-  leftPt: {x: -178.7, y: 0, z: 64.2}
-  rightPt: {x: -140, y: 0, z: 64.8}
+  upPt: {x: -229.5, y: 0, z: 135.4}
+  downPt: {x: -230.2, y: 0, z: 97.1}
+  leftPt: {x: -248.7, y: 0, z: 99.2}
+  rightPt: {x: -210, y: 0, z: 99.8}
   upPtExit: {fileID: 0}
   downPtExit: {fileID: 0}
   leftPtExit: {fileID: 0}
@@ -35,4 +35,3 @@ MonoBehaviour:
   rootOffSet: {x: 0, y: 0, z: 0}
   isRandomizable: 1
   cleared: 0
-  _mapGimik: {fileID: 11400000, guid: b2fe13631ad7bc448aa519b580a779f6, type: 2}
