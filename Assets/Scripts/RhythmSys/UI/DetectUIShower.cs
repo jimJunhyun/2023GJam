@@ -9,6 +9,7 @@ public class DetectUIShower : MonoBehaviour
 	public Sprite perfect;
 	public Sprite good;
 	public Sprite bad;
+    public Sprite miss;
 
 	Transform parent;
 
@@ -21,17 +22,20 @@ public class DetectUIShower : MonoBehaviour
 	public void ShowDetectionUI(Vector3 pos, Detection data)
 	{
 		DetectUI img = Instantiate(detImg, pos, Quaternion.identity, parent);
-		switch (data)
-		{
-			case Detection.Perfect:
-				img.SetInfo(perfect, 0.5f);
-				break;
-			case Detection.Good:
-				img.SetInfo(good, 0.5f);
-				break;
-			case Detection.Bad:
-				img.SetInfo(bad, 0.5f);
-				break;
-		}
-	}
+        switch (data)
+        {
+            case Detection.Perfect:
+                img.SetInfo(perfect, 0.5f);
+                break;
+            case Detection.Good:
+                img.SetInfo(good, 0.5f);
+                break;
+            case Detection.Bad:
+                img.SetInfo(bad, 0.5f);
+                break;
+            case Detection.Miss:
+                img.SetInfo(miss, 0.5f);
+                break;
+        }
+    }
 }

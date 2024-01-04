@@ -7,5 +7,5 @@ public abstract class MapGimikSO : ScriptableObject
     [Header("Type")]
     public RoomType _room;
 
-    public abstract void RoomInit();
+    public abstract string RoomInit();
 }

@@ -10,13 +10,15 @@ public enum Detection
     Perfect,
     Good,
     Bad,
+    Miss,
     none
 }
 
 public class BeatUISystem : Singleton<BeatUISystem>
 {
     
-     public BeatLineUI _beatLineImg;
+
+    public BeatLineUI _beatLineImg;
     public HitUI _beatImg;
 
     private List<HitUI> _hit = new();
@@ -44,13 +46,14 @@ public class BeatUISystem : Singleton<BeatUISystem>
     
     [Header("Effect")]
     public PoolAble _hitEffect;
+    public PoolAble _hitEffectPerf;
 
     private int hitCount = 0;
     private int _perfectCount = 0;
     private bool PerfectMD = false;
     private int _goodCount = 0;
     private bool GoodMD = false;
-
+    private int missCount = 0;
     public int HitCount => _hit.Count;
     public int RecordCount => _record.Count;
 
@@ -84,7 +87,8 @@ public class BeatUISystem : Singleton<BeatUISystem>
         _perfectCount = 0;
         _goodCount = 0;
         hitCount = 0;
-        
+        missCount = 0;
+
         _hitBeatLine = Instantiate(_beatLineImg,BeatPos);
         
         _hitBeatLine.Init(_startHitBeat, _endHitBeat);
@@ -130,19 +134,28 @@ public class BeatUISystem : Singleton<BeatUISystem>
         img.ImageUI.sprite=addHit;
     }
 
-    public void RemoveNode()
+    public void RemoveNode(bool value = false)
     {
+        float a = 0;
+
         if (_recordBeatLine == null)
             return;
+        if(value == true)
+        {
+            a = 0.1f;
+        }
         HitUI img = Instantiate(_beatImg, BeatPos);
         _record.Add(img);
-        img.RectPS.localPosition = _recordBeatLine.RectPS.localPosition;
-        img.Init(_recordBeatLine._position, true);
+        img.RectPS.localPosition = _recordBeatLine.RectPS.localPosition + new Vector3(-a,0,0);
+        img.Init(_recordBeatLine._position -a, true);
         img.ImageUI.sprite = minusHit;
     }
 
     public void HitNode(AudioClip _audio, SoundSetting soundSet)
     {
+        if (missCount >= _hit.Count * 1.5f) 
+            return;
+
         if (_hitBeatLine == null)
             return;
 
@@ -157,13 +170,13 @@ public class BeatUISystem : Singleton<BeatUISystem>
 
         float a = _hitBeatLine.Position;
         float b = _nowNode.Position;
-        
-        
 
-        
-        
+
+        missCount++;
+
+
         // 비팅 시스템 만들기
-        if (Mathf.Abs(a - b) < 0.03f)
+        if (Mathf.Abs(a - b) < 0.015f)
         {
             _perfectCount++;
             Debug.Log($"쵝오, {a} | {b} | {Mathf.Abs(a - b)}");
@@ -180,7 +193,7 @@ public class BeatUISystem : Singleton<BeatUISystem>
                 }
                 else
                 {
-                    ShootEffect(_hitEffect);
+                    ShootEffect(_hitEffectPerf);
                     GameManager.Instance.detecter.ShowDetectionUI(_nowNode.transform.position, Detection.Perfect);
                     GameManager.Instance.player.PlayerAttack.DoAttack(Detection.Perfect);
                 }
@@ -192,22 +205,22 @@ public class BeatUISystem : Singleton<BeatUISystem>
                     SoundManager.Instance.PlaySFX(_audio, SoundSetting.KickDrum);
                     break;
                 case SoundSetting.SnareDrum:
-                    SoundManager.Instance.PlaySFX(_audio,SoundSetting.SnareDrum);
+                    SoundManager.Instance.PlaySFX(_audio, SoundSetting.SnareDrum);
                     break;
                 default:
                     break;
             }
 
             //SoundManager.Instance.PlaySFX(_audio);
-            
+
             hitCount++;
         }
         else if (Mathf.Abs(a - b) < 0.04f)
         {
-            
-            
+
+
             _goodCount++;
-            
+
             if (GameManager.Instance.player)
             {
                 ShootEffect(_hitEffect);
@@ -228,14 +241,14 @@ public class BeatUISystem : Singleton<BeatUISystem>
             }
             Debug.Log($"굳, {a} | {b} | {Mathf.Abs(a - b)}");
 
-            
+
             hitCount++;
         }
-        else if (Mathf.Abs(a-b) < 0.05f)
+        else if (Mathf.Abs(a - b) < 0.05f)
         {
 
-            
-            
+
+
             Debug.Log($"밷, {a} | {b} | {Mathf.Abs(a - b)}");
             if (GameManager.Instance.player)
             {
@@ -245,7 +258,7 @@ public class BeatUISystem : Singleton<BeatUISystem>
                 GameManager.Instance.detecter.ShowDetectionUI(_nowNode.transform.position, Detection.Bad);
             }
             hitCount++;
-            
+
             //SoundManager.Instance.PlaySFX(_audio);
             switch (soundSet)
             {
@@ -258,13 +271,21 @@ public class BeatUISystem : Singleton<BeatUISystem>
                 default:
                     break;
             }
-        }   
-        else
-        {
-            Debug.Log("노드 멀음");
-            return;
         }
-        
+        else if (Mathf.Abs(a - b) < 0.1f)
+        {
+            if (GameManager.Instance.player)
+            {
+                ShootEffect(_hitEffect);
+                GameManager.Instance.player.Inven.NodeInvoking();
+                //GameManager.Instance.player.PlayerAttack.DoAttack(Detection.Bad);
+                GameManager.Instance.detecter.ShowDetectionUI(_nowNode.transform.position, Detection.Miss);
+            }
+            Debug.Log("노드 멀음");
+
+            RemoveNode(true);
+        }
+        else return;
         _nowNode.isHit = true;
         //_nowNode.ImageUI.color = new Color(1, 0, 0, 0.3f);
         _nowNode = null;
@@ -373,13 +394,32 @@ public class BeatUISystem : Singleton<BeatUISystem>
                 return -1;
             }
         });
-        foreach (var VARIABLE in _hit)
+        for(int i = 0; i< _hit.Count; i++)
         {
-            VARIABLE.RectPS.localPosition =
-                Vector3.Lerp(_startHitBeat.localPosition, _endHitBeat.localPosition, VARIABLE.Position);
-            VARIABLE.ImageUI.sprite = normalHit;
-            VARIABLE.isHit = false;
+            _hit[i].RectPS.localPosition =
+                Vector3.Lerp(_startHitBeat.localPosition, _endHitBeat.localPosition, _hit[i].Position);
+            _hit[i].ImageUI.sprite = normalHit;
+            _hit[i].isHit = false;
+
+            if(i!=0&&i<hitCount)
+            {
+                if (Mathf.Abs(_hit[i-1].Position - _hit[i].Position) > 0.05f)
+                {
+                    _record.Add(_hit[i]);
+                }
+              
+            }
         }
+
+        for (int i = 0; i < _record.Count; i++)
+        {
+            if (_hit.Contains(_record[i]))
+            {
+                _hit.Remove(_record[i]);
+                DestroyImmediate(_record[i].gameObject);
+            }
+        }
+        _record.Clear();
     }
 
     // 안씀

@@ -50,7 +50,6 @@ public class EnemySlot : MonoBehaviour
 			{
 				myEnemies[i].StopAI();
 			}
-			
 		}
 		
 	}

@@ -9,8 +9,8 @@ using UnityEngine.Events;
 public class Interective : MonoBehaviour
 {
     [SerializeField] private TextMeshPro _text;
-    [SerializeField] public string _beforeText;
-    [SerializeField] public string _afterText;
+    [TextArea][SerializeField] public string _beforeText;
+    [TextArea][SerializeField] public string _afterText;
     public UnityEvent _action;
 
     private void Awake()

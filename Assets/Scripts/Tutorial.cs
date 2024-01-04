@@ -66,11 +66,10 @@ public class Tutorial : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return))
         {
             _quertBar.color= Color.green;
-            _subText.text = "Enter 누르기 O";
             return true;
         }
 
-        _subText.text = "Enter 누르기 X";
+        _subText.text = "Enter 누르기";
         return false;
     }
     
@@ -92,7 +91,7 @@ public class Tutorial : MonoBehaviour
             _quertBar.color= Color.green;
             BeatSystem.Instance.StopBeat();
             BeatSystem.Instance._iConnect =false;
-            _subText.text = $"I를 눌러 비트 추가하기( {4}/4 )";
+            _subText.text = $"I를 눌러 비트 추가하기( 완료 )";
             if (BeatSystem.Instance._reslStop == true)
             {
                 _isfirst = true;
@@ -111,12 +110,11 @@ public class Tutorial : MonoBehaviour
             BeatSystem.Instance._jConnect = true;
             BeatSystem.Instance._kConnect = true;
         }
-        _subText.text = $"J와 K를 눌러 모든 비트를 연주하기 X";
+        _subText.text = $"J or K를 눌러 모든 비트를 연주하기";
         
         if (BeatUISystem.Instance.IsRuleCollect())
         {
             _quertBar.color= Color.green;
-            _subText.text = $"J와 K를 눌러 모든 비트를 연주하기 O";
             _isfirst = true;
             return true;
         }
@@ -140,7 +138,7 @@ public class Tutorial : MonoBehaviour
         if (BeatUISystem.Instance.HitCount >= 7)
         {
             _quertBar.color= Color.green;
-            _subText.text = $"I를 눌러 비트 추가하기( {7}/7 )";
+            _subText.text = $"I를 눌러 비트 추가하기( 완료 )";
             BeatSystem.Instance.StopBeat();
             BeatSystem.Instance._iConnect = false;
             if (BeatSystem.Instance._reslStop == true)
@@ -165,12 +163,12 @@ public class Tutorial : MonoBehaviour
             BeatSystem.Instance._iConnect = false;
             BeatSystem.Instance._oConnet = true;
         }        
-        _subText.text = $"O를 눌러 비트 제거하기( {BeatUISystem.Instance.HitCount}!=4 )";
+        _subText.text = $"O를 눌러 비트 제거하기( {BeatUISystem.Instance.HitCount -4}개 지우기 )";
 
         if (BeatUISystem.Instance.HitCount <= 4)
         {
             _quertBar.color= Color.green;
-            _subText.text = $"O를 눌러 비트 제거하기( {BeatUISystem.Instance.HitCount}==4 )";
+            _subText.text = $"O를 눌러 비트 제거하기( 완료 )";
 
             _isfirst = true;
             return true;

@@ -28,10 +28,10 @@ MonoBehaviour:
   leftPtExit: {fileID: 0}
   rightPtExit: {fileID: 0}
   spRoomEnter: {fileID: 0}
-  spEnterPt: {x: 0, y: 0, z: 0}
+  spEnterPt: {x: 228.35, y: 300, z: 230}
   spRoomExit: {fileID: 0}
-  spExitPt: {x: 0, y: 0, z: 0}
-  spRoom: {fileID: 0}
+  spExitPt: {x: 230.3, y: 0, z: 244.16}
+  spRoom: {fileID: 3900043655947235007, guid: 31049d2d497953c4d8a7a1056ee3196a, type: 3}
   rootOffSet: {x: 0, y: 0, z: 0}
   isRandomizable: 1
   cleared: 0
