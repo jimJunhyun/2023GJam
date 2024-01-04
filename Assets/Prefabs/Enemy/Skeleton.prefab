@@ -96,7 +96,7 @@ MonoBehaviour:
   spinSpd: 0
   _chargerEffectAttack: {fileID: 0}
   _longRangeEffectAttack: {fileID: 0}
-  _sweepEffect: {fileID: 8728514668055802655, guid: 429cadb9f761ea141ac11372d89d934e,
+  _sweepEffect: {fileID: 92320037439206066, guid: e933deb8d7934b4499aedb42994df27a,
     type: 3}
   _bulletShootEffect: {fileID: 0}
 --- !u!114 &6321252269476767568

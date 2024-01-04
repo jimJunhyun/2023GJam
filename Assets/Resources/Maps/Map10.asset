@@ -15,7 +15,7 @@ MonoBehaviour:
   obj: {fileID: -7935989439776852606, guid: 65decd916ea1cd24e963104b44d8577f, type: 3}
   isQuestion: 0
   type: 6
-  up: {fileID: 11400000, guid: 467eba4f3e44d164db07374456c91354, type: 2}
+  up: {fileID: 11400000, guid: 2d7e121c1a9726c4a8cd32b144f98135, type: 2}
   down: {fileID: 11400000, guid: b0d90d683e3546d469b47937774a81e1, type: 2}
   left: {fileID: 11400000, guid: 35ab1a77430f38f41a50cce920da5998, type: 2}
   right: {fileID: 11400000, guid: 010c5ccc57ddbc241816e9475506e01c, type: 2}
@@ -27,6 +27,9 @@ MonoBehaviour:
   downPtExit: {fileID: 0}
   leftPtExit: {fileID: 0}
   rightPtExit: {fileID: 0}
+  specialPt: {x: 0, y: 0, z: 0}
+  specialPtExit: {fileID: 0}
+  spRoom: {fileID: 0}
   rootOffSet: {x: 0, y: 0, z: 0}
   isRandomizable: 1
   cleared: 0

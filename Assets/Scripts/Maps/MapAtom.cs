@@ -52,6 +52,12 @@ public class MapAtom : ScriptableObject
 	public MoveStation leftPtExit;
 	public MoveStation rightPtExit;
 
+	public MoveStation spRoomEnter;
+	public Vector3 spEnterPt;
+	public MoveStation spRoomExit;
+	public Vector3 spExitPt;
+	public Store spRoom;
+	GameObject actualSpRoom;
 
 	public Vector3 rootOffSet;
 
@@ -118,10 +124,14 @@ public class MapAtom : ScriptableObject
 	{
 		if(type == RoomType.Boss)
 		{
-			obj = GameManager.Instance.mapList.bossMap;
+			if (isRandomizable)
+			{
+				obj = GameManager.Instance.mapList.bossMap;
+			}
 		}
 		else if (type == RoomType.Question)
 		{
+			isQuestion = true;
 			bool invalid = true;
 			
 			int repCount = 0;
@@ -133,25 +143,21 @@ public class MapAtom : ScriptableObject
 				if (info.shopCnt < info.shopMinMax.x)
 				{
 					t = RoomType.Shop;
-					info.shopCnt += 1;
 					invalid = false;
 				}
 				else if(info.healCnt < info.healMinMax.x)
 				{
 					t = RoomType.Heal;
-					info.healCnt += 1;
 					invalid = false;
 				}
 				else if (info.curseCnt < info.curseMinMax.x)
 				{
 					t = RoomType.Curse;
-					info.curseCnt += 1;
 					invalid = false;
 				}
 				else if (info.blessCnt < info.blessMinMax.x)
 				{
 					t = RoomType.Blessing;
-					info.blessCnt += 1;
 					invalid = false;
 				}
 				type = t;
@@ -219,6 +225,9 @@ public class MapAtom : ScriptableObject
 			case RoomType.Blessing:
 				_mapGimik = GameManager.Instance.mapList.blessGimmick;
 				break;
+			case RoomType.Shop:
+				spRoom = GameManager.Instance.mapList.shopRoom;
+				break;
 			default:
 				_mapGimik = null;
 				break;
@@ -229,6 +238,20 @@ public class MapAtom : ScriptableObject
 	{
 		self = GameObject.Instantiate(obj.gameObject, pos, obj.gameObject.transform.rotation);
 		self.transform.SetParent(parent);
+		if (spRoom)
+		{
+			Vector3 pt = self.transform.position;
+			pt.y += 300;
+			actualSpRoom = GameObject.Instantiate(spRoom.gameObject, pt, spRoom.transform.rotation);
+			spEnterPt = actualSpRoom.transform.Find("EnterPointSp").position;
+			spExitPt = self.transform.Find("ExitPointSp").position;
+			spRoomExit = actualSpRoom.transform.Find("ExitPointSp").GetComponent<MoveStation>();
+			spRoomEnter = self.transform.Find("EnterPointSp").GetComponent<MoveStation>();
+
+			spRoomEnter.onEnterPoint.AddListener(() => { GameManager.Instance.MovePlayerTo(spEnterPt, true); Debug.Log("!@#!@#!@#!@#"); spRoom.StoreInit(); });
+			spRoomExit.onEnterPoint.AddListener(() => { GameManager.Instance.MovePlayerTo(spExitPt,true); Debug.Log("!?????"); });
+
+		}
 	}
 
 
@@ -388,6 +411,11 @@ public class MapAtom : ScriptableObject
 		downPtExit.onEnterPoint.AddListener(()=>MoveTo(Direction.Down));
 		leftPtExit.onEnterPoint.AddListener(()=>MoveTo(Direction.Left));
 		rightPtExit.onEnterPoint.AddListener(()=>MoveTo(Direction.Right));
+
+		if(type == RoomType.Boss)
+		{
+			upPtExit.onEnterPoint.AddListener(()=>{ GameManager.Instance.boss.Activate();});
+		}
 	}
 
 	public virtual void MoveTo(Direction dir)

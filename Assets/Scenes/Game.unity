@@ -508,6 +508,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BeatManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5594984187435392330, guid: 6bca65cdd641fcf4e88e572d29425881,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6265802515993528492, guid: 6bca65cdd641fcf4e88e572d29425881,
         type: 3}
       propertyPath: m_AnchorMax.y

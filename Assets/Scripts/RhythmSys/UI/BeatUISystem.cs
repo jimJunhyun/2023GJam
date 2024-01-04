@@ -89,7 +89,7 @@ public class BeatUISystem : Singleton<BeatUISystem>
         
         _recordBeatLine.Init(_startRecordBeat, _endRecordBeat);
 
-        if (GameManager.Instance.player.Inven.FindCurse(CurseList.MadiSeal))
+        if (GameManager.Instance.player && GameManager.Instance.player.Inven.FindCurse(CurseList.MadiSeal))
         {
             _curse.SetCurse(Random.Range(0,4));
         }
@@ -137,7 +137,7 @@ public class BeatUISystem : Singleton<BeatUISystem>
         img.ImageUI.color = new Color(0, 0, 1, 0.3f);
     }
 
-    public void HitNode(AudioClip _audio)
+    public void HitNode(AudioClip _audio, SoundSetting soundSet)
     {
         if (_hitBeatLine == null)
             return;
@@ -163,51 +163,96 @@ public class BeatUISystem : Singleton<BeatUISystem>
         {
             _perfectCount++;
             Debug.Log($"쵝오, {a} | {b} | {Mathf.Abs(a - b)}");
-            GameManager.Instance.player.Inven.NodeInvoking();
 
-            if (GameManager.Instance.player.Inven.FindCurse(CurseList.PerfectSeal))
+            if (GameManager.Instance.player)
             {
-                ShootEffect(_hitEffect);
+                GameManager.Instance.player.Inven.NodeInvoking();
+
+                if (GameManager.Instance.player.Inven.FindCurse(CurseList.PerfectSeal))
+                {
+                    ShootEffect(_hitEffect);
                 
-                GameManager.Instance.player.PlayerAttack.DoAttack(Detection.Good);
+                    GameManager.Instance.player.PlayerAttack.DoAttack(Detection.Good);
+                }
+                else
+                {
+                    ShootEffect(_hitEffect);
+                
+                    GameManager.Instance.player.PlayerAttack.DoAttack(Detection.Perfect);
+                }
             }
-            else
+
+            switch (soundSet)
             {
-                ShootEffect(_hitEffect);
-                
-                GameManager.Instance.player.PlayerAttack.DoAttack(Detection.Perfect);
+                case SoundSetting.KickDrumSFX:
+                    SoundManager.Instance.PlaySFX(_audio, SoundSetting.KickDrumSFX);
+                    break;
+                case SoundSetting.SnareDrumSFX:
+                    SoundManager.Instance.PlaySFX(_audio,SoundSetting.SnareDrumSFX);
+                    break;
+                default:
+                    break;
             }
-            
-            SoundManager.Instance.PlaySFX(_audio);
+
+            //SoundManager.Instance.PlaySFX(_audio);
             
             hitCount++;
         }
         else if (Mathf.Abs(a - b) < 0.04f)
         {
-            ShootEffect(_hitEffect);
             
             
             _goodCount++;
-            Debug.Log($"굳, {a} | {b} | {Mathf.Abs(a - b)}");
-            GameManager.Instance.player.Inven.NodeInvoking();
-            GameManager.Instance.player.PlayerAttack.DoAttack(Detection.Good);
             
-            SoundManager.Instance.PlaySFX(_audio);
+            if (GameManager.Instance.player)
+            {
+                ShootEffect(_hitEffect);
+                GameManager.Instance.player.Inven.NodeInvoking();
+                GameManager.Instance.player.PlayerAttack.DoAttack(Detection.Good);
+
+                switch (soundSet)
+                {
+                    case SoundSetting.KickDrumSFX:
+                        SoundManager.Instance.PlaySFX(_audio, SoundSetting.KickDrumSFX);
+                        break;
+                    case SoundSetting.SnareDrumSFX:
+                        SoundManager.Instance.PlaySFX(_audio, SoundSetting.SnareDrumSFX);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            Debug.Log($"굳, {a} | {b} | {Mathf.Abs(a - b)}");
+
             
             hitCount++;
         }
         else if (Mathf.Abs(a-b) < 0.05f)
         {
-            ShootEffect(_hitEffect);
+
             
             
             Debug.Log($"밷, {a} | {b} | {Mathf.Abs(a - b)}");
-            GameManager.Instance.player.Inven.NodeInvoking();
-            GameManager.Instance.player.PlayerAttack.DoAttack(Detection.Bad);
+            if (GameManager.Instance.player)
+            {
+                ShootEffect(_hitEffect);
+                GameManager.Instance.player.Inven.NodeInvoking();
+                GameManager.Instance.player.PlayerAttack.DoAttack(Detection.Bad);
+            }
             hitCount++;
             
-            SoundManager.Instance.PlaySFX(_audio);
-
+            //SoundManager.Instance.PlaySFX(_audio);
+            switch (soundSet)
+            {
+                case SoundSetting.KickDrumSFX:
+                    SoundManager.Instance.PlaySFX(_audio, SoundSetting.KickDrumSFX);
+                    break;
+                case SoundSetting.SnareDrumSFX:
+                    SoundManager.Instance.PlaySFX(_audio, SoundSetting.SnareDrumSFX);
+                    break;
+                default:
+                    break;
+            }
         }   
         else
         {

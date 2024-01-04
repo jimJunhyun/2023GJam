@@ -14,7 +14,9 @@ public enum SoundSetting
     background,
     SFX,
     UISound,
-
+    BattleSFX,
+    KickDrumSFX,
+    SnareDrumSFX
 }
 
 public class SoundJson
@@ -23,6 +25,9 @@ public class SoundJson
     public float SFX= 50.0f;
     public float UI= 50.0f;
     public float BGM= 50.0f;
+    public float Battle = 50.0f;
+    public float KickDrum = 50.0f;
+    public float SnareDrum = 50.0f;
 }
 
 public class SoundManager : Singleton<SoundManager>
@@ -124,7 +129,7 @@ public class SoundManager : Singleton<SoundManager>
     }
 
     private List<AudioSource> _sfxList = new();
-    public void PlaySFX(AudioClip _soundType, Transform tls = null)
+    public void PlaySFX(AudioClip _soundType, SoundSetting soundSet, Transform tls = null)
     {
         if (_soundType == null)
         {
@@ -142,6 +147,29 @@ public class SoundManager : Singleton<SoundManager>
         AudioSource _audioSource = bg.AddComponent<AudioSource>();
 
         AudioMixerGroup[] _ad = _mixer.FindMatchingGroups("SFX");
+        
+        switch (soundSet)
+        {
+            case SoundSetting.SFX:
+                _ad = _mixer.FindMatchingGroups("SFX");
+                break;
+            case SoundSetting.UISound:
+                _ad = _mixer.FindMatchingGroups("UISound");
+                break;
+            case SoundSetting.BattleSFX:
+                _ad = _mixer.FindMatchingGroups("Battle");
+                break;
+            case SoundSetting.KickDrumSFX:
+                _ad = _mixer.FindMatchingGroups("KickDrum");
+                break;
+            case SoundSetting.SnareDrumSFX:
+                _ad = _mixer.FindMatchingGroups("SnareDrum");
+                break;
+            default:
+                break;
+        }
+
+
         _audioSource.outputAudioMixerGroup = _ad[0];
 
         _audioSource.clip = _soundType;
@@ -149,6 +177,7 @@ public class SoundManager : Singleton<SoundManager>
         _sfxList.Add(_audioSource);
         StartCoroutine(StopSound(_audioSource));
     }
+
 
     IEnumerator StopSound(AudioSource t)
     {

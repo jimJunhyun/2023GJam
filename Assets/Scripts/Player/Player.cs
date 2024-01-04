@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
         set
         {
             _gold = value;
+            GameManager.Instance.gold.RefreshGold();
         }
     }
 
@@ -133,6 +134,7 @@ public class Player : MonoBehaviour
     {
         Gold -= gold;
         Inven.UseItem(ref NormalStat, ref AddStat,  _so);
+        PlayerUI.InvaligateImage(_so._sprite);
     }
     
     public void RefreshStat()
