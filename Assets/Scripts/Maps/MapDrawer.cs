@@ -40,6 +40,7 @@ public class MapDrawer : MonoBehaviour
 		mapCanvas = GameObject.Find("MinimapUI").GetComponent<Canvas>();
 		mapPanel = GameObject.Find("MapPanel").GetComponent<Image>();
 		contents = mapPanel.transform.Find("Contents");
+		contents.transform.localPosition = Vector3.zero;
 		initContentPos = contents.transform.position;
 	}
 
