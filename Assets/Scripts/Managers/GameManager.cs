@@ -25,6 +25,8 @@ public class GameManager : Singleton<GameManager>
 		}
 	}
 	
+	public DetectUIShower detecter;
+
 	public BossAI boss;
 
 	public MapAtom curRoom;
@@ -42,6 +44,7 @@ public class GameManager : Singleton<GameManager>
 
 	private void Awake()
 	{
+		detecter = GetComponent<DetectUIShower>();
 		surface = GetComponent<NavMeshSurface>();
 		gold  = GameObject.Find("GoldArea").GetComponent<GoldUI>();
 	}
