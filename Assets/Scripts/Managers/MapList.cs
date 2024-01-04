@@ -12,7 +12,8 @@ public class MapList : ScriptableObject
 	public MapObjs healMap;
 	public MapObjs bossMap;
 
-	public Store shopRoom;
+	public GameObject shopRoom;
+	public GameObject blessRoom;
 
 	public MapGimikSO blessGimmick;
 	public MapGimikSO curseGimmick;
