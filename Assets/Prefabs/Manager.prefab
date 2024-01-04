@@ -53,6 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detecter: {fileID: 0}
   boss: {fileID: 0}
+  bossHp: {fileID: 0}
   curRoom: {fileID: 0}
   curStage: 0
   maps:

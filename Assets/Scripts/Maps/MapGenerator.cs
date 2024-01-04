@@ -124,7 +124,7 @@ public class MapGenerator : MonoBehaviour
 				conStat += ((int)ConnectStat.Right);
 			}
 			RoomType t = (first.Key.isQuestion && !isClearSight) ? RoomType.Question : first.Key.type;
-			if(first.Key.type == RoomType.Boss)
+			if(first.Key.type == RoomType.Boss && first.Key.isRandomizable)
 			{
 				bossRoom = first.Key;
 			}

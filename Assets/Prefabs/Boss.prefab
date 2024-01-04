@@ -136,8 +136,8 @@ MonoBehaviour:
   bulletPow: 15
   slashPow: 25
   stat:
-    MaxHP: 2500
-    HP: 2500
+    MaxHP: 5000
+    HP: 5000
     ATK: 1
     SPEED: 4.5
     Size: 1

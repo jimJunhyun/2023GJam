@@ -50,12 +50,6 @@ public class GameManager : Singleton<GameManager>
 		detecter = GetComponent<DetectUIShower>();
 		surface = GetComponent<NavMeshSurface>();
 		gold  = GameObject.Find("GoldArea").GetComponent<GoldUI>();
-		GameObject o;
-		if (o = GameObject.Find("BHpBar"))
-		{
-			bossHp =o.GetComponent<RefreshBossUI>();
-
-		}
 	}
 
 	private void Start()

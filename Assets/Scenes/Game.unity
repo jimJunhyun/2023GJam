@@ -951,6 +951,18 @@ MonoBehaviour:
   m_AmplitudeGain: 0
   m_FrequencyGain: 0
   mNoiseOffsets: {x: -206.87256, y: 313.44223, z: -618.5856}
+--- !u!114 &1668445649 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4631728299594519630, guid: fe48221579981464bab726abb1c02d5d,
+    type: 3}
+  m_PrefabInstance: {fileID: 9053350010916769929}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d076e538b6a5b1b4eb7726de99f7e4b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2138358009 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5341492345383407826, guid: 6bca65cdd641fcf4e88e572d29425881,
@@ -1183,6 +1195,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7331543373774828821, guid: 94e6fa54b7320dd4096186a0bdc865a5,
+        type: 3}
+      propertyPath: NormalStat.ATK
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1280,15 +1297,14 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 993353431652922670, guid: 644d4eca1c9f4e64d9a802be20cbfdf7,
         type: 3}
+      propertyPath: bossHp
+      value: 
+      objectReference: {fileID: 1668445649}
+    - target: {fileID: 993353431652922670, guid: 644d4eca1c9f4e64d9a802be20cbfdf7,
+        type: 3}
       propertyPath: maps.Array.data[0]
       value: 
       objectReference: {fileID: 171343762}
-    - target: {fileID: 4513833048715777072, guid: 644d4eca1c9f4e64d9a802be20cbfdf7,
-        type: 3}
-      propertyPath: hallway
-      value: 
-      objectReference: {fileID: -5942435884304209824, guid: 7854a566ad875bc4ea7c8e1ac6618d19,
-        type: 3}
     - target: {fileID: 4565156932058788431, guid: 644d4eca1c9f4e64d9a802be20cbfdf7,
         type: 3}
       propertyPath: m_LocalPosition.x
