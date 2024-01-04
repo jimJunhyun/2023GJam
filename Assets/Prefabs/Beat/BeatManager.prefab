@@ -1007,7 +1007,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5e3048ac2f69549f4a807dbcc04ade83, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2e4d89d7e97473d45a9d3715ba9f8299, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1804,8 +1804,8 @@ MonoBehaviour:
   _matronyum: {fileID: 8300000, guid: 40204258f1990cd41aeac546941fe192, type: 3}
   _j: {fileID: 8300000, guid: da1e32504f16ded449078c550dbd89b9, type: 3}
   _k: {fileID: 8300000, guid: 14ced64dc6a801249b759bde6147faf4, type: 3}
-  _i: {fileID: 8300000, guid: e6ee9f624ff38cb409f5f003221eb9e1, type: 3}
-  _o: {fileID: 8300000, guid: f4314bfad8a5485449d808bafba64baa, type: 3}
+  _i: {fileID: 8300000, guid: 258fe310201fef24d93c38fc2cf74b31, type: 3}
+  _o: {fileID: 8300000, guid: d5ccdf6fa3530544197b29d5394d1607, type: 3}
   BPM: 100
   Matronyum: 4
   Delay: 0.2
@@ -1858,10 +1858,12 @@ MonoBehaviour:
   - {fileID: 8421640141707783485}
   - {fileID: 6387176041284233007}
   - {fileID: 4130695182515172495}
+  _noItemSprite: {fileID: 21300000, guid: 2e4d89d7e97473d45a9d3715ba9f8299, type: 3}
   _atk: {fileID: 2506833631529165126}
   _spd: {fileID: 9078822416606399129}
   _range: {fileID: 5899006354266354971}
   _bpm: {fileID: 7565797985332429386}
+  _item: {fileID: 8131652981392397865}
 --- !u!114 &4234398668081676949
 MonoBehaviour:
   m_ObjectHideFlags: 0

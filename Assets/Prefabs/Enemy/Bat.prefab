@@ -113,8 +113,8 @@ MonoBehaviour:
   atkRange: 1
   atkGap: 0
   stat:
-    MaxHP: 3
-    HP: 3
+    MaxHP: 1000
+    HP: 1000
     ATK: 1
     SPEED: 5
     Size: 1

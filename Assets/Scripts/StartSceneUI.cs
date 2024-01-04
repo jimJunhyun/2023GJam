@@ -18,6 +18,7 @@ public enum SceneEnum
 
 public class StartSceneUI : MonoBehaviour
 {
+    [SerializeField] private TransitionSettings Tutorial;
     [SerializeField] private TransitionSettings GameScene;
     
     [SerializeField] private Transition _ts;
@@ -47,6 +48,7 @@ public class StartSceneUI : MonoBehaviour
         switch (_scene)
         {
             case SceneEnum.tutorial:
+                TransitionManager.Instance.Transition("Tutorial",  Tutorial, 0f);
                 break;
             case SceneEnum.start:
                 TransitionManager.Instance.Transition("Game",  GameScene, 0f);

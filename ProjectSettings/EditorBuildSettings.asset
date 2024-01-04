@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/YGScene.unity
     guid: de3056aa45d9da24b8028e7510cc3e9f
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 072a39f94d382cb488a9f0fef799350a
   m_configObjects: {}

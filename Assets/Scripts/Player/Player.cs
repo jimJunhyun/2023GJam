@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
         AddStat.Reset();
         CurseStat.Reset();
         RefreshStat();
+        PlayerUI.InvaligateImage(null);
     }
 
     [SerializeField] private int _gold = 0;

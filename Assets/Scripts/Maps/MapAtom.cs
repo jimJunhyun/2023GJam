@@ -66,7 +66,7 @@ public class MapAtom : ScriptableObject
 	public bool cleared;
 
 	GameObject self;
-	List<EnemySlot> slots;
+	List<EnemySlot> slots = new();
 
 	[Header("MapGimik")] public MapGimikSO _mapGimik;
 
@@ -205,7 +205,8 @@ public class MapAtom : ScriptableObject
 		}
 		else if(type == RoomType.Start)
 		{
-			obj = GameManager.Instance.mapList.startMap;
+			if(isRandomizable)
+				obj = GameManager.Instance.mapList.startMap;
 		}
 
 		if(type == RoomType.Normal)

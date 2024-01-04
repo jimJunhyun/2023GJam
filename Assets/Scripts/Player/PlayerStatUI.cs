@@ -11,12 +11,14 @@ public class PlayerStatUI : MonoBehaviour
     [SerializeField] private Sprite _halfHP;
     [SerializeField] private Sprite _maxHP;
     [SerializeField]private List<Image> _hpList = new();
+    [SerializeField] private Sprite _noItemSprite;
 
     [Header("ATK")] [SerializeField] private TextMeshProUGUI _atk;
     [Header("SPEED")] [SerializeField] private TextMeshProUGUI _spd;
     [Header("Range")] [SerializeField] private TextMeshProUGUI _range;
     [Header("BPM")] [SerializeField] private TextMeshProUGUI _bpm;
-    
+    [Header("Item")] [SerializeField] private Image _item;
+
     public void InvaligateHP(int nowHP, int MaxHP)
     {
         int hpCount = Mathf.FloorToInt((float)nowHP/2); // 4
@@ -70,6 +72,11 @@ public class PlayerStatUI : MonoBehaviour
 
     public void InvaligateImage(Sprite soSprite)
     {
+        if (soSprite == null)
+        {
+            soSprite = _noItemSprite;
+        }
         
+        _item.sprite = soSprite;
     }
 }
