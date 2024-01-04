@@ -53,7 +53,7 @@ public class StartSceneUI : MonoBehaviour
                 TransitionManager.Instance.Transition("Tutorial",  Tutorial, 0f);
                 break;
             case SceneEnum.start:
-                TransitionManager.Instance.Transition("Game",  GameScene, 0f);
+                TransitionManager.Instance.Transition("SelectScene",  GameScene, 0f);
                 break;
             case SceneEnum.setting:
                 break;
