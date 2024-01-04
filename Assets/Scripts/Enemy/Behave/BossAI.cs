@@ -10,6 +10,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(LifeObject))]
 public class BossAI : MonoBehaviour, IRhythm
 {
+
     public float wanderRadius;
     public int bulletGap = 3;
     public int slashGap = 7;
@@ -37,8 +38,8 @@ public class BossAI : MonoBehaviour, IRhythm
     int beatCnt = 0;
     int tempoCnt = 0;
 
-    bool beating = true;
-    bool updating = true;
+    bool beating = false;
+    bool updating = false;
 
     readonly int Attack1Hash = Animator.StringToHash("Attack1");
     readonly int Attack2Hash = Animator.StringToHash("Attack2");
@@ -138,15 +139,13 @@ public class BossAI : MonoBehaviour, IRhythm
         life.onDead += () => { Debug.Log("zmfflrj"); };
 
         anim = GetComponentInChildren<Animator>();
+
+        GameManager.Instance.boss = this;
     }
 
     // Update is called once per frame
     void Update()
     {
-		if (Input.GetKeyDown(KeyCode.R))
-		{
-            Activate();
-		}
 
 		if (updating)
 		{
@@ -189,7 +188,7 @@ public class BossAI : MonoBehaviour, IRhythm
 	{
         StopMove();
         yield return new WaitForSeconds(s);
-        Activate();
+            Activate();
 	}
 
     public void Activate()

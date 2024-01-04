@@ -13,7 +13,7 @@ public class Store : MonoBehaviour
     [Header("Camera")] public CinemachineVirtualCamera _cams;
 
     [Header("ItemSlot")] 
-    private ItemSO _itemOne;
+    [SerializeField ] private ItemSO _itemOne;
     [SerializeField] SpriteRenderer One;
     private ItemSO _itemTwo;
     [SerializeField] SpriteRenderer Two;
@@ -49,7 +49,7 @@ public class Store : MonoBehaviour
         _itemIdx = -1;
         _select.SetActive(false);
         _cans.gameObject.SetActive(false);
-        StoreInit();
+        //StoreInit();
     }
 
     bool first =false;
@@ -101,6 +101,7 @@ public class Store : MonoBehaviour
 
     public void Interect()
     {
+        StoreInit();
         GameManager.Instance.player.IsInteractive = true;
         _itemIdx = 0;
         _cans.gameObject.SetActive(true);

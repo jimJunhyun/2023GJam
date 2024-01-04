@@ -35,17 +35,25 @@ public class PlayerCtrl : MonoBehaviour, IRhythm
 
 	public void Update()
 	{
-		
-		if (GameManager.Instance.player.IsInteractive)
-			return;
-		
-		h = Input.GetAxis("Horizontal");
-		v = Input.GetAxis("Vertical");
+
+
+		if (!GameManager.Instance.player.IsInteractive)
+		{
+			h = Input.GetAxis("Horizontal");
+			v = Input.GetAxis("Vertical");
+			
+		}
+		else
+		{
+			h = 0;
+			v = 0;
+		}
+
 		moveVec = new Vector3(h, 0, v).normalized * GameManager.Instance.player.PlayerStat.SPEED;
 
 		moveVec = Quaternion.Euler(0, 45, 0) * moveVec;
-		
-		if(Mathf.Abs(h) >= 0.1 || Mathf.Abs(v) >= 0.1)
+
+		if (Mathf.Abs(h) >= 0.1 || Mathf.Abs(v) >= 0.1)
 		{
 			anim.SetBool(IdleHash, false);
 			transform.rotation = Quaternion.LookRotation(moveVec);
@@ -69,6 +77,8 @@ public class PlayerCtrl : MonoBehaviour, IRhythm
 			mv += moveVec;
 		}
 		ctrl.Move(mv * Time.deltaTime);
+		
+			
 	}
 
 	private void LateUpdate()
@@ -97,12 +107,15 @@ public class PlayerCtrl : MonoBehaviour, IRhythm
 		stopState = false;
 	}
 
-	public void SetPosition(Vector3 pos)
+	public void SetPosition(Vector3 pos, bool yDiff = false)
 	{
 		if (GameManager.Instance.player.IsInteractive)
 			return;
-			
-		pos.y = transform.position.y;
+		if (!yDiff)
+		{
+			pos.y = transform.position.y;
+		}
+
 		predictPos = pos;
 	}
 
