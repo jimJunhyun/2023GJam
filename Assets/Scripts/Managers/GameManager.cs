@@ -89,6 +89,18 @@ public class GameManager : Singleton<GameManager>
 		curRoom.MoveTo(dir);
 	}
 
+	public void SlowDownFor(float to, float dur)
+	{
+		StartCoroutine(DelSlower(to, dur));
+	}
+
+	IEnumerator DelSlower(float to, float dur)
+	{
+		Time.timeScale = to;
+		yield return new WaitForSecondsRealtime(dur);
+		Time.timeScale = 1;
+	}
+
 	public static int ArraySum(List<int> lst)
 	{
 		int sum = 0;
