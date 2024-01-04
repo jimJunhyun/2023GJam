@@ -60,6 +60,8 @@ public class AI : MonoBehaviour, IRhythm
 	public int spinDur;
 	public float spinSpd;
 
+	public bool isDead = false;
+
 	internal readonly int AttackHash = Animator.StringToHash("Attack");
 	internal readonly int IdleHash = Animator.StringToHash("Idle");
 	internal readonly int HitHash = Animator.StringToHash("Hit");
@@ -200,8 +202,8 @@ public class AI : MonoBehaviour, IRhythm
 			v.y = 0;
 			transform.rotation = Quaternion.LookRotation(v);
 		}
-
-		if((transform.position - prevPos).magnitude > 0.1f)
+		//Debug.Log((transform.position - prevPos).magnitude);
+		if((transform.position - prevPos).magnitude > 0.01f)
 		{
 			anim.SetBool(IdleHash, false);
 		}
@@ -254,7 +256,7 @@ public class AI : MonoBehaviour, IRhythm
 		if (spinning)
 		{
 			anim.SetTrigger(AttackHash);
-			Collider[] cols = Physics.OverlapSphere(transform.position, spinThreshold, (1 << 8) | (1 << 9));
+			Collider[] cols = Physics.OverlapSphere(transform.position, spinThreshold, (1 << 8));
 			for (int i = 0; i < cols.Length; i++)
 			{
 				if(cols[i].gameObject == gameObject)
