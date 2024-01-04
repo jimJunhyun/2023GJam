@@ -52,6 +52,7 @@ public class BeatSystem : Singleton<BeatSystem>
         _currentBeatValue = BeatValue();
         if (GameObject.FindObjectOfType<SoundReturn>())
         {
+            _currentTime = 999;
             _matronyum = null;
             SoundReturn t = GameObject.FindObjectOfType<SoundReturn>();
             BPM = t.BPM();
@@ -126,7 +127,14 @@ public class BeatSystem : Singleton<BeatSystem>
 
             }
             _currentTime = 0;
-            StartCoroutine(Beating());
+            if (Delay > 0)
+            { 
+                StartCoroutine(Beating());
+            }
+            else
+            {
+                RhythmUpdating();
+            }
         }
         
         
