@@ -8,7 +8,7 @@ public class RefreshBossUI : MonoBehaviour
     Slider hp;
 	private void Awake()
 	{
-		hp = GameObject.Find("BHpBar").GetComponent<Slider>();
+		hp = GetComponent<Slider>();
 		hp.gameObject.SetActive(false);
 	}
 
@@ -19,9 +19,9 @@ public class RefreshBossUI : MonoBehaviour
 
 	public void Update()
 	{
-		if (GameManager.Instance.boss)
+		if (hp)
 		{
-			hp.value = GameManager.Instance.boss.stat.HP / GameManager.Instance.boss.stat.MaxHP;
+			hp.value = (float)(GameManager.Instance.boss.life.hp / (float)GameManager.Instance.boss.life.maxHp);
 		}
 	}
 }
