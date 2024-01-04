@@ -29,6 +29,10 @@ public class BeatUISystem : Singleton<BeatUISystem>
     public RectTransform _endHitBeat;
     private BeatLineUI _hitBeatLine;
 
+    public Sprite normalHit;
+    public Sprite addHit;
+    public Sprite minusHit;
+
     [Header("Record")] public RectTransform _startRecordBeat;
     public RectTransform _endRecordBeat;
     private BeatLineUI _recordBeatLine;
@@ -123,7 +127,7 @@ public class BeatUISystem : Singleton<BeatUISystem>
         _record.Add(img);
         img.Init(_recordBeatLine.Position, false);
         //Debug.Log(_recordBeatLine.Position);
-        img.ImageUI.color = new Color(0, 1, 0, 0.3f);
+        img.ImageUI.sprite=addHit;
     }
 
     public void RemoveNode()
@@ -134,7 +138,7 @@ public class BeatUISystem : Singleton<BeatUISystem>
         _record.Add(img);
         img.RectPS.localPosition = _recordBeatLine.RectPS.localPosition;
         img.Init(_recordBeatLine._position, true);
-        img.ImageUI.color = new Color(0, 0, 1, 0.3f);
+        img.ImageUI.sprite = minusHit;
     }
 
     public void HitNode(AudioClip _audio, SoundSetting soundSet)
@@ -262,7 +266,7 @@ public class BeatUISystem : Singleton<BeatUISystem>
         }
         
         _nowNode.isHit = true;
-        _nowNode.ImageUI.color = new Color(1, 0, 0, 0.3f);
+        //_nowNode.ImageUI.color = new Color(1, 0, 0, 0.3f);
         _nowNode = null;
     }
     
@@ -277,7 +281,7 @@ public class BeatUISystem : Singleton<BeatUISystem>
         {
             if (idx > i && _hit[i].isHit)
             {
-                _hit[i].ImageUI.color = new Color(1, 0, 0, 0.3f);
+                _hit[i].ImageUI.color = new Color(1, 1, 1, 0.3f);
             }
 
             if (_nowNode == null)
@@ -373,7 +377,7 @@ public class BeatUISystem : Singleton<BeatUISystem>
         {
             VARIABLE.RectPS.localPosition =
                 Vector3.Lerp(_startHitBeat.localPosition, _endHitBeat.localPosition, VARIABLE.Position);
-            VARIABLE.ImageUI.color = Color.red;
+            VARIABLE.ImageUI.sprite = normalHit;
             VARIABLE.isHit = false;
         }
     }

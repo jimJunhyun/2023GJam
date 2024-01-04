@@ -19,6 +19,8 @@ public class Player_LifeObject : LifeObject
             GameManager.Instance.player.playerCtrl.CompleteStop();
             GameManager.Instance.curRoom.ResetEnemy();
             GameManager.Instance.StopAllCoroutines();
+
+            GameObject.FindAnyObjectByType<PlayerDeath>().Death();
         };
 	}
 

@@ -20,12 +20,12 @@ public class StartSceneUI : MonoBehaviour
 {
     [SerializeField] private TransitionSettings Tutorial;
     [SerializeField] private TransitionSettings GameScene;
-    
-    [SerializeField] private Transition _ts;
     [SerializeField] private Image _tutorial;
     [SerializeField] private Image _start;
     [SerializeField] private Image _setting;
     [SerializeField] private Image _exit;
+
+    [SerializeField] private Slider _slider;
 
     private SceneEnum _scene;
 
@@ -66,6 +66,15 @@ public class StartSceneUI : MonoBehaviour
         {
             cnt = 0;
             LoadScene();
+        }
+        
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        {
+            _slider.value -= 0.1f;
+        }
+        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        {
+            _slider.value += 0.1f;
         }
         
         if (Input.GetKeyDown(KeyCode.J))

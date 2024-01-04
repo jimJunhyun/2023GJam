@@ -56,7 +56,7 @@ public class MapAtom : ScriptableObject
 	public Vector3 spEnterPt;
 	public MoveStation spRoomExit;
 	public Vector3 spExitPt;
-	public Store spRoom;
+	public GameObject spRoom;
 	GameObject actualSpRoom;
 
 	public Vector3 rootOffSet;
@@ -68,7 +68,7 @@ public class MapAtom : ScriptableObject
 	GameObject self;
 	List<EnemySlot> slots = new();
 
-	[Header("MapGimik")] public MapGimikSO _mapGimik;
+	//[Header("MapGimik")] public MapGimikSO _mapGimik;
 
 	public bool IsCleared
 	{
@@ -105,7 +105,7 @@ public class MapAtom : ScriptableObject
 			++rep;
 			if (hit.hit)
 			{
-				Debug.Log("GONE WELL WITH : " + self.name + " in " + name);
+				//Debug.Log("GONE WELL WITH : " + self.name + " in " + name);
 				if (self.transform.Find("MobPoint_01"))
 				{
 					SetEnemyRandom();
@@ -114,7 +114,7 @@ public class MapAtom : ScriptableObject
 			}
 			if(rep > GameManager.MAXREPCOUNT)
 			{
-				Debug.Log("SOMETHING WRONG WITH : " + self.name + " in " + name);
+				Debug.LogError("SOMETHING WRONG WITH : " + self.name + " in " + name);
 				yield break;
 			}
 		}
@@ -169,6 +169,8 @@ public class MapAtom : ScriptableObject
 							obj = GameManager.Instance.mapList.shopMap;
 							info.shopCnt += 1;
 							invalid = false;
+							Debug.Log("spRoom set");
+							spRoom = GameManager.Instance.mapList.shopRoom;
 						}
 						break;
 					case RoomType.Heal:
@@ -193,6 +195,8 @@ public class MapAtom : ScriptableObject
 							obj = GameManager.Instance.mapList.blessMap;
 							info.blessCnt += 1;
 							invalid = false;
+							Debug.Log("spRoom set");
+							spRoom = GameManager.Instance.mapList.blessRoom;
 						}
 						break;
 				}
@@ -215,24 +219,7 @@ public class MapAtom : ScriptableObject
 		}
 		obj.type = type;
 
-		switch (type)
-		{
-			case RoomType.Heal:
-				_mapGimik = GameManager.Instance.mapList.healGimmick;
-				break;
-			case RoomType.Curse:
-				_mapGimik = GameManager.Instance.mapList.curseGimmick;
-				break;
-			case RoomType.Blessing:
-				_mapGimik = GameManager.Instance.mapList.blessGimmick;
-				break;
-			case RoomType.Shop:
-				spRoom = GameManager.Instance.mapList.shopRoom;
-				break;
-			default:
-				_mapGimik = null;
-				break;
-		}
+
 	}
 	
 	public void InstantiateSelf(Vector3 pos, Transform parent = null)
@@ -243,14 +230,21 @@ public class MapAtom : ScriptableObject
 		{
 			Vector3 pt = self.transform.position;
 			pt.y += 300;
-			actualSpRoom = GameObject.Instantiate(spRoom.gameObject, pt, spRoom.transform.rotation);
+			actualSpRoom = GameObject.Instantiate(spRoom, pt, spRoom.transform.rotation);
 			spEnterPt = actualSpRoom.transform.Find("EnterPointSp").position;
 			spExitPt = self.transform.Find("ExitPointSp").position;
 			spRoomExit = actualSpRoom.transform.Find("ExitPointSp").GetComponent<MoveStation>();
 			spRoomEnter = self.transform.Find("EnterPointSp").GetComponent<MoveStation>();
 
-			spRoomEnter.onEnterPoint.AddListener(() => { GameManager.Instance.MovePlayerTo(spEnterPt, true); Debug.Log("!@#!@#!@#!@#"); spRoom.StoreInit(); });
-			spRoomExit.onEnterPoint.AddListener(() => { GameManager.Instance.MovePlayerTo(spExitPt,true); Debug.Log("!?????"); });
+			spRoomEnter.onEnterPoint.AddListener(() => 
+			{
+				GameManager.Instance.MovePlayerTo(spEnterPt, true); 
+				if(type == RoomType.Shop)
+				{
+					spRoom.GetComponent<Store>().StoreInit();
+				}
+			});
+			spRoomExit.onEnterPoint.AddListener(() => { GameManager.Instance.MovePlayerTo(spExitPt,true);  });
 
 		}
 	}
@@ -263,7 +257,7 @@ public class MapAtom : ScriptableObject
 		int spPointAmt = Random.Range(4, 6);
 		HashSet<int> selecteds = new HashSet<int>();
 		List<int> spawnInfo = new List<int>(4) { 0, 0, 0, 0 };
-		Debug.Log("cnt : " + spPointAmt + " , Mobs : " + mobCnt);
+		//Debug.Log("cnt : " + spPointAmt + " , Mobs : " + mobCnt);
 		while(selecteds.Count < spPointAmt)
 		{
 			int idx = Random.Range(0, 5);
@@ -460,7 +454,6 @@ public class MapAtom : ScriptableObject
 		{
 			
 			TriggerEnemy();
-			_mapGimik?.RoomInit();
 		}
 		GameManager.Instance.RefreshMap();
 	}
