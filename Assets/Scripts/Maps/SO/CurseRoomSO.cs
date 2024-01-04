@@ -9,6 +9,8 @@ public class CurseRoomSO : MapGimikSO
     public override string RoomInit()
     {
         _room = RoomType.Curse;
+
+        GameManager.Instance.curRoom.SetClearState();
         
         int Randoms = UnityEngine.Random.Range(0, 6);
         

@@ -64,6 +64,7 @@ public class MapAtom : ScriptableObject
 	public bool isRandomizable;
 
 	public bool cleared;
+	public bool isAutoClear = true;
 
 	GameObject self;
 	List<EnemySlot> slots = new();
@@ -79,7 +80,7 @@ public class MapAtom : ScriptableObject
 			{
 				res &= slots[i].deadMobCnt == slots[i].myEnemies.Count;
 			}
-			return res;
+			return res && isAutoClear;
 		}
 	}
 
@@ -162,6 +163,7 @@ public class MapAtom : ScriptableObject
 				}
 				type = t;
 				spRoom = null;
+				isAutoClear = true;
 				switch (t)
 				{
 					case RoomType.Shop:
@@ -188,6 +190,7 @@ public class MapAtom : ScriptableObject
 							obj = GameManager.Instance.mapList.curseMap;
 							info.curseCnt += 1;
 							invalid = false;
+							isAutoClear = false;
 						}
 						break;
 					case RoomType.Blessing:
@@ -408,12 +411,12 @@ public class MapAtom : ScriptableObject
 		leftPtExit.onEnterPoint.AddListener(()=>MoveTo(Direction.Left));
 		rightPtExit.onEnterPoint.AddListener(()=>MoveTo(Direction.Right));
 
-		if(type == RoomType.Boss)
+		if(type == RoomType.Boss && isRandomizable)
 		{
 			upPtExit.onEnterPoint.AddListener(()=>
 			{ 
 				GameManager.Instance.boss.Activate();
-
+				GameManager.Instance.bossHp.ShowUI();
 			});
 		}
 	}

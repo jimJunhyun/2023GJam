@@ -35,3 +35,4 @@ MonoBehaviour:
   rootOffSet: {x: 0, y: 0, z: 0}
   isRandomizable: 1
   cleared: 0
+  isAutoClear: 1

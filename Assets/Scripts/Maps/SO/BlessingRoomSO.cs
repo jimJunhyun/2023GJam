@@ -8,6 +8,7 @@ public class BlessingRoomSO : MapGimikSO
     public override string RoomInit()
     {
         _room = RoomType.Blessing;
+        GameManager.Instance.curRoom.SetClearState();
 
         int Randoms = UnityEngine.Random.Range(0, 5);
 
