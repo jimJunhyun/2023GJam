@@ -50,8 +50,24 @@ public class BeatSystem : Singleton<BeatSystem>
     private void Awake()
     {
         _currentBeatValue = BeatValue();
+        if (GameObject.FindObjectOfType<SoundReturn>())
+        {
+            _matronyum = null;
+            SoundReturn t = GameObject.FindObjectOfType<SoundReturn>();
+            BPM = t.BPM();
+            SoundManager.Instance.PlayBGM(t.Audio());
+            
+            Destroy(t);
+        }
 
+    }
 
+    public void ReplayBPM(int value)
+    {
+        BPM = value;
+        _currentTime = 0;
+        _currentBeatValue = BeatValue();
+        _matCount = 1;
     }
 
     public float ReturnBPM
@@ -74,6 +90,7 @@ public class BeatSystem : Singleton<BeatSystem>
     public float BeatValue()
     {
         float BPS;
+
 //        ItemSO SO = GameManager.instance.player.Inven.ReturnItemRule();
 
 
@@ -107,9 +124,9 @@ public class BeatSystem : Singleton<BeatSystem>
             {
                 //SoundManager.Instance.PlaySFX(_matronyum);
 
-                _currentTime = 0;
-                StartCoroutine(Beating());
             }
+            _currentTime = 0;
+            StartCoroutine(Beating());
         }
         
         
@@ -174,19 +191,19 @@ public class BeatSystem : Singleton<BeatSystem>
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.J))
+            if (Input.GetKeyDown(KeyCode.J) && _jConnect)
             {
                 SoundManager.Instance.PlaySFX(_j, SoundSetting.KickDrum);
             }
-            if (Input.GetKeyDown(KeyCode.K))
+            if (Input.GetKeyDown(KeyCode.K) && _kConnect)
             {
                 SoundManager.Instance.PlaySFX(_k, SoundSetting.SnareDrum);
             }
-            if (Input.GetKeyDown(KeyCode.I))
+            if (Input.GetKeyDown(KeyCode.I) && _iConnect)
             {
                 SoundManager.Instance.PlaySFX(_i, SoundSetting.KickDrum); //어짜피 지운다네요 암거나 넣음
             }
-            if (Input.GetKeyDown(KeyCode.O))
+            if (Input.GetKeyDown(KeyCode.O) && _oConnet)
             {
                 SoundManager.Instance.PlaySFX(_o, SoundSetting.KickDrum); //222
             }
@@ -209,8 +226,8 @@ public class BeatSystem : Singleton<BeatSystem>
 
     void RhythmUpdating()
     {
-        
-        SoundManager.Instance.PlaySFX(_matronyum, SoundSetting.SFX);
+        if(_matronyum)
+            SoundManager.Instance.PlaySFX(_matronyum, SoundSetting.SFX);
         
         //Debug.Log(_currentTime);
         if (_matCount >= Matronyum)
@@ -246,7 +263,7 @@ public class BeatSystem : Singleton<BeatSystem>
             _matCount++; 
             
             var objects = FindRhythms();
-
+            Debug.LogError("불려저옴");
             foreach (var Rhythm in objects)
             {
                 Rhythm.BeatUpdateDivideFour();

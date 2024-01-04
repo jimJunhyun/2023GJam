@@ -1879,6 +1879,8 @@ MonoBehaviour:
   _curse: {fileID: 989919880405766556}
   _hitEffect: {fileID: -1451469241671732739, guid: 7a0d0a3bf7752434cbc0cf62f7ad1bbc,
     type: 3}
+  _hitEffectPerf: {fileID: 1424751705714132364, guid: 01da1ea694d5825418e940e2029741ed,
+    type: 3}
 --- !u!114 &6707433492058595990
 MonoBehaviour:
   m_ObjectHideFlags: 0
