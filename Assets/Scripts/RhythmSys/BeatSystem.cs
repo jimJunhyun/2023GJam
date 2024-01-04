@@ -82,12 +82,13 @@ public class BeatSystem : Singleton<BeatSystem>
         if (_currentTime >= _currentBeatValue)
         {
 
-            if(_matronyum)
-                SoundManager.Instance.PlaySFX(_matronyum);
-            
-            _currentTime = 0;
-            StartCoroutine(Beating());
+            if (_matronyum)
+            {
+                //SoundManager.Instance.PlaySFX(_matronyum);
 
+                _currentTime = 0;
+                StartCoroutine(Beating());
+            }
         }
         if (GameManager.Instance)
         if (GameManager.Instance.player.IsInteractive)
@@ -101,13 +102,13 @@ public class BeatSystem : Singleton<BeatSystem>
             {
             
                 GameManager.Instance.player.Inven.HitInvoking();
-                BeatUISystem.Instance.HitNode(_j);
+                BeatUISystem.Instance.HitNode(_j, SoundSetting.KickDrumSFX);
             
             }
             if(Input.GetKeyDown(KeyCode.K))
             {
                 GameManager.Instance.player.Inven.HitInvoking();
-                BeatUISystem.Instance.HitNode(_k);
+                BeatUISystem.Instance.HitNode(_k, SoundSetting.SnareDrumSFX);
             }
 
             if (Input.GetKeyDown(KeyCode.I)) // 1 + 아이템 + 플레이어
@@ -122,7 +123,7 @@ public class BeatSystem : Singleton<BeatSystem>
                 {
                     _addBeatCount++;
                     BeatUISystem.Instance.InstanciateRecordNode();
-                    SoundManager.Instance.PlaySFX(_i);
+                    SoundManager.Instance.PlaySFX(_i, SoundSetting.KickDrumSFX); //ㅁ?ㄹ
                 }
 
                 //GetComponent<AudioSource>().PlayOneShot(_Hit);
@@ -142,7 +143,7 @@ public class BeatSystem : Singleton<BeatSystem>
                     GameManager.Instance.player.Inven.HitInvoking();
             
                     BeatUISystem.Instance.RemoveNode();
-                    BeatUISystem.Instance.HitNode(_o);
+                    BeatUISystem.Instance.HitNode(_o, SoundSetting.KickDrumSFX);
                 }
             
 
@@ -152,19 +153,19 @@ public class BeatSystem : Singleton<BeatSystem>
         {
             if (Input.GetKeyDown(KeyCode.J))
             {
-                SoundManager.Instance.PlaySFX(_j);
+                SoundManager.Instance.PlaySFX(_j, SoundSetting.KickDrumSFX);
             }
             if (Input.GetKeyDown(KeyCode.K))
             {
-                SoundManager.Instance.PlaySFX(_k);
+                SoundManager.Instance.PlaySFX(_k, SoundSetting.SnareDrumSFX);
             }
             if (Input.GetKeyDown(KeyCode.I))
             {
-                SoundManager.Instance.PlaySFX(_i);
+                SoundManager.Instance.PlaySFX(_i, SoundSetting.KickDrumSFX); //어짜피 지운다네요 암거나 넣음
             }
             if (Input.GetKeyDown(KeyCode.O))
             {
-                SoundManager.Instance.PlaySFX(_o);
+                SoundManager.Instance.PlaySFX(_o, SoundSetting.KickDrumSFX); //222
             }
         }
         
