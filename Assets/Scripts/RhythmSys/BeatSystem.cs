@@ -102,13 +102,13 @@ public class BeatSystem : Singleton<BeatSystem>
             {
             
                 GameManager.Instance.player.Inven.HitInvoking();
-                BeatUISystem.Instance.HitNode(_j, SoundSetting.KickDrumSFX);
+                BeatUISystem.Instance.HitNode(_j, SoundSetting.KickDrum);
             
             }
             if(Input.GetKeyDown(KeyCode.K))
             {
                 GameManager.Instance.player.Inven.HitInvoking();
-                BeatUISystem.Instance.HitNode(_k, SoundSetting.SnareDrumSFX);
+                BeatUISystem.Instance.HitNode(_k, SoundSetting.SnareDrum);
             }
 
             if (Input.GetKeyDown(KeyCode.I)) // 1 + 아이템 + 플레이어
@@ -123,7 +123,7 @@ public class BeatSystem : Singleton<BeatSystem>
                 {
                     _addBeatCount++;
                     BeatUISystem.Instance.InstanciateRecordNode();
-                    SoundManager.Instance.PlaySFX(_i, SoundSetting.KickDrumSFX); //ㅁ?ㄹ
+                    SoundManager.Instance.PlaySFX(_i, SoundSetting.KickDrum); //ㅁ?ㄹ
                 }
 
                 //GetComponent<AudioSource>().PlayOneShot(_Hit);
@@ -143,7 +143,7 @@ public class BeatSystem : Singleton<BeatSystem>
                     GameManager.Instance.player.Inven.HitInvoking();
             
                     BeatUISystem.Instance.RemoveNode();
-                    BeatUISystem.Instance.HitNode(_o, SoundSetting.KickDrumSFX);
+                    BeatUISystem.Instance.HitNode(_o, SoundSetting.KickDrum);
                 }
             
 
@@ -153,19 +153,19 @@ public class BeatSystem : Singleton<BeatSystem>
         {
             if (Input.GetKeyDown(KeyCode.J))
             {
-                SoundManager.Instance.PlaySFX(_j, SoundSetting.KickDrumSFX);
+                SoundManager.Instance.PlaySFX(_j, SoundSetting.KickDrum);
             }
             if (Input.GetKeyDown(KeyCode.K))
             {
-                SoundManager.Instance.PlaySFX(_k, SoundSetting.SnareDrumSFX);
+                SoundManager.Instance.PlaySFX(_k, SoundSetting.SnareDrum);
             }
             if (Input.GetKeyDown(KeyCode.I))
             {
-                SoundManager.Instance.PlaySFX(_i, SoundSetting.KickDrumSFX); //어짜피 지운다네요 암거나 넣음
+                SoundManager.Instance.PlaySFX(_i, SoundSetting.KickDrum); //어짜피 지운다네요 암거나 넣음
             }
             if (Input.GetKeyDown(KeyCode.O))
             {
-                SoundManager.Instance.PlaySFX(_o, SoundSetting.KickDrumSFX); //222
+                SoundManager.Instance.PlaySFX(_o, SoundSetting.KickDrum); //222
             }
         }
         

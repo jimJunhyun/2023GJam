@@ -184,11 +184,11 @@ public class BeatUISystem : Singleton<BeatUISystem>
 
             switch (soundSet)
             {
-                case SoundSetting.KickDrumSFX:
-                    SoundManager.Instance.PlaySFX(_audio, SoundSetting.KickDrumSFX);
+                case SoundSetting.KickDrum:
+                    SoundManager.Instance.PlaySFX(_audio, SoundSetting.KickDrum);
                     break;
-                case SoundSetting.SnareDrumSFX:
-                    SoundManager.Instance.PlaySFX(_audio,SoundSetting.SnareDrumSFX);
+                case SoundSetting.SnareDrum:
+                    SoundManager.Instance.PlaySFX(_audio,SoundSetting.SnareDrum);
                     break;
                 default:
                     break;
@@ -212,11 +212,11 @@ public class BeatUISystem : Singleton<BeatUISystem>
 
                 switch (soundSet)
                 {
-                    case SoundSetting.KickDrumSFX:
-                        SoundManager.Instance.PlaySFX(_audio, SoundSetting.KickDrumSFX);
+                    case SoundSetting.KickDrum:
+                        SoundManager.Instance.PlaySFX(_audio, SoundSetting.KickDrum);
                         break;
-                    case SoundSetting.SnareDrumSFX:
-                        SoundManager.Instance.PlaySFX(_audio, SoundSetting.SnareDrumSFX);
+                    case SoundSetting.SnareDrum:
+                        SoundManager.Instance.PlaySFX(_audio, SoundSetting.SnareDrum);
                         break;
                     default:
                         break;
@@ -244,11 +244,11 @@ public class BeatUISystem : Singleton<BeatUISystem>
             //SoundManager.Instance.PlaySFX(_audio);
             switch (soundSet)
             {
-                case SoundSetting.KickDrumSFX:
-                    SoundManager.Instance.PlaySFX(_audio, SoundSetting.KickDrumSFX);
+                case SoundSetting.KickDrum:
+                    SoundManager.Instance.PlaySFX(_audio, SoundSetting.KickDrum);
                     break;
-                case SoundSetting.SnareDrumSFX:
-                    SoundManager.Instance.PlaySFX(_audio, SoundSetting.SnareDrumSFX);
+                case SoundSetting.SnareDrum:
+                    SoundManager.Instance.PlaySFX(_audio, SoundSetting.SnareDrum);
                     break;
                 default:
                     break;
