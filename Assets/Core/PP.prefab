@@ -84,6 +84,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d978d9b8bbea2ff4db387a9c8293b4fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSaturation: -58
+  minSaturation: -70
   maxSaturation: 11
   time: 3
