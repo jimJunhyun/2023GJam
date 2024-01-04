@@ -33,6 +33,8 @@ public class GameManager : Singleton<GameManager>
 
 	public MapList mapList;
 
+	public DecalBase decal;
+
 	NavMeshSurface surface;
 
 	private void Awake()
@@ -53,6 +55,18 @@ public class GameManager : Singleton<GameManager>
 		curRoom = maps[curStage].startRoom;
 		MovePlayerTo(curRoom.downPt);
 		maps[curStage].CreateMap();
+	}
+
+	private void Update()
+	{
+		if (curRoom)
+		{
+			if (curRoom.IsCleared)
+			{
+				curRoom.SetClearState();
+			}
+
+		}
 	}
 
 	public void RefreshMap()

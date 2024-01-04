@@ -130,6 +130,7 @@ public class PlayerCtrl : MonoBehaviour, IRhythm
 	{
 		if (moveVec != Vector3.zero)
 		{
+			Debug.Log(PoolManager.Instance);
 			EffectObject ef = PoolManager.Instance.Pop(_walkEffect.name) as EffectObject;
 			ef.Init(transform.position + new Vector3(0,-1,0));
 			

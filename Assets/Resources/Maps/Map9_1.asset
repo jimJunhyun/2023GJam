@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd616900df637c646a06e03b5a1f6785, type: 3}
   m_Name: Map9_1
   m_EditorClassIdentifier: 
-  obj: {fileID: 6162613809873983578, guid: 6b8c28dfaa16dd440abb2e1332c779b8, type: 3}
+  obj: {fileID: 359410278692488110, guid: 51c4794c232137c4d958665775e1d02c, type: 3}
   isQuestion: 1
   type: 7
   up: {fileID: 11400000, guid: a424775eb5ca2ae4cbf4af1d31f18c06, type: 2}
   down: {fileID: 11400000, guid: d786e4f4f62eb604d95650962941ede3, type: 2}
   left: {fileID: 11400000, guid: 35ab1a77430f38f41a50cce920da5998, type: 2}
   right: {fileID: 11400000, guid: 010c5ccc57ddbc241816e9475506e01c, type: 2}
-  upPt: {x: 145.1, y: 0, z: 179.7}
-  downPt: {x: 144.8, y: 0, z: 137.9}
-  leftPt: {x: 138.4, y: 0, z: 173.8}
-  rightPt: {x: 179.3, y: 0, z: 173.9}
+  upPt: {x: 160.5, y: 0, z: 182.1}
+  downPt: {x: 144.9, y: 0, z: 140.2}
+  leftPt: {x: 139.4, y: 0, z: 181.9}
+  rightPt: {x: 177.7, y: 0, z: 181.6}
   upPtExit: {fileID: 0}
   downPtExit: {fileID: 0}
   leftPtExit: {fileID: 0}
@@ -30,4 +30,4 @@ MonoBehaviour:
   rootOffSet: {x: 0, y: 0, z: 0}
   isRandomizable: 1
   cleared: 0
-  _mapGimik: {fileID: 0}
+  _mapGimik: {fileID: 11400000, guid: 3dfeffb3e39002d4b8f4a1f0ea2700f9, type: 2}

@@ -92,6 +92,7 @@ public class AI : MonoBehaviour, IRhythm
 				anim = anims[i];
 				if(type == AttackType.Shoot)
 					shootPos = transform.Find("ShootPos");
+				
 			}
 			else
 			{
@@ -112,7 +113,7 @@ public class AI : MonoBehaviour, IRhythm
 
 		if( type == AttackType.Shoot)
 		{
-			ShootAttack shoot = new ShootAttack(rig, myBullet, GameManager.Instance.player.transform, shootPos, stat.ATK, shootPow,
+			ShootAttack shoot = new ShootAttack(rig, myBullet, GameManager.Instance.player.transform, shootPos, stat.ATK, shootPow,this,
 				() =>
 				{
 					if (_bulletShootEffect)
@@ -162,7 +163,7 @@ public class AI : MonoBehaviour, IRhythm
 		}
 		else
 		{
-			SweepAttack sweep = new SweepAttack(rig, atkRange, angle, GameManager.Instance.player.transform, stat.ATK,
+			SweepAttack sweep = new SweepAttack(rig, atkRange, angle, GameManager.Instance.player.transform, stat.ATK,this,
 				() =>
 				{
 					if (_sweepEffect)
@@ -256,6 +257,8 @@ public class AI : MonoBehaviour, IRhythm
 			Collider[] cols = Physics.OverlapSphere(transform.position, spinThreshold, (1 << 8) | (1 << 9));
 			for (int i = 0; i < cols.Length; i++)
 			{
+				if(cols[i].gameObject == gameObject)
+					continue;
 				LifeObject p = cols[i].GetComponent<LifeObject>();
 				Debug.Log(p.transform.name);
 				p.Damage(spinDamage);

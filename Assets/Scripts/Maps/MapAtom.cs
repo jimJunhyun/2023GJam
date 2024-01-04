@@ -64,6 +64,20 @@ public class MapAtom : ScriptableObject
 
 	[Header("MapGimik")] public MapGimikSO _mapGimik;
 
+	public bool IsCleared
+	{
+		get
+		{
+			bool res = true;
+			for (int i = 0; i < slots.Count; i++)
+			{
+				res &= slots[i].deadMobCnt == slots[i].myEnemies.Count;
+			}
+			return res;
+		}
+	}
+
+	private MapPP mPP;
 	public virtual void Init(Vector3 pos, MapGenerator info)
 	{
 		SetStructureRandom(info);
@@ -86,7 +100,10 @@ public class MapAtom : ScriptableObject
 			if (hit.hit)
 			{
 				Debug.Log("GONE WELL WITH : " + self.name + " in " + name);
-				SetEnemyRandom();
+				if (self.transform.Find("MobPoint_01"))
+				{
+					SetEnemyRandom();
+				}
 				yield break;
 			}
 			if(rep > GameManager.MAXREPCOUNT)
@@ -222,13 +239,15 @@ public class MapAtom : ScriptableObject
 		int spPointAmt = Random.Range(4, 6);
 		HashSet<int> selecteds = new HashSet<int>();
 		List<int> spawnInfo = new List<int>(4) { 0, 0, 0, 0 };
-		//Debug.Log("cnt : " + spPointAmt + " , Mobs : " + mobCnt);
+		Debug.Log("cnt : " + spPointAmt + " , Mobs : " + mobCnt);
 		while(selecteds.Count < spPointAmt)
 		{
 			int idx = Random.Range(0, 5);
 			selecteds.Add(idx);
 			//Debug.Log("SLOTNO : " + idx);
 		}
+		
+
 		foreach (int item in selecteds)
 		{
 			//Debug.Log($"FINDING :MobPoint_0{item + 1} under {self.transform.name}");
@@ -256,6 +275,7 @@ public class MapAtom : ScriptableObject
 			{
 				++repCount;
 				r = Random.Range(0, slots.Count);
+				//Debug.Log(r);
 				if (slots[r].myEnemies.Count < GameManager.MAXMOBPERPOINT)
 				{
 					slots[r].SetEnemy(EnemySpawner.instance.SpawnRand(slots[r].transform, ref spawnInfo));
@@ -302,29 +322,36 @@ public class MapAtom : ScriptableObject
 
 	public void SetClearState()
 	{
-		cleared = true;
-		if (up)
+		if (!cleared)
 		{
-			upPtExit.SetValid();
+			Debug.Log("CLEARED");
+			cleared = true;
+			mPP.AdjustSaturation(true);
+			if (up)
+			{
+				upPtExit.SetValid();
+			}
+			if (down)
+			{
+				downPtExit.SetValid();
+			}
+			if (left)
+			{
+				leftPtExit.SetValid();
+			}
+			if (right)
+			{
+				rightPtExit.SetValid();
+			}
 		}
-		if (down)
-		{
-			downPtExit.SetValid();
-		}
-		if (left)
-		{
-			leftPtExit.SetValid();
-		}
-		if (right)
-		{
-			rightPtExit.SetValid();
-		}
+		
 	}
 
 	public void ResetClearState()
 	{
 		cleared = false;
-		if (up && upPtExit)
+        mPP.AdjustSaturation(false);
+        if (up && upPtExit)
 		{
 			upPtExit.ResetValid();
 		}
@@ -344,6 +371,9 @@ public class MapAtom : ScriptableObject
 
 	public void SetPoints()
 	{
+		mPP = self.transform.Find("PP").GetComponent<MapPP>();
+		mPP.AdjustSaturation(false);
+
 		upPt = self.transform.Find("EnterPoint0").position;
 		downPt = self.transform.Find("EnterPoint1").position;
 		leftPt = self.transform.Find("EnterPoint2").position;
