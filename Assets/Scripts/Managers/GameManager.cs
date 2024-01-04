@@ -25,7 +25,8 @@ public class GameManager : Singleton<GameManager>
 		}
 	}
 	
-	
+	public BossAI boss;
+
 	public MapAtom curRoom;
 	public int curStage = 0;
 
@@ -35,12 +36,14 @@ public class GameManager : Singleton<GameManager>
 
 	public DecalBase decal;
 
+	public GoldUI gold;
+
 	NavMeshSurface surface;
 
 	private void Awake()
 	{
 		surface = GetComponent<NavMeshSurface>();
-		
+		gold  = GameObject.Find("GoldArea").GetComponent<GoldUI>();
 	}
 
 	private void Start()
@@ -75,10 +78,10 @@ public class GameManager : Singleton<GameManager>
 	}
 
 
-	public void MovePlayerTo(Vector3 point)
+	public void MovePlayerTo(Vector3 point, bool yDiff = false)
 	{
 		//player.transform.position = point;
-		player.playerCtrl.SetPosition(point);
+		player.playerCtrl.SetPosition(point, yDiff);
 	}
 
 	public void ChangeRoom(Direction dir)
