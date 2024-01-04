@@ -22,6 +22,8 @@ MonoBehaviour:
     type: 3}
   bossMap: {fileID: -8032388715477420488, guid: ed0a928fa6a8f98478cc357d6249f415,
     type: 3}
+  shopRoom: {fileID: 7120835602934789658, guid: b143d267003a979439333626c22e4bfe,
+    type: 3}
   blessGimmick: {fileID: 11400000, guid: 3dfeffb3e39002d4b8f4a1f0ea2700f9, type: 2}
   curseGimmick: {fileID: 11400000, guid: b2fe13631ad7bc448aa519b580a779f6, type: 2}
   healGimmick: {fileID: 11400000, guid: 7298ad7518cb3ef43941c21a674cbc00, type: 2}

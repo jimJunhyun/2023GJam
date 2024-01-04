@@ -82,9 +82,30 @@ public class LifeObject : MonoBehaviour
 		if (!dead)
 		{
 
-		dead = true;
-		gameObject.SetActive(false);
-		onDead?.Invoke();
+			dead = true;
+			gameObject.SetActive(false);
+			AI ai;
+			if(ai = GetComponent<AI>())
+			{
+				switch (ai.type)
+				{
+					case AttackType.Shoot:
+						GameManager.Instance.player.Gold += 2;
+						break;
+					case AttackType.Spin:
+					case AttackType.Sweep:
+						GameManager.Instance.player.Gold += 2;
+						break;
+					case AttackType.Body:
+						GameManager.Instance.player.Gold += 1;
+						break;
+					case AttackType.Charge:
+						GameManager.Instance.player.Gold += 3;
+						break;
+				}
+				
+			}
+			onDead?.Invoke();
 		}
 	}
 

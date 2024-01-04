@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
         set
         {
             _gold = value;
+            GameManager.Instance.gold.RefreshGold();
         }
     }
 
