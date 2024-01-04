@@ -137,7 +137,7 @@ public class BeatUISystem : Singleton<BeatUISystem>
         img.ImageUI.color = new Color(0, 0, 1, 0.3f);
     }
 
-    public void HitNode(AudioClip _audio)
+    public void HitNode(AudioClip _audio, SoundSetting soundSet)
     {
         if (_hitBeatLine == null)
             return;
@@ -182,8 +182,19 @@ public class BeatUISystem : Singleton<BeatUISystem>
                 }
             }
 
-            
-            SoundManager.Instance.PlaySFX(_audio);
+            switch (soundSet)
+            {
+                case SoundSetting.KickDrumSFX:
+                    SoundManager.Instance.PlaySFX(_audio, SoundSetting.KickDrumSFX);
+                    break;
+                case SoundSetting.SnareDrumSFX:
+                    SoundManager.Instance.PlaySFX(_audio,SoundSetting.SnareDrumSFX);
+                    break;
+                default:
+                    break;
+            }
+
+            //SoundManager.Instance.PlaySFX(_audio);
             
             hitCount++;
         }
@@ -198,8 +209,18 @@ public class BeatUISystem : Singleton<BeatUISystem>
                 ShootEffect(_hitEffect);
                 GameManager.Instance.player.Inven.NodeInvoking();
                 GameManager.Instance.player.PlayerAttack.DoAttack(Detection.Good);
-            
-                SoundManager.Instance.PlaySFX(_audio);
+
+                switch (soundSet)
+                {
+                    case SoundSetting.KickDrumSFX:
+                        SoundManager.Instance.PlaySFX(_audio, SoundSetting.KickDrumSFX);
+                        break;
+                    case SoundSetting.SnareDrumSFX:
+                        SoundManager.Instance.PlaySFX(_audio, SoundSetting.SnareDrumSFX);
+                        break;
+                    default:
+                        break;
+                }
             }
             Debug.Log($"굳, {a} | {b} | {Mathf.Abs(a - b)}");
 
@@ -220,8 +241,18 @@ public class BeatUISystem : Singleton<BeatUISystem>
             }
             hitCount++;
             
-            SoundManager.Instance.PlaySFX(_audio);
-
+            //SoundManager.Instance.PlaySFX(_audio);
+            switch (soundSet)
+            {
+                case SoundSetting.KickDrumSFX:
+                    SoundManager.Instance.PlaySFX(_audio, SoundSetting.KickDrumSFX);
+                    break;
+                case SoundSetting.SnareDrumSFX:
+                    SoundManager.Instance.PlaySFX(_audio, SoundSetting.SnareDrumSFX);
+                    break;
+                default:
+                    break;
+            }
         }   
         else
         {
