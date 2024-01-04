@@ -30,6 +30,8 @@ public class GameManager : Singleton<GameManager>
 	public BossAI boss;
 
 	public MapAtom curRoom;
+
+
 	public int curStage = 0;
 
 	public List<MapGenerator> maps;

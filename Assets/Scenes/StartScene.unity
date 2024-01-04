@@ -2985,6 +2985,12 @@ MonoBehaviour:
   BPM: 100
   Matronyum: 4
   Delay: 0.2
+  _isStop: 0
+  _reslStop: 0
+  _jConnect: 1
+  _kConnect: 1
+  _iConnect: 1
+  _oConnet: 1
 --- !u!4 &5341492344635409081
 Transform:
   m_ObjectHideFlags: 0
@@ -3070,10 +3076,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  _noItemSprite: {fileID: 0}
   _atk: {fileID: 0}
   _spd: {fileID: 0}
   _range: {fileID: 0}
   _bpm: {fileID: 0}
+  _item: {fileID: 0}
 --- !u!223 &7245128275442883574
 Canvas:
   m_ObjectHideFlags: 0
@@ -3134,6 +3142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0aab973ba9c57744addef4161d891a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Tutorial: {fileID: 11400000, guid: 2eec88d4ca6df24419aab2fd6b04c543, type: 2}
   GameScene: {fileID: 11400000, guid: 57d2dee28715fc6499379ee5905b3caf, type: 2}
   _ts: {fileID: 0}
   _tutorial: {fileID: 95919591}

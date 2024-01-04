@@ -4201,6 +4201,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: building-bank
       objectReference: {fileID: 0}
+    - target: {fileID: 516529644008630337, guid: b0fafeba093d08448b7c4f66f69294cd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 516529644010567297, guid: b0fafeba093d08448b7c4f66f69294cd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 02568ad2e6595bf478202f194c077387, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -4213,6 +4223,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1722966722794656078}
+    - targetCorrespondingSourceObject: {fileID: 516529644008630337, guid: b0fafeba093d08448b7c4f66f69294cd,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5289378449500903094}
   m_SourcePrefab: {fileID: 100100000, guid: b0fafeba093d08448b7c4f66f69294cd, type: 3}
 --- !u!4 &6284802976711930755 stripped
 Transform:
@@ -4242,6 +4256,18 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 6.8500004, z: 0.263}
   m_TimeToStationary: 0.5
+--- !u!114 &5289378449500903094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6284802976712028067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dca7963daacc1f14c9e1124f55991fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5993335547808745868
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5566,6 +5592,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cross-wood
       objectReference: {fileID: 0}
+    - target: {fileID: 1000011412765842, guid: 5d68336ad1e854d2080e9b0145342566, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 4000013078766694, guid: 5d68336ad1e854d2080e9b0145342566, type: 3}
       propertyPath: m_LocalScale.x
       value: 4.7203
@@ -5618,11 +5648,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 360
       objectReference: {fileID: 0}
+    - target: {fileID: 23000011975366880, guid: 5d68336ad1e854d2080e9b0145342566,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 02568ad2e6595bf478202f194c077387, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1000011412765842, guid: 5d68336ad1e854d2080e9b0145342566,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2933209677324840056}
   m_SourcePrefab: {fileID: 100100000, guid: 5d68336ad1e854d2080e9b0145342566, type: 3}
+--- !u!1 &8715115810450914123 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1000011412765842, guid: 5d68336ad1e854d2080e9b0145342566,
+    type: 3}
+  m_PrefabInstance: {fileID: 8714960226284357593}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2933209677324840056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715115810450914123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dca7963daacc1f14c9e1124f55991fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8718959925629182911 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000013078766694, guid: 5d68336ad1e854d2080e9b0145342566,

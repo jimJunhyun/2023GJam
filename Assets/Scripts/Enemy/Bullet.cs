@@ -22,13 +22,16 @@ public class Bullet : PoolAble
 		LifeObject lf;
 		if (lf = other.gameObject.GetComponent<LifeObject>())
 		{
-			lf.Damage(dam);
-			if (other.GetComponent<Bullet>())
+			if(other.gameObject.layer == 8 || other.gameObject.layer == 10)
 			{
-				lf.OnDead();
+				lf.Damage(dam);
+				if (other.GetComponent<Bullet>())
+				{
+					lf.OnDead();
+					life.OnDead();
+				}
 				life.OnDead();
 			}
-			life.OnDead();
 			
 		}
 	}

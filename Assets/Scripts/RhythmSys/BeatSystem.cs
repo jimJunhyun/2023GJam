@@ -27,7 +27,25 @@ public class BeatSystem : Singleton<BeatSystem>
     private int _addBeatCount = 0;
     private int _removeBeatCount = 0;
 
-    
+
+    public bool _isStop = false;
+    public bool _reslStop = false;
+
+    public bool _jConnect = true;
+    public bool _kConnect = true;
+    public bool _iConnect = true;
+    public bool _oConnet = true;
+
+    public void StopBeat()
+    {
+        _isStop = true;
+    }
+
+    public void StartBeat()
+    {
+        _isStop = false;
+        _reslStop = false;
+    }
     
     private void Awake()
     {
@@ -76,6 +94,9 @@ public class BeatSystem : Singleton<BeatSystem>
     private void Update()
     {
 
+        if (_reslStop)
+            return;
+        
         //Debug.Log(beat);
         _currentTime += Time.deltaTime;
         
@@ -90,6 +111,8 @@ public class BeatSystem : Singleton<BeatSystem>
                 StartCoroutine(Beating());
             }
         }
+        
+        
         if (GameManager.Instance)
         if (GameManager.Instance.player.IsInteractive)
             return;
@@ -98,20 +121,20 @@ public class BeatSystem : Singleton<BeatSystem>
 
         if (GameManager.Instance && GameManager.Instance.player)
         {
-            if (Input.GetKeyDown(KeyCode.J))
+            if (Input.GetKeyDown(KeyCode.J) && _jConnect)
             {
             
                 GameManager.Instance.player.Inven.HitInvoking();
                 BeatUISystem.Instance.HitNode(_j, SoundSetting.KickDrum);
             
             }
-            if(Input.GetKeyDown(KeyCode.K))
+            if(Input.GetKeyDown(KeyCode.K) && _kConnect)
             {
                 GameManager.Instance.player.Inven.HitInvoking();
                 BeatUISystem.Instance.HitNode(_k, SoundSetting.SnareDrum);
             }
 
-            if (Input.GetKeyDown(KeyCode.I)) // 1 + 아이템 + 플레이어
+            if (Input.GetKeyDown(KeyCode.I) && _iConnect) // 1 + 아이템 + 플레이어
             {
                 int a = 1;
                 if (GameManager.Instance.player.Inven.ReturnItemRule() != null)
@@ -129,7 +152,7 @@ public class BeatSystem : Singleton<BeatSystem>
                 //GetComponent<AudioSource>().PlayOneShot(_Hit);
             }
 
-            if (Input.GetKeyDown(KeyCode.O))
+            if (Input.GetKeyDown(KeyCode.O) && _oConnet)
             {
                 int a = 1;
                 if (GameManager.Instance.player.Inven.ReturnItemRule() != null)
@@ -186,6 +209,9 @@ public class BeatSystem : Singleton<BeatSystem>
 
     void RhythmUpdating()
     {
+        
+        SoundManager.Instance.PlaySFX(_matronyum, SoundSetting.SFX);
+        
         //Debug.Log(_currentTime);
         if (_matCount >= Matronyum)
         {
@@ -193,10 +219,15 @@ public class BeatSystem : Singleton<BeatSystem>
             _removeBeatCount = 0;
             _currentBeatValue = BeatValue();
             
-            if (GameManager.Instance && GameManager.Instance.player)
+            if (GameManager.Instance && GameManager.Instance.player && _isStop==false)
             {
                 GameManager.Instance.player.PlayerUI.InvaligateBPM((int)ReturnBPM);
                 BeatUISystem.Instance.InstanciateNode();
+            }
+
+            if (_isStop == true)
+            {
+                _reslStop = true;
             }
             
             //BeatUISystem.Instance.ResetHitBoard();
