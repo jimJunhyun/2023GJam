@@ -26,16 +26,13 @@ public class BeatSystem : Singleton<BeatSystem>
 
     private int _addBeatCount = 0;
     private int _removeBeatCount = 0;
+
     
-    private Inventory _inven;
     
     private void Awake()
     {
         _currentBeatValue = BeatValue();
-        if (GameManager.Instance.player)
-        {
-            _inven = GameManager.Instance.player.Inven;
-        }
+
 
     }
 
@@ -44,6 +41,10 @@ public class BeatSystem : Singleton<BeatSystem>
         get
         {
             return BPM;
+        }
+        set
+        {
+            BPM = value;
         }
     }
 
@@ -81,18 +82,20 @@ public class BeatSystem : Singleton<BeatSystem>
         if (_currentTime >= _currentBeatValue)
         {
 
-            SoundManager.Instance.PlaySFX(_matronyum);
+            if(_matronyum)
+                SoundManager.Instance.PlaySFX(_matronyum);
+            
             _currentTime = 0;
             StartCoroutine(Beating());
 
         }
-        
+        if (GameManager.Instance)
         if (GameManager.Instance.player.IsInteractive)
             return;
 
         #region 인풋
 
-        if (GameManager.Instance.player)
+        if (GameManager.Instance && GameManager.Instance.player)
         {
             if (Input.GetKeyDown(KeyCode.J))
             {
@@ -110,9 +113,9 @@ public class BeatSystem : Singleton<BeatSystem>
             if (Input.GetKeyDown(KeyCode.I)) // 1 + 아이템 + 플레이어
             {
                 int a = 1;
-                if (_inven.ReturnItemRule() != null)
+                if (GameManager.Instance.player.Inven.ReturnItemRule() != null)
                 {
-                    a += _inven.ReturnItemRule().AddBeat;
+                    a += GameManager.Instance.player.Inven.ReturnItemRule().AddBeat;
                 }
 
                 if (a > _addBeatCount || (BeatUISystem.Instance.HitCount <4 && BeatUISystem.Instance.RecordCount < 4))
@@ -128,9 +131,9 @@ public class BeatSystem : Singleton<BeatSystem>
             if (Input.GetKeyDown(KeyCode.O))
             {
                 int a = 1;
-                if (_inven.ReturnItemRule() != null)
+                if (GameManager.Instance.player.Inven.ReturnItemRule() != null)
                 {
-                    a += _inven.ReturnItemRule().RemoveBeat;
+                    a += GameManager.Instance.player.Inven.ReturnItemRule().RemoveBeat;
                 }
 
                 if (a > _removeBeatCount)
@@ -185,14 +188,18 @@ public class BeatSystem : Singleton<BeatSystem>
         //Debug.Log(_currentTime);
         if (_matCount >= Matronyum)
         {
-            
-            GameManager.Instance.player.PlayerUI.InvaligateBPM((int)ReturnBPM);
-            
             _addBeatCount = 0;
             _removeBeatCount = 0;
             _currentBeatValue = BeatValue();
+            
+            if (GameManager.Instance && GameManager.Instance.player)
+            {
+                GameManager.Instance.player.PlayerUI.InvaligateBPM((int)ReturnBPM);
+                BeatUISystem.Instance.InstanciateNode();
+            }
+            
             //BeatUISystem.Instance.ResetHitBoard();
-            BeatUISystem.Instance.InstanciateNode();
+
             
             _matCount = 1;
             var objects = FindRhythms();
