@@ -142,7 +142,7 @@ public class BeatSystem : Singleton<BeatSystem>
                     a += GameManager.Instance.player.Inven.ReturnItemRule().AddBeat;
                 }
 
-                if (a > _addBeatCount || (BeatUISystem.Instance.HitCount <4 && BeatUISystem.Instance.RecordCount < 4))
+                if (a > _addBeatCount || (BeatUISystem.Instance.HitCount + BeatUISystem.Instance.RecordCount < 4)                                        )
                 {
                     _addBeatCount++;
                     BeatUISystem.Instance.InstanciateRecordNode();
