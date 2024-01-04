@@ -29,7 +29,7 @@ public class PlayerCtrl : MonoBehaviour, IRhythm
 	private void Awake()
 	{
 		ctrl = GetComponent<CharacterController>();
-		anim = GetComponentInChildren<Animator>();
+		anim = transform.Find("LowMan").GetComponentInChildren<Animator>();
 		//atk = GetComponent<PlayerAttack>();
 	}
 

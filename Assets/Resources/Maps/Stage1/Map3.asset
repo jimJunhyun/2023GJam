@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd616900df637c646a06e03b5a1f6785, type: 3}
   m_Name: Map3
   m_EditorClassIdentifier: 
-  obj: {fileID: -7935989439776852606, guid: 65decd916ea1cd24e963104b44d8577f, type: 3}
+  obj: {fileID: 7021074989804766103, guid: 99540aa823412c64796c52a5bf81d1ad, type: 3}
   isQuestion: 0
   type: 1
   up: {fileID: 11400000, guid: 7a17cb31496ad4e4cb76ab8e68341073, type: 2}
   down: {fileID: 11400000, guid: d786e4f4f62eb604d95650962941ede3, type: 2}
   left: {fileID: 11400000, guid: dcce2e24c6dd6264baa729409882da04, type: 2}
   right: {fileID: 11400000, guid: a327974177e4df042867d66c2ed2e31f, type: 2}
-  upPt: {x: 10, y: 10, z: 20}
-  downPt: {x: 10, y: 10, z: 0}
-  leftPt: {x: 0, y: 10, z: 10}
-  rightPt: {x: 20, y: 10, z: 10}
+  upPt: {x: -111, y: 0, z: 119.1}
+  downPt: {x: -111.7, y: 0, z: 118.3}
+  leftPt: {x: -111, y: 0, z: 118.1}
+  rightPt: {x: -110.6, y: 0, z: 118.1}
   upPtExit: {fileID: 0}
   downPtExit: {fileID: 0}
   leftPtExit: {fileID: 0}
