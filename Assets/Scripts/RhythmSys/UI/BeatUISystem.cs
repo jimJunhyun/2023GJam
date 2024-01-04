@@ -3,6 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
+
+public enum Detection
+{
+    Perfect,
+    Good,
+    Bad,
+    none
+}
 
 public class BeatUISystem : Singleton<BeatUISystem>
 {
@@ -26,14 +35,34 @@ public class BeatUISystem : Singleton<BeatUISystem>
 
     [Header("CurrentNode")] [SerializeField]private HitUI _nowNode;
 
+    [Header("Curse")] [SerializeField] private CurseUI _curse;
+    public CurseUI Curse => _curse;
+    
+    [Header("Effect")]
+    public PoolAble _hitEffect;
+
     private int hitCount = 0;
     private int _perfectCount = 0;
     private bool PerfectMD = false;
     private int _goodCount = 0;
     private bool GoodMD = false;
 
+    public int HitCount => _hit.Count;
+    public int RecordCount => _record.Count;
+
+
+    public bool IsPerfect
+    {
+        get
+        {
+            return PerfectMD;
+        }
+    }
+
     public void InstanciateNode()
     {
+        
+        //GameManager.Instance.player.Inven.AddCurse(CurseList.MadiSeal);
         PerfectMD = false;
         GoodMD = false;
         
@@ -59,8 +88,24 @@ public class BeatUISystem : Singleton<BeatUISystem>
         _recordBeatLine = Instantiate(_beatLineImg,BeatPos);
         
         _recordBeatLine.Init(_startRecordBeat, _endRecordBeat);
+
+        if (GameManager.Instance.player.Inven.FindCurse(CurseList.MadiSeal))
+        {
+            _curse.SetCurse(Random.Range(0,4));
+        }
+        else
+        {
+            _curse.SetCurse();
+        }
         
         InvaligateNode();
+    }
+
+    public void ShootEffect(PoolAble _mono)
+    {
+        EffectObject ef = PoolManager.Instance.Pop(_mono.name) as EffectObject;
+        Debug.LogWarning($"Effect : {GameManager.Instance.player.GetInstanceID()}");
+        ef.Init(GameManager.Instance.player.transform,new Vector3(0,-1,0));
     }
 
     public void Invoke()
@@ -92,7 +137,7 @@ public class BeatUISystem : Singleton<BeatUISystem>
         img.ImageUI.color = new Color(0, 0, 1, 0.3f);
     }
 
-    public void HitNode()
+    public void HitNode(AudioClip _audio)
     {
         if (_hitBeatLine == null)
             return;
@@ -103,27 +148,67 @@ public class BeatUISystem : Singleton<BeatUISystem>
             return;
         }
 
+        if (_nowNode.isHit == true)
+            return;
+
         float a = _hitBeatLine.Position;
         float b = _nowNode.Position;
+        
+        
+
+        
         
         // 비팅 시스템 만들기
         if (Mathf.Abs(a - b) < 0.03f)
         {
             _perfectCount++;
             Debug.Log($"쵝오, {a} | {b} | {Mathf.Abs(a - b)}");
+            GameManager.Instance.player.Inven.NodeInvoking();
+
+            if (GameManager.Instance.player.Inven.FindCurse(CurseList.PerfectSeal))
+            {
+                ShootEffect(_hitEffect);
+                
+                GameManager.Instance.player.PlayerAttack.DoAttack(Detection.Good);
+            }
+            else
+            {
+                ShootEffect(_hitEffect);
+                
+                GameManager.Instance.player.PlayerAttack.DoAttack(Detection.Perfect);
+            }
+            
+            SoundManager.Instance.PlaySFX(_audio);
+            
             hitCount++;
         }
-        else if (Mathf.Abs(a - b) < 0.05f)
+        else if (Mathf.Abs(a - b) < 0.04f)
         {
+            ShootEffect(_hitEffect);
+            
+            
             _goodCount++;
             Debug.Log($"굳, {a} | {b} | {Mathf.Abs(a - b)}");
+            GameManager.Instance.player.Inven.NodeInvoking();
+            GameManager.Instance.player.PlayerAttack.DoAttack(Detection.Good);
+            
+            SoundManager.Instance.PlaySFX(_audio);
+            
             hitCount++;
         }
-        else if (Mathf.Abs(a-b) < 0.07f)
+        else if (Mathf.Abs(a-b) < 0.05f)
         {
+            ShootEffect(_hitEffect);
+            
+            
             Debug.Log($"밷, {a} | {b} | {Mathf.Abs(a - b)}");
+            GameManager.Instance.player.Inven.NodeInvoking();
+            GameManager.Instance.player.PlayerAttack.DoAttack(Detection.Bad);
             hitCount++;
-        }
+            
+            SoundManager.Instance.PlaySFX(_audio);
+
+        }   
         else
         {
             Debug.Log("노드 멀음");
@@ -169,6 +254,7 @@ public class BeatUISystem : Singleton<BeatUISystem>
             if (_re.isRemove)
             {
 
+                
                 if (_hit.Count > 4)
                 {
                     HitUI _node = _hit[0];

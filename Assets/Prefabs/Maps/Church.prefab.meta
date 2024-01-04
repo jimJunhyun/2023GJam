@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/Maps/Map10.asset.meta
+guid: 31049d2d497953c4d8a7a1056ee3196a
+NativeFormatImporter:
+========
+guid: 44350ed0abcb26343a2d321cd07e8549
+PrefabImporter:
+>>>>>>>> main:Assets/Prefabs/Maps/Church.prefab.meta
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

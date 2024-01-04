@@ -20,7 +20,6 @@ public class SetFlag : INode
 		if (stat)
 		{
 			stat = false;
-			Debug.Log("FLAG READY");
 			return NodeStat.Sucs;
 		}
 		return NodeStat.Fail;

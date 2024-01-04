@@ -3,18 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class CameraManager : MonoBehaviour
+public class CameraManager : Singleton<CameraManager>
 {
-	public static CameraManager instance;
 
 	public const int FRONTCAM = 25;
 	public const int BACKCAM = 15;
 
-	public CinemachineVirtualCamera pCam;
+	private CinemachineVirtualCamera _pCam;
 
-	private void Awake()
+	public CinemachineVirtualCamera pCam
 	{
-		instance = this;
-		pCam = GameObject.Find("PCam").GetComponent<CinemachineVirtualCamera>();
+		get
+		{
+			if(_pCam==null)
+				_pCam = GameObject.Find("PCam").GetComponent<CinemachineVirtualCamera>();
+			return _pCam;
+		}
+	}
+
+
+	private Camera _mainCam;
+	public Camera MainCamera
+	{
+		get
+		{
+			if(_mainCam==null)
+				_mainCam =Camera.main;
+
+			return _mainCam;
+		}
 	}
 }

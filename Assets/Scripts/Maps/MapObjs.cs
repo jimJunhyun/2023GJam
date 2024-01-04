@@ -13,6 +13,8 @@ public enum ConnectStat
 
 public class MapObjs : MonoBehaviour
 {
+	public RoomType type;
+
     public int connectStatus;
 
 	HashSet<ConnectStat> stat;

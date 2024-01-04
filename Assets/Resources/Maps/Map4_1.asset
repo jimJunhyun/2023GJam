@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd616900df637c646a06e03b5a1f6785, type: 3}
+  m_Name: Map4_1
+  m_EditorClassIdentifier: 
+  obj: {fileID: -5828666241738628533, guid: fcf2af21c0a7e4e419b04e89851e1ce2, type: 3}
+  isQuestion: 1
+  type: 7
+  up: {fileID: 11400000, guid: 467eba4f3e44d164db07374456c91354, type: 2}
+  down: {fileID: 11400000, guid: d786e4f4f62eb604d95650962941ede3, type: 2}
+  left: {fileID: 11400000, guid: 35ab1a77430f38f41a50cce920da5998, type: 2}
+  right: {fileID: 11400000, guid: 7d6eb724ee2c10b46bcfd1d173b9c2c0, type: 2}
+  upPt: {x: -159.5, y: 0, z: 100.4}
+  downPt: {x: -160.2, y: 0, z: 62.1}
+  leftPt: {x: -178.7, y: 0, z: 64.2}
+  rightPt: {x: -140, y: 0, z: 64.8}
+  upPtExit: {fileID: 0}
+  downPtExit: {fileID: 0}
+  leftPtExit: {fileID: 0}
+  rightPtExit: {fileID: 0}
+  rootOffSet: {x: 0, y: 0, z: 0}
+  isRandomizable: 1
+  cleared: 0
+  _mapGimik: {fileID: 11400000, guid: b2fe13631ad7bc448aa519b580a779f6, type: 2}
