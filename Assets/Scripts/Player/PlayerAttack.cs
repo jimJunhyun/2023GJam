@@ -17,7 +17,6 @@ public class PlayerAttack : MonoBehaviour
 
 	public void DoAttack(Detection _dec)
 	{
-
 		GameManager.Instance.player.playerCtrl.anim.SetTrigger(AttackHash);
 		Collider[] cols = Physics.OverlapSphere(transform.position, GameManager.Instance.player.PlayerStat.AttackRange, (1 << 9) | (1 << 10));
 		for (int i = 0; i < cols.Length; i++)

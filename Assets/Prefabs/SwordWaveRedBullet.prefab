@@ -14544,6 +14544,7 @@ GameObject:
   - component: {fileID: 5679344698716251445}
   - component: {fileID: 5132088282902482148}
   - component: {fileID: 1989060135925280562}
+  - component: {fileID: 1911355565377880195}
   m_Layer: 0
   m_Name: SwordWaveRedBullet
   m_TagString: Untagged
@@ -14804,7 +14805,7 @@ ParticleSystem:
           outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
-        m_RotationOrder: 0
+        m_RotationOrder: 4
       minCurve:
         serializedVersion: 2
         m_Curve:
@@ -14819,7 +14820,7 @@ ParticleSystem:
           outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
-        m_RotationOrder: 0
+        m_RotationOrder: 4
     startSizeY:
       serializedVersion: 2
       minMaxState: 0
@@ -19377,10 +19378,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e8e3c29c248e01499a74aac95b628c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _effect: {fileID: 0}
+  _correctionVector: {x: 0, y: 0.5, z: 0}
   hp: 0
   maxHp: 5
   dead: 0
   isImmune: 0
+  hitSound: {fileID: 8300000, guid: f1bb94a09928b9343aed51d072b35024, type: 3}
+  critSound: {fileID: 8300000, guid: 06eb2cac07ddf1946af3c668dd618973, type: 3}
+  dieEff: {fileID: 994099557938260095, guid: ef8cc1e630c5082469e683c1881bc32f, type: 3}
 --- !u!114 &5679344698716251445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19394,6 +19400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dam: 2
+  _particle: {fileID: 0}
 --- !u!54 &5132088282902482148
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19442,6 +19449,102 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!82 &1911355565377880195
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4511687464691409767}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: b4ce975868fff68458a47704dd4a8cdf, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &7909176602771684250
 GameObject:
   m_ObjectHideFlags: 0
