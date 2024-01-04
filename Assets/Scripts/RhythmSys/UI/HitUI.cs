@@ -38,6 +38,8 @@ public class HitUI : MonoBehaviour
     }
     
     private Image _img;
+    internal object remove;
+
     public Image ImageUI
     {
         get
