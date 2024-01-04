@@ -67,5 +67,9 @@ public class PlayerStatUI : MonoBehaviour
     {
         _bpm.text = $"{value} BPM";
     }
-    
+
+    public void InvaligateImage(Sprite soSprite)
+    {
+        
+    }
 }

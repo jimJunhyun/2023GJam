@@ -133,6 +133,7 @@ public class Player : MonoBehaviour
     {
         Gold -= gold;
         Inven.UseItem(ref NormalStat, ref AddStat,  _so);
+        PlayerUI.InvaligateImage(_so._sprite);
     }
     
     public void RefreshStat()
