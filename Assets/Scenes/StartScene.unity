@@ -3124,6 +3124,9 @@ MonoBehaviour:
   BeatPos: {fileID: 0}
   _startHitBeat: {fileID: 0}
   _endHitBeat: {fileID: 0}
+  normalHit: {fileID: 0}
+  addHit: {fileID: 0}
+  minusHit: {fileID: 0}
   _startRecordBeat: {fileID: 0}
   _endRecordBeat: {fileID: 0}
   _nowNode: {fileID: 0}
