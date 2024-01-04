@@ -23,6 +23,9 @@ public class LifeObject : MonoBehaviour
 
 	public EffectObject dieEff;
 
+	
+	public bool isDieable = true;
+
 
 	public virtual void Damage(float amt, Detection _dec = Detection.none)
 	{
@@ -109,7 +112,10 @@ public class LifeObject : MonoBehaviour
 		{
 			ShootEffect(dieEff, gameObject);
 			dead = true;
-			gameObject.SetActive(false);
+			if (isDieable)
+			{
+				gameObject.SetActive(false);
+			}
 			AI ai;
 			if(ai = GetComponent<AI>())
 			{
