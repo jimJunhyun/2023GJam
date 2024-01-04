@@ -57,6 +57,18 @@ public class GameManager : Singleton<GameManager>
 		maps[curStage].CreateMap();
 	}
 
+	private void Update()
+	{
+		if (curRoom)
+		{
+			if (curRoom.IsCleared)
+			{
+				curRoom.SetClearState();
+			}
+
+		}
+	}
+
 	public void RefreshMap()
 	{
 		maps[curStage].CreateMap();
