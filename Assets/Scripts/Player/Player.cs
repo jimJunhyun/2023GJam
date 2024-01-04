@@ -161,6 +161,9 @@ public class Player : MonoBehaviour
         CurseStat += cs;
     }
 
+
+    
+
     private void Update()
     {
         //if (Input.GetKeyDown(KeyCode.N))

@@ -1155,7 +1155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _text: {fileID: 2808086050561013697}
-  _beforeText: "\uC800\uC8FC\uBC1B\uAE30"
+  _beforeText: "\uC11D\uC0C1\uC5D0\n\uC0C1\uD638\uC791\uC6A9\n\uD558\uAE30"
   _afterText: "\uC0C1\uD638\uC791\uC6A9 E"
   _action:
     m_PersistentCalls:
@@ -1186,6 +1186,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inter: {fileID: 8754085314012679124}
   _maps: {fileID: 11400000, guid: b2fe13631ad7bc448aa519b580a779f6, type: 2}
+  _cans: {fileID: 34933145439250547, guid: 0faf1153b0bba4f449b735c68fc47278, type: 3}
+  _beforeText: "\uC800\uC8FC\uC758 \uC11D\uC0C1"
+  _afterText: "\uC774\uBBF8\n\uC800\uC8FC\uB97C\n\uBC1B\uC558\uB2E4."
 --- !u!1 &5575691961055598839
 GameObject:
   m_ObjectHideFlags: 0
