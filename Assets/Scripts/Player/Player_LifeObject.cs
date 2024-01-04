@@ -14,14 +14,16 @@ public class Player_LifeObject : LifeObject
 		onDead += () => 
         {
             //change scene to game over
+            Debug.Log("!@#!@#!@#!@#");
             GameManager.Instance.player.playerCtrl.anim.SetTrigger(DeathHash);
+            GameManager.Instance.player.playerCtrl.CompleteStop();
 
         };
 	}
 
 	public override void Damage(float amt, Detection _dec = Detection.none)
     {
-        if (!isImmune)
+        if (!isImmune && !dead)
         {
             GameManager.Instance.player.ModifyHPPlus((int)(-amt));
             

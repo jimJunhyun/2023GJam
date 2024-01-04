@@ -22,7 +22,7 @@ public class PlayerCtrl : MonoBehaviour, IRhythm
 
 	bool stopState = false;
 
-	
+	bool completeStop = false;
 
 	internal readonly int IdleHash = Animator.StringToHash("Idle");
 
@@ -36,8 +36,7 @@ public class PlayerCtrl : MonoBehaviour, IRhythm
 	public void Update()
 	{
 
-
-		if (!GameManager.Instance.player.IsInteractive)
+		if (!GameManager.Instance.player.IsInteractive && ! completeStop)
 		{
 			h = Input.GetAxis("Horizontal");
 			v = Input.GetAxis("Vertical");
@@ -83,7 +82,7 @@ public class PlayerCtrl : MonoBehaviour, IRhythm
 
 	private void LateUpdate()
 	{
-		if (GameManager.Instance.player.IsInteractive)
+		if (GameManager.Instance.player.IsInteractive || completeStop)
 			return;
 		
 		if(predictPos != null)
@@ -93,6 +92,11 @@ public class PlayerCtrl : MonoBehaviour, IRhythm
 			predictPos = null;
 			ctrl.enabled = true;
 		}
+	}
+
+	public void CompleteStop()
+	{
+		completeStop = true;
 	}
 
 	public void StopFor(float sec)
