@@ -17,7 +17,7 @@ public class DamageFont : PoolAble
     {
         transform.position = tls.position + new Vector3(0, 0.7f, 0);
 
-        transform.DOMoveY(0.5f, 0.5f);
+        transform.DOMove(transform.position + new Vector3(0,0.5f,0), 0.5f);
         _text.DOColor(new Color(1, 1, 1, 0), 0.4f);
         
         Debug.LogWarning("데미지 출력중");
