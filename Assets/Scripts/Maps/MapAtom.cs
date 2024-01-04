@@ -161,6 +161,7 @@ public class MapAtom : ScriptableObject
 					invalid = false;
 				}
 				type = t;
+				spRoom = null;
 				switch (t)
 				{
 					case RoomType.Shop:
@@ -253,7 +254,7 @@ public class MapAtom : ScriptableObject
     public void SetEnemyRandom()
 	{
 		slots = new List<EnemySlot>();
-		int mobCnt = Random.Range(4, 21);
+		int mobCnt = Random.Range(4, 11);
 		int spPointAmt = Random.Range(4, 6);
 		HashSet<int> selecteds = new HashSet<int>();
 		List<int> spawnInfo = new List<int>(4) { 0, 0, 0, 0 };
@@ -409,7 +410,11 @@ public class MapAtom : ScriptableObject
 
 		if(type == RoomType.Boss)
 		{
-			upPtExit.onEnterPoint.AddListener(()=>{ GameManager.Instance.boss.Activate();});
+			upPtExit.onEnterPoint.AddListener(()=>
+			{ 
+				GameManager.Instance.boss.Activate();
+
+			});
 		}
 	}
 

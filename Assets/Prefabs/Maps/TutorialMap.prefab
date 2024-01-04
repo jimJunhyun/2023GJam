@@ -699,6 +699,7 @@ MonoBehaviour:
   onEnterPoint:
     m_PersistentCalls:
       m_Calls: []
+  portals: []
 --- !u!65 &8820860473731939708
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1919,6 +1920,7 @@ MonoBehaviour:
   onEnterPoint:
     m_PersistentCalls:
       m_Calls: []
+  portals: []
 --- !u!65 &7282233810159320820
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2189,6 +2191,7 @@ MonoBehaviour:
   onEnterPoint:
     m_PersistentCalls:
       m_Calls: []
+  portals: []
 --- !u!65 &3528537853567024170
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2321,6 +2324,7 @@ MonoBehaviour:
   onEnterPoint:
     m_PersistentCalls:
       m_Calls: []
+  portals: []
 --- !u!65 &530392795125106940
 BoxCollider:
   m_ObjectHideFlags: 0

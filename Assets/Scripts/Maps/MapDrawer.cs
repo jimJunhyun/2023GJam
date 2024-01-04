@@ -10,8 +10,8 @@ public class MapDrawer : MonoBehaviour
 {
     public static MapDrawer instance;
 
-    public const float MAPUIXCNT = 5;
-    public const float MAPUIYCNT = 5;
+    public const float MAPUIXCNT = 4;
+    public const float MAPUIYCNT = 4;
 
     public Sprite normalRoom;
     public Sprite qRoom;
@@ -22,7 +22,7 @@ public class MapDrawer : MonoBehaviour
     public Sprite bossRoom;
     public Sprite blessRoom;
 
-	public GameObject hallway;
+	public HallwayUI hallway;
 
     Image mapPanel;
 
@@ -55,15 +55,23 @@ public class MapDrawer : MonoBehaviour
 		}
 	}
 
-	public void GenerateSprite(RoomType type, Vector3 formPos, bool isCur)
+	public void GenerateSprite(RoomType type, Vector3 formPos, int conStat , bool isCur)
 	{
-        GameObject mapAtomUI = new GameObject("ROOM");
+		GameObject mapAtomUI = new GameObject("ROOM");
 		mapAtomUI.transform.SetParent(contents);
+		mapAtomUI.transform.rotation=  Quaternion.identity;
 		mapAtomUI.transform.localPosition = formPos;
-		mapAtomUI.transform.localScale = Vector3.right * 2 / MAPUIXCNT + Vector3.up * 2/ MAPUIYCNT;
-		Instantiate(hallway, mapAtomUI.transform.position, Quaternion.identity, mapAtomUI.transform);
-
+		mapAtomUI.transform.localScale = Vector3.right * 2 / MAPUIXCNT + Vector3.up * 2 / MAPUIYCNT;
 		Image img = mapAtomUI.AddComponent<Image>();
+
+		HallwayUI hway = Instantiate(hallway);
+		hway.transform.SetParent(mapAtomUI.transform);
+		hway.transform.localPosition = Vector3.zero;
+		hway.transform.localScale = Vector3.one;
+		hway.SetConState(conStat);
+
+
+		
 		switch (type)
 		{
 			case RoomType.Start:
@@ -102,6 +110,7 @@ public class MapDrawer : MonoBehaviour
 		else
 		{
 			img.color = new Color(1,1, 1, 0.5f);
+			hway.SetAlpha(0.5f);
 		}
 	}
 }

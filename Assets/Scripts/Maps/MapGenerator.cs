@@ -81,9 +81,9 @@ public class MapGenerator : MonoBehaviour
 
 		createCalls.Enqueue(new KeyValuePair<MapAtom, Vector3>(startRoom, Vector3.zero));
 		mapCreateds.Add(startRoom);
-
 		while (createCalls.Count > 0)
 		{
+			int conStat = 0;
 			KeyValuePair<MapAtom, Vector3> first = createCalls.Dequeue();
 			if (first.Key.up)
 			{
@@ -92,6 +92,7 @@ public class MapGenerator : MonoBehaviour
 					createCalls.Enqueue(new KeyValuePair<MapAtom, Vector3>(first.Key.up, first.Value + Vector3.up * 200 / MapDrawer.MAPUIYCNT));
 					mapCreateds.Add(first.Key.up);
 				}
+				conStat += ((int)ConnectStat.Up);
 			}
 			if (first.Key.down)
 			{
@@ -100,6 +101,7 @@ public class MapGenerator : MonoBehaviour
 					createCalls.Enqueue(new KeyValuePair<MapAtom, Vector3>(first.Key.down, first.Value + Vector3.down * 200 / MapDrawer.MAPUIYCNT));
 					mapCreateds.Add(first.Key.down);
 				}
+				conStat += ((int)ConnectStat.Down);
 			}
 			if (first.Key.left)
 			{
@@ -108,6 +110,7 @@ public class MapGenerator : MonoBehaviour
 					createCalls.Enqueue(new KeyValuePair<MapAtom, Vector3>(first.Key.left, first.Value + Vector3.left * 200 / MapDrawer.MAPUIXCNT));
 					mapCreateds.Add(first.Key.left);
 				}
+				conStat += ((int)ConnectStat.Left);
 			}
 			if (first.Key.right)
 			{
@@ -116,9 +119,10 @@ public class MapGenerator : MonoBehaviour
 					createCalls.Enqueue(new KeyValuePair<MapAtom, Vector3>(first.Key.right, first.Value + Vector3.right * 200 / MapDrawer.MAPUIXCNT));
 					mapCreateds.Add(first.Key.right);
 				}
+				conStat += ((int)ConnectStat.Right);
 			}
 			RoomType t = (first.Key.isQuestion && !isClearSight) ? RoomType.Question : first.Key.type;
-			MapDrawer.instance.GenerateSprite(t, first.Value, first.Key == GameManager.Instance.curRoom);
+			MapDrawer.instance.GenerateSprite(t, first.Value, conStat, first.Key == GameManager.Instance.curRoom);
 		}
 	}
 
