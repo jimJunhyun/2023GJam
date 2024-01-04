@@ -3144,11 +3144,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tutorial: {fileID: 11400000, guid: 2eec88d4ca6df24419aab2fd6b04c543, type: 2}
   GameScene: {fileID: 11400000, guid: 57d2dee28715fc6499379ee5905b3caf, type: 2}
-  _ts: {fileID: 0}
   _tutorial: {fileID: 95919591}
   _start: {fileID: 851833179}
   _setting: {fileID: 1921494548}
   _exit: {fileID: 1985088467}
+  _slider: {fileID: 1219247406}
 --- !u!114 &8619235471025438198
 MonoBehaviour:
   m_ObjectHideFlags: 0

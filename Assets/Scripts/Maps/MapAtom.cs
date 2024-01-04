@@ -68,7 +68,7 @@ public class MapAtom : ScriptableObject
 	GameObject self;
 	List<EnemySlot> slots = new();
 
-	[Header("MapGimik")] public MapGimikSO _mapGimik;
+	//[Header("MapGimik")] public MapGimikSO _mapGimik;
 
 	public bool IsCleared
 	{
@@ -215,24 +215,7 @@ public class MapAtom : ScriptableObject
 		}
 		obj.type = type;
 
-		switch (type)
-		{
-			case RoomType.Heal:
-				_mapGimik = GameManager.Instance.mapList.healGimmick;
-				break;
-			case RoomType.Curse:
-				_mapGimik = GameManager.Instance.mapList.curseGimmick;
-				break;
-			case RoomType.Blessing:
-				_mapGimik = GameManager.Instance.mapList.blessGimmick;
-				break;
-			case RoomType.Shop:
-				spRoom = GameManager.Instance.mapList.shopRoom;
-				break;
-			default:
-				_mapGimik = null;
-				break;
-		}
+
 	}
 	
 	public void InstantiateSelf(Vector3 pos, Transform parent = null)
@@ -460,7 +443,6 @@ public class MapAtom : ScriptableObject
 		{
 			
 			TriggerEnemy();
-			_mapGimik?.RoomInit();
 		}
 		GameManager.Instance.RefreshMap();
 	}

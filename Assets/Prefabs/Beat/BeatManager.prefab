@@ -1818,7 +1818,7 @@ Transform:
   m_GameObject: {fileID: 5594984187435392330}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1845,6 +1845,12 @@ MonoBehaviour:
   BPM: 100
   Matronyum: 4
   Delay: 0.2
+  _isStop: 0
+  _reslStop: 0
+  _jConnect: 1
+  _kConnect: 1
+  _iConnect: 1
+  _oConnet: 1
 --- !u!114 &8619235472815124383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1894,10 +1900,12 @@ MonoBehaviour:
   - {fileID: 8421640141707783485}
   - {fileID: 6387176041284233007}
   - {fileID: 4130695182515172495}
+  _noItemSprite: {fileID: 21300000, guid: 2e4d89d7e97473d45a9d3715ba9f8299, type: 3}
   _atk: {fileID: 2506833631529165126}
   _spd: {fileID: 9078822416606399129}
   _range: {fileID: 5899006354266354971}
   _bpm: {fileID: 7565797985332429386}
+  _item: {fileID: 8131652981392397865}
 --- !u!114 &4234398668081676949
 MonoBehaviour:
   m_ObjectHideFlags: 0
