@@ -77,14 +77,14 @@ MonoBehaviour:
     MaxHP: 300
     HP: 300
     ATK: 1
-    SPEED: 5
+    SPEED: 2.5
     Size: 1
     AttackRange: 5
   type: 0
   myBullet: {fileID: 6773444522948195903, guid: 02bfaca7b2986c0428e3e8f48169951c,
     type: 3}
   shootPos: {fileID: 6225152623161194439}
-  shootPow: 15
+  shootPow: 5
   angle: 0
   examining: 0
   spinning: 0
@@ -95,6 +95,7 @@ MonoBehaviour:
   spinThreshold: 0
   spinDur: 0
   spinSpd: 0
+  isDead: 0
   _chargerEffectAttack: {fileID: 0}
   _longRangeEffectAttack: {fileID: 0}
   _sweepEffect: {fileID: 0}
@@ -142,6 +143,7 @@ MonoBehaviour:
   hitSound: {fileID: 8300000, guid: f1bb94a09928b9343aed51d072b35024, type: 3}
   critSound: {fileID: 8300000, guid: 06eb2cac07ddf1946af3c668dd618973, type: 3}
   dieEff: {fileID: 994099557938260095, guid: ef8cc1e630c5082469e683c1881bc32f, type: 3}
+  isDieable: 1
 --- !u!54 &3795658991119572432
 Rigidbody:
   m_ObjectHideFlags: 0

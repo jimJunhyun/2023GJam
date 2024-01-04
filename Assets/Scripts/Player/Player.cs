@@ -135,7 +135,8 @@ public class Player : MonoBehaviour
     {
         Gold -= gold;
         Inven.UseItem(ref NormalStat, ref AddStat,  _so);
-        PlayerUI.InvaligateImage(_so._sprite);
+        if(_so != null)
+            PlayerUI.InvaligateImage(_so._sprite);
     }
     
     public void RefreshStat()

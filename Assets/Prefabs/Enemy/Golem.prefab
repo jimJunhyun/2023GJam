@@ -77,7 +77,7 @@ MonoBehaviour:
     MaxHP: 700
     HP: 700
     ATK: 2
-    SPEED: 5
+    SPEED: 2.5
     Size: 1
     AttackRange: 5
   type: 1
@@ -94,6 +94,7 @@ MonoBehaviour:
   spinThreshold: 0
   spinDur: 0
   spinSpd: 0
+  isDead: 0
   _chargerEffectAttack: {fileID: 0}
   _longRangeEffectAttack: {fileID: 0}
   _sweepEffect: {fileID: 8728514668055802655, guid: 429cadb9f761ea141ac11372d89d934e,
@@ -120,6 +121,7 @@ MonoBehaviour:
   hitSound: {fileID: 8300000, guid: f1bb94a09928b9343aed51d072b35024, type: 3}
   critSound: {fileID: 8300000, guid: 06eb2cac07ddf1946af3c668dd618973, type: 3}
   dieEff: {fileID: 994099557938260095, guid: ef8cc1e630c5082469e683c1881bc32f, type: 3}
+  isDieable: 1
 --- !u!136 &2106967506498861194
 CapsuleCollider:
   m_ObjectHideFlags: 0
