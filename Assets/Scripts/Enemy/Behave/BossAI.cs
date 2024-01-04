@@ -28,7 +28,7 @@ public class BossAI : MonoBehaviour, IRhythm
     public Stat stat;
 
     Rigidbody rig;
-    LifeObject life;
+    internal LifeObject life;
     internal Animator anim;
     Vector3 dest;
     float curAngle = 90;
@@ -136,7 +136,10 @@ public class BossAI : MonoBehaviour, IRhythm
         life.maxHp = stat.MaxHP;
         life.hp = stat.HP;
 
-        life.onDead += () => { Debug.Log("zmfflrj"); };
+        life.onDead += () => 
+        {
+            Debug.Log("zmfflrj"); 
+        };
 
         anim = GetComponentInChildren<Animator>();
 
