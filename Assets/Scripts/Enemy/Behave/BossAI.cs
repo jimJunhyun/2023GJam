@@ -141,7 +141,7 @@ public class BossAI : MonoBehaviour, IRhythm
             Debug.Log("zmfflrj"); 
         };
 
-        anim = GetComponentInChildren<Animator>();
+        anim = transform.Find("PolyArtWizardStandardMat").GetComponent<Animator>();
 
         GameManager.Instance.boss = this;
     }
@@ -192,6 +192,17 @@ public class BossAI : MonoBehaviour, IRhythm
         StopMove();
         yield return new WaitForSeconds(s);
             Activate();
+	}
+
+    public void ActivateWithDel(float sec)
+	{
+        StartCoroutine(DelActivate(sec));
+	}
+
+    IEnumerator DelActivate(float s)
+	{
+        yield return new WaitForSeconds(s);
+        Activate();
 	}
 
     public void Activate()

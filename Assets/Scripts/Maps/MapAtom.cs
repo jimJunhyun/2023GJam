@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using UnityEngine.AI;
+using UnityEngine.Playables;
 
 public enum Direction
 {
@@ -415,8 +416,10 @@ public class MapAtom : ScriptableObject
 		{
 			upPtExit.onEnterPoint.AddListener(()=>
 			{ 
-				GameManager.Instance.boss.Activate();
+				GameManager.Instance.boss.ActivateWithDel(12);
+				GameManager.Instance.boss.life.SetImmuneFor(12);
 				GameManager.Instance.bossHp.ShowUI();
+				GameObject.Find("Timeliner").GetComponent<PlayableDirector>().Play();
 			});
 		}
 	}
