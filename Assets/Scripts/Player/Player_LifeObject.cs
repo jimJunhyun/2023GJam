@@ -18,6 +18,7 @@ public class Player_LifeObject : LifeObject
             GameManager.Instance.player.playerCtrl.anim.SetTrigger(DeathHash);
             GameManager.Instance.player.playerCtrl.CompleteStop();
             GameManager.Instance.curRoom.ResetEnemy();
+            GameManager.Instance.StopAllCoroutines();
         };
 	}
 
