@@ -44,6 +44,7 @@ public class BeatUISystem : Singleton<BeatUISystem>
     
     [Header("Effect")]
     public PoolAble _hitEffect;
+    public PoolAble _hitEffectPerf;
 
     private int hitCount = 0;
     private int _perfectCount = 0;
@@ -180,7 +181,7 @@ public class BeatUISystem : Singleton<BeatUISystem>
                 }
                 else
                 {
-                    ShootEffect(_hitEffect);
+                    ShootEffect(_hitEffectPerf);
                     GameManager.Instance.detecter.ShowDetectionUI(_nowNode.transform.position, Detection.Perfect);
                     GameManager.Instance.player.PlayerAttack.DoAttack(Detection.Perfect);
                 }

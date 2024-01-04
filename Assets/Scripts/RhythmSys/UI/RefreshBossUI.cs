@@ -8,7 +8,7 @@ public class RefreshBossUI : MonoBehaviour
     Slider hp;
 	private void Awake()
 	{
-		hp = GameObject.Find("BossHp").GetComponent<Slider>();
+		hp = GameObject.Find("BHpBar").GetComponent<Slider>();
 		hp.gameObject.SetActive(false);
 	}
 

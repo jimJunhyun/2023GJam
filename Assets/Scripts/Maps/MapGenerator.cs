@@ -22,6 +22,8 @@ public class MapGenerator : MonoBehaviour
 	public const float MAPXGAP = 55;
 	public const float MAPYGAP = 55;
 
+	public MapAtom bossRoom;
+
 	Queue<KeyValuePair<MapAtom, Vector3>> createCalls = new Queue<KeyValuePair<MapAtom, Vector3>>();
 	HashSet<MapAtom> createds = new HashSet<MapAtom>();
 	HashSet<MapAtom> mapCreateds = new HashSet<MapAtom>();
@@ -122,6 +124,10 @@ public class MapGenerator : MonoBehaviour
 				conStat += ((int)ConnectStat.Right);
 			}
 			RoomType t = (first.Key.isQuestion && !isClearSight) ? RoomType.Question : first.Key.type;
+			if(first.Key.type == RoomType.Boss)
+			{
+				bossRoom = first.Key;
+			}
 			MapDrawer.instance.GenerateSprite(t, first.Value, conStat, first.Key == GameManager.Instance.curRoom);
 		}
 	}

@@ -33,3 +33,5 @@ MonoBehaviour:
     num: 5
   - obj: {fileID: -7560878670983109809, guid: 7a172c8a0ca9b7141a63864dd939ac50, type: 3}
     num: 5
+  - obj: {fileID: 1424751705714132364, guid: 01da1ea694d5825418e940e2029741ed, type: 3}
+    num: 5
