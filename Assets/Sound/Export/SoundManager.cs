@@ -14,9 +14,9 @@ public enum SoundSetting
     background,
     SFX,
     UISound,
-    BattleSFX,
-    KickDrumSFX,
-    SnareDrumSFX
+    Battle,
+    KickDrum,
+    SnareDrum
 }
 
 public class SoundJson
@@ -64,6 +64,9 @@ public class SoundManager : Singleton<SoundManager>
         MixerSave(SoundSetting.background, _data.BGM);
         MixerSave(SoundSetting.UISound, _data.UI);
         MixerSave(SoundSetting.SFX,_data.SFX);
+        MixerSave(SoundSetting.Battle, _data.Battle);
+        MixerSave(SoundSetting.KickDrum, _data.KickDrum);
+        MixerSave(SoundSetting.SnareDrum, _data.SnareDrum);
     }
 
     public void MixerSave(SoundSetting ss, float value)
@@ -94,11 +97,20 @@ public class SoundManager : Singleton<SoundManager>
             case SoundSetting.background:
                 _data.BGM = value;
                 break;
+            case SoundSetting.Battle:
+                _data.Battle = value;
+                break;
+            case SoundSetting.KickDrum:
+                _data.KickDrum = value;
+                break;
+            case SoundSetting.SnareDrum:
+                _data.SnareDrum = value;
+                break;
             default:
                 break;
         }
-        
-        
+
+
         string path = Path.Combine(Application.dataPath, "playerData.json");
         string jsonData = JsonUtility.ToJson(_data);
         File.WriteAllText(path, jsonData);
@@ -110,19 +122,25 @@ public class SoundManager : Singleton<SoundManager>
     {
         if(_data==null)
             Init();
-        
+
         switch (ss)
         {
             case SoundSetting.Master:
                 return _data.Master;
-                case SoundSetting.UISound:
-                    return _data.UI;
-                case SoundSetting.SFX:
-                    return _data.SFX;
-                case SoundSetting.background:
-                    return _data.BGM;
-                default:
-                    break;
+            case SoundSetting.UISound:
+                return _data.UI;
+            case SoundSetting.SFX:
+                return _data.SFX;
+            case SoundSetting.background:
+                return _data.BGM;
+            case SoundSetting.Battle:
+                return _data.Battle;
+            case SoundSetting.KickDrum:
+                return _data.KickDrum;
+            case SoundSetting.SnareDrum:
+                return _data.SnareDrum;
+            default:
+                break;
         }
 
         return _data.Master;
@@ -156,13 +174,13 @@ public class SoundManager : Singleton<SoundManager>
             case SoundSetting.UISound:
                 _ad = _mixer.FindMatchingGroups("UISound");
                 break;
-            case SoundSetting.BattleSFX:
+            case SoundSetting.Battle:
                 _ad = _mixer.FindMatchingGroups("Battle");
                 break;
-            case SoundSetting.KickDrumSFX:
+            case SoundSetting.KickDrum:
                 _ad = _mixer.FindMatchingGroups("KickDrum");
                 break;
-            case SoundSetting.SnareDrumSFX:
+            case SoundSetting.SnareDrum:
                 _ad = _mixer.FindMatchingGroups("SnareDrum");
                 break;
             default:
@@ -215,6 +233,6 @@ public class SoundManager : Singleton<SoundManager>
         
         Debug.LogWarning($"BGM Succcess");
     }
-    
+
 
 }
