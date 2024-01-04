@@ -25,6 +25,8 @@ public class GameManager : Singleton<GameManager>
 		}
 	}
 	
+	public DetectUIShower detecter;
+
 	public BossAI boss;
 
 	public MapAtom curRoom;
@@ -42,6 +44,7 @@ public class GameManager : Singleton<GameManager>
 
 	private void Awake()
 	{
+		detecter = GetComponent<DetectUIShower>();
 		surface = GetComponent<NavMeshSurface>();
 		gold  = GameObject.Find("GoldArea").GetComponent<GoldUI>();
 	}
@@ -87,6 +90,18 @@ public class GameManager : Singleton<GameManager>
 	public void ChangeRoom(Direction dir)
 	{
 		curRoom.MoveTo(dir);
+	}
+
+	public void SlowDownFor(float to, float dur)
+	{
+		StartCoroutine(DelSlower(to, dur));
+	}
+
+	IEnumerator DelSlower(float to, float dur)
+	{
+		Time.timeScale = to;
+		yield return new WaitForSecondsRealtime(dur);
+		Time.timeScale = 1;
 	}
 
 	public static int ArraySum(List<int> lst)

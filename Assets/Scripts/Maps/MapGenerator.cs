@@ -19,8 +19,8 @@ public class MapGenerator : MonoBehaviour
 
 	public const float MAPX = 60;
 	public const float MAPY = 60;
-	public const float MAPXGAP = 20;
-	public const float MAPYGAP = 20;
+	public const float MAPXGAP = 55;
+	public const float MAPYGAP = 55;
 
 	Queue<KeyValuePair<MapAtom, Vector3>> createCalls = new Queue<KeyValuePair<MapAtom, Vector3>>();
 	HashSet<MapAtom> createds = new HashSet<MapAtom>();

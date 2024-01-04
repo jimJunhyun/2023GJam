@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4513833048715777072}
   - component: {fileID: 4275285138809562683}
   - component: {fileID: 6612360056191530984}
+  - component: {fileID: 269743273468911558}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -50,12 +51,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10aad8db9e43e654bafbf4c6042ca3f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detecter: {fileID: 0}
+  boss: {fileID: 0}
   curRoom: {fileID: 0}
   curStage: 0
   maps:
   - {fileID: 0}
   mapList: {fileID: 11400000, guid: eef0f7b2e7c9356459e1b5974010d77f, type: 2}
   decal: {fileID: 4670049241752904956, guid: 0bb4fb5673ee81c4f8dd2e81dc305bfa, type: 3}
+  gold: {fileID: 0}
 --- !u!114 &3762271525433531911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,3 +162,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   list: {fileID: 11400000, guid: ca6f45e5170769e4c99dec89011e6baf, type: 2}
+--- !u!114 &269743273468911558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4914216526410064216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4935af0e09c858941b352d0f4f73dc45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detImg: {fileID: -4430953025605739646, guid: aeb7e0a25e99fba46a2e5d7796496367, type: 3}
+  perfect: {fileID: 21300000, guid: 531a9d67f84e9024691c334ff529f096, type: 3}
+  good: {fileID: 21300000, guid: 758871d62e49f1c4c898cd9e64f34f27, type: 3}
+  bad: {fileID: 21300000, guid: d7e3313d00a236a44a79877f46f33ca9, type: 3}

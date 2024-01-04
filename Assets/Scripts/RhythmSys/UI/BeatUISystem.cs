@@ -171,13 +171,13 @@ public class BeatUISystem : Singleton<BeatUISystem>
                 if (GameManager.Instance.player.Inven.FindCurse(CurseList.PerfectSeal))
                 {
                     ShootEffect(_hitEffect);
-                
+                    GameManager.Instance.detecter.ShowDetectionUI(_nowNode.transform.position, Detection.Good);
                     GameManager.Instance.player.PlayerAttack.DoAttack(Detection.Good);
                 }
                 else
                 {
                     ShootEffect(_hitEffect);
-                
+                    GameManager.Instance.detecter.ShowDetectionUI(_nowNode.transform.position, Detection.Perfect);
                     GameManager.Instance.player.PlayerAttack.DoAttack(Detection.Perfect);
                 }
             }
@@ -209,7 +209,7 @@ public class BeatUISystem : Singleton<BeatUISystem>
                 ShootEffect(_hitEffect);
                 GameManager.Instance.player.Inven.NodeInvoking();
                 GameManager.Instance.player.PlayerAttack.DoAttack(Detection.Good);
-
+                GameManager.Instance.detecter.ShowDetectionUI(_nowNode.transform.position, Detection.Good);
                 switch (soundSet)
                 {
                     case SoundSetting.KickDrum:
@@ -238,6 +238,7 @@ public class BeatUISystem : Singleton<BeatUISystem>
                 ShootEffect(_hitEffect);
                 GameManager.Instance.player.Inven.NodeInvoking();
                 GameManager.Instance.player.PlayerAttack.DoAttack(Detection.Bad);
+                GameManager.Instance.detecter.ShowDetectionUI(_nowNode.transform.position, Detection.Bad);
             }
             hitCount++;
             

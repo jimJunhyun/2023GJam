@@ -27,7 +27,12 @@ MonoBehaviour:
   downPtExit: {fileID: 0}
   leftPtExit: {fileID: 0}
   rightPtExit: {fileID: 0}
+  spRoomEnter: {fileID: 0}
+  spEnterPt: {x: 0, y: 0, z: 0}
+  spRoomExit: {fileID: 0}
+  spExitPt: {x: 0, y: 0, z: 0}
+  spRoom: {fileID: 0}
   rootOffSet: {x: 0, y: 0, z: 0}
-  isRandomizable: 1
+  isRandomizable: 0
   cleared: 1
   _mapGimik: {fileID: 0}
