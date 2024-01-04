@@ -22,6 +22,8 @@ public class MapDrawer : MonoBehaviour
     public Sprite bossRoom;
     public Sprite blessRoom;
 
+	public GameObject hallway;
+
     Image mapPanel;
 
 	Canvas mapCanvas;
@@ -59,6 +61,8 @@ public class MapDrawer : MonoBehaviour
 		mapAtomUI.transform.SetParent(contents);
 		mapAtomUI.transform.localPosition = formPos;
 		mapAtomUI.transform.localScale = Vector3.right * 2 / MAPUIXCNT + Vector3.up * 2/ MAPUIYCNT;
+		Instantiate(hallway, mapAtomUI.transform.position, Quaternion.identity, mapAtomUI.transform);
+
 		Image img = mapAtomUI.AddComponent<Image>();
 		switch (type)
 		{
