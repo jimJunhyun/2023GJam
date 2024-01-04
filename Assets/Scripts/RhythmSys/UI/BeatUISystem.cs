@@ -281,7 +281,7 @@ public class BeatUISystem : Singleton<BeatUISystem>
         {
             if (idx > i && _hit[i].isHit)
             {
-                //_hit[i].ImageUI.color = new Color(1, 1, 1, 0.3f);
+                _hit[i].ImageUI.color = new Color(1, 1, 1, 0.3f);
             }
 
             if (_nowNode == null)
