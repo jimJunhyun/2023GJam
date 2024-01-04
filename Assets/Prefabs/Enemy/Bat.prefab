@@ -119,7 +119,7 @@ MonoBehaviour:
     SPEED: 5
     Size: 1
     AttackRange: 5
-  type: 2
+  type: 0
   myBullet: {fileID: 0}
   shootPos: {fileID: 0}
   shootPow: 0
