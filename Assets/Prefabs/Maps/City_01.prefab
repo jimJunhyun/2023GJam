@@ -1628,6 +1628,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: tent-party-big
       objectReference: {fileID: 0}
+    - target: {fileID: 7923967701434572607, guid: 5e13bfd1b9ee46c499ba230f36cea853,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8572437874505596650, guid: 5e13bfd1b9ee46c499ba230f36cea853,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 02568ad2e6595bf478202f194c077387, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1636,6 +1646,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5261084676021565310}
+    - targetCorrespondingSourceObject: {fileID: 7923967701434572607, guid: 5e13bfd1b9ee46c499ba230f36cea853,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4280959736983213692}
   m_SourcePrefab: {fileID: 100100000, guid: 5e13bfd1b9ee46c499ba230f36cea853, type: 3}
 --- !u!1 &7334680295691702867 stripped
 GameObject:
@@ -1659,6 +1673,18 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 2.0700002, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &4280959736983213692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7334680295691702867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dca7963daacc1f14c9e1124f55991fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7962879205068409065 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7402868890568312197, guid: 5e13bfd1b9ee46c499ba230f36cea853,
@@ -3722,6 +3748,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: building-carwash
       objectReference: {fileID: 0}
+    - target: {fileID: 1308634813356654973, guid: 77c14c13a6f4fdc4688f3b986115122e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1308634813358923709, guid: 77c14c13a6f4fdc4688f3b986115122e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 02568ad2e6595bf478202f194c077387, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -3734,6 +3770,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 8265517734419559033}
+    - targetCorrespondingSourceObject: {fileID: 1308634813356654973, guid: 77c14c13a6f4fdc4688f3b986115122e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1428082054404683394}
   m_SourcePrefab: {fileID: 100100000, guid: 77c14c13a6f4fdc4688f3b986115122e, type: 3}
 --- !u!4 &3058879907262633195 stripped
 Transform:
@@ -3763,6 +3803,18 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0.15, y: 3.0000002, z: -0.001}
   m_TimeToStationary: 0.5
+--- !u!114 &1428082054404683394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3058879907263121611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dca7963daacc1f14c9e1124f55991fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4227510007765442618
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6397,6 +6449,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bubbles
       objectReference: {fileID: 0}
+    - target: {fileID: 1995849929743194, guid: 26f962d1c27c42f43a025a3678e3ba8a, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 4936507315396382, guid: 26f962d1c27c42f43a025a3678e3ba8a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.489989
@@ -6466,6 +6522,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: power_line_pole
       objectReference: {fileID: 0}
+    - target: {fileID: 7522740390152317553, guid: 6e317a5b37391084cb7b98cc1556e704,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 7522740390152418897, guid: 6e317a5b37391084cb7b98cc1556e704,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -6531,6 +6592,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7522740390154319025, guid: 6e317a5b37391084cb7b98cc1556e704,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 02568ad2e6595bf478202f194c077387, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6539,6 +6605,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3947910790989970124}
+    - targetCorrespondingSourceObject: {fileID: 7522740390152317553, guid: 6e317a5b37391084cb7b98cc1556e704,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4044924742384058840}
   m_SourcePrefab: {fileID: 100100000, guid: 6e317a5b37391084cb7b98cc1556e704, type: 3}
 --- !u!4 &3583887676850321745 stripped
 Transform:
@@ -6568,6 +6638,18 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 6.964, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &4044924742384058840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3583887676850808177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dca7963daacc1f14c9e1124f55991fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6661799063791647222
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6792,10 +6874,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8057990732178623388}
     m_Modifications:
+    - target: {fileID: 7530582629374131429, guid: ee3a4729e29f8dd42affa24f3ea6a2ba,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 02568ad2e6595bf478202f194c077387, type: 2}
     - target: {fileID: 7530582629376123429, guid: ee3a4729e29f8dd42affa24f3ea6a2ba,
         type: 3}
       propertyPath: m_Name
       value: data-center
+      objectReference: {fileID: 0}
+    - target: {fileID: 7530582629376123429, guid: ee3a4729e29f8dd42affa24f3ea6a2ba,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7530582629376556549, guid: ee3a4729e29f8dd42affa24f3ea6a2ba,
         type: 3}

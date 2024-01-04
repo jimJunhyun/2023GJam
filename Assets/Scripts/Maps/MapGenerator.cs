@@ -132,6 +132,14 @@ public class MapGenerator : MonoBehaviour
 		}
 	}
 
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Backslash))
+		{
+			GameManager.Instance.MovePlayerTo(bossRoom.downPt);
+		}
+	}
+
 	public void ClearSight()
 	{
 		isClearSight = true;

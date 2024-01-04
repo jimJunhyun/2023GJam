@@ -101,6 +101,7 @@ MonoBehaviour:
   hitSound: {fileID: 8300000, guid: f1bb94a09928b9343aed51d072b35024, type: 3}
   critSound: {fileID: 8300000, guid: 06eb2cac07ddf1946af3c668dd618973, type: 3}
   dieEff: {fileID: 994099557938260095, guid: ef8cc1e630c5082469e683c1881bc32f, type: 3}
+  isDieable: 1
 --- !u!114 &5445086287255643479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,7 +120,7 @@ MonoBehaviour:
     MaxHP: 1000
     HP: 1000
     ATK: 1
-    SPEED: 5
+    SPEED: 2.5
     Size: 1
     AttackRange: 5
   type: 0
@@ -136,6 +137,7 @@ MonoBehaviour:
   spinThreshold: 0
   spinDur: 0
   spinSpd: 0
+  isDead: 0
   _chargerEffectAttack: {fileID: 0}
   _longRangeEffectAttack: {fileID: 0}
   _sweepEffect: {fileID: 0}
