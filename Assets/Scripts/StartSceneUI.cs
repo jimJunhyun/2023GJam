@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using EasyTransition;
+using UnityEngine.SceneManagement;
 
 
 public enum SceneEnum
@@ -16,6 +18,9 @@ public enum SceneEnum
 
 public class StartSceneUI : MonoBehaviour
 {
+    [SerializeField] private TransitionSettings GameScene;
+    
+    [SerializeField] private Transition _ts;
     [SerializeField] private Image _tutorial;
     [SerializeField] private Image _start;
     [SerializeField] private Image _setting;
@@ -36,34 +41,69 @@ public class StartSceneUI : MonoBehaviour
                 
         });
     }
-    
+
+    public void LoadScene()
+    {
+        switch (_scene)
+        {
+            case SceneEnum.tutorial:
+                break;
+            case SceneEnum.start:
+                TransitionManager.Instance.Transition("Game",  GameScene, 0f);
+                break;
+            case SceneEnum.setting:
+                break;
+            case SceneEnum.exit:
+                break;
+        }
+    }
 
     private void Update()
     {
+        if (cnt > 8)
+        {
+            cnt = 0;
+            LoadScene();
+        }
+        
         if (Input.GetKeyDown(KeyCode.J))
         {
             Tweening(_tutorial);
             if (_scene != SceneEnum.tutorial)
             {
                 _scene = SceneEnum.tutorial;
-                
+                cnt = 0;
             }
-            
+            cnt++;
+
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
             Tweening(_start);
-            _scene = SceneEnum.tutorial;
+            if (_scene != SceneEnum.start)
+            {
+                _scene = SceneEnum.start;
+                cnt = 0;
+            }
+            cnt++;
         }
         if (Input.GetKeyDown(KeyCode.I))
         {
             Tweening(_setting);
-            _scene = SceneEnum.tutorial;
+            if (_scene != SceneEnum.setting)
+            {
+                _scene = SceneEnum.setting;
+                cnt = 0;
+            }
         }
         if (Input.GetKeyDown(KeyCode.O))
         {
             Tweening(_exit);
-            _scene = SceneEnum.tutorial;
+            if (_scene != SceneEnum.exit)
+            {
+                _scene = SceneEnum.exit;
+                cnt = 0;
+            }
         }
     }
 }

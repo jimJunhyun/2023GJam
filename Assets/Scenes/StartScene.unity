@@ -3015,6 +3015,7 @@ GameObject:
   - component: {fileID: 6707433492412133629}
   - component: {fileID: 4234398666818375934}
   - component: {fileID: 8619235471025438197}
+  - component: {fileID: 8619235471025438198}
   m_Layer: 0
   m_Name: MainUI
   m_TagString: Untagged
@@ -3133,10 +3134,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0aab973ba9c57744addef4161d891a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameScene: {fileID: 11400000, guid: 57d2dee28715fc6499379ee5905b3caf, type: 2}
+  _ts: {fileID: 0}
   _tutorial: {fileID: 95919591}
   _start: {fileID: 851833179}
   _setting: {fileID: 1921494548}
   _exit: {fileID: 1985088467}
+--- !u!114 &8619235471025438198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5594984188869480225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61430b0086307cc4da3ccc8d39ae88da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transitionTemplate: {fileID: 5276914992623515724, guid: 616d511151a6c554caddf1c754e4f91d,
+    type: 3}
 --- !u!224 &8889023272296301637
 RectTransform:
   m_ObjectHideFlags: 0
