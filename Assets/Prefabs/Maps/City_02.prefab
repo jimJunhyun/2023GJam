@@ -2008,6 +2008,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Smoke01_03
       objectReference: {fileID: 0}
+    - target: {fileID: 1376905856516238, guid: 3b89a0b81c18f8548ae1e630445434b9, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 4952727634889040, guid: 3b89a0b81c18f8548ae1e630445434b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.4883118
@@ -2777,6 +2781,10 @@ PrefabInstance:
     - target: {fileID: 1376905856516238, guid: 3b89a0b81c18f8548ae1e630445434b9, type: 3}
       propertyPath: m_Name
       value: Smoke01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1376905856516238, guid: 3b89a0b81c18f8548ae1e630445434b9, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4952727634889040, guid: 3b89a0b81c18f8548ae1e630445434b9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4993,6 +5001,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Smoke01_02
       objectReference: {fileID: 0}
+    - target: {fileID: 1376905856516238, guid: 3b89a0b81c18f8548ae1e630445434b9, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 4952727634889040, guid: 3b89a0b81c18f8548ae1e630445434b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.972992
@@ -5177,6 +5189,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: building-block-4floor-corner
       objectReference: {fileID: 0}
+    - target: {fileID: 8318103445550703104, guid: 7c9c075f77497b54f91b7e0da352f561,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 8318103445551136288, guid: 7c9c075f77497b54f91b7e0da352f561,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -5242,6 +5259,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8318103445552905408, guid: 7c9c075f77497b54f91b7e0da352f561,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 02568ad2e6595bf478202f194c077387, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -5266,6 +5288,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 4913996557415099975}
+    - targetCorrespondingSourceObject: {fileID: 8318103445550703104, guid: 7c9c075f77497b54f91b7e0da352f561,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3027621961967250401}
   m_SourcePrefab: {fileID: 100100000, guid: 7c9c075f77497b54f91b7e0da352f561, type: 3}
 --- !u!1 &5536372126981857670 stripped
 GameObject:
@@ -5289,6 +5315,18 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0.17500001, y: 10.304001, z: 0.17500001}
   m_TimeToStationary: 0.5
+--- !u!114 &3027621961967250401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5536372126981857670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dca7963daacc1f14c9e1124f55991fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5536372126982290854 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8318103445551136288, guid: 7c9c075f77497b54f91b7e0da352f561,
@@ -7323,6 +7361,10 @@ PrefabInstance:
     - target: {fileID: 1376905856516238, guid: 3b89a0b81c18f8548ae1e630445434b9, type: 3}
       propertyPath: m_Name
       value: Smoke01_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1376905856516238, guid: 3b89a0b81c18f8548ae1e630445434b9, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4952727634889040, guid: 3b89a0b81c18f8548ae1e630445434b9, type: 3}
       propertyPath: m_LocalPosition.x
