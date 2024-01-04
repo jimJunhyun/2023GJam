@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class PlayerDeath : MonoBehaviour
 {
-   
-
-    // Update is called once per frame
-    void Update()
+    public Transform deathVcam;
+    public Transform miniMapUI;
+    public Transform rhythmUI;
+    public void Death()
     {
-        
+        deathVcam.gameObject.SetActive(true);
+
+        miniMapUI.gameObject.SetActive(false);
+        rhythmUI.gameObject.SetActive(false);
     }
 
 }
