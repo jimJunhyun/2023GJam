@@ -28,6 +28,9 @@ public class StartSceneUI : MonoBehaviour
     [SerializeField] private Slider _slider;
     [SerializeField] private UIUpFont _up;
 
+    [SerializeField] private Transform SettingUICanvas;
+    [SerializeField] private Transform MainUICanvas;
+
     private SceneEnum _scene;
 
     private int cnt = 0;
@@ -56,8 +59,15 @@ public class StartSceneUI : MonoBehaviour
                 TransitionManager.Instance.Transition("Game",  GameScene, 0f);
                 break;
             case SceneEnum.setting:
+                SettingUICanvas.gameObject.SetActive(true);
+                MainUICanvas.gameObject.SetActive(false);
                 break;
             case SceneEnum.exit:
+#if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit(); // 어플리케이션 종료
+#endif
                 break;
         }
     }
@@ -70,6 +80,17 @@ public class StartSceneUI : MonoBehaviour
             LoadScene();
         }
         
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(SettingUICanvas.gameObject.activeSelf == true)
+            {
+                SettingUICanvas.gameObject.SetActive(false);
+                MainUICanvas.gameObject.SetActive(true);
+            }
+            cnt = 0;
+            Go = false;
+        }
+
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             _slider.value -= 0.1f;
@@ -124,10 +145,10 @@ public class StartSceneUI : MonoBehaviour
             {
                 ui.Init(_start.rectTransform,$"GO!");
             }
+
         }
         if (Input.GetKeyDown(KeyCode.I))
         {
-
             
             Tweening(_setting);
             if (_scene != SceneEnum.setting)
@@ -135,7 +156,7 @@ public class StartSceneUI : MonoBehaviour
                 _scene = SceneEnum.setting;
                 cnt = 0;
             }
-            
+            cnt++;
             UIUpFont ui = PoolManager.Instance.Pop(_up.name) as UIUpFont;
             if (9 - cnt >= 1)
             {
@@ -149,7 +170,6 @@ public class StartSceneUI : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.O))
         {
-
             
             Tweening(_exit);
             if (_scene != SceneEnum.exit)
@@ -157,12 +177,14 @@ public class StartSceneUI : MonoBehaviour
                 _scene = SceneEnum.exit;
                 cnt = 0;
             }
-            
-            
+            cnt++;
+
+
             UIUpFont ui = PoolManager.Instance.Pop(_up.name) as UIUpFont;
             if (9 - cnt >= 1)
             {
                 ui.Init(_exit.rectTransform,$"{9-cnt}");
+
                 
             }
             else
