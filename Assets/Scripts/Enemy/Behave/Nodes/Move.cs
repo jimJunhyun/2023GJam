@@ -23,7 +23,9 @@ public class Move : INode
 		agent.isStopped = false;
 		agent.SetDestination(target.position);
 		rig.velocity = Vector3.zero;
-		//rig.velocity = ((target.position - rig.position).normalized * self.stat.SPEED);
+		rig.constraints |= RigidbodyConstraints.FreezePositionX;
+		rig.constraints |= RigidbodyConstraints.FreezePositionY;
+		rig.constraints |= RigidbodyConstraints.FreezePositionZ;
 		return NodeStat.Run;
 	}
 }

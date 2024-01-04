@@ -171,24 +171,24 @@ public class BeatUISystem : Singleton<BeatUISystem>
                 if (GameManager.Instance.player.Inven.FindCurse(CurseList.PerfectSeal))
                 {
                     ShootEffect(_hitEffect);
-                
+                    GameManager.Instance.detecter.ShowDetectionUI(_nowNode.transform.position, Detection.Good);
                     GameManager.Instance.player.PlayerAttack.DoAttack(Detection.Good);
                 }
                 else
                 {
                     ShootEffect(_hitEffect);
-                
+                    GameManager.Instance.detecter.ShowDetectionUI(_nowNode.transform.position, Detection.Perfect);
                     GameManager.Instance.player.PlayerAttack.DoAttack(Detection.Perfect);
                 }
             }
 
             switch (soundSet)
             {
-                case SoundSetting.KickDrumSFX:
-                    SoundManager.Instance.PlaySFX(_audio, SoundSetting.KickDrumSFX);
+                case SoundSetting.KickDrum:
+                    SoundManager.Instance.PlaySFX(_audio, SoundSetting.KickDrum);
                     break;
-                case SoundSetting.SnareDrumSFX:
-                    SoundManager.Instance.PlaySFX(_audio,SoundSetting.SnareDrumSFX);
+                case SoundSetting.SnareDrum:
+                    SoundManager.Instance.PlaySFX(_audio,SoundSetting.SnareDrum);
                     break;
                 default:
                     break;
@@ -209,14 +209,14 @@ public class BeatUISystem : Singleton<BeatUISystem>
                 ShootEffect(_hitEffect);
                 GameManager.Instance.player.Inven.NodeInvoking();
                 GameManager.Instance.player.PlayerAttack.DoAttack(Detection.Good);
-
+                GameManager.Instance.detecter.ShowDetectionUI(_nowNode.transform.position, Detection.Good);
                 switch (soundSet)
                 {
-                    case SoundSetting.KickDrumSFX:
-                        SoundManager.Instance.PlaySFX(_audio, SoundSetting.KickDrumSFX);
+                    case SoundSetting.KickDrum:
+                        SoundManager.Instance.PlaySFX(_audio, SoundSetting.KickDrum);
                         break;
-                    case SoundSetting.SnareDrumSFX:
-                        SoundManager.Instance.PlaySFX(_audio, SoundSetting.SnareDrumSFX);
+                    case SoundSetting.SnareDrum:
+                        SoundManager.Instance.PlaySFX(_audio, SoundSetting.SnareDrum);
                         break;
                     default:
                         break;
@@ -238,17 +238,18 @@ public class BeatUISystem : Singleton<BeatUISystem>
                 ShootEffect(_hitEffect);
                 GameManager.Instance.player.Inven.NodeInvoking();
                 GameManager.Instance.player.PlayerAttack.DoAttack(Detection.Bad);
+                GameManager.Instance.detecter.ShowDetectionUI(_nowNode.transform.position, Detection.Bad);
             }
             hitCount++;
             
             //SoundManager.Instance.PlaySFX(_audio);
             switch (soundSet)
             {
-                case SoundSetting.KickDrumSFX:
-                    SoundManager.Instance.PlaySFX(_audio, SoundSetting.KickDrumSFX);
+                case SoundSetting.KickDrum:
+                    SoundManager.Instance.PlaySFX(_audio, SoundSetting.KickDrum);
                     break;
-                case SoundSetting.SnareDrumSFX:
-                    SoundManager.Instance.PlaySFX(_audio, SoundSetting.SnareDrumSFX);
+                case SoundSetting.SnareDrum:
+                    SoundManager.Instance.PlaySFX(_audio, SoundSetting.SnareDrum);
                     break;
                 default:
                     break;

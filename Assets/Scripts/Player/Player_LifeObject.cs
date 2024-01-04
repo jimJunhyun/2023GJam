@@ -6,9 +6,24 @@ public class Player_LifeObject : LifeObject
 {
 
     internal readonly int HitHash = Animator.StringToHash("Hit");
-    public override void Damage(float amt, Detection _dec = Detection.none)
+    internal readonly int DeathHash = Animator.StringToHash("Death");
+
+
+	private void Start()
+	{
+		onDead += () => 
+        {
+            //change scene to game over
+            Debug.Log("!@#!@#!@#!@#");
+            GameManager.Instance.player.playerCtrl.anim.SetTrigger(DeathHash);
+            GameManager.Instance.player.playerCtrl.CompleteStop();
+
+        };
+	}
+
+	public override void Damage(float amt, Detection _dec = Detection.none)
     {
-        if (!isImmune)
+        if (!isImmune && !dead)
         {
             GameManager.Instance.player.ModifyHPPlus((int)(-amt));
             
@@ -17,6 +32,7 @@ public class Player_LifeObject : LifeObject
             
             
             SetImmuneFor(0.6f);
+            SoundManager.Instance.PlaySFX(hitSound, SoundSetting.SFX);
             GameManager.Instance.player.playerCtrl.anim.SetTrigger(HitHash);
             GameManager.Instance.player.playerCtrl.StopFor(0.4f);
             DieCheck();

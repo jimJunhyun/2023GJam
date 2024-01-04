@@ -129,10 +129,16 @@ AudioMixerController:
   m_EnableSuspend: 1
   m_UpdateMode: 0
   m_ExposedParameters:
+  - guid: 30207601b2fe7f34b84558e5a1348f58
+    name: Battle
+  - guid: a023160ef21490e4a88a9d787d2539b3
+    name: KickDrum
   - guid: 6ac3f8088ebeb854683a721c697477bc
     name: Master
   - guid: d0f566f97c329ca4d8017ff46f627ce8
     name: SFX
+  - guid: dc658962f3bdc32449e59fa022ccfe31
+    name: SnareDrum
   - guid: c169d5249b6dc914e854c35fbc5649cf
     name: UISound
   - guid: 7593e3f3c890f5343bd3516887522d27

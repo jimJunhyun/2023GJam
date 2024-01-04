@@ -271,6 +271,8 @@ public class AI : MonoBehaviour, IRhythm
 		prevPos = transform.position;
 	}
 
+	
+
 	//private void OnDrawGizmos()
 	//{
 	//	for (int i = 0; i < angle; i++)
@@ -300,11 +302,15 @@ public class AI : MonoBehaviour, IRhythm
 	{
 		examining = false;
 		rig.velocity = Vector3.zero;
+		agent.velocity = Vector3.zero;
+		agent.isStopped = true;
+		agent.SetDestination(transform.position);
 	}
 
 	public void StartAI()
 	{
 		examining = true;
+		agent.isStopped = false;
 	}
 
 	public void BeatUpdate()
