@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd616900df637c646a06e03b5a1f6785, type: 3}
   m_Name: Map3_1
   m_EditorClassIdentifier: 
-  obj: {fileID: 7021074989804766103, guid: 99540aa823412c64796c52a5bf81d1ad, type: 3}
+  obj: {fileID: 1601154212452131797, guid: 2a930b2985d3c1d48b6da28e524d6973, type: 3}
   isQuestion: 1
   type: 7
   up: {fileID: 0}
@@ -31,7 +31,7 @@ MonoBehaviour:
   spEnterPt: {x: 112.39, y: 302.61, z: 113.43}
   spRoomExit: {fileID: 0}
   spExitPt: {x: 107.87, y: 1.72, z: 124.32}
-  spRoom: {fileID: 8041192392450333228, guid: b143d267003a979439333626c22e4bfe, type: 3}
+  spRoom: {fileID: 0}
   rootOffSet: {x: 0, y: 0, z: 0}
   isRandomizable: 1
   cleared: 0

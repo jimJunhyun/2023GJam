@@ -953,7 +953,7 @@ PrefabInstance:
     - target: {fileID: 3391142666081929575, guid: b0c84235916467447a4c00e05206ae63,
         type: 3}
       propertyPath: soundSetting
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8517764762957657155, guid: b0c84235916467447a4c00e05206ae63,
         type: 3}
@@ -1218,7 +1218,7 @@ PrefabInstance:
     - target: {fileID: 121022632585429254, guid: 9b6082bb40bcb7b489440c3abfe2d88c,
         type: 3}
       propertyPath: soundSetting
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 583146385255523732, guid: 9b6082bb40bcb7b489440c3abfe2d88c,
         type: 3}
@@ -1369,7 +1369,7 @@ PrefabInstance:
     - target: {fileID: 883729028137519063, guid: 64f874e0244b14549835c2eb3ee2c719,
         type: 3}
       propertyPath: soundSetting
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7431854194706522558, guid: 64f874e0244b14549835c2eb3ee2c719,
         type: 3}
@@ -1635,7 +1635,7 @@ PrefabInstance:
     - target: {fileID: 3846573481619304746, guid: 9576eefdfb0a2174d9459cfd52eef5b1,
         type: 3}
       propertyPath: soundSetting
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1671,7 +1671,7 @@ PrefabInstance:
     - target: {fileID: 4842876826204791952, guid: 6eed7930e6a21eb469ff333bc1fe2e8e,
         type: 3}
       propertyPath: soundSetting
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5192805488247100195, guid: 6eed7930e6a21eb469ff333bc1fe2e8e,
         type: 3}

@@ -27,10 +27,10 @@ public class StartSceneLogo : MonoBehaviour, IRhythm
     public void Tweening1(Image img)
     {
         img.rectTransform.DOKill();
-        img.rectTransform.localScale = new Vector3(1, 1, 1) * 0.5f;
+        img.rectTransform.localScale = new Vector3(1, 1, 1) * 0.7f;
         img.rectTransform.DOScale(1.1f,0.3f ).SetEase(Ease.OutElastic).OnComplete(() =>
         {
-            img.rectTransform.DOScale(0.5f, 0.4f);
+            img.rectTransform.DOScale(0.7f, 0.4f);
                 
         });
     }
@@ -38,10 +38,10 @@ public class StartSceneLogo : MonoBehaviour, IRhythm
     public void Tweening2(Image img)
     {
         img.rectTransform.DOKill();
-        img.rectTransform.localScale = new Vector3(1,1,1) * 0.5f;
+        img.rectTransform.localScale = new Vector3(1,1,1) * 0.7f;
         img.rectTransform.DOScale(0.9f,0.1f ).OnComplete(() =>
         {
-            img.rectTransform.DOScale(0.5f, 0.1f);
+            img.rectTransform.DOScale(0.7f, 0.1f);
                 
         });
     }

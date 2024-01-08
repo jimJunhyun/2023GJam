@@ -1787,45 +1787,45 @@ MonoBehaviour:
   Return: {fileID: 11400000, guid: 2eec88d4ca6df24419aab2fd6b04c543, type: 2}
   _ch:
   - Names: Drum Beginners
-    BPM: 64
+    BPM: 60
     SongParent: Pier Gonella Jam
-    _clips: {fileID: 8300000, guid: f34d3a276109e8e4489105cc3acb241e, type: 3}
+    _clips: {fileID: 8300000, guid: de0e889645f7cba4c8bb1dd317c0aa88, type: 3}
     _spi: {fileID: 21300000, guid: dc0d4b5ee14d1014f83cde71fc5a04be, type: 3}
     color: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
   - Names: Neo Soul Backing
     BPM: 70
     SongParent: Pier Gonella Jam
-    _clips: {fileID: 8300000, guid: a698c6c94a623704d812e77c493e030b, type: 3}
+    _clips: {fileID: 8300000, guid: 6b0af3257fa90344fa556b9da4b85fc2, type: 3}
     _spi: {fileID: 21300000, guid: 597f8767dd3d37d4884f5b65ffa6fc8d, type: 3}
     color: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
   - Names: Stoner Rock
     BPM: 80
     SongParent: Pier Gonella Jam
-    _clips: {fileID: 8300000, guid: fd84b699f1db28f4fa2e45186fb5f512, type: 3}
+    _clips: {fileID: 8300000, guid: 0e140e45cd78c2e4eae6a952b3e6997f, type: 3}
     _spi: {fileID: 21300000, guid: 6dca0ff582c049c47b0f4bde392f4dcf, type: 3}
     color: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
   - Names: Backing Track1
     BPM: 90
     SongParent: Pier Gonella Jam
-    _clips: {fileID: 8300000, guid: 621b046040d4464479663c446d77507c, type: 3}
+    _clips: {fileID: 8300000, guid: c226dbbfec1a4f344bda0b5c23ef5849, type: 3}
     _spi: {fileID: 21300000, guid: 861737fc3b36fc943a2c45829de077d5, type: 3}
     color: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
   - Names: Backing Track2
     BPM: 100
     SongParent: Pier Gonella Jam
-    _clips: {fileID: 8300000, guid: e719a1c9a98bb7e47966bf71700b8e54, type: 3}
+    _clips: {fileID: 8300000, guid: 341a60c56f0f9a640a5c753117410e75, type: 3}
     _spi: {fileID: 21300000, guid: be2bff9abd38325419ecb08a0b91916c, type: 3}
     color: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
   - Names: Funk n Roll
     BPM: 110
     SongParent: Pier Gonella Jam
-    _clips: {fileID: 8300000, guid: f698b92b2feb13547896973f42ba66c3, type: 3}
+    _clips: {fileID: 8300000, guid: fba20cf1495ae4d429a6e7865211a2b2, type: 3}
     _spi: {fileID: 21300000, guid: 56ea3737c3282e9479ab70746ac1df2a, type: 3}
     color: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
   - Names: Funk Jam
     BPM: 120
     SongParent: Pier Gonella Jam
-    _clips: {fileID: 8300000, guid: 18537ff2cf245b74894032afdcee5ad9, type: 3}
+    _clips: {fileID: 8300000, guid: 50729340a6da6e943864e522ac2ccc1a, type: 3}
     _spi: {fileID: 21300000, guid: 5f60dcf4936c78b45ad420f48488032c, type: 3}
     color: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
   _img: {fileID: 256916635}

@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd616900df637c646a06e03b5a1f6785, type: 3}
   m_Name: Map9_1
   m_EditorClassIdentifier: 
-  obj: {fileID: 359410278692488110, guid: 51c4794c232137c4d958665775e1d02c, type: 3}
+  obj: {fileID: -5828666241738628533, guid: fcf2af21c0a7e4e419b04e89851e1ce2, type: 3}
   isQuestion: 1
   type: 7
   up: {fileID: 11400000, guid: a424775eb5ca2ae4cbf4af1d31f18c06, type: 2}
   down: {fileID: 0}
   left: {fileID: 0}
   right: {fileID: 0}
-  upPt: {x: 230.5, y: 0, z: 252.1}
-  downPt: {x: 214.9, y: 0, z: 210.2}
-  leftPt: {x: 209.4, y: 0, z: 251.9}
-  rightPt: {x: 247.7, y: 0, z: 251.6}
+  upPt: {x: 230.5, y: 0, z: 250.4}
+  downPt: {x: 229.8, y: 0, z: 212.1}
+  leftPt: {x: 211.3, y: 0, z: 214.2}
+  rightPt: {x: 250, y: 0, z: 214.8}
   upPtExit: {fileID: 0}
   downPtExit: {fileID: 0}
   leftPtExit: {fileID: 0}
@@ -31,8 +31,8 @@ MonoBehaviour:
   spEnterPt: {x: 228.35, y: 300, z: 230}
   spRoomExit: {fileID: 0}
   spExitPt: {x: 230.3, y: 0, z: 244.16}
-  spRoom: {fileID: 3900043655947235007, guid: 31049d2d497953c4d8a7a1056ee3196a, type: 3}
+  spRoom: {fileID: 0}
   rootOffSet: {x: 0, y: 0, z: 0}
   isRandomizable: 1
   cleared: 0
-  isAutoClear: 1
+  isAutoClear: 0

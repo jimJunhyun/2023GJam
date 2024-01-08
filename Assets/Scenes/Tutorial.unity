@@ -157,6 +157,7 @@ MonoBehaviour:
   healMinMax: {x: 0, y: 2}
   curseMinMax: {x: 1, y: 3}
   blessMinMax: {x: 0, y: 2}
+  bossRoom: {fileID: 0}
   isClearSight: 0
 --- !u!4 &171343763
 Transform:
@@ -480,6 +481,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560955800602207820, guid: 6bca65cdd641fcf4e88e572d29425881,
+        type: 3}
+      propertyPath: BPM
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4785956043059366430, guid: 6bca65cdd641fcf4e88e572d29425881,
         type: 3}

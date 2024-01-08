@@ -34,7 +34,7 @@ public class Inventory : MonoBehaviour
         if(_equipItem)
             return _equipItem;
 
-        return new ItemSO();
+        return null;
     }
 
     public void AddCurse(CurseList en)

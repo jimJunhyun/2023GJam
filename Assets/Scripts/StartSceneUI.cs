@@ -25,17 +25,23 @@ public class StartSceneUI : MonoBehaviour
     [SerializeField] private Image _setting;
     [SerializeField] private Image _exit;
 
-    [SerializeField] private Slider _slider;
+    //[SerializeField] private Slider _slider;
     [SerializeField] private UIUpFont _up;
 
     [SerializeField] private Transform SettingUICanvas;
     [SerializeField] private Transform MainUICanvas;
 
+    [SerializeField] private AudioClip _bg;
+
     private SceneEnum _scene;
 
     private int cnt = 0;
     private bool Go = false;
-    
+
+    public void Start()
+    {
+        SoundManager.Instance.PlayBGM(_bg);
+    }
 
     public void Tweening(Image img)
     {
@@ -74,7 +80,7 @@ public class StartSceneUI : MonoBehaviour
 
     private void Update()
     {
-        if (cnt > 8 && Go ==false)
+        if (cnt > 3 && Go ==false)
         {
             Go = true;
             LoadScene();
@@ -91,14 +97,14 @@ public class StartSceneUI : MonoBehaviour
             Go = false;
         }
 
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-        {
-            _slider.value -= 0.1f;
-        }
-        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-        {
-            _slider.value += 0.1f;
-        }
+        //if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        //{
+        //    _slider.value -= 0.1f;
+        //}
+        //else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        //{
+        //    _slider.value += 0.1f;
+        //}
         
         if (Input.GetKeyDown(KeyCode.J))
         {
@@ -113,9 +119,9 @@ public class StartSceneUI : MonoBehaviour
             cnt++;
             
             UIUpFont ui = PoolManager.Instance.Pop(_up.name) as UIUpFont;
-            if (9 - cnt >= 1)
+            if (3 - cnt >= 0)
             {
-                ui.Init(_tutorial.rectTransform,$"{9-cnt}");
+                ui.Init(_tutorial.rectTransform,$"{4-cnt}");
                 
             }
             else
@@ -136,9 +142,9 @@ public class StartSceneUI : MonoBehaviour
             }
             cnt++;
             UIUpFont ui = PoolManager.Instance.Pop(_up.name) as UIUpFont;
-            if (9 - cnt >= 1)
+            if (3 - cnt >= 0)
             {
-                ui.Init(_start.rectTransform,$"{9-cnt}");
+                ui.Init(_start.rectTransform,$"{4-cnt}");
                 
             }
             else
@@ -158,9 +164,9 @@ public class StartSceneUI : MonoBehaviour
             }
             cnt++;
             UIUpFont ui = PoolManager.Instance.Pop(_up.name) as UIUpFont;
-            if (9 - cnt >= 1)
+            if (3 - cnt >= 0)
             {
-                ui.Init(_setting.rectTransform,$"{9-cnt}");
+                ui.Init(_setting.rectTransform,$"{4-cnt}");
                 
             }
             else
@@ -181,9 +187,9 @@ public class StartSceneUI : MonoBehaviour
 
 
             UIUpFont ui = PoolManager.Instance.Pop(_up.name) as UIUpFont;
-            if (9 - cnt >= 1)
+            if (3 - cnt >= 0)
             {
-                ui.Init(_exit.rectTransform,$"{9-cnt}");
+                ui.Init(_exit.rectTransform,$"{4-cnt}");
 
                 
             }

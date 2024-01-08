@@ -119,6 +119,7 @@ MonoBehaviour:
   hitSound: {fileID: 8300000, guid: f1bb94a09928b9343aed51d072b35024, type: 3}
   critSound: {fileID: 8300000, guid: 06eb2cac07ddf1946af3c668dd618973, type: 3}
   dieEff: {fileID: 994099557938260095, guid: ef8cc1e630c5082469e683c1881bc32f, type: 3}
+  isDieable: 1
 --- !u!1001 &4234357867428623998
 PrefabInstance:
   m_ObjectHideFlags: 0

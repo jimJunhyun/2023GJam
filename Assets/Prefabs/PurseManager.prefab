@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4421363707062731122}
   - component: {fileID: 5976482871553620012}
-  - component: {fileID: 2784969950512462365}
   m_Layer: 0
   m_Name: PurseManager
   m_TagString: Untagged
@@ -52,17 +51,3 @@ MonoBehaviour:
   isPurse: 0
   leftPressTime: 2
   slider: {fileID: 0}
---- !u!114 &2784969950512462365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3903316916038319717}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61430b0086307cc4da3ccc8d39ae88da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transitionTemplate: {fileID: 5276914992623515724, guid: 616d511151a6c554caddf1c754e4f91d,
-    type: 3}

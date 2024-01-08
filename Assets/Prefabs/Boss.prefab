@@ -110,7 +110,7 @@ MonoBehaviour:
   dead: 0
   isImmune: 0
   hitSound: {fileID: 8300000, guid: f1bb94a09928b9343aed51d072b35024, type: 3}
-  critSound: {fileID: 8300000, guid: 06eb2cac07ddf1946af3c668dd618973, type: 3}
+  critSound: {fileID: 8300000, guid: f1bb94a09928b9343aed51d072b35024, type: 3}
   dieEff: {fileID: 994099557938260095, guid: ef8cc1e630c5082469e683c1881bc32f, type: 3}
   isDieable: 1
 --- !u!114 &144660315078111193
@@ -142,6 +142,8 @@ MonoBehaviour:
     SPEED: 4.5
     Size: 1
     AttackRange: 5
+  set: {fileID: 11400000, guid: 06fa0ad2bc756f44ab258bc74947381d, type: 2}
+  _map: {fileID: 34933145439250547, guid: 0faf1153b0bba4f449b735c68fc47278, type: 3}
 --- !u!54 &4256129106171558975
 Rigidbody:
   m_ObjectHideFlags: 0

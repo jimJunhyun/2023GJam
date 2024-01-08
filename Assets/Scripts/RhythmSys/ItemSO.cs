@@ -75,7 +75,7 @@ public class ItemSO : ScriptableObject
                 break;
                                                                     
         }
-        Debug.Log($"{dec} !!!!!! 판정!!!");
+        Debug.LogError($"{dec} !!!!!! 판정!!!");
     }
 }
 

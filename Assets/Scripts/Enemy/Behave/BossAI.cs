@@ -1,3 +1,4 @@
+using EasyTransition;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -126,7 +127,8 @@ public class BossAI : MonoBehaviour, IRhythm
 	}
 
 
-
+    [SerializeField] TransitionSettings set;
+    [SerializeField] MapCanvas _map;
 	// Start is called before the first frame update
 	void Awake()
     {
@@ -138,7 +140,15 @@ public class BossAI : MonoBehaviour, IRhythm
 
         life.onDead += () => 
         {
-            Debug.Log("zmfflrj"); 
+            Debug.Log("zmfflrj");
+
+            MapCanvas md = PoolManager.Instance.Pop(_map.name) as MapCanvas;
+
+            md.Init("축하합니다 연주가님! 리드미컬 시티를 정화하는데 성공하셨습니다!", 5f);
+
+            TransitionManager.Instance.Transition("StartScene", set, 5f);
+
+
         };
 
         anim = transform.Find("PolyArtWizardStandardMat").GetComponent<Animator>();

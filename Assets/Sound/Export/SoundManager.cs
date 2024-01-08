@@ -146,6 +146,7 @@ public class SoundManager : Singleton<SoundManager>
         return _data.Master;
     }
 
+
     private List<AudioSource> _sfxList = new();
     public void PlaySFX(AudioClip _soundType, SoundSetting soundSet, Transform tls = null)
     {
