@@ -60,7 +60,6 @@ public class AI : MonoBehaviour, IRhythm
 	public int spinDur;
 	public float spinSpd;
 
-	public bool isDead = false;
 
 	internal readonly int AttackHash = Animator.StringToHash("Attack");
 	internal readonly int IdleHash = Animator.StringToHash("Idle");
@@ -311,8 +310,13 @@ public class AI : MonoBehaviour, IRhythm
 
 	public void StartAI()
 	{
-		examining = true;
-		agent.isStopped = false;
+		if (!life.dead)
+		{
+			examining = true;
+			agent.isStopped = false;
+			GameManager.Instance.player.ShowArrow(transform, ArrowType.Enemy);
+		}
+		
 	}
 
 	public void BeatUpdate()

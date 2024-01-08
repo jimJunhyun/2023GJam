@@ -13,7 +13,6 @@ public class MapGimik : MonoBehaviour
     [TextArea][SerializeField] private string _afterText;
     public void Interect()
     {
-        _maps.RoomInit();
         _inter._action = null;
         _inter._beforeText = _beforeText;
         _inter._afterText = _afterText;

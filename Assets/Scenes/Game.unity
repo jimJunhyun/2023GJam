@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.07029483, g: 0.23161618, b: 0.6349028, a: 1}
+  m_IndirectSpecularColor: {r: 0.070372246, g: 0.23165578, b: 0.6348972, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -667,26 +667,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 332433314}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &344098321 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4914216526410064216, guid: 644d4eca1c9f4e64d9a802be20cbfdf7,
-    type: 3}
-  m_PrefabInstance: {fileID: 8346658954870674261}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &344098331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 344098321}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61430b0086307cc4da3ccc8d39ae88da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transitionTemplate: {fileID: 5276914992623515724, guid: 616d511151a6c554caddf1c754e4f91d,
-    type: 3}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1402,7 +1382,7 @@ Transform:
   m_GameObject: {fileID: 1542022233}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.857506, y: -4.077112, z: -13.333453}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1838,11 +1818,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4914216526410064216, guid: 644d4eca1c9f4e64d9a802be20cbfdf7,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 344098331}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 644d4eca1c9f4e64d9a802be20cbfdf7, type: 3}
 --- !u!1001 &9053350010916769929
 PrefabInstance:

@@ -43,6 +43,8 @@ public class GameManager : Singleton<GameManager>
 
 	public GoldUI gold;
 
+	public ArrowShower arrow;
+
 	NavMeshSurface surface;
 
 	private void Awake()

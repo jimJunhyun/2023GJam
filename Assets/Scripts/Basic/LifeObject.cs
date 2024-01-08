@@ -144,7 +144,7 @@ public class LifeObject : MonoBehaviour
 						GameManager.Instance.player.Gold += 3;
 						break;
 				}
-				
+				GameManager.Instance.player.RemoveArrow(transform);
 			}
 			onDead?.Invoke();
 		}

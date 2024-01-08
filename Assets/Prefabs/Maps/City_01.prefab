@@ -51,6 +51,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   portals: []
+  type: 1
 --- !u!65 &6557970306568165396
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -468,6 +469,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   portals: []
+  type: 1
 --- !u!65 &4380228917364119401
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -487,8 +489,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5.335968, y: 8.869063, z: 26.05011}
-  m_Center: {x: 2.167984, y: 3.9345317, z: 2.5585632}
+  m_Size: {x: 5.335968, y: 8.869063, z: 23.035309}
+  m_Center: {x: 2.167984, y: 3.9345317, z: 1.0511627}
 --- !u!1 &2367398686493376323
 GameObject:
   m_ObjectHideFlags: 0
@@ -777,6 +779,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   portals: []
+  type: 1
 --- !u!65 &2201317014582608724
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1476,6 +1479,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   portals: []
+  type: 1
 --- !u!65 &2940319463867185222
 BoxCollider:
   m_ObjectHideFlags: 0
