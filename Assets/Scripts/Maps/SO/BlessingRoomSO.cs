@@ -50,12 +50,12 @@ public class BlessingRoomSO : MapGimikSO
         {
             // 저주 제거
             GameManager.Instance.player.Inven.ResetCurse();
-            return "축복 : 정화";
+            return "축복 : 모든 저주 정화";
         }
         else if (Randoms == 2)
         {
             GameManager.Instance.player.ModifyHPPlus(999);
-            return "축복 : 체력회복";
+            return "축복 : 모든 체력 회복";
         }
         else if (Randoms == 3)
         {

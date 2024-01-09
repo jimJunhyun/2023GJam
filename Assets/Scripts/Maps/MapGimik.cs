@@ -18,7 +18,7 @@ public class MapGimik : MonoBehaviour
         _inter._afterText = _afterText;
         
         MapCanvas _cs = PoolManager.Instance.Pop(_cans.name) as MapCanvas;
-        _cs.Init(_maps.RoomInit(),5f);
+        _cs.Init(_maps.RoomInit(),7f);
     }
 
 }
