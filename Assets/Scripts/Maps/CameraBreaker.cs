@@ -16,7 +16,8 @@ public class CameraBreaker : MonoBehaviour
     {
         // Player는 싱글톤이기에 전역적으로 접근할 수 있습니다.
         Vector3 direction = transform.forward;
-        RaycastHit[] hits = Physics.RaycastAll(transform.position, direction, Mathf.Infinity,
+        Vector3 startPos = transform.position + (-transform.forward*100);
+        RaycastHit[] hits = Physics.RaycastAll(startPos, direction, Mathf.Infinity,
                             1 << LayerMask.NameToLayer("Building"));
 
         for (int i = 0; i < hits.Length; i++)
