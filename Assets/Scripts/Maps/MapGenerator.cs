@@ -6,16 +6,17 @@ public class MapGenerator : MonoBehaviour
 {
     public MapAtom startRoom;
 
-	public Vector2 shopMinMax;
-	public Vector2 healMinMax;
-	public Vector2 curseMinMax;
-	public Vector2 blessMinMax;
+	public Vector2Int shopMinMax;
+	public Vector2Int healMinMax;
+	public Vector2Int curseMinMax;
+	public Vector2Int blessMinMax;
 
+	public int maxQRoomCnt;
 
-	internal int shopCnt=0;
-	internal int healCnt	=0;
-	internal int curseCnt = 0;
-	internal int blessCnt = 0;
+	internal int shopCnt = -1;
+	internal int healCnt = -1;
+	internal int curseCnt = -1;
+	internal int blessCnt = -1;
 
 	public const float MAPX = 60;
 	public const float MAPY = 60;
@@ -32,6 +33,40 @@ public class MapGenerator : MonoBehaviour
 
 	public void Create()
 	{
+		shopCnt = (int)shopMinMax.x;
+		healCnt = (int)healMinMax.x;
+		curseCnt = (int)curseMinMax.x;
+		blessCnt = (int)blessMinMax.x;
+		maxQRoomCnt -= (shopCnt + healCnt + curseCnt + blessCnt);
+		int r;
+		int repCount = 0;
+		while(maxQRoomCnt > 0)
+		{
+			++repCount;
+			Debug.Log(shopMinMax.y);
+			r = Random.Range(0, (((shopMinMax.y - shopCnt) > maxQRoomCnt) ? maxQRoomCnt : (shopMinMax.y - shopCnt)) + 1);
+			shopCnt += r;
+			maxQRoomCnt -= r;
+			r = Random.Range(0, ((((int)healMinMax.y - healCnt) > maxQRoomCnt) ? maxQRoomCnt : ((int)healMinMax.y - healCnt)) + 1);
+			healCnt += r;
+			maxQRoomCnt -= r;
+			r = Random.Range(0, ((((int)curseMinMax.y - curseCnt) > maxQRoomCnt) ? maxQRoomCnt : ((int)curseMinMax.y - curseCnt)) + 1);
+			curseCnt += r;
+			maxQRoomCnt -= r;
+			r = Random.Range(0, ((((int)blessMinMax.y - blessCnt) > maxQRoomCnt) ? maxQRoomCnt : ((int)blessMinMax.y - blessCnt)) + 1);
+			blessCnt += r;
+			maxQRoomCnt -= r;
+			if(repCount > GameManager.MAXREPCOUNT)
+			{
+				Debug.Log("SOMETHING WRONG");
+				curseCnt += maxQRoomCnt;
+				break;
+			}
+		}
+		
+
+		Debug.Log("SHOP : " + shopCnt + ", HEAL : " + healCnt + ", CURSE : " + curseCnt + ", BLESS : " + blessCnt + " REMAIN : " + maxQRoomCnt);
+
 		createds.Clear();
 		Debug.Log("CREATESTART");
 		createCalls.Enqueue(new KeyValuePair<MapAtom, Vector3>(startRoom, startRoom.rootOffSet));

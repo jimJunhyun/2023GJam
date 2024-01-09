@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd616900df637c646a06e03b5a1f6785, type: 3}
   m_Name: Map4_1
   m_EditorClassIdentifier: 
+  questionRoomStatus: 1
   obj: {fileID: -5828666241738628533, guid: fcf2af21c0a7e4e419b04e89851e1ce2, type: 3}
   isQuestion: 1
   type: 7
@@ -32,7 +33,9 @@ MonoBehaviour:
   spRoomExit: {fileID: 0}
   spExitPt: {x: 0, y: 0, z: 0}
   spRoom: {fileID: 0}
+  interpoint: {fileID: 0}
   rootOffSet: {x: 0, y: 0, z: 0}
   isRandomizable: 1
   cleared: 0
   isAutoClear: 0
+  _mapGimik: {fileID: 0}
