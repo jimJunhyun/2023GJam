@@ -159,7 +159,7 @@ public class BeatSystem : Singleton<BeatSystem>
                 BeatUISystem.Instance.HitNode(_k, SoundSetting.SnareDrum);
             }
 
-            if (Input.GetKeyDown(KeyCode.I) && _iConnect) // 1 + 아이템 + 플레이어
+            if (Input.GetKeyDown(KeyCode.I) && _iConnect && BeatUISystem.Instance.HitCount + BeatUISystem.Instance.RecordCount < 16) // 1 + 아이템 + 플레이어
             {
                 int a = 1;
                 if (GameManager.Instance.player.Inven.ReturnItemRule() != null)
