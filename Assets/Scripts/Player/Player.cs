@@ -145,7 +145,7 @@ public class Player : MonoBehaviour
 	{
         //playerCtrl.SetStat(PlayerStat);
         
-        PlayerUI.InvaligateHP(NormalStat.HP, PlayerStat.HP);
+        PlayerUI.InvaligateHP(PlayerStat.HP, PlayerStat.HP);
         PlayerUI.InvaligateAttack(PlayerStat.ATK);
         PlayerUI.InvaligateSpeed(PlayerStat.SPEED);
         PlayerUI.InvaligateRange(PlayerStat.AttackRange);
@@ -190,7 +190,7 @@ public class Player : MonoBehaviour
 
     public void ShowArrow(Transform target, ArrowType type)
 	{
-
+    
 		if (!arrowDict.ContainsKey(target.GetHashCode()))
 		{
             ArrowShower ar = Instantiate(GameManager.Instance.arrow, transform.position, Quaternion.identity, transform);
@@ -215,7 +215,7 @@ public class Player : MonoBehaviour
         NormalStat.HP += value;
         
         
-        if (NormalStat.HP > PlayerStat.MaxHP)
+        if (PlayerStat.HP > PlayerStat.MaxHP)
         {
             NormalStat.HP = PlayerStat.MaxHP;
         }
@@ -234,7 +234,7 @@ public class Player : MonoBehaviour
         }
         LifeModule.maxHp = PlayerStat.MaxHP;
 
-        if (NormalStat.HP > NormalStat.MaxHP)
+        if (PlayerStat.HP > PlayerStat.MaxHP)
         {
             NormalStat.HP = NormalStat.MaxHP;
             LifeModule.hp = NormalStat.MaxHP;
@@ -249,6 +249,7 @@ public class Player : MonoBehaviour
         LifeModule.DieCheck();
         
         PlayerUI.InvaligateHP(PlayerStat.HP, PlayerStat.MaxHP);
+        //RefreshStat();
     }
     
     public void ModifyATKPlus(int value)

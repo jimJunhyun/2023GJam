@@ -18,7 +18,7 @@ MonoBehaviour:
     1 \uC99D\uAC00\uD569\uB2C8\uB2E4,."
   ExpensiveMoney: 40
   _type: 0
-  _itemtype: 0
+  _itemtype: 1
   AddBeat: 0
   RemoveBeat: 0
   AddStat:
