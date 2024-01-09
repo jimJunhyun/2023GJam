@@ -12,6 +12,7 @@ using UnityEngine.UI;
 [System.Serializable]
 public class TutorialCls
 {
+    [SerializeField] [TextArea] public string _bigMeaing;
     [SerializeField] [TextArea] public string text;
     [SerializeField] public bool _event = false;
     [SerializeField] public float _seeingTime = 1f;
@@ -24,8 +25,10 @@ public class Tutorial : MonoBehaviour
 {
     [SerializeField] private TransitionSettings _setted;
     [SerializeField] private Image _quertBar;
-    
+
+    [SerializeField] private Image _bigBG;
     [SerializeField] private Image _image;
+    [SerializeField] private TextMeshProUGUI _bigMean;
     [SerializeField] private TextMeshProUGUI _text;
     [SerializeField] private TextMeshProUGUI _subText;
 
@@ -40,14 +43,13 @@ public class Tutorial : MonoBehaviour
     private bool _isfirst = true;
     private void Awake()
     {
-
         text[0]._act = FirstEnter;
-        text[5]._act = SecondEnter;
-        text[8]._act = ThirdEnter;
-        text[11]._act = FourEnter;
-        text[14]._act = FiveEnter;
-        text[15]._act = SixEnter;
-        text[16]._act = FirstEnter;
+        text[8]._act = SecondEnter;
+        text[14]._act = ThirdEnter;
+        text[18]._act = FourEnter;
+        text[21]._act = FiveEnter;
+        text[23]._act = SixEnter;
+        text[24]._act = FirstEnter;
         BeatSystem.Instance._jConnect = false;
         BeatSystem.Instance._kConnect = false;
         BeatSystem.Instance._iConnect = false;
@@ -79,9 +81,10 @@ public class Tutorial : MonoBehaviour
         {
             _quertBar.color = Color.red;
             _isfirst = false;
-            BeatSystem.Instance._jConnect = true;
-            BeatSystem.Instance._kConnect = true;
+            //BeatSystem.Instance._jConnect = true;
+            //BeatSystem.Instance._kConnect = true;
             BeatSystem.Instance._iConnect = true;
+            BeatSystem.Instance.StartBeat();
         }
         
         
@@ -109,11 +112,13 @@ public class Tutorial : MonoBehaviour
             _isfirst = false;
             BeatSystem.Instance._jConnect = true;
             BeatSystem.Instance._kConnect = true;
+            BeatSystem.Instance.StartBeat();
         }
         _subText.text = $"J or K를 눌러 모든 비트를 연주하기";
         
         if (BeatUISystem.Instance.IsRuleCollect())
         {
+            BeatSystem.Instance.StopBeat();
             _quertBar.color= Color.green;
             _isfirst = true;
             return true;
@@ -129,9 +134,10 @@ public class Tutorial : MonoBehaviour
         {
             _quertBar.color = Color.red;
             _isfirst = false;
-            BeatSystem.Instance._jConnect = true;
-            BeatSystem.Instance._kConnect = true;
+            //BeatSystem.Instance._jConnect = true;
+            //BeatSystem.Instance._kConnect = true;
             BeatSystem.Instance._iConnect = true;
+            BeatSystem.Instance.StartBeat();
         }
         _subText.text = $"I를 눌러 비트 추가하기( {BeatUISystem.Instance.HitCount}/7 )";
         
@@ -158,15 +164,18 @@ public class Tutorial : MonoBehaviour
         {
             _quertBar.color = Color.red;
             _isfirst = false;
-            BeatSystem.Instance._jConnect = true;
-            BeatSystem.Instance._kConnect = true;
-            BeatSystem.Instance._iConnect = false;
+            //BeatSystem.Instance._jConnect = true;
+            //BeatSystem.Instance._kConnect = true;
+            //BeatSystem.Instance._iConnect = false;
             BeatSystem.Instance._oConnet = true;
+            BeatSystem.Instance.StartBeat();
         }        
         _subText.text = $"O를 눌러 비트 제거하기( {BeatUISystem.Instance.HitCount -4}개 지우기 )";
 
         if (BeatUISystem.Instance.HitCount <= 4)
         {
+            BeatSystem.Instance.StopBeat();
+            BeatSystem.Instance._oConnet = false;
             _quertBar.color= Color.green;
             _subText.text = $"O를 눌러 비트 제거하기( 완료 )";
 
@@ -183,6 +192,7 @@ public class Tutorial : MonoBehaviour
         int value = 0;
         if (_isfirst)
         {
+            BeatSystem.Instance.StartBeat();
             _quertBar.color = Color.red;
             _isfirst = false;
             BeatSystem.Instance._jConnect = true;
@@ -228,11 +238,10 @@ public class Tutorial : MonoBehaviour
     {
         if (i == 0)
         {
+            BeatSystem.Instance.StopBeat();
             yield return new WaitUntil(() => GameManager.Instance.curRoom != null);
             GameManager.Instance.curRoom.ResetClearState();
         }
-        
-        BeatSystem.Instance.StartBeat();
 
         if (i >= text.Count)
         {
@@ -240,6 +249,27 @@ public class Tutorial : MonoBehaviour
             StopAllCoroutines();
             yield break;
         }
+        
+        if (text[i]._bigMeaing != "")
+
+        {
+
+            _bigBG.gameObject.SetActive(true);
+
+        }
+
+        else
+
+        {
+
+            _bigBG.gameObject.SetActive(false);
+
+        }
+
+        
+
+        _bigMean.text = text[i]._bigMeaing;
+
         
         _text.text = text[i].text;
         _image.DOColor(new Color(1, 1, 1, 1), 0.3f);
