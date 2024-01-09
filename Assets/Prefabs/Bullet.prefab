@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dam: 1
+  _particle: {fileID: 0}
 --- !u!54 &7102558839853514461
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -160,6 +161,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e8e3c29c248e01499a74aac95b628c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _effect: {fileID: 0}
+  _correctionVector: {x: 0, y: 0.5, z: 0}
   hp: 0
-  maxHp: 0
+  maxHp: 150
   dead: 0
+  isImmune: 0
+  hitSound: {fileID: 0}
+  critSound: {fileID: 0}
+  dieEff: {fileID: 0}
+  isDieable: 1

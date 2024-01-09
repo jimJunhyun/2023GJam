@@ -10,8 +10,8 @@ public class MapDrawer : MonoBehaviour
 {
     public static MapDrawer instance;
 
-    public const float MAPUIXCNT = 4;
-    public const float MAPUIYCNT = 4;
+    public const float MAPUIXCNT = 3;
+    public const float MAPUIYCNT = 3;
 
     public Sprite normalRoom;
     public Sprite qRoom;
