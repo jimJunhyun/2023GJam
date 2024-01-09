@@ -38,7 +38,7 @@ public class PlayerAttack : MonoBehaviour
 	{
 		GameManager.Instance.player.playerCtrl.anim.SetTrigger(AttackHash);
 		Collider[] cols = Physics.OverlapSphere(GameManager.Instance.player.transform.position, GameManager.Instance.player.PlayerStat.AttackRange, 1 << 9 | 1 << 10);
-		Debug.LogError($"{cols.Length} 적 갯수 || {GameManager.Instance.player.PlayerStat.AttackRange} || {GameManager.Instance.player.transform.position}");
+		//Debug.LogError($"{cols.Length} 적 갯수 || {GameManager.Instance.player.PlayerStat.AttackRange} || {GameManager.Instance.player.transform.position}");
 		for (int i = 0; i < cols.Length; i++)
 		{
 			LifeObject obj = cols[i].GetComponent<LifeObject>();

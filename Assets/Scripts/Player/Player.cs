@@ -30,6 +30,8 @@ public class Player : MonoBehaviour
         }
     }
 
+    public Dictionary<int, ArrowShower> arrowDict = new Dictionary<int, ArrowShower>();
+
     private void Awake()
     {
         AddStat.Reset();
@@ -143,7 +145,7 @@ public class Player : MonoBehaviour
 	{
         //playerCtrl.SetStat(PlayerStat);
         
-        PlayerUI.InvaligateHP(NormalStat.HP, PlayerStat.HP);
+        PlayerUI.InvaligateHP(PlayerStat.HP, PlayerStat.HP);
         PlayerUI.InvaligateAttack(PlayerStat.ATK);
         PlayerUI.InvaligateSpeed(PlayerStat.SPEED);
         PlayerUI.InvaligateRange(PlayerStat.AttackRange);
@@ -186,12 +188,34 @@ public class Player : MonoBehaviour
         //}
     }
 
+    public void ShowArrow(Transform target, ArrowType type)
+	{
+    
+		if (!arrowDict.ContainsKey(target.GetHashCode()))
+		{
+            ArrowShower ar = Instantiate(GameManager.Instance.arrow, transform.position, Quaternion.identity, transform);
+            ar.Init(target, type);
+            ar.transform.localPosition = Vector3.down;
+            arrowDict.Add(target.GetHashCode(), ar);
+		}
+	}
+
+    public void RemoveArrow(Transform target)
+	{
+        if (arrowDict.ContainsKey(target.GetHashCode()))
+        {
+            ArrowShower a = arrowDict[target.GetHashCode()];
+            Destroy(a.gameObject);
+            arrowDict.Remove(target.GetHashCode());
+        }
+    }
+
     public void ModifyHPPlus(int value)
     {
         NormalStat.HP += value;
         
         
-        if (NormalStat.HP > PlayerStat.MaxHP)
+        if (PlayerStat.HP > PlayerStat.MaxHP)
         {
             NormalStat.HP = PlayerStat.MaxHP;
         }
@@ -210,7 +234,7 @@ public class Player : MonoBehaviour
         }
         LifeModule.maxHp = PlayerStat.MaxHP;
 
-        if (NormalStat.HP > NormalStat.MaxHP)
+        if (PlayerStat.HP > PlayerStat.MaxHP)
         {
             NormalStat.HP = NormalStat.MaxHP;
             LifeModule.hp = NormalStat.MaxHP;
@@ -225,6 +249,7 @@ public class Player : MonoBehaviour
         LifeModule.DieCheck();
         
         PlayerUI.InvaligateHP(PlayerStat.HP, PlayerStat.MaxHP);
+        //RefreshStat();
     }
     
     public void ModifyATKPlus(int value)

@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4275285138809562683}
   - component: {fileID: 6612360056191530984}
   - component: {fileID: 269743273468911558}
+  - component: {fileID: 972054872498603806}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -61,6 +62,7 @@ MonoBehaviour:
   mapList: {fileID: 11400000, guid: eef0f7b2e7c9356459e1b5974010d77f, type: 2}
   decal: {fileID: 4670049241752904956, guid: 0bb4fb5673ee81c4f8dd2e81dc305bfa, type: 3}
   gold: {fileID: 0}
+  arrow: {fileID: 4626851051192579827, guid: ea3f2efdae138f445a2f3b25ce9e4b3a, type: 3}
 --- !u!114 &3762271525433531911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,3 +184,17 @@ MonoBehaviour:
   good: {fileID: 21300000, guid: 758871d62e49f1c4c898cd9e64f34f27, type: 3}
   bad: {fileID: 21300000, guid: d7e3313d00a236a44a79877f46f33ca9, type: 3}
   miss: {fileID: 21300000, guid: cd1645f27d54f7a4d93d547fc3142544, type: 3}
+--- !u!114 &972054872498603806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4914216526410064216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61430b0086307cc4da3ccc8d39ae88da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transitionTemplate: {fileID: 5276914992623515724, guid: 616d511151a6c554caddf1c754e4f91d,
+    type: 3}

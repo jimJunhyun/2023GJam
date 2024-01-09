@@ -15,7 +15,7 @@ MonoBehaviour:
   ItemName: "\uBBF8\uB798\uC2DC"
   _sprite: {fileID: 21300000, guid: bd84a00653c8a48078d52dd78200141d, type: 3}
   ItemDescription: "? \uBC29\uC758 \uC815\uCCB4\uB97C \uC54C \uC218 \uC788\uC2B5\uB2C8\uB2E4."
-  ExpensiveMoney: 77
+  ExpensiveMoney: 30
   _type: 0
   _itemtype: 2
   AddBeat: 0

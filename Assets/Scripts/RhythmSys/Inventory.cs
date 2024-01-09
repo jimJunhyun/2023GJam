@@ -199,6 +199,7 @@ public class Inventory : MonoBehaviour
                     if (a[i] == _equipItem)
                     {
                         GameManager.Instance.player.GetItem(null);
+                        Debug.Log($"{a[i]} 발동");
                     }
                 
                     NodeInvoke.Remove(a[i]);

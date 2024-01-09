@@ -13,13 +13,12 @@ public class MapGimik : MonoBehaviour
     [TextArea][SerializeField] private string _afterText;
     public void Interect()
     {
-        _maps.RoomInit();
         _inter._action = null;
         _inter._beforeText = _beforeText;
         _inter._afterText = _afterText;
         
         MapCanvas _cs = PoolManager.Instance.Pop(_cans.name) as MapCanvas;
-        _cs.Init(_maps.RoomInit(),5f);
+        _cs.Init(_maps.RoomInit(),7f);
     }
 
 }

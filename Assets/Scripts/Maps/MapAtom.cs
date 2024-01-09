@@ -58,7 +58,10 @@ public class MapAtom : ScriptableObject
 	public MoveStation spRoomExit;
 	public Vector3 spExitPt;
 	public GameObject spRoom;
+
 	GameObject actualSpRoom;
+
+	public MoveStation interpoint;
 
 	public Vector3 rootOffSet;
 
@@ -70,7 +73,7 @@ public class MapAtom : ScriptableObject
 	GameObject self;
 	List<EnemySlot> slots = new();
 
-	//[Header("MapGimik")] public MapGimikSO _mapGimik;
+	[Header("MapGimik")] public MapGimikSO _mapGimik;
 
 	public bool IsCleared
 	{
@@ -182,6 +185,7 @@ public class MapAtom : ScriptableObject
 						{
 							obj = GameManager.Instance.mapList.healMap;
 							info.healCnt += 1;
+							_mapGimik = GameManager.Instance.mapList.healGimmick;
 							invalid = false;
 						}
 						break;
@@ -231,6 +235,11 @@ public class MapAtom : ScriptableObject
 	{
 		self = GameObject.Instantiate(obj.gameObject, pos, obj.gameObject.transform.rotation);
 		self.transform.SetParent(parent);
+		if(type == RoomType.Curse)
+		{
+			interpoint = self.transform.Find("Interective").GetComponent<MoveStation>();
+			Debug.Log("ARROWSHOWER");
+		}
 		if (spRoom)
 		{
 			Vector3 pt = self.transform.position;
@@ -240,7 +249,10 @@ public class MapAtom : ScriptableObject
 			spExitPt = self.transform.Find("ExitPointSp").position;
 			spRoomExit = actualSpRoom.transform.Find("ExitPointSp").GetComponent<MoveStation>();
 			spRoomEnter = self.transform.Find("EnterPointSp").GetComponent<MoveStation>();
-
+			if (type == RoomType.Blessing)
+			{
+				interpoint = actualSpRoom.transform.Find("Interective").GetComponent<MoveStation>();
+			}
 			spRoomEnter.onEnterPoint.AddListener(() => 
 			{
 				GameManager.Instance.MovePlayerTo(spEnterPt, true); 
@@ -248,8 +260,19 @@ public class MapAtom : ScriptableObject
 				{
 					spRoom.GetComponent<Store>().StoreInit();
 				}
+				if (type == RoomType.Blessing)
+				{
+					interpoint.SetValid();
+				}
 			});
-			spRoomExit.onEnterPoint.AddListener(() => { GameManager.Instance.MovePlayerTo(spExitPt,true);  });
+			spRoomExit.onEnterPoint.AddListener(() => 
+			{
+				GameManager.Instance.MovePlayerTo(spExitPt,true);
+				if (type == RoomType.Blessing)
+				{
+					interpoint.ResetValid();
+				}
+			});
 
 		}
 	}
@@ -366,6 +389,14 @@ public class MapAtom : ScriptableObject
 			{
 				rightPtExit.SetValid();
 			}
+			if (spRoomEnter)
+			{
+				spRoomEnter.SetValid();
+			}
+			if (interpoint && type == RoomType.Curse)
+			{
+				interpoint.ResetValid();
+			}
 		}
 		
 	}
@@ -428,6 +459,30 @@ public class MapAtom : ScriptableObject
 	{
 		if (!cleared)
 			ResetClearState();
+		if (up)
+		{
+			upPtExit.ResetValid();
+		}
+		if (down)
+		{
+			downPtExit.ResetValid();
+		}
+		if (left)
+		{
+			leftPtExit.ResetValid();
+		}
+		if (right)
+		{
+			rightPtExit.ResetValid();
+		}
+		if (spRoomEnter)
+		{
+			spRoomEnter.ResetValid();
+		}
+		if (interpoint && type == RoomType.Curse)
+		{
+			interpoint.ResetValid();
+		}
 		switch (dir)
 		{
 			case Direction.Up:
@@ -463,8 +518,58 @@ public class MapAtom : ScriptableObject
 		isQuestion = false;
 		if (!cleared)
 		{
-			
+			if(type == RoomType.Heal)
+			{
+				_mapGimik.RoomInit();
+			}
 			TriggerEnemy();
+			if (up)
+			{
+				upPtExit.ResetValid();
+			}
+			if (down)
+			{
+				downPtExit.ResetValid();
+			}
+			if (left)
+			{
+				leftPtExit.ResetValid();
+			}
+			if (right)
+			{
+				rightPtExit.ResetValid();
+			}
+			if (interpoint && type == RoomType.Curse)
+			{
+				interpoint.SetValid();
+			}
+		}
+		else
+		{
+			if (up)
+			{
+				upPtExit.SetValid();
+			}
+			if (down)
+			{
+				downPtExit.SetValid();
+			}
+			if (left)
+			{
+				leftPtExit.SetValid();
+			}
+			if (right)
+			{
+				rightPtExit.SetValid();
+			}
+			if (spRoomEnter)
+			{
+				spRoomEnter.SetValid();
+			}
+			if (interpoint && type == RoomType.Curse)
+			{
+				interpoint.ResetValid();
+			}
 		}
 		GameManager.Instance.RefreshMap();
 	}

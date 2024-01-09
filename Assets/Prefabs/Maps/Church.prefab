@@ -580,6 +580,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   portals: []
+  type: 0
 --- !u!65 &5657141522117131337
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1383,6 +1384,7 @@ GameObject:
   - component: {fileID: 609562000665875914}
   - component: {fileID: 4502763424619581690}
   - component: {fileID: 6502796374637789942}
+  - component: {fileID: 3392972722835520211}
   m_Layer: 0
   m_Name: Interective
   m_TagString: Untagged
@@ -1474,6 +1476,24 @@ MonoBehaviour:
   _cans: {fileID: 34933145439250547, guid: 0faf1153b0bba4f449b735c68fc47278, type: 3}
   _beforeText: "\uCD95\uBCF5\uC758 \uC11D\uC0C1"
   _afterText: "\uB2F9\uC2E0\uC740\n\uC774\uBBF8\n\uCD95\uBCF5\uBC1B\uC558\uC2B5\uB2C8\uB2E4."
+--- !u!114 &3392972722835520211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8691323658542260862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31aa4f6006570bb4ca57ae9d79997366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isValid: 0
+  onEnterPoint:
+    m_PersistentCalls:
+      m_Calls: []
+  portals: []
+  type: 2
 --- !u!1001 &95503260436606311
 PrefabInstance:
   m_ObjectHideFlags: 0
