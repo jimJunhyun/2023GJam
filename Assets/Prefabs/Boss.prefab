@@ -134,7 +134,7 @@ MonoBehaviour:
   slash: {fileID: 5679344698716251445, guid: 87da5d4e16b7f124e88e415abd9d8d26, type: 3}
   shootPos: {fileID: 694599059196795168}
   bulletPow: 15
-  slashPow: 25
+  slashPow: 17
   stat:
     MaxHP: 5000
     HP: 5000
