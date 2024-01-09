@@ -1577,10 +1577,13 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: -8110871386083023245, guid: 4410e946ce300954291896e3b9f0e698, type: 2}
     value: {fileID: 0}
+  - key: {fileID: -2434329077463864111, guid: 4410e946ce300954291896e3b9f0e698, type: 2}
+    value: {fileID: 6975568215538180875}
   m_ExposedReferences:
     m_References:
     - e73e43875caf23f4f9eaeb837992282a: {fileID: 796751251425189270}
     - 24472256dd683f84288832f7d5c329dc: {fileID: 796751251425189270}
+    - 811882ccc2747564d94fcf9b2263fd3b: {fileID: 796751251425189270}
     - c1af2b178a547fe4199948d86bea720a: {fileID: 796751251425189270}
     - 8d036ab1c8be57248bcb4c711e847211: {fileID: 5990355726209895937}
     - 5c5df24495c3aa34999665145dd44825: {fileID: 1892230768338901845}
@@ -4277,7 +4280,7 @@ PrefabInstance:
     - target: {fileID: 144660315078111193, guid: 07d568249e78f4c4b90074cb6a0ef43d,
         type: 3}
       propertyPath: slashPow
-      value: 17
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2121452689755142010, guid: 07d568249e78f4c4b90074cb6a0ef43d,
         type: 3}
