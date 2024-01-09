@@ -478,7 +478,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   portals: []
-  type: 0
+  type: 1
 --- !u!65 &2102888477503306846
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -728,7 +728,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   portals: []
-  type: 0
+  type: 1
 --- !u!65 &2097225932736758502
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1073,7 +1073,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   portals: []
-  type: 0
+  type: 1
 --- !u!65 &6275033571182994898
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1535,7 +1535,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   portals: []
-  type: 0
+  type: 1
 --- !u!65 &5248395058761604643
 BoxCollider:
   m_ObjectHideFlags: 0

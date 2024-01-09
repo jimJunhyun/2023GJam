@@ -238,6 +238,7 @@ public class MapAtom : ScriptableObject
 		if(type == RoomType.Curse)
 		{
 			interpoint = self.transform.Find("Interective").GetComponent<MoveStation>();
+			Debug.Log("ARROWSHOWER");
 		}
 		if (spRoom)
 		{
@@ -394,7 +395,7 @@ public class MapAtom : ScriptableObject
 			}
 			if (interpoint && type == RoomType.Curse)
 			{
-				interpoint.SetValid();
+				interpoint.ResetValid();
 			}
 		}
 		
@@ -538,6 +539,10 @@ public class MapAtom : ScriptableObject
 			{
 				rightPtExit.ResetValid();
 			}
+			if (interpoint && type == RoomType.Curse)
+			{
+				interpoint.SetValid();
+			}
 		}
 		else
 		{
@@ -563,7 +568,7 @@ public class MapAtom : ScriptableObject
 			}
 			if (interpoint && type == RoomType.Curse)
 			{
-				interpoint.SetValid();
+				interpoint.ResetValid();
 			}
 		}
 		GameManager.Instance.RefreshMap();

@@ -32,7 +32,7 @@ public class ArrowShower : MonoBehaviour
 				mat.color = Color.cyan;
 				break;
 			case ArrowType.Room:
-				mat.color = Color.yellow;
+				mat.color = new Color(1, 1, 1);
 				break;
 			default:
 				break;
