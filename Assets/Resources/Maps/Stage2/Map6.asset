@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd616900df637c646a06e03b5a1f6785, type: 3}
+  m_Name: Map6
+  m_EditorClassIdentifier: 
+  questionRoomStatus: 1
+  obj: {fileID: -5638570669985161055, guid: 5b339dc81bfe0a24a8d4292f97701fbf, type: 3}
+  isQuestion: 1
+  type: 1
+  up: {fileID: 0}
+  down: {fileID: 0}
+  left: {fileID: 11400000, guid: 3695a1843f5bf00448fe6330068175bc, type: 2}
+  right: {fileID: 11400000, guid: 8e0380b6c72a6ac42821946b2d81d742, type: 2}
+  upPt: {x: 129.88, y: 0, z: 480.46}
+  downPt: {x: 104.8, y: 0, z: 439.9}
+  leftPt: {x: 99.57, y: 0, z: 453}
+  rightPt: {x: 135.01, y: 0, z: 473.76}
+  upPtExit: {fileID: 0}
+  downPtExit: {fileID: 0}
+  leftPtExit: {fileID: 0}
+  rightPtExit: {fileID: 0}
+  spRoomEnter: {fileID: 0}
+  spEnterPt: {x: 113.35, y: 300, z: 460}
+  spRoomExit: {fileID: 0}
+  spExitPt: {x: 115.3, y: 0, z: 474.16}
+  spRoom: {fileID: 0}
+  interpoint: {fileID: 0}
+  rootOffSet: {x: 0, y: 0, z: 0}
+  isRandomizable: 1
+  cleared: 0
+  isAutoClear: 1
+  _mapGimik: {fileID: 11400000, guid: 7298ad7518cb3ef43941c21a674cbc00, type: 2}

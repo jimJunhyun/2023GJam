@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd616900df637c646a06e03b5a1f6785, type: 3}
+  m_Name: Map1
+  m_EditorClassIdentifier: 
+  questionRoomStatus: 0
+  obj: {fileID: 7021074989804766103, guid: 99540aa823412c64796c52a5bf81d1ad, type: 3}
+  isQuestion: 0
+  type: 0
+  up: {fileID: 11400000, guid: 743980a8799289c49891559cf8129fb2, type: 2}
+  down: {fileID: 0}
+  left: {fileID: 0}
+  right: {fileID: 0}
+  upPt: {x: 4, y: 0, z: 4.1}
+  downPt: {x: 3.3, y: 0, z: 3.3}
+  leftPt: {x: 4, y: 0, z: 3.1}
+  rightPt: {x: 4.4, y: 0, z: 3.1}
+  upPtExit: {fileID: 0}
+  downPtExit: {fileID: 0}
+  leftPtExit: {fileID: 0}
+  rightPtExit: {fileID: 0}
+  spRoomEnter: {fileID: 0}
+  spEnterPt: {x: 0, y: 0, z: 0}
+  spRoomExit: {fileID: 0}
+  spExitPt: {x: 0, y: 0, z: 0}
+  spRoom: {fileID: 0}
+  interpoint: {fileID: 0}
+  rootOffSet: {x: 0, y: 0, z: 0}
+  isRandomizable: 1
+  cleared: 1
+  isAutoClear: 1
+  _mapGimik: {fileID: 0}
