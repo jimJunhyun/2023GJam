@@ -31,6 +31,8 @@ public enum RoomType
 [CreateAssetMenu()]
 public class MapAtom : ScriptableObject
 {
+	public bool questionRoomStatus;
+
     public MapObjs obj;
 
 	public bool isQuestion = false;
@@ -91,6 +93,11 @@ public class MapAtom : ScriptableObject
 	private MapPP mPP;
 	public virtual void Init(Vector3 pos, MapGenerator info)
 	{
+		if (questionRoomStatus)
+		{
+			isQuestion = true;
+			type = RoomType.Question;
+		}
 		SetStructureRandom(info);
 		InstantiateSelf(pos);
 		SetPoints();
@@ -145,70 +152,51 @@ public class MapAtom : ScriptableObject
 				++repCount;
 
 				RoomType t = (RoomType)Random.Range(((int)RoomType.Shop), ((int)RoomType.Blessing) + 1);
-				if (info.shopCnt < info.shopMinMax.x)
-				{
-					t = RoomType.Shop;
-					invalid = false;
-				}
-				else if(info.healCnt < info.healMinMax.x)
-				{
-					t = RoomType.Heal;
-					invalid = false;
-				}
-				else if (info.curseCnt < info.curseMinMax.x)
-				{
-					t = RoomType.Curse;
-					invalid = false;
-				}
-				else if (info.blessCnt < info.blessMinMax.x)
-				{
-					t = RoomType.Blessing;
-					invalid = false;
-				}
 				type = t;
 				spRoom = null;
 				isAutoClear = true;
 				switch (t)
 				{
 					case RoomType.Shop:
-						if (info.shopCnt + 1 < info.shopMinMax.y)
+						if (info.shopCnt > 0)
 						{
 							obj = GameManager.Instance.mapList.shopMap;
-							info.shopCnt += 1;
+							info.shopCnt -= 1;
 							invalid = false;
 							Debug.Log("spRoom set");
 							spRoom = GameManager.Instance.mapList.shopRoom;
 						}
 						break;
 					case RoomType.Heal:
-						if (info.healCnt + 1 < info.healMinMax.y)
+						if (info.healCnt > 0)
 						{
 							obj = GameManager.Instance.mapList.healMap;
-							info.healCnt += 1;
+							info.healCnt -= 1;
 							_mapGimik = GameManager.Instance.mapList.healGimmick;
 							invalid = false;
 						}
 						break;
 					case RoomType.Curse:
-						if (info.curseCnt + 1 < info.curseMinMax.y)
+						if (info.curseCnt > 0)
 						{
 							obj = GameManager.Instance.mapList.curseMap;
-							info.curseCnt += 1;
+							info.curseCnt -= 1;
 							invalid = false;
 							isAutoClear = false;
 						}
 						break;
 					case RoomType.Blessing:
-						if (info.blessCnt + 1 < info.blessMinMax.y)
+						if (info.blessCnt > 0)
 						{
 							obj = GameManager.Instance.mapList.blessMap;
-							info.blessCnt += 1;
+							info.blessCnt -= 1;
 							invalid = false;
 							Debug.Log("spRoom set");
 							spRoom = GameManager.Instance.mapList.blessRoom;
 						}
 						break;
 				}
+
 				if(repCount > GameManager.MAXREPCOUNT)
 				{
 					type = RoomType.Normal;

@@ -131,17 +131,17 @@ public class LifeObject : MonoBehaviour
 				switch (ai.type)
 				{
 					case AttackType.Shoot:
-						GameManager.Instance.player.Gold += 2;
+						GameManager.Instance.player.Gold += 4;
 						break;
 					case AttackType.Spin:
 					case AttackType.Sweep:
-						GameManager.Instance.player.Gold += 2;
+						GameManager.Instance.player.Gold += 4;
 						break;
 					case AttackType.Body:
-						GameManager.Instance.player.Gold += 1;
+						GameManager.Instance.player.Gold += 2;
 						break;
 					case AttackType.Charge:
-						GameManager.Instance.player.Gold += 3;
+						GameManager.Instance.player.Gold += 6;
 						break;
 				}
 				GameManager.Instance.player.RemoveArrow(transform);

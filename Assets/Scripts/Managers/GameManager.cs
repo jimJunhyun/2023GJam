@@ -57,10 +57,11 @@ public class GameManager : Singleton<GameManager>
 	private void Start()
 	{
 		player.RefreshStat();
-		for (int i = 0; i < maps.Count; i++)
-		{
-			maps[i].Create();
-		}
+
+		int r = Random.Range(0, maps.Count);
+		curStage = r;
+
+		maps[curStage].Create();
 		surface.BuildNavMesh();
 
 		curRoom = maps[curStage].startRoom;
