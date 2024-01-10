@@ -18,7 +18,7 @@ MonoBehaviour:
   type: 1
   up: {fileID: 0}
   down: {fileID: 0}
-  left: {fileID: 11400000, guid: 6b5842fd7a8377c468fa1a6ac7b049a1, type: 2}
+  left: {fileID: 11400000, guid: d1cc31b8d27b5d449ab6418328953bf3, type: 2}
   right: {fileID: 0}
   upPt: {x: 337.1, y: 0, z: 362.4}
   downPt: {x: 358.4, y: 0, z: 324.5}
